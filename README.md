@@ -19,7 +19,7 @@
 
 - MUI khi cần thiết, icon
 
-#lib
+# lib
 
 - npx create-react-app my-app --template redux
 - react-router-dom
