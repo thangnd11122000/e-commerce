@@ -1,14 +1,14 @@
 # cấu trúc:
 
 -components
--pages - component riêng
--component chung
-
+  - pages 
+    - component riêng
+    - component chung
 - pages
-- page
+  - page
 - util
-- storage
-- function support
+  - storage
+  - function support
 - store (redux)
 
 # css
