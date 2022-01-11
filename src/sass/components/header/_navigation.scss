@@ -1,0 +1,201 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 1s;
+
+  @include breakpoint("xl") {
+    position: fixed;
+    top: 0;
+    left: -350px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    width: 350px;
+    height: 100vh;
+    background: #fff;
+    color: $text-dark;
+    overflow: scroll;
+    z-index: 5;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  .cat-dropdown {
+    position: relative;
+    @include breakpoint("xl") {
+      width: 100%;
+    }
+
+    &__close {
+      display: none;
+      padding: 15px 24px;
+      font-weight: bold;
+      background: $bg-primary;
+      color: #fff;
+      text-transform: uppercase;
+      text-align: center;
+      @include breakpoint("xl") {
+        display: block;
+      }
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      padding: 15px 24px;
+      cursor: pointer;
+
+      @include breakpoint("xl") {
+        font-weight: bold;
+      }
+
+      &:hover {
+        background: $primary;
+      }
+
+      p {
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-right: 10px;
+      }
+
+      &.active {
+        background: $primary;
+      }
+    }
+    &__menu {
+      position: absolute;
+      top: 100%;
+      color: #000;
+      background: #fff;
+      width: 250px;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(30%);
+      transition: all 0.3s;
+
+      @include breakpoint("xl") {
+        position: relative;
+        top: 0;
+        width: 100%;
+        display: none;
+      }
+
+      &.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0%);
+
+        @include breakpoint("xl") {
+          display: block;
+        }
+      }
+
+      &--link {
+        display: block;
+        padding: 10px 24px;
+        border-bottom: 0.5px solid rgb(207, 207, 207);
+        &:hover {
+          color: $primary;
+        }
+        &:hover + .cat-dropdown__submenu {
+          display: flex;
+
+          @include breakpoint("xl") {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &__submenu {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      min-width: 800px;
+      min-height: 300px;
+      flex-wrap: wrap;
+      padding: 20px 40px;
+      gap: 0 5%;
+      background: #fff;
+
+      &:hover {
+        display: flex;
+
+        @include breakpoint("xl") {
+          display: block;
+        }
+      }
+
+      @include breakpoint("xl") {
+        position: relative;
+        top: 0;
+        left: 0;
+        min-width: unset;
+      }
+
+      &--box {
+        flex-basis: 30%;
+        font-size: 16px;
+        color: $text-dark;
+      }
+      &--title {
+        color: $text-dark;
+      }
+      &--list {
+        margin: 10px 0;
+      }
+      &--item {
+        margin-top: 10px;
+        color: $text-secondary;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &__pages {
+    display: flex;
+    gap: 50px;
+
+    @include breakpoint("xl") {
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+  }
+  &__page {
+    text-transform: uppercase;
+
+    &:hover {
+      color: $primary;
+    }
+
+    a {
+      @include breakpoint("xl") {
+        display: block;
+        width: 100%;
+        padding: 15px 24px;
+        font-weight: bold;
+      }
+    }
+  }
+  &__contact {
+    margin-right: 15px;
+
+    &:hover {
+      color: $primary;
+    }
+
+    @include breakpoint("xl") {
+      padding: 15px 24px;
+      font-weight: bold;
+    }
+  }
+}

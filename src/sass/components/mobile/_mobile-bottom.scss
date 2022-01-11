@@ -1,0 +1,40 @@
+.mobile-bottom {
+  display: none;
+
+  @include breakpoint("md") {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background: rgb(221, 221, 221);
+    padding: 10px 0;
+  }
+
+  &__box {
+    display: block;
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $text-dark;
+
+    &--img {
+      display: block;
+      width: 25px;
+    }
+
+    .MuiSvgIcon-root {
+      font-size: 28px;
+    }
+    span {
+      margin-top: 2px;
+    }
+  }
+}
