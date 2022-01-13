@@ -4,8 +4,14 @@
 
 // variables
 @import "variables";
+@import "shadow";
 
 @import "components/button/button";
+@import "components/card/banner-card";
+@import "components/card/post-card";
+@import "components/product/product";
+@import "components/product/product-slide";
+@import "components/product/product-tab";
 
 // header
 @import "components/header/header";
@@ -13,9 +19,21 @@
 @import "components/header/navigation";
 @import "components/header/cart-sidebar";
 
+//footer
+@import 'components/footer/footer';
+
 // mobile-bottom
 @import "components/mobile/mobile-bottom";
 
 // homepage
 @import "components/home/home";
-// @import "components/home/banner-top";
+@import "components/home/top-banner";
+@import "components/home/flash-sale";
+@import "components/home/category-popular";
+@import "components/home/middle-banner";
+@import "components/home/recommended-products";
+@import "components/home/services-banner";
+@import "components/home/post-list";
+
+// product-list
+@import "components/product-list/product-list";

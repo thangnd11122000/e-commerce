@@ -3,6 +3,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 50px;
+  z-index: 2;
+  background: inherit;
+  transition: 0.7s all;
+
+  @include breakpoint("xl") {
+    padding: 15px 50px;
+  }
+
+  @include breakpoint("md") {
+    padding: 10px 20px;
+  }
+
+  &.scroll {
+    position: fixed;
+    top: -100%;
+  }
+
+  &.scrollUp {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
 
   &__logo {
     display: flex;

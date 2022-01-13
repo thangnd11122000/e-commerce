@@ -19,5 +19,9 @@
     @media (max-width: 576px) {
       @content;
     }
+  } @else if $point == xs {
+    @media (max-width: 425px) {
+      @content;
+    }
   }
 }

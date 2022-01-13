@@ -7,7 +7,7 @@ import {
   PersonOutline,
   ShoppingBagOutlined,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   handleCartSidebar,
@@ -18,6 +18,7 @@ import { handleMenuSidebar } from "../../features/header/headerSlice";
 import { MobileDiv } from "./MobileDiv";
 import menuIcon from "../../assets/img/icons/menu.png";
 import bagIcon from "../../assets/img/icons/bag.png";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 const links = [
   {
@@ -47,13 +48,23 @@ const links = [
   },
 ];
 const MobileBottom = () => {
-  const isOpenMenuSidebar = useSelector(
-    (state) => state.header.isOpenMenuSidebar
-  );
   const dispatch = useDispatch();
 
+  const [hideOnScroll, setHideOnScroll] = useState(true);
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      const isShow = currPos.y > prevPos.y;
+      if (isShow !== hideOnScroll) setHideOnScroll(isShow);
+    },
+    [hideOnScroll]
+  );
+
   return (
-    <div className="mobile-bottom">
+    <div
+      className={`mobile-bottom ${
+        hideOnScroll ? "mobile-bottom__scroll-up" : ""
+      } `}
+    >
       <MobileLink name="trang chu" link="/" icon={<HomeOutlined />} />
       <MobileLink name="tai khoan" link="/" icon={<PersonOutline />} />
       <div

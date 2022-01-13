@@ -1,21 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import MobileBottom from "./components/Mobile/MobileBottom";
 import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
+import ProductList from "./pages/ProductList";
 
 function App() {
-  const isOpenDropdown = useSelector((state) => state.header.isOpenDropdown);
-  const isOpenMenuSidebar = useSelector(
-    (state) => state.header.isOpenMenuSidebar
-  );
-
   return (
     <div className="App">
       <Header />
-      <Home />
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product-list" element={<ProductList />} />
+      </Routes>
+      <Footer />
       <MobileBottom />
     </div>
   );

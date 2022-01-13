@@ -1,0 +1,78 @@
+.product-tab {
+  width: 100%;
+
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    @include breakpoint("md") {
+      padding: unset;
+      padding: 10px;
+    }
+
+    h3 {
+      min-width: 100px;
+      font-size: 30px;
+      border-bottom: 3px solid #16bcdc;
+      margin-bottom: 0;
+      padding-bottom: 10px;
+      font-weight: 500;
+      margin-right: 20px;
+
+      @include breakpoint("xl") {
+        border-bottom: 0;
+        padding-bottom: 0px;
+        font-size: 26px;
+      }
+      @include breakpoint("md") {
+        font-size: 20px;
+      }
+    }
+
+    &--tab {
+      @include breakpoint("md") {
+        font-size: 26px;
+      }
+    }
+
+    &--button {
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      text-transform: capitalize !important;
+
+      @include breakpoint("lg") {
+        min-width: 60px !important;
+        padding: 0 !important;
+      }
+
+      @include breakpoint("md") {
+        min-height: 0 !important;
+        font-size: 14px !important;
+      }
+    }
+
+    &--all {
+      position: absolute;
+      bottom: -22px;
+      right: 0px;
+      font-size: 14px;
+      color: $text-disable;
+      @include breakpoint("md") {
+        font-size: 12px;
+      }
+    }
+
+    .css-1ujnqem-MuiTabs-root {
+      @include breakpoint("md") {
+        min-height: 0 !important;
+      }
+    }
+
+    .MuiTabs-flexContainer {
+      flex-wrap: wrap !important;
+    }
+  }
+}

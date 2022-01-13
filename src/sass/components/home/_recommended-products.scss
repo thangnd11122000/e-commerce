@@ -1,0 +1,24 @@
+.recommended-products {
+  &__container {
+    margin-top: 20px !important;
+
+    @include breakpoint("md") {
+        margin-top: 5px !important;
+      }
+  }
+
+  &__pagination {
+    margin-top: 20px;
+
+    
+
+    ul {
+      justify-content: center;
+
+      .Mui-selected {
+        color: #fff !important;
+        background: $primary !important;
+      }
+    }
+  }
+}

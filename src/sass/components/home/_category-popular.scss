@@ -1,0 +1,32 @@
+.category-popular {
+  margin: 20px 0 50px;
+
+  @include breakpoint("xl") {
+    margin: 0px 0 30px;
+  }
+  @include breakpoint("md") {
+    margin: 0px 0 10px;
+  }
+
+  &__slider {
+    margin-top: 30px;
+
+    @include breakpoint("md") {
+      margin-top: 20px;
+    }
+    
+  }
+
+  .slick-arrow {
+   display: none !important;
+  }
+
+  .banner-card__box {
+    height: 140px;
+    padding: 0px 30px;
+    margin: 10px;
+    img {
+      width: 100%;
+    }
+  }
+}

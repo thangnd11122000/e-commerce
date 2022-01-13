@@ -1,0 +1,131 @@
+.product-list {
+  padding: 20px 50px;
+  display: flex;
+  gap: 0 20px;
+
+  &__filter {
+    width: 300px;
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    &--box {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        color: var(--primary);
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__products {
+    background: #fff;
+    width: 100%;
+    padding: 20px;
+    .pagination {
+      ul {
+        justify-content: center;
+
+        .Mui-selected {
+          background: var(--primary);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &__selection {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__selected-filter {
+    margin: 20px 0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    gap: 0 10px;
+    color: #000;
+    p {
+      font-weight: bold;
+    }
+    div {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      button {
+        margin-left: 5px;
+        padding: 1px 5px;
+        cursor: pointer;
+        background: var(--primary);
+        border: none;
+        border-radius: 2px;
+        color: #fff;
+      }
+    }
+  }
+
+  &__display {
+    display: flex;
+    .active {
+      border: 1px solid var(--primary);
+      span {
+        background: var(--primary);
+      }
+    }
+    &--column {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 2px;
+      padding: 3px;
+      display: flex;
+      gap: 0 1px;
+      margin-right: 10px;
+      justify-content: space-between;
+      cursor: pointer;
+      span {
+        display: block;
+        width: 5px;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      &:hover {
+        border: 1px solid var(--primary);
+        span {
+          background: var(--primary);
+        }
+      }
+    }
+
+    &--list {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 2px;
+      padding: 3px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-right: 10px;
+      cursor: pointer;
+      span {
+        display: block;
+        width: 23px;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      &:hover {
+        border: 1px solid var(--primary);
+        span {
+          background: var(--primary);
+        }
+      }
+    }
+  }
+}

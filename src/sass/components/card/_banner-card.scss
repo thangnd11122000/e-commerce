@@ -1,0 +1,28 @@
+.banner-card__box {
+  //   height???
+  position: relative;
+  color: #fff;
+  img {
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+  &--content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    h3 {
+      font-weight: 400;
+    }
+    p {
+      color: $text-disable;
+    }
+  }
+}

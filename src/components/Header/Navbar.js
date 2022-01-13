@@ -6,7 +6,8 @@ import {
   Search,
   ShoppingBagOutlined,
 } from "@mui/icons-material";
-import React from "react";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   openCartSidebar,
@@ -14,25 +15,26 @@ import {
 } from "../../features/header/headerSlice";
 import { Action } from "./Action";
 
-const Navbar = () => {
-  const isOpenMenuSidebar = useSelector(
-    (state) => state.header.isOpenMenuSidebar
-  );
-  const isOpenCartSidebar = useSelector(
-    (state) => state.header.isOpenCartSidebar
-  );
-
+const Navbar = ({ hideOnScrollDown, isScroll }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="navbar">
+    <div
+      className={`navbar ${isScroll ? "scroll" : ""} ${
+        hideOnScrollDown ? "scrollUp" : ""
+      }`}
+    >
       <div className="navbar__logo">
         <Menu
           className="navbar__logo--toggle"
           onClick={() => dispatch(openMenuSidebar())}
         />
-        <a href="/" className="navbar__logo--name">Shopvip</a>
-        <a href="/" className="navbar__logo--icon"><Adb /></a>
+        <a href="/" className="navbar__logo--name">
+          Shopvip
+        </a>
+        <a href="/" className="navbar__logo--icon">
+          <Adb />
+        </a>
       </div>
       <div className="navbar__search">
         <input type="text" placeholder="Tra cứu sản phẩm" />

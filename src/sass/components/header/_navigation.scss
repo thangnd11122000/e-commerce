@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   transition: all 1s;
+  padding: 0 35px;
 
   @include breakpoint("xl") {
     position: fixed;

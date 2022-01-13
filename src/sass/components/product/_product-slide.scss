@@ -1,0 +1,51 @@
+.product-slide {
+  position: relative;
+
+  &__slider {
+    margin-top: 20px;
+
+    @include breakpoint("md") {
+      margin-top: 10px;
+    }
+
+    .slick-track {
+      float: left;
+    }
+  }
+
+  &__container {
+    padding: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+
+    @include breakpoint("xl") {
+      padding: 15px;
+    }
+
+    @include breakpoint("md") {
+      padding: 10px;
+    }
+  }
+
+  .slick-arrow {
+    z-index: 1;
+    &.slick-prev {
+      left: -5px;
+    }
+    &.slick-next {
+      right: -2px;
+    }
+    &::before {
+      color: $primary;
+      font-size: 26px;
+    }
+  }
+
+  &__message {
+    font-size: 30px;
+    text-align: center;
+    padding: 50px 50px;
+    color: red;
+  }
+}

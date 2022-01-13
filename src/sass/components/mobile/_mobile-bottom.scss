@@ -1,10 +1,10 @@
 .mobile-bottom {
   display: none;
-
+  transition: all .8s;
   @include breakpoint("md") {
     display: block;
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: -100%;
     left: 0;
     width: 100%;
     display: flex;
@@ -12,6 +12,10 @@
     align-items: flex-end;
     background: rgb(221, 221, 221);
     padding: 10px 0;
+  }
+
+  &__scroll-up {
+    bottom: 0;
   }
 
   &__box {
