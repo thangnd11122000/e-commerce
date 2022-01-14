@@ -2,15 +2,16 @@ import React, { useCallback } from "react";
 import { newProductsData } from "../data";
 import { useState } from "react";
 import { useEffect } from "react";
-import FilterCategories from "../components/ProductList/FilterCategories";
-import FilterPrice from "../components/ProductList/FilterPrice";
-import FilterWeight from "../components/ProductList/FilterWeight";
-import SelectedFilter from "../components/ProductList/SelectedFilter";
-import Sorting from "../components/ProductList/Sorting";
-import Display from "../components/ProductList/Display";
-import { unique } from "../helpers/unique";
+import FilterCategories from "../components/Catalog/FilterCategories";
+import FilterPrice from "../components/Catalog/FilterPrice";
+import FilterWeight from "../components/Catalog/FilterWeight";
+import SelectedFilter from "../components/Catalog/SelectedFilter";
+import Sorting from "../components/Catalog/Sorting";
+import Display from "../components/Catalog/Display";
+import PageLinks from "../components/PageLinks";
+import unique from "../utils/unique";
 
-const ProductList = () => {
+const Catalog = () => {
   const [products, setProducts] = useState(newProductsData);
   const [filterCategories, setFilterCategories] = useState([]);
   const [productsByPrice, setProductsByPrice] = useState(products);
@@ -92,15 +93,17 @@ const ProductList = () => {
 
   return (
     <>
-      <div className="product-list">
-        <div className="product-list__filter">
-          <div className="product-list__filter--box">
+      <PageLinks links={[{ name: "Mua sam", link: "/catalog" }]} />
+      <div className="catalog">
+        <div className="catalog__filter">
+          <h3 className="catalog__filter--header">Tùy chọn mua sắm</h3>
+          <div className="catalog__filter--box">
             <FilterCategories
               filterCategories={filterCategories}
               setFilterCategories={setFilterCategories}
             />
           </div>
-          <div className="product-list__filter--box">
+          <div className="catalog__filter--box">
             <FilterPrice
               productsData={newProductsData}
               setProductsByPrice={setProductsByPrice}
@@ -109,7 +112,7 @@ const ProductList = () => {
               getMinMaxPrice={getMinMaxPrice}
             />
           </div>
-          <div className="product-list__filter--box">
+          <div className="catalog__filter--box">
             <FilterWeight
               filterWeight={filterWeight}
               setFilterWeight={setFilterWeight}
@@ -117,8 +120,8 @@ const ProductList = () => {
           </div>
         </div>
 
-        <div className="product-list__products">
-          <div className="product-list__selection">
+        <div className="catalog__products">
+          <div className="catalog__selection">
             <Sorting setSorting={setSorting} sorting={sorting} />
             <Display
               numberLayout={numberLayout}
@@ -142,4 +145,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default Catalog;

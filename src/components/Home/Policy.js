@@ -1,6 +1,5 @@
 import { CardMembership } from "@mui/icons-material";
 import { Grid } from "@mui/material";
-import React from "react";
 
 const data = [
   {
@@ -25,15 +24,15 @@ const data = [
   },
 ];
 
-const ServicesBanner = () => {
+const Policy = () => {
   return (
-    <div className="services-banner">
+    <div className="policy">
       <Grid container spacing={2}>
         {data.map((d, i) => (
-          <Grid item xs={6} sm={6} md={3}  lg={3} key={i}>
-            <div className="services-banner__box">
-              <div className="services-banner__box--icon">{d.icon}</div>
-              <div className="services-banner__box--content">
+          <Grid item xs={6} sm={6} md={3} lg={3} key={i}>
+            <div className="policy__box">
+              <div className="policy__box--icon">{d.icon}</div>
+              <div className="policy__box--content">
                 <h3>{d.title}</h3>
                 <p>{d.subtitle}</p>
               </div>
@@ -45,4 +44,4 @@ const ServicesBanner = () => {
   );
 };
 
-export default ServicesBanner;
+export default Policy;

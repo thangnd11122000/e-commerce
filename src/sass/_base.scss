@@ -9,8 +9,7 @@
 body {
   position: relative;
   font-family: "Rubik", sans-serif;
-  // width: max-content;
-  // overflow-x: hidden;
+  background: #f3f5f6;
 }
 
 ul {
@@ -25,4 +24,16 @@ a {
 img {
   max-width: 100%;
 }
-
+.page-links {
+  padding: 20px 50px;
+  color: #666;
+  font-size: 15px;
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  span {
+    margin: 0px 15px;
+  }
+}

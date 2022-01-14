@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import MobileBottom from "./components/Mobile/MobileBottom";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
-import ProductList from "./pages/ProductList";
+import ProductList from "./pages/Catalog";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product-list" element={<ProductList />} />
+        <Route path="/catalog" element={<ProductList />} />
       </Routes>
       <Footer />
       <MobileBottom />

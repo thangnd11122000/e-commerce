@@ -1,4 +1,3 @@
-import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -84,8 +83,8 @@ const CategoryPopular = () => {
   return (
     <div className="category-popular">
       <div className="component-header">
-        <h3>Danh muc pho bien</h3>
-        <span>Xem tat ca</span>
+        <h3>Danh mục phổ biến</h3>
+        <span>Xem tất cả {">"}</span>
       </div>
 
       <Slider {...settings} className="category-popular__slider">

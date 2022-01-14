@@ -1,8 +1,8 @@
 import { Grid, Pagination } from "@mui/material";
-import React, { useState } from "react";
-import { recommendedProductsData as products } from "../../data";
+import { useState } from "react";
 import usePagination from "../Pagination/Pagination";
-import Product from "../Product/Product";
+import ProductCard from "../Product/ProductCard";
+import { recommendedProductsData as products } from "../../data";
 
 const RecommendedProducts = () => {
   let [page, setPage] = useState(1);
@@ -31,7 +31,7 @@ const RecommendedProducts = () => {
       >
         {_DATA.currentData().map((d, i) => (
           <Grid item xs={2} key={i}>
-            <Product product={d} />
+            <ProductCard product={d} />
           </Grid>
         ))}
       </Grid>

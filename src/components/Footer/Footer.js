@@ -1,26 +1,12 @@
-import { Facebook, FacebookOutlined, ArrowForward } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import { FacebookOutlined, ArrowForward } from "@mui/icons-material";
+import React from "react";
 const Footer = () => {
-  const [actives, setActives] = useState([]);
-
-  const handleClick = (className) => {
-    if (actives.includes(className)) {
-      const newActive = actives.filter((a) => a !== className);
-      setActives(newActive);
-    } else {
-      setActives([...actives, className]);
-    }
-  };
+  const footerToggle = (e) => e.target.classList.toggle("active");
 
   return (
     <div className="footer">
       <div className="footer__links large">
-        <div
-          className={`footer__header ${
-            actives.includes("active-1") ? "active-1" : ""
-          }`}
-          onClick={() => handleClick("active-1")}
-        >
+        <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Download app</h3>
           <ArrowForward />
         </div>
@@ -61,12 +47,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__links">
-        <div
-          className={`footer__header ${
-            actives.includes("active-2") ? "active-2" : ""
-          }`}
-          onClick={() => handleClick("active-2")}
-        >
+        <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Trung tâm trợ giúp</h3>
 
           <ArrowForward />
@@ -93,12 +74,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__links">
-        <div
-          className={`footer__header ${
-            actives.includes("active-3") ? "active-3" : ""
-          }`}
-          onClick={() => handleClick("active-3")}
-        >
+        <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Dịch vụ khách hàng</h3>
 
           <ArrowForward />
@@ -125,12 +101,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__links">
-        <div
-          className={`footer__header ${
-            actives.includes("active-4") ? "active-4" : ""
-          }`}
-          onClick={() => handleClick("active-4")}
-        >
+        <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Dịch vụ khách hàng</h3>
 
           <ArrowForward />
@@ -157,12 +128,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__links large">
-        <div
-          className={`footer__header ${
-            actives.includes("active-5") ? "active-5" : ""
-          }`}
-          onClick={() => handleClick("active-5")}
-        >
+        <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Đăng kí nhận bản tin</h3>
 
           <ArrowForward />

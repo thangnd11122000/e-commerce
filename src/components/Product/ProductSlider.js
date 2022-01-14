@@ -1,11 +1,9 @@
-import { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Product from "./Product";
+import Product from "./ProductCard";
 
-function ProductSlide({ value = 1, index = 1, products }) {
-
+function ProductSlider({ value = 1, index = 1, products }) {
   const settings = {
     dots: false,
     infinite: false,
@@ -38,31 +36,27 @@ function ProductSlide({ value = 1, index = 1, products }) {
           slidesToShow: 2,
         },
       },
-    
     ],
   };
 
   return (
-    <div className="product-slide">
+    <div className="product-slider">
       {value === index &&
         (products.length ? (
-          <Slider
-            className="product-slide__slider"
-            {...settings}
-          >
+          <Slider className="product-slider__slider" {...settings}>
             {products.map((p, i) => {
               return (
-                <div className="product-slide__container" key={i}>
+                <div className="product-slider__container" key={i}>
                   <Product product={p} />
                 </div>
               );
             })}
           </Slider>
         ) : (
-          <h3 className="product-slide__message">No Products</h3>
+          <h3 className="product-slider__message">No Products</h3>
         ))}
     </div>
   );
 }
 
-export default ProductSlide;
+export default ProductSlider;

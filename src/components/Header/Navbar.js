@@ -15,13 +15,13 @@ import {
 } from "../../features/header/headerSlice";
 import { Action } from "./Action";
 
-const Navbar = ({ hideOnScrollDown, isScroll }) => {
+const Navbar = ({ hideOnScrollDown = false, isScroll }) => {
   const dispatch = useDispatch();
 
   return (
     <div
       className={`navbar ${isScroll ? "scroll" : ""} ${
-        hideOnScrollDown ? "scrollUp" : ""
+        isScroll && hideOnScrollDown ? "scroll-up" : ""
       }`}
     >
       <div className="navbar__logo">

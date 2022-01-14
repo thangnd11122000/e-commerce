@@ -19,11 +19,13 @@ const Header = () => {
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const isShow = currPos.y > prevPos.y;
+      console.log(currPos.y);
       if (isShow !== hideOnScrollDown) setHideOnScrollDown(isShow);
       if (currPos.y > -100) {
         setHideOnScrollDown(false);
         setIsScroll(false);
       } else setIsScroll(true);
+    
     },
     [hideOnScrollDown],
     false,

@@ -21,6 +21,7 @@
 
     &.active {
       left: 0;
+      padding: 0;
     }
   }
 
@@ -99,6 +100,7 @@
         display: block;
         padding: 10px 24px;
         border-bottom: 0.5px solid rgb(207, 207, 207);
+
         &:hover {
           color: $primary;
         }
@@ -106,6 +108,12 @@
           display: flex;
 
           @include breakpoint("xl") {
+            display: none;
+          }
+        }
+
+        @include breakpoint("xl") {
+          &.active + .cat-dropdown__submenu {
             display: block;
           }
         }
@@ -120,7 +128,7 @@
       min-width: 800px;
       min-height: 300px;
       flex-wrap: wrap;
-      padding: 20px 40px;
+      padding: 0px 40px;
       gap: 0 5%;
       background: #fff;
 
@@ -137,12 +145,16 @@
         top: 0;
         left: 0;
         min-width: unset;
+        border-bottom: 0.5px solid rgb(207, 207, 207);
       }
 
       &--box {
         flex-basis: 30%;
         font-size: 16px;
         color: $text-dark;
+        @include breakpoint("xl") {
+          margin: 20px 0;
+        }
       }
       &--title {
         color: $text-dark;
@@ -161,7 +173,7 @@
     }
   }
 
-  &__pages {
+  &__nav {
     display: flex;
     gap: 50px;
 
@@ -170,23 +182,28 @@
       gap: 0;
       width: 100%;
     }
-  }
-  &__page {
-    text-transform: uppercase;
+    &--path {
+      text-transform: uppercase;
 
-    &:hover {
-      color: $primary;
-    }
+      &:hover {
+        color: $primary;
+      }
 
-    a {
-      @include breakpoint("xl") {
-        display: block;
-        width: 100%;
-        padding: 15px 24px;
-        font-weight: bold;
+      &.active {
+        color: $primary;
+      }
+
+      a {
+        @include breakpoint("xl") {
+          display: block;
+          width: 100%;
+          padding: 15px 24px;
+          font-weight: bold;
+        }
       }
     }
   }
+
   &__contact {
     margin-right: 15px;
 

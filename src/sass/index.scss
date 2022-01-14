@@ -9,8 +9,9 @@
 @import "components/button/button";
 @import "components/card/banner-card";
 @import "components/card/post-card";
-@import "components/product/product";
-@import "components/product/product-slide";
+
+@import "components/product/product-card";
+@import "components/product/product-slider";
 @import "components/product/product-tab";
 
 // header
@@ -20,7 +21,7 @@
 @import "components/header/cart-sidebar";
 
 //footer
-@import 'components/footer/footer';
+@import "components/footer/footer";
 
 // mobile-bottom
 @import "components/mobile/mobile-bottom";
@@ -32,8 +33,8 @@
 @import "components/home/category-popular";
 @import "components/home/middle-banner";
 @import "components/home/recommended-products";
-@import "components/home/services-banner";
+@import "components/home/policy";
 @import "components/home/post-list";
 
-// product-list
-@import "components/product-list/product-list";
+// catalog
+@import "components/catalog/catalog";

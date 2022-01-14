@@ -1,70 +1,163 @@
-import {
-  Close,
-  KeyboardArrowDown,
-  KeyboardArrowRight,
-} from "@mui/icons-material";
+import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   closeDropdown,
   closeMenuSidebar,
   handleDropdown,
 } from "../../features/header/headerSlice";
 
-const categories = [
+const menu = [
   {
     id: 1,
     name: "May tinh",
-    link: "/",
-    submenus: [
+    // path: "/",
+    submenu: [
       {
         title: "Danh muc 1",
-        submenu: [
+        link: [
           {
             name: "danh muc con 1",
-            link: "/",
+            path: "/",
           },
           {
             name: "danh muc con 2",
-            link: "/",
+            path: "/",
           },
           {
             name: "danh muc con 3",
-            link: "/",
+            path: "/",
           },
         ],
       },
       {
         title: "Danh muc 2",
-        submenu: [
+        link: [
           {
             name: "danh muc con 1",
-            link: "/",
+            path: "/",
           },
           {
             name: "danh muc con 2",
-            link: "/",
+            path: "/",
           },
           {
             name: "danh muc con 3",
-            link: "/",
+            path: "/",
+          },
+        ],
+      },
+      {
+        title: "Danh muc 3",
+        link: [
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+          {
+            name: "danh muc con 3",
+            path: "/",
           },
         ],
       },
     ],
   },
+  {
+    id: 2,
+    name: "Dien thoai",
+    // path: "/",
+    submenu: [
+      {
+        title: "Danh muc 1",
+        link: [
+          {
+            name: "danh muc con 1",
+            path: "/",
+          },
+          {
+            name: "danh muc con 2",
+            path: "/",
+          },
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+        ],
+      },
+      {
+        title: "Danh muc 2",
+        link: [
+          {
+            name: "danh muc con 1",
+            path: "/",
+          },
+          {
+            name: "danh muc con 2",
+            path: "/",
+          },
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+        ],
+      },
+      {
+        title: "Danh muc 3",
+        link: [
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+          {
+            name: "danh muc con 3",
+            path: "/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "May anh",
+    path: "/",
+  },
+  {
+    id: 3,
+    name: "May anh",
+    path: "/",
+  },
+  {
+    id: 3,
+    name: "May anh",
+    path: "/",
+  },
+  {
+    id: 3,
+    name: "May anh",
+    path: "/",
+  },
+  {
+    id: 3,
+    name: "May anh",
+    path: "/",
+  },
 ];
 
 const CategoriesDropdown = () => {
   const dropdownRef = useRef(null);
-
   const isOpenDropdown = useSelector((state) => state.header.isOpenDropdown);
-
-  const isOpenMenuSidebar = useSelector(
-    (state) => state.header.isOpenMenuSidebar
-  );
-
   const dispatch = useDispatch();
+
+  const submenuToggle = (e) => e.target.classList.toggle("active");
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -76,7 +169,7 @@ const CategoriesDropdown = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dispatch, dropdownRef]); 
+  }, [dispatch, dropdownRef]);
 
   return (
     <div className="cat-dropdown" ref={dropdownRef}>
@@ -86,7 +179,7 @@ const CategoriesDropdown = () => {
           dispatch(closeMenuSidebar());
         }}
       >
-        Đóng cửa sổ1
+        Đóng cửa sổ
       </div>
       <div
         className={
@@ -102,130 +195,41 @@ const CategoriesDropdown = () => {
           isOpenDropdown ? "cat-dropdown__menu active" : "cat-dropdown__menu"
         }
       >
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            Máy tính
-          </a>
-          <div className="cat-dropdown__submenu">
-            <div className="cat-dropdown__submenu--box">
-              <p className="cat-dropdown__submenu--title">Asus</p>
-              <ul className="cat-dropdown__submenu--list">
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Asus 1</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Asus 2</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Asus 3</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="cat-dropdown__submenu--box">
-              <p className="cat-dropdown__submenu--title">Dell</p>
-              <ul className="cat-dropdown__submenu--list">
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Dell 1</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Dell 2</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Dell 3</a>
-                </li>
-              </ul>
-            </div>
-            <div className="cat-dropdown__submenu--box">
-              <p className="cat-dropdown__submenu--title">Danh muc 1</p>
-              <ul className="cat-dropdown__submenu--list">
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 1</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 2</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 3</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            Dien thoai
-          </a>
-          <div className="cat-dropdown__submenu">
-            <div className="cat-dropdown__submenu--box">
-              <p className="cat-dropdown__submenu--title">Danh muc 1</p>
-              <ul className="cat-dropdown__submenu--list">
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 1</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 2</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 3</a>
-                </li>
-              </ul>
-            </div>
-            <div className="cat-dropdown__submenu--box">
-              <p className="cat-dropdown__submenu--title">Danh muc 1</p>
-              <ul className="cat-dropdown__submenu--list">
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 1</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 2</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 3</a>
-                </li>
-              </ul>
-            </div>
-            <div className="cat-dropdown__submenu--box">
-              <p className="cat-dropdown__submenu--title">Danh muc 1</p>
-              <ul className="cat-dropdown__submenu--list">
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 1</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 2</a>
-                </li>
-                <li className="cat-dropdown__submenu--item">
-                  <a href="/#">Danh muc con 3</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            May anh
-          </a>
-        </li>
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            Máy tính
-          </a>
-        </li>
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            Máy tính
-          </a>
-        </li>
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            Máy tính
-          </a>
-        </li>
-        <li>
-          <a href="/#" className="cat-dropdown__menu--link">
-            Máy tính
-          </a>
-        </li>
+        {menu.map((m, i) => (
+          <li key={i}>
+            {m.path ? (
+              <Link to={m.path} className="cat-dropdown__menu--link">
+                {m.name}
+              </Link>
+            ) : (
+              <p
+                className="cat-dropdown__menu--link"
+                onClick={(e) => submenuToggle(e)}
+              >
+                {m.name}
+              </p>
+            )}
+            {m.submenu && (
+              <div className="cat-dropdown__submenu">
+                {m.submenu.map((s, sIndex) => (
+                  <div key={sIndex} className="cat-dropdown__submenu--box">
+                    <p className="cat-dropdown__submenu--title">{s.title}</p>
+                    <ul className="cat-dropdown__submenu--list">
+                      {s.link.map((l, lIndex) => (
+                        <li
+                          key={lIndex}
+                          className="cat-dropdown__submenu--item"
+                        >
+                          <Link to={l.path}>{l.name}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   );

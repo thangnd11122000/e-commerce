@@ -6,9 +6,9 @@ const Display = ({ numberLayout, setNumberLayout }) => {
   };
 
   return (
-    <div className="product-list__display">
+    <div className="catalog__display">
       <div
-        className={`product-list__display--column ${
+        className={`catalog__display--column ${
           numberLayout === 2 ? "active" : ""
         }`}
         onClick={() => handleClick(2)}
@@ -17,7 +17,7 @@ const Display = ({ numberLayout, setNumberLayout }) => {
         <span></span>
       </div>
       <div
-        className={`product-list__display--column ${
+        className={`catalog__display--column ${
           numberLayout === 3 ? "active" : ""
         }`}
         onClick={() => handleClick(3)}
@@ -27,7 +27,7 @@ const Display = ({ numberLayout, setNumberLayout }) => {
         <span></span>
       </div>
       <div
-        className={`product-list__display--column ${
+        className={`catalog__display--column ${
           numberLayout === 4 ? "active" : ""
         }`}
         onClick={() => handleClick(4)}
@@ -38,7 +38,7 @@ const Display = ({ numberLayout, setNumberLayout }) => {
         <span></span>
       </div>
       <div
-        className={`product-list__display--column ${
+        className={`catalog__display--column ${
           numberLayout === 5 ? "active" : ""
         }`}
         onClick={() => handleClick(5)}

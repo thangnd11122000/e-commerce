@@ -1,34 +1,27 @@
-import {
-  KeyboardArrowDown,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-} from "@mui/icons-material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {
-  closeDropdown,
-  closeMenuSidebar,
-  handleDropdown,
-} from "../../features/header/headerSlice";
+import { Link, useLocation } from "react-router-dom";
+import { closeMenuSidebar } from "../../features/header/headerSlice";
 import CategoriesDropdown from "./CategoriesDropdown";
 
-const pages = [
-  { name: "Trang chủ", link: "/" },
-  { name: "Cửa hàng", link: "/" },
-  { name: "Về chúng tôi", link: "/" },
-  { name: "Liên hệ", link: "/" },
-  { name: "Bài viết", link: "/" },
+const mainNav = [
+  { name: "Trang chủ", path: "/" },
+  { name: "Cửa hàng", path: "/catalog" },
+  { name: "Về chúng tôi", path: "/about-us" },
+  { name: "Liên hệ", path: "/contact" },
+  { name: "Bài viết", path: "/Blog" },
 ];
 
 const Navigation = () => {
   const menuSidebarRef = useRef(null);
-
   const isOpenMenuSidebar = useSelector(
     (state) => state.header.isOpenMenuSidebar
   );
-
   const dispatch = useDispatch();
+
+  const { pathname } = useLocation();
+  const activeNav = mainNav.findIndex((e) => e.path === pathname);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -58,10 +51,15 @@ const Navigation = () => {
       ref={menuSidebarRef}
     >
       <CategoriesDropdown />
-      <ul className="navigation__pages">
-        {pages.map((page, index) => (
-          <li key={index} className="navigation__page">
-            <a href={page.link}>{page.name}</a>
+      <ul className="navigation__nav">
+        {mainNav.map((nav, index) => (
+          <li
+            key={index}
+            className={`navigation__nav--path ${
+              index === activeNav ? "active" : ""
+            }`}
+          >
+            <Link to={nav.path}>{nav.name}</Link>
           </li>
         ))}
       </ul>

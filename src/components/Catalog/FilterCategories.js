@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React from "react";
 import { categoriesData } from "../../data";
-import { uppercaseFirstLetter } from "../../helpers/string";
+import uppercaseFirstLetter from "../../utils/string";
 
 const FilterCategories = ({ filterCategories, setFilterCategories }) => {
   const setChecked = (value) =>{

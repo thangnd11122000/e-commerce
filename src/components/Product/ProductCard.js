@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Rating } from "@mui/material";
 
-const Product = ({ product }) => {
+const ProductCard = ({ product }) => {
   const { id, name, image, price, discount, rating, category_id } = product;
 
   const discountValue = discount
@@ -16,8 +16,8 @@ const Product = ({ product }) => {
     : null;
 
   return (
-    <div className="product">
-      <div className="product__features">
+    <div className="product-card">
+      <div className="product-card__features">
         {discount ? (
           discount.amount ? (
             <span>-{discount.amount}$</span>
@@ -28,22 +28,22 @@ const Product = ({ product }) => {
           ""
         )}
       </div>
-      <div className="product__actions">
-        <FavoriteBorder className="product__actions--icon" />
-        <ShoppingBagOutlined className="product__actions--icon" />
-        <RemoveRedEyeOutlined className="product__actions--icon" />
+      <div className="product-card__actions">
+        <FavoriteBorder className="product-card__actions--icon" />
+        <ShoppingBagOutlined className="product-card__actions--icon" />
+        <RemoveRedEyeOutlined className="product-card__actions--icon" />
       </div>
 
-      <img src={image} alt="" className="product__image" />
-      <p className="product__name">{name}</p>
+      <img src={image} alt="" className="product-card__image" />
+      <p className="product-card__name">{name}</p>
 
-      <div className="product__price">
+      <div className="product-card__price">
         {discount ? (
-          <div className="product__price--discount">
+          <div className="product-card__price--discount">
             <del>${price}</del>&nbsp; ${discountValue}
           </div>
         ) : (
-          <div className="product__price--normal">${price}</div>
+          <div className="product-card__price--normal">${price}</div>
         )}
       </div>
       <Rating name="product-rating" value={rating} size="small" readOnly />
@@ -51,4 +51,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default ProductCard;

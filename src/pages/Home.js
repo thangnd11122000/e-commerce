@@ -5,8 +5,8 @@ import CategoryPopular from "../components/Home/CategoryPopular";
 import FlashSale from "../components/Home/FlashSale";
 import RecommendedProducts from "../components/Home/RecommendedProducts";
 import SellingProducts from "../components/Home/SellingProducts";
-import ServicesBanner from "../components/Home/ServicesBanner";
 import PostList from "../components/Home/PostList";
+import Policy from "../components/Home/Policy";
 const Home = () => {
   return (
     <div className="home">
@@ -16,7 +16,7 @@ const Home = () => {
       <SellingProducts />
       <MiddleBanner />
       <RecommendedProducts />
-      <ServicesBanner />
+      <Policy />
       <PostList />
     </div>
   );

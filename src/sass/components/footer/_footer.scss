@@ -43,11 +43,7 @@
       border-radius: 3px;
       display: flex;
       justify-content: space-between;
-      &.active-1,
-      &.active-2,
-      &.active-3,
-      &.active-4,
-      &.active-5 {
+      &.active {
         + .footer__body {
           display: block;
         }

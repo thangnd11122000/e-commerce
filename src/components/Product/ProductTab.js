@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProductSlide from "./ProductSlide";
+import ProductSlide from "./ProductSlider";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";

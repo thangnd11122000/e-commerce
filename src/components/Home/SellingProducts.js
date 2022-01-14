@@ -1,12 +1,11 @@
-import React from "react";
-import ProductSlide from "../Product/ProductSlide";
-import {productsData} from '../../data'
+import ProductSlide from "../Product/ProductSlider";
+import { productsData } from "../../data";
 const SellingProducts = () => {
   return (
     <div className="selling-product">
       <div className="component-header">
-        <h3>San pham ban chay</h3>
-        <span>Xem tat ca</span>
+        <h3>Sản phẩm bán chạy</h3>
+        <span>Xem tất cả {">"}</span>
       </div>
       <ProductSlide products={productsData} />
     </div>

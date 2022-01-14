@@ -1,4 +1,3 @@
-import React from "react";
 import { categoriesData, productsData } from "../../data";
 import ProductTab from "../Product/ProductTab";
 

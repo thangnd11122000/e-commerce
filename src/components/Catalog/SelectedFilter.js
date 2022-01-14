@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { categoriesData } from "../../data";
-import { uppercaseFirstLetter } from "../../helpers/string";
+import uppercaseFirstLetter from "../../utils/string";
 
 const SelectedFilter = ({
   filterCategories,
@@ -27,7 +27,7 @@ const SelectedFilter = ({
   };
 
   return (
-    <div className="product-list__selected-filter">
+    <div className="catalog__selected-filter">
       <p>Filter: </p>
       {filterCategories.length > 0 &&
         categories.map((c) => (
