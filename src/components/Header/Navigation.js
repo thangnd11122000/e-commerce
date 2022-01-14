@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { closeMenuSidebar } from "../../features/header/headerSlice";
-import CategoriesDropdown from "./CategoriesDropdown";
+import React, { useEffect, useRef } from "react"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { Link, useLocation } from "react-router-dom"
+import { closeMenuSidebar } from "../../features/header/headerSlice"
+import CategoriesDropdown from "./CategoriesDropdown"
 
 const mainNav = [
   { name: "Trang chủ", path: "/" },
@@ -11,39 +11,39 @@ const mainNav = [
   { name: "Về chúng tôi", path: "/about-us" },
   { name: "Liên hệ", path: "/contact" },
   { name: "Bài viết", path: "/Blog" },
-];
+]
 
 const Navigation = () => {
-  const menuSidebarRef = useRef(null);
+  const menuSidebarRef = useRef(null)
   const isOpenMenuSidebar = useSelector(
     (state) => state.header.isOpenMenuSidebar
-  );
-  const dispatch = useDispatch();
+  )
+  const dispatch = useDispatch()
 
-  const { pathname } = useLocation();
-  const activeNav = mainNav.findIndex((e) => e.path === pathname);
+  const { pathname } = useLocation()
+  const activeNav = mainNav.findIndex((e) => e.path === pathname)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const getClassName = event.target.className;
+      const getClassName = event.target.className
       if (
         typeof getClassName === "string" &&
         getClassName.includes("mobile-menu-sidebar")
       ) {
-        return;
+        return
       }
       if (
         menuSidebarRef.current &&
         !menuSidebarRef.current.contains(event.target)
       ) {
-        dispatch(closeMenuSidebar());
+        dispatch(closeMenuSidebar())
       }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
+    }
+    document.addEventListener("mousedown", handleClickOutside)
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dispatch, menuSidebarRef]);
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [dispatch, menuSidebarRef])
 
   return (
     <div
@@ -65,7 +65,7 @@ const Navigation = () => {
       </ul>
       <p className="navigation__contact">+0123456789</p>
     </div>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

@@ -1,9 +1,10 @@
 # cấu trúc:
 
 -components
-  - pages 
-    - component riêng
-    - component chung
+
+- pages
+  - component riêng
+  - component chung
 - pages
   - page
 - util

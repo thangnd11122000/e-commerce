@@ -5,18 +5,18 @@ import {
   PersonOutline,
   Search,
   ShoppingBagOutlined,
-} from "@mui/icons-material";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+} from "@mui/icons-material"
+import { useScrollPosition } from "@n8tb1t/use-scroll-position"
+import React, { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import {
   openCartSidebar,
   openMenuSidebar,
-} from "../../features/header/headerSlice";
-import { Action } from "./Action";
+} from "../../features/header/headerSlice"
+import { Action } from "./Action"
 
 const Navbar = ({ hideOnScrollDown = false, isScroll }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   return (
     <div
@@ -73,7 +73,7 @@ const Navbar = ({ hideOnScrollDown = false, isScroll }) => {
         <ShoppingBagOutlined />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
