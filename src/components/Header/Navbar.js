@@ -6,16 +6,14 @@ import {
   Search,
   ShoppingBagOutlined,
 } from "@mui/icons-material"
-import { useScrollPosition } from "@n8tb1t/use-scroll-position"
-import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import {
   openCartSidebar,
   openMenuSidebar,
-} from "../../features/header/headerSlice"
+} from "../../features/toggle/toggleSlice"
 import { Action } from "./Action"
 
-const Navbar = ({ hideOnScrollDown = false, isScroll }) => {
+const Navbar = ({ hideOnScrollDown, isScroll }) => {
   const dispatch = useDispatch()
 
   return (

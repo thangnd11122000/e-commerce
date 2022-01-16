@@ -2,10 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 1s;
+  transition: left 1s;
   padding: 0 35px;
 
   @include breakpoint("xl") {
+    padding: 0;
     position: fixed;
     top: 0;
     left: -350px;
@@ -21,7 +22,6 @@
 
     &.active {
       left: 0;
-      padding: 0;
     }
   }
 

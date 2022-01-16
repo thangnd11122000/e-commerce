@@ -26,18 +26,18 @@ const RecommendedProducts = () => {
       <Grid
         container
         spacing={2}
-        columns={{ xs: 4, sm: 6, md: 8, lg: 12, xl: 12 }}
+        columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}
         className="recommended-products__container"
       >
         {_DATA.currentData().map((d, i) => (
-          <Grid item xs={2} key={i}>
+          <Grid item xs={1} key={i}>
             <ProductCard product={d} />
           </Grid>
         ))}
       </Grid>
 
       <Pagination
-        className="recommended-products__pagination"
+        className="pagination"
         count={count}
         size="medium"
         page={page}

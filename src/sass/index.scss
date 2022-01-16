@@ -1,10 +1,11 @@
-// base & layout
-@import "base";
-@import "breakpoints";
-
 // variables
 @import "variables";
 @import "shadow";
+
+// base & layout
+@import "breakpoints";
+@import "base";
+
 
 @import "components/button/button";
 @import "components/card/banner-card";

@@ -6,8 +6,17 @@ import MobileBottom from "./components/Mobile/MobileBottom"
 import Home from "./pages/Home"
 import { Routes, Route } from "react-router-dom"
 import ProductList from "./pages/Catalog"
+import { useSelector } from "react-redux"
 
 function App() {
+  const isOpenMenuSidebar = useSelector(
+    (state) => state.toggle.isOpenMenuSidebar
+  )
+  const isOpenCartSidebar = useSelector(
+    (state) => state.toggle.isOpenCartSidebar
+  )
+  const isOpenFilter = useSelector((state) => state.toggle.isOpenFilter)
+
   return (
     <div className="App">
       <Header />
@@ -17,6 +26,11 @@ function App() {
       </Routes>
       <Footer />
       <MobileBottom />
+      <div
+        className={`${
+          isOpenMenuSidebar | isOpenCartSidebar | isOpenFilter ? "overlay" : ""
+        }`}
+      ></div>
     </div>
   )
 }

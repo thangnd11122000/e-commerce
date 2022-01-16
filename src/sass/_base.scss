@@ -24,10 +24,31 @@ a {
 img {
   max-width: 100%;
 }
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 3;
+}
+
 .page-links {
   padding: 20px 50px;
   color: #666;
   font-size: 15px;
+
+  @include breakpoint("md") {
+    padding: 20px 20px;
+  }
+  @include breakpoint("sm") {
+    padding: 10px 20px;
+  }
+
   a {
     &:hover {
       text-decoration: underline;
@@ -35,5 +56,18 @@ img {
   }
   span {
     margin: 0px 15px;
+  }
+}
+
+.pagination {
+  margin: 20px 0;
+
+  ul {
+    justify-content: center;
+
+    .Mui-selected {
+      color: #fff !important;
+      background: $primary !important;
+    }
   }
 }

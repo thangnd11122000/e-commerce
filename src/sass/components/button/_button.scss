@@ -8,6 +8,14 @@
   font-size: 16px;
   padding: 13px 0;
   font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: $shadow-1dp;
+  transition: all .2s;
+
+  &:hover{
+    background: $bg-primary;
+  }
 }
 
 .btn-primary {

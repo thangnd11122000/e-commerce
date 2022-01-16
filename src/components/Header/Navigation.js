@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
-import { closeMenuSidebar } from "../../features/header/headerSlice"
+import { closeMenuSidebar } from "../../features/toggle/toggleSlice"
 import CategoriesDropdown from "./CategoriesDropdown"
 
 const mainNav = [
@@ -16,7 +16,7 @@ const mainNav = [
 const Navigation = () => {
   const menuSidebarRef = useRef(null)
   const isOpenMenuSidebar = useSelector(
-    (state) => state.header.isOpenMenuSidebar
+    (state) => state.toggle.isOpenMenuSidebar
   )
   const dispatch = useDispatch()
 

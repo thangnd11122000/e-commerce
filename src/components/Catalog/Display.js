@@ -1,25 +1,23 @@
-import React from "react";
-
-const Display = ({ numberLayout, setNumberLayout }) => {
+const Display = ({ layout, setLayout, setIsSwitchLayout, width }) => {
   const handleClick = (number) => {
-    setNumberLayout(number);
-  };
+    setLayout(number)
+    setIsSwitchLayout(true)
+  }
 
   return (
-    <div className="catalog__display">
+    <div
+      className="catalog__display"
+      style={{ display: width < 600 ? "none" : "" }}
+    >
       <div
-        className={`catalog__display--column ${
-          numberLayout === 2 ? "active" : ""
-        }`}
+        className={`catalog__display--column ${layout === 2 && "active"}`}
         onClick={() => handleClick(2)}
       >
         <span></span>
         <span></span>
       </div>
       <div
-        className={`catalog__display--column ${
-          numberLayout === 3 ? "active" : ""
-        }`}
+        className={`catalog__display--column ${layout === 3 && "active"}`}
         onClick={() => handleClick(3)}
       >
         <span></span>
@@ -27,10 +25,9 @@ const Display = ({ numberLayout, setNumberLayout }) => {
         <span></span>
       </div>
       <div
-        className={`catalog__display--column ${
-          numberLayout === 4 ? "active" : ""
-        }`}
+        className={`catalog__display--column ${layout === 4 && "active"}`}
         onClick={() => handleClick(4)}
+        style={{ display: width < 800 ? "none" : "" }}
       >
         <span></span>
         <span></span>
@@ -38,10 +35,9 @@ const Display = ({ numberLayout, setNumberLayout }) => {
         <span></span>
       </div>
       <div
-        className={`catalog__display--column ${
-          numberLayout === 5 ? "active" : ""
-        }`}
+        className={`catalog__display--column ${layout === 5 && "active"}`}
         onClick={() => handleClick(5)}
+        style={{ display: width < 900 ? "none" : "" }}
       >
         <span></span>
         <span></span>
@@ -50,14 +46,14 @@ const Display = ({ numberLayout, setNumberLayout }) => {
         <span></span>
       </div>
       {/* <List
-        onClick={() => handleClick(1)}
+        
       >
         <span></span>
         <span></span>
         <span></span>
       </List> */}
     </div>
-  );
-};
+  )
+}
 
-export default Display;
+export default Display

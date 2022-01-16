@@ -1,30 +1,29 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
+const options = [
+  { value: "", name: "Mặc định" },
+  { value: "DISCOUNT", name: "Khuyến mãi" },
+  { value: "DOWN", name: "Giá giảm dần" },
+  { value: "UP", name: "Giá tăng dần" },
+]
 
-const Sorting = ({ setSorting, sorting }) => {
+const Sorting = ({ setSorting }) => {
   const handleChange = (event) => {
-    setSorting(event.target.value);
-  };
+    setSorting(event.target.value)
+  }
 
   return (
-    <Box sx={{ width: 120, height: 50 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Sorting</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={sorting}
-          label="Sorting"
-          onChange={handleChange}
-        >
-          <MenuItem value="">Default</MenuItem>
-          <MenuItem value="low">Price low to high</MenuItem>
-          <MenuItem value="high">Price high to low</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
-};
+    <div className="catalog__sorting">
+      <label htmlFor="sorting">Sắp xếp</label>
+      <select id="sorting" onClick={handleChange}>
+        {options.map((o, i) => (
+          <option key={i} value={o.value}>
+            {o.name}
+          </option>
+        ))}
 
-export default Sorting;
+        {/* <option value="BESTSELLER">Bán chạy</option> */}
+      </select>
+    </div>
+  )
+}
+
+export default Sorting

@@ -6,7 +6,7 @@ import {
   closeDropdown,
   closeMenuSidebar,
   handleDropdown,
-} from "../../features/header/headerSlice";
+} from "../../features/toggle/toggleSlice";
 
 const menu = [
   {
@@ -154,7 +154,7 @@ const menu = [
 
 const CategoriesDropdown = () => {
   const dropdownRef = useRef(null);
-  const isOpenDropdown = useSelector((state) => state.header.isOpenDropdown);
+  const isOpenDropdown = useSelector((state) => state.toggle.isOpenDropdown);
   const dispatch = useDispatch();
 
   const submenuToggle = (e) => e.target.classList.toggle("active");

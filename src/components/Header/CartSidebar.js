@@ -1,13 +1,13 @@
-import { Clear, Close, Delete, RemoveRedEye } from "@mui/icons-material";
+import { Clear, Close, RemoveRedEye } from "@mui/icons-material";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeCartSidebar } from "../../features/header/headerSlice";
+import { closeCartSidebar } from "../../features/toggle/toggleSlice";
 
 const CartSidebar = () => {
   const cartSidebarRef = useRef(null);
 
   const isOpenCartSidebar = useSelector(
-    (state) => state.header.isOpenCartSidebar
+    (state) => state.toggle.isOpenCartSidebar
   );
 
   const dispatch = useDispatch();

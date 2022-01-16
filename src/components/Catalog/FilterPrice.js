@@ -1,70 +1,46 @@
-import React, { useEffect, useState } from "react";
-import Slider from "@mui/material/Slider";
-const FilterPrice = ({
-  productsData,
-  setProductsByPrice,
-  priceRange,
-  setPriceRange,
-  getMinMaxPrice,
-}) => {
-  // const [value, setValue] = useState(priceRange);
-  const [min, setMin] = useState(priceRange[0]);
-  const [max, setMax] = useState(priceRange[1]);
+import Slider from "@mui/material/Slider"
+
+function valueText(value) {
+  return `${value}$`
+}
+
+const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
   const marks = [
     {
-      value: priceRange[0],
-      label: `${priceRange[0]}$`,
+      value: minMaxPrice[0],
+      label: `${minMaxPrice[0]}d`,
     },
     {
-      value: priceRange[1],
-      label: `${priceRange[1]}$`,
+      value: minMaxPrice[1],
+      label: `${minMaxPrice[1]}d`,
     },
-  ];
-
-  useEffect(() => {
-    let minmax = getMinMaxPrice(productsData);
-    setMin(minmax[0]);
-    setMax(minmax[1]);
-  }, [getMinMaxPrice, productsData]);
-
-  // useEffect(() => {
-  //   if (priceRange[0] === min && priceRange[1] === max) {
-  //     setProductsByPrice(productsData);
-  //   }
-  // }, [max, min, priceRange, productsData, setProductsByPrice]);
-
-  function valueText(value) {
-    return `${value}$`;
-  }
+  ]
 
   const handleChange = (event, newValue) => {
-    setPriceRange(newValue);
-    let newProducts = productsData.filter(
-      (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
-    );
-    setProductsByPrice(newProducts);
-  };
+    setPriceSlider(newValue)
+  }
+
   return (
     <>
-      <h2>Price</h2>
+      <h2>Giá </h2>
       <div>
         <p>
-          Ranger: {priceRange[0]}$ - {priceRange[1]}$
+          Ranger: {minMaxPrice[0]}$ - {minMaxPrice[1]}$
         </p>
         <Slider
           sx={{ width: 200 }}
-          getAriaLabel={() => "Price range"}
-          value={priceRange}
+          getAriaLabel={() => "Price slider"}
+          value={priceSlider}
           onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valueText}
-          min={min}
-          max={max}
+          min={minMaxPrice[0]}
+          max={minMaxPrice[1]}
           marks={marks}
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default FilterPrice;
+export default FilterPrice

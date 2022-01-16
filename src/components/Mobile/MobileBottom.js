@@ -1,24 +1,20 @@
 import {
-  BadgeOutlined,
   FavoriteBorderOutlined,
-  FavoriteOutlined,
   HomeOutlined,
   MenuOutlined,
   PersonOutline,
   ShoppingBagOutlined,
-} from "@mui/icons-material";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+} from "@mui/icons-material"
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 import {
   handleCartSidebar,
-  openCartSidebar,
-} from "../../features/header/headerSlice";
-import { MobileLink } from "./MobileLink";
-import { handleMenuSidebar } from "../../features/header/headerSlice";
-import { MobileDiv } from "./MobileDiv";
-import menuIcon from "../../assets/img/icons/menu.png";
-import bagIcon from "../../assets/img/icons/bag.png";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+  handleMenuSidebar,
+} from "../../features/toggle/toggleSlice"
+import { MobileLink } from "./MobileLink"
+import menuIcon from "../../assets/img/icons/menu.png"
+import bagIcon from "../../assets/img/icons/bag.png"
+import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 
 const links = [
   {
@@ -46,18 +42,18 @@ const links = [
     link: "/",
     icon: <ShoppingBagOutlined />,
   },
-];
+]
 const MobileBottom = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [hideOnScroll, setHideOnScroll] = useState(true);
+  const [hideOnScroll, setHideOnScroll] = useState(true)
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y;
-      if (isShow !== hideOnScroll) setHideOnScroll(isShow);
+      const isShow = currPos.y > prevPos.y
+      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
     },
     [hideOnScroll]
-  );
+  )
 
   return (
     <div
@@ -95,7 +91,7 @@ const MobileBottom = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MobileBottom;
+export default MobileBottom
