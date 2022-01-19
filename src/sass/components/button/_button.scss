@@ -11,10 +11,11 @@
   text-align: center;
   cursor: pointer;
   box-shadow: $shadow-1dp;
-  transition: all .2s;
+  transition: all 0.2s;
 
-  &:hover{
+  &:hover {
     background: $bg-primary;
+    color: #fff;
   }
 }
 

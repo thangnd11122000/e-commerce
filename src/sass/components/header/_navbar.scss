@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 100px;
   z-index: 2;
   background: inherit;
   transition: 0.7s all;
@@ -122,10 +122,14 @@
 
   &__actions {
     display: flex;
-    gap: 0 50px;
+    gap: 50px;
+
+    @include breakpoint("xxl") {
+      gap: 10px;
+    }
 
     @include breakpoint("xl") {
-      gap: 0 5px;
+      gap: 5px;
     }
     @include breakpoint("md") {
       display: none;

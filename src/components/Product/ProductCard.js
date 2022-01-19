@@ -1,19 +1,20 @@
-import React from "react";
+import React from "react"
 import {
   FavoriteBorder,
   RemoveRedEyeOutlined,
   ShoppingBagOutlined,
-} from "@mui/icons-material";
-import { Rating } from "@mui/material";
+} from "@mui/icons-material"
+import { Rating } from "@mui/material"
+import { Link } from "react-router-dom"
 
 const ProductCard = ({ product }) => {
-  const { id, name, image, price, discount, rating, category_id } = product;
+  const { id, name, image, price, discount, rating, category_id } = product
 
   const discountValue = discount
     ? discount.amount
       ? price - discount.amount
       : price - (price * discount.percent) / 100
-    : null;
+    : null
 
   return (
     <div className="product-card">
@@ -33,8 +34,9 @@ const ProductCard = ({ product }) => {
         <ShoppingBagOutlined className="product-card__actions--icon" />
         <RemoveRedEyeOutlined className="product-card__actions--icon" />
       </div>
-
-      <img src={image} alt="" className="product-card__image" />
+      <Link to={`/detail/${id}`}>
+        <img src={image} alt="" className="product-card__image" />
+      </Link>
       <p className="product-card__name">{name}</p>
 
       <div className="product-card__price">
@@ -48,7 +50,7 @@ const ProductCard = ({ product }) => {
       </div>
       <Rating name="product-rating" value={rating} size="small" readOnly />
     </div>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

@@ -5,6 +5,8 @@ export const productsData = [
     image: "/img/products/product-1.jpg",
     price: 100,
     discount: { amount: 50 },
+    shortDescription:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus rerum dolore, amet vel eveniet expedita aperiam optio quos maiores fugiat ab placeat sequi? Neque veniam tempora mollitia porro, quae nostrum.",
     rating: 2,
     category_id: 1,
   },
@@ -14,6 +16,8 @@ export const productsData = [
     image: "/img/products/product-2.jpg",
     price: 13,
     discount: { percent: 20 },
+    shortDescription:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus rerum dolore, amet vel eveniet expedita aperiam optio quos maiores fugiat ab placeat sequi? Neque veniam tempora mollitia porro, quae nostrum.",
     rating: 5,
     category_id: 1,
   },

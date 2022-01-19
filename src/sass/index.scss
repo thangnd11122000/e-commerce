@@ -6,7 +6,6 @@
 @import "breakpoints";
 @import "base";
 
-
 @import "components/button/button";
 @import "components/card/banner-card";
 @import "components/card/post-card";
@@ -39,3 +38,6 @@
 
 // catalog
 @import "components/catalog/catalog";
+
+// detail
+@import "components/detail/detail.scss";

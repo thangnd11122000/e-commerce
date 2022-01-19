@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import { Routes, Route } from "react-router-dom"
 import ProductList from "./pages/Catalog"
 import { useSelector } from "react-redux"
+import Detail from "./pages/Detail"
 
 function App() {
   const isOpenMenuSidebar = useSelector(
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<ProductList />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
       <Footer />
       <MobileBottom />
