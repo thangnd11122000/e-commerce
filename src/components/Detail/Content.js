@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react"
 
 import Rating from "@mui/material/Rating"
 import getDiscount from "../../utils/getDiscount"
+import { useDispatch } from "react-redux"
+import { addItem } from "../../features/cartItems/cartItemsSlice"
+import { useNavigate } from "react-router-dom"
 
 const Content = ({ product }) => {
   const [quantity, setQuantity] = useState(1)
+
+  const dispatch = useDispatch()
+  let navigate = useNavigate()
 
   const discountValue = getDiscount(product.discount, product.price)
 
@@ -14,6 +20,15 @@ const Content = ({ product }) => {
     } else {
       setQuantity(quantity === 1 ? 1 : quantity - 1)
     }
+  }
+
+  const addToCart = () => {
+    dispatch(addItem({ ...product, quantity }))
+  }
+
+  const goToCart = () => {
+    dispatch(addItem({ ...product, quantity }))
+    navigate("/cart")
   }
 
   useEffect(() => {
@@ -56,8 +71,12 @@ const Content = ({ product }) => {
           />
           <button onClick={() => updateQuantity("plus")}>+</button>
         </div>
-        <button className="btn-primary">Thêm vào giỏ</button>
-        <button className="btn-secondary">Mua ngay</button>
+        <button className="btn-primary" onClick={addToCart}>
+          Thêm vào giỏ
+        </button>
+        <button className="btn-secondary" onClick={goToCart}>
+          Mua ngay
+        </button>
       </div>
       <div className="detail__content--socials">
         <p>Thêm vào yêu thích</p>

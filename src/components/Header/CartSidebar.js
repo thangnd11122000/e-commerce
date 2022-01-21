@@ -1,38 +1,44 @@
-import { Clear, Close, RemoveRedEye } from "@mui/icons-material";
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { closeCartSidebar } from "../../features/toggle/toggleSlice";
+import { Clear, Close, Delete, RemoveRedEye } from "@mui/icons-material"
+import { IconButton, Tooltip } from "@mui/material"
+import React, { useEffect, useRef } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteItem } from "../../features/cartItems/cartItemsSlice"
+import { closeCartSidebar } from "../../features/toggle/toggleSlice"
+import getDiscount from "../../utils/getDiscount"
 
 const CartSidebar = () => {
-  const cartSidebarRef = useRef(null);
+  const cartSidebarRef = useRef(null)
+
+  const cartItems = useSelector((state) => state.cartItems.value)
+  const totalPrice = useSelector((state) => state.cartItems.totalPrice)
 
   const isOpenCartSidebar = useSelector(
     (state) => state.toggle.isOpenCartSidebar
-  );
+  )
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     function handleClickOutside(event) {
-      const getClassName = event.target.className;
+      const getClassName = event.target.className
       if (
         typeof getClassName === "string" &&
         getClassName.includes("mobile-cart-sidebar")
       ) {
-        return;
+        return
       }
       if (
         cartSidebarRef.current &&
         !cartSidebarRef.current.contains(event.target)
       ) {
-        dispatch(closeCartSidebar());
+        dispatch(closeCartSidebar())
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside)
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dispatch, cartSidebarRef]);
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [dispatch, cartSidebarRef])
 
   return (
     <div
@@ -43,56 +49,50 @@ const CartSidebar = () => {
         <Close
           style={{ cursor: "pointer" }}
           onClick={() => {
-            dispatch(closeCartSidebar());
+            dispatch(closeCartSidebar())
           }}
         />
-        <p>Gior hang</p>
+        <p>Giỏ hàng</p>
       </div>
       <div className="cart-sidebar__body">
-        <div className="cart-sidebar__box">
-          <img src="/img/products/product-1.jpg" alt="" />
-          <div className="cart-sidebar__content">
-            <div className="cart-sidebar__content--name">
-              May choi game ABCXYZ
+        {cartItems.map((product) => {
+          const discountValue = getDiscount(product.discount, product.price)
+          return (
+            <div className="cart-sidebar__box">
+              <img src={`${product.image}`} alt="" />
+              <div className="cart-sidebar__content">
+                <div className="cart-sidebar__content--name">
+                  {product.name}
+                </div>
+                <div className="cart-sidebar__content--number">
+                  <p>
+                    {discountValue > 0 ? discountValue : product.price}
+                    <span> x {product.quantity}</span>
+                  </p>
+                </div>
+              </div>
+              <div className="cart-sidebar__actions">
+                <Tooltip title="Xóa sản phẩm">
+                  <IconButton onClick={() => dispatch(deleteItem(product.id))}>
+                    <Delete />
+                  </IconButton>
+                </Tooltip>
+              </div>
             </div>
-            <div className="cart-sidebar__content--number">
-              <p>
-                10000000vnd <span>x 2</span>
-              </p>
-            </div>
-          </div>
-          <div className="cart-sidebar__actions">
-            <Clear />
-            <RemoveRedEye />
-          </div>
-        </div>
-        <div className="cart-sidebar__box">
-          <img src="/img/products/product-1.jpg" alt="" />
-          <div className="cart-sidebar__content">
-            <div className="cart-sidebar__content--name">ABC</div>
-            <div className="cart-sidebar__content--number">
-              <p>
-                10000000vnd <span>x 2</span>
-              </p>
-            </div>
-          </div>
-          <div className="cart-sidebar__actions">
-            <Clear />
-            <RemoveRedEye />
-          </div>
-        </div>
+          )
+        })}
 
         <div className="cart-sidebar__total">
-          <p>Tong don hang</p>
-          <p>10000000vnd</p>
+          <p>Tổng đơn hàng</p>
+          <p>{totalPrice}</p>
         </div>
       </div>
       <div className="cart-sidebar__footer">
-        <button className="btn-secondary">Xem gio hang</button>
-        <button className="btn-primary">Thanh toan</button>
+        <button className="btn-secondary">Xem giỏ hàng</button>
+        <button className="btn-primary">Thanh toán</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartSidebar;
+export default CartSidebar

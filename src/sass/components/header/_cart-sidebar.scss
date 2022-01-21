@@ -36,8 +36,9 @@
     align-items: center;
     gap: 5px;
     width: 100%;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgb(187, 187, 187);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(201, 201, 201);
     img {
       width: 30%;
     }
@@ -45,7 +46,7 @@
 
   &__content {
     &--name {
-      font-size: 18px;
+      font-size: 16px;
       text-transform: uppercase;
       color: $primary;
     }
@@ -76,7 +77,7 @@
     justify-content: space-between;
     font-weight: bold;
     margin: 20px 0;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   &__footer {

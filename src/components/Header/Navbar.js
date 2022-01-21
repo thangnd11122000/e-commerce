@@ -6,7 +6,7 @@ import {
   Search,
   ShoppingBagOutlined,
 } from "@mui/icons-material"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   openCartSidebar,
   openMenuSidebar,
@@ -14,6 +14,8 @@ import {
 import { Action } from "./Action"
 
 const Navbar = ({ hideOnScrollDown, isScroll }) => {
+  const totalProduct = useSelector((state) => state.cartItems.totalProduct)
+  const totalPrice = useSelector((state) => state.cartItems.totalPrice)
   const dispatch = useDispatch()
 
   return (
@@ -60,14 +62,14 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
         >
           <ShoppingBagOutlined />
           <div>
-            <span className="navbar__action--top">Gior hang</span>
-            <span className="navbar__action--bottom">0</span>
+            <span className="navbar__action--top">Giỏ hang</span>
+            <span className="navbar__action--bottom">{totalPrice}</span>
           </div>
-          <span className="navbar__badge">0</span>
+          <span className="navbar__badge">{totalProduct}</span>
         </div>
       </div>
       <div className="navbar__cart" onClick={() => dispatch(openCartSidebar())}>
-        <span className="navbar__badge">0</span>
+        <span className="navbar__badge">{totalProduct}</span>
         <ShoppingBagOutlined />
       </div>
     </div>
