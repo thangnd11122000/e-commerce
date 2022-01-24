@@ -92,21 +92,11 @@ const CartTable = () => {
                   checked={selected.length === cartProducts.length}
                 />
               </TableCell>
-              <TableCell align="left" sx={{ fontWeight: 600, fontSize: 16 }}>
-                Sản phẩm
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600, fontSize: 16 }}>
-                Đơn giá
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600, fontSize: 16 }}>
-                Số lượng
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600, fontSize: 16 }}>
-                Số tiền
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600, fontSize: 16 }}>
-                Thao tác
-              </TableCell>
+              <TableCell align="left">Sản phẩm</TableCell>
+              <TableCell align="center">Đơn giá</TableCell>
+              <TableCell align="center">Số lượng</TableCell>
+              <TableCell align="center">Số tiền</TableCell>
+              <TableCell align="center">Thao tác</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -194,7 +184,7 @@ const CartTable = () => {
         </Table>
       </TableContainer>
 
-      <div className="cart__toolbar">
+      <div className="cart__toolbar section-box">
         {selected?.length ? (
           <FormControlLabel
             control={

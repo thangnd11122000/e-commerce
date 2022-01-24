@@ -55,10 +55,10 @@ const CartSidebar = () => {
         <p>Giỏ hàng</p>
       </div>
       <div className="cart-sidebar__body">
-        {cartItems.map((product) => {
+        {cartItems.map((product, index) => {
           const discountValue = getDiscount(product.discount, product.price)
           return (
-            <div className="cart-sidebar__box">
+            <div key={index} className="cart-sidebar__box">
               <img src={`${product.image}`} alt="" />
               <div className="cart-sidebar__content">
                 <div className="cart-sidebar__content--name">

@@ -49,26 +49,6 @@
       flex-direction: column;
       gap: 20px;
     }
-    &--box {
-      width: 350px;
-      height: fit-content;
-      background: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: $shadow-1dp;
-
-      @include breakpoint("xl") {
-        width: 49%;
-      }
-      @include breakpoint("xs") {
-        width: 100%;
-      }
-
-      h3 {
-        font-weight: bold;
-        font-size: 16px;
-      }
-    }
   }
 
   &__table {
@@ -125,8 +105,14 @@
         height: 50px;
       }
     }
+    .MuiTable-root {
+      .MuiTableCell-root.MuiTableCell-head {
+        font-weight: 600;
+        font-size: 16;
+      }
+    }
     @include breakpoint("sm") {
-      .MuiTable-root{
+      .MuiTable-root {
         .MuiTableCell-root {
           .MuiCheckbox-root {
             padding: 0;
@@ -137,14 +123,11 @@
   }
   &__toolbar {
     height: 70px;
-    background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px 0;
     padding: 25px;
-    border-radius: 5px;
-    box-shadow: $shadow-1dp;
     @include breakpoint("sm") {
       padding: 20px;
     }
@@ -162,6 +145,16 @@
   }
 
   &__coupons {
+    width: 350px;
+    height: fit-content;
+
+    @include breakpoint("xl") {
+      width: 49%;
+    }
+    @include breakpoint("xs") {
+      width: 100%;
+    }
+
     &--button {
       display: flex;
       gap: 10px;
@@ -192,11 +185,20 @@
   }
 
   &__summary {
+    width: 350px;
+    height: fit-content;
+
+    @include breakpoint("xl") {
+      width: 49%;
+    }
+    @include breakpoint("xs") {
+      width: 100%;
+    }
     div {
       margin-top: 15px;
       display: flex;
       justify-content: space-between;
-      p{
+      p {
         font-size: 16px;
       }
       p:nth-child(1) {
@@ -212,4 +214,5 @@
       margin-top: 15px;
     }
   }
+  
 }
