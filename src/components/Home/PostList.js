@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { postsData } from "../../data";
-import CardPost from "../Card/PostCard";
+import BlogCard from "../Blog/BlogCard";
 
 const PostList = () => {
   const settings = {
@@ -47,7 +47,7 @@ const PostList = () => {
       </div>
       <Slider {...settings} className="post-list__slider">
         {postsData.map((data, i) => (
-          <CardPost key={i} post={data} />
+          <BlogCard key={i} post={data} />
         ))}
       </Slider>
     </div>

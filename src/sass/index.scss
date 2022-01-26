@@ -8,7 +8,6 @@
 
 @import "components/button/button";
 @import "components/card/banner-card";
-@import "components/card/post-card";
 
 @import "components/product/product-card";
 @import "components/product/product-slider";
@@ -50,3 +49,6 @@
 
 // about
 @import "components/about/about.scss";
+
+// blog
+@import "components/blog/blog";

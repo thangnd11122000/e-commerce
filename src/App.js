@@ -11,6 +11,9 @@ import Detail from "./pages/Detail"
 import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import About from "./pages/About"
+import BlogHome from "./pages/BlogHome"
+import BlogCategory from "./pages/BlogCategory"
+import BlogDetail from "./pages/BlogDetail"
 
 function App() {
   const isOpenMenuSidebar = useSelector(
@@ -31,6 +34,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<BlogHome />} />
+        <Route path="/blog-category" element={<BlogCategory />} />
+        <Route path="/blog-detail" element={<BlogDetail />} />
       </Routes>
       <Footer />
       <MobileBottom />

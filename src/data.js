@@ -591,7 +591,8 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-2.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -601,7 +602,8 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-3.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -621,6 +623,86 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-5.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
+    title: "Cho là loài động vật xộn lào nhất quả đất",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
+    date: "1/12/2000",
+    link: "/#",
+    categories: ["dien thoai"],
+  },
+  {
+    id: 2,
+    image: "/img/blog/blog-1.jpg",
     title: "Cho là loài động vật xộn lào nhất quả đất",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
@@ -743,4 +825,14 @@ export const newProductsData = [
     weight: 100,
     category_id: 1,
   },
+]
+export const blogCategoriesData = [
+  { name: "Điện thoại", link: "/#" },
+  { name: "Máy tính", link: "/#" },
+  { name: "Máy ảnh", link: "/#" },
+  { name: "Laptop", link: "/#" },
+]
+export const blogTagsData = [
+  { name: "Công nghệ", link: "/#" },
+  { name: "Thời đại", link: "/#" },
 ]
