@@ -12,10 +12,15 @@
   cursor: pointer;
   box-shadow: $shadow-1dp;
   transition: all 0.2s;
-
+  outline: none;
+  border: none;
   &:hover {
     background: $bg-primary;
     color: #fff;
+  }
+
+  &:disabled {
+    background: $secondary;
   }
 }
 

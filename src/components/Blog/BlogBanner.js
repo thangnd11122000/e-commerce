@@ -4,7 +4,7 @@ const BlogBanner = () => {
       <div className="blog__banner--container">
         <div className="blog__banner--box">
           <img src="/img/blog/blog-1.jpg" alt="" />
-          <div className="blog-category">
+          <div className="blog__tags">
             <a href="#">Dien thoai</a>
           </div>
           <h3>Features To Look For On Camera Phones</h3>
@@ -12,7 +12,7 @@ const BlogBanner = () => {
         </div>
         <div className="blog__banner--box">
           <img src="/img/blog/blog-1.jpg" alt="" />
-          <div className="blog-category">
+          <div className="blog__tags">
             <a href="#">Dien thoai</a>
           </div>
           <h3>Features To Look For On Camera Phones</h3>
@@ -20,7 +20,7 @@ const BlogBanner = () => {
         </div>
         <div className="blog__banner--box">
           <img src="/img/blog/blog-1.jpg" alt="" />
-          <div className="blog-category">
+          <div className="blog__tags">
             <a href="#">Dien thoai</a>
           </div>
           <h3>Features To Look For On Camera Phones</h3>

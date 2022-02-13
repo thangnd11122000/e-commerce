@@ -1,0 +1,64 @@
+.contact {
+  padding: 50px 100px;
+  text-align: center;
+  @include breakpoint("xl") {
+    padding: 30px 50px;
+  }
+  @include breakpoint("md") {
+    padding: 20px 20px;
+  }
+  h1{
+    @include breakpoint("md") {
+      font-size: 22px;
+    }
+  }
+  &__top {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    @include breakpoint("md") {
+      margin-top: 20px;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  iframe {
+    border: none;
+    flex-basis: 50%;
+    @include breakpoint("md") {
+      height: 500px !important;
+    }
+  }
+  &__form {
+    flex-basis: calc(50% - 40px);
+  }
+
+  &__bottom {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint("md") {
+      margin-top: 30px;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  &__box {
+    flex-basis: 30%;
+    h3 {
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15px;
+      color: #666;
+      p {
+        margin-left: 10px;
+      }
+    }
+  }
+}

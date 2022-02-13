@@ -14,6 +14,13 @@ import About from "./pages/About"
 import BlogHome from "./pages/BlogHome"
 import BlogCategory from "./pages/BlogCategory"
 import BlogDetail from "./pages/BlogDetail"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import ChangeEmail from "./pages/ChangeEmail"
+import ChangePhone from "./pages/ChangePhone"
+import ForgotPassword from "./pages/ForgotPassword"
+import ChangePassword from "./pages/ChangePassword"
+import Contact from "./pages/Contact"
 
 function App() {
   const isOpenMenuSidebar = useSelector(
@@ -37,6 +44,14 @@ function App() {
         <Route path="/blog" element={<BlogHome />} />
         <Route path="/blog-category" element={<BlogCategory />} />
         <Route path="/blog-detail" element={<BlogDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/change-email" element={<ChangeEmail />} />
+        <Route path="/change-phone" element={<ChangePhone />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/user-info" element={<UserInfo />} /> */}
       </Routes>
       <Footer />
       <MobileBottom />

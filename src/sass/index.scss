@@ -6,12 +6,14 @@
 @import "breakpoints";
 @import "base";
 
-@import "components/button/button";
+@import "components/button";
 @import "components/card/banner-card";
 
 @import "components/product/product-card";
 @import "components/product/product-slider";
 @import "components/product/product-tab";
+
+@import "components/form";
 
 // header
 @import "components/header/header";
@@ -20,7 +22,7 @@
 @import "components/header/cart-sidebar";
 
 //footer
-@import "components/footer/footer";
+@import "components/footer";
 
 // mobile-bottom
 @import "components/mobile/mobile-bottom";
@@ -36,19 +38,22 @@
 @import "components/home/post-list";
 
 // catalog
-@import "components/catalog/catalog";
+@import "components/catalog";
 
 // detail
-@import "components/detail/detail.scss";
+@import "components/detail.scss";
 
 // cart
-@import "components/cart/cart.scss";
+@import "components/cart.scss";
 
 // checkout
-@import "components/checkout/checkout.scss";
+@import "components/checkout.scss";
 
 // about
-@import "components/about/about.scss";
+@import "components/about.scss";
 
 // blog
-@import "components/blog/blog";
+@import "components/blog";
+
+// contact
+@import "components/contact";
