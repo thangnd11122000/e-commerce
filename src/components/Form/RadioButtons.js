@@ -15,7 +15,7 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
                 {...field}
                 value={option.value}
                 checked={field.value === option.value}
-                class="input-radio"
+                className="input-radio"
               />
               {option.key}
             </label>

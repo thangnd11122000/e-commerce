@@ -836,3 +836,45 @@ export const blogTagsData = [
   { name: "Công nghệ", link: "/#" },
   { name: "Thời đại", link: "/#" },
 ]
+
+export const provinceData = [
+  { key: "", value: "" },
+  { key: "TP HCM", value: "1" },
+  { key: "Hà Nội", value: "2" },
+]
+
+export const ordersData = [
+  {
+    id: 1,
+    name: "brocoli",
+    image: "/img/products/product-1.jpg",
+    price: 100,
+    discount: { amount: 50 },
+    quantity: 2,
+    date: "16/02/2022",
+    status: "success",
+    total: 100,
+  },
+  {
+    id: 2,
+    name: "abc",
+    image: "/img/products/product-2.jpg",
+    price: 200,
+    discount: { percent: 30 },
+    quantity: 1,
+    date: "16/02/2022",
+    status: "cancel",
+    total: 140,
+  },
+  {
+    id: 3,
+    name: "brocoli",
+    image: "/img/products/product-3.jpg",
+    price: 500,
+    discount: { amount: 50 },
+    quantity: 2,
+    date: "16/02/2022",
+    status: "success",
+    total: 900,
+  },
+]

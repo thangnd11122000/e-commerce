@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { provinceData } from "../../data"
 
 const items =
-  localStorage.getItem("userInfo") !== null
-    ? JSON.parse(localStorage.getItem("userInfo"))
+  localStorage.getItem("userAddress") !== null
+    ? JSON.parse(localStorage.getItem("userAddress"))
     : []
 
 const initialState = {
@@ -15,10 +16,10 @@ const findItem = (arr, item) =>
       a.name === item.name &&
       a.phone === item.phone &&
       a.email === item.email &&
-      a.address.province === item.address.province &&
-      a.address.district === item.address.district &&
-      a.address.commune === item.address.commune &&
-      a.address.detail === item.address.detail
+      a.province === item.province &&
+      a.district === item.district &&
+      a.commune === item.commune &&
+      a.detail === item.detail
   )
 
 const deleteItem = (arr, item) =>
@@ -27,21 +28,21 @@ const deleteItem = (arr, item) =>
       a.name !== item.name ||
       a.phone !== item.phone ||
       a.email !== item.email ||
-      a.address.province !== item.address.province ||
-      a.address.district !== item.address.district ||
-      a.address.commune !== item.address.commune ||
-      a.address.detail !== item.address.detail
+      a.province !== item.province ||
+      a.district !== item.district ||
+      a.commune !== item.commune ||
+      a.detail !== item.detail
   )
 
 const inactiveAll = (arr) => {
   return arr?.map((a) => (a.active = false))
 }
 
-export const userInfoSlice = createSlice({
-  name: "userInfo",
+export const userAddressSlice = createSlice({
+  name: "userAddress",
   initialState,
   reducers: {
-    addInfo: (state, action) => {
+    addAddress: (state, action) => {
       inactiveAll(state.value)
       const newItem = action.payload
       const duplicate = findItem(state.value, newItem)
@@ -71,29 +72,28 @@ export const userInfoSlice = createSlice({
       state.value = state.value.sort((a, b) =>
         a.id > b.id ? 1 : a.id < b.id ? -1 : 0
       )
-      localStorage.setItem("userInfo", JSON.stringify(state.value))
+      localStorage.setItem("userAddress", JSON.stringify(state.value))
     },
-    editInfo: (state, action) => {
+    editAddress: (state, action) => {
       inactiveAll(state.value)
       const index = state.value?.findIndex(
         (info) => info.id === action.payload.id
       )
       state.value[index] = { ...action.payload, active: true }
-      localStorage.setItem("userInfo", JSON.stringify(state.value))
+      localStorage.setItem("userAddress", JSON.stringify(state.value))
     },
-    selectedInfo: (state, action) => {
+    selectedAddress: (state, action) => {
       inactiveAll(state.value)
-      const index = state.value?.findIndex(
-        (info) => info.id === action.payload
-      )
+      const index = state.value?.findIndex((info) => info.id === action.payload)
       state.value[index] = { ...state.value[index], active: true }
-      localStorage.setItem("userInfo", JSON.stringify(state.value))
+      localStorage.setItem("userAddress", JSON.stringify(state.value))
     },
-    deleteInfo: (state, action) => {
+    deleteAddress: (state, action) => {
       state.value = state.value.filter((info) => info.id !== action.payload)
-      localStorage.setItem("userInfo", JSON.stringify(state.value))
+      localStorage.setItem("userAddress", JSON.stringify(state.value))
     },
   },
 })
-export const { addInfo, editInfo,selectedInfo, deleteInfo } = userInfoSlice.actions
-export default userInfoSlice.reducer
+export const { addAddress, editAddress, selectedAddress, deleteAddress } =
+  userAddressSlice.actions
+export default userAddressSlice.reducer

@@ -1,0 +1,71 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  max-height: 90%;
+  overflow-y: scroll;
+
+  @include breakpoint("lg") {
+    width: 90%;
+  }
+  @include breakpoint("xs") {
+    padding: 10px;
+  }
+
+  .MuiSvgIcon-root {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  &__box {
+    // margin-bottom: 30px;
+    h3{
+      margin-bottom: 15px;
+    }
+  }
+
+  &__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .form-group {
+      flex: 0 0 49%;
+      @include breakpoint("xs") {
+        flex: 0 0 100%;
+      }
+    }
+  }
+  &__button {
+    display: flex;
+    justify-content: end;
+    .btn-primary,
+    .btn-secondary {
+      width: 70px;
+      padding: 8px;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+  }
+
+  .form-group {
+    margin-top: 0px;
+    label {
+      display: block;
+      font-size: 16px;
+      color: $text-dark;
+      padding-bottom: 5px;
+    }
+    .form-control {
+      padding: 10px;
+      width: 100%;
+      border: 1px solid rgb(200, 200, 200);
+      border-radius: 5px;
+      outline: none;
+    }
+  }
+  
+}

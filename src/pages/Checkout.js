@@ -11,7 +11,6 @@ const Checkout = () => {
     <>
       <PageLinks links={[{ name: "Thanh toán", link: "/checkout" }]} />
       <div className="checkout">
-        
         <div className="checkout__left">
           <Delivery isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
           <Order />

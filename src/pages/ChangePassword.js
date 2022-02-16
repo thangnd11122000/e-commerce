@@ -25,7 +25,7 @@ const ChangePassword = () => {
     <div className="form__container">
       <div className="form__box">
         <h3>Quên mật khẩu ?</h3>
-        <Formik
+        {/* <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
@@ -63,7 +63,7 @@ const ChangePassword = () => {
               </button>
             </Form>
           )}
-        </Formik>
+        </Formik> */}
       </div>
     </div>
   )

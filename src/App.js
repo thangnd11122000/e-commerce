@@ -21,6 +21,7 @@ import ChangePhone from "./pages/ChangePhone"
 import ForgotPassword from "./pages/ForgotPassword"
 import ChangePassword from "./pages/ChangePassword"
 import Contact from "./pages/Contact"
+import UserInfo from "./pages/UserInfo"
 
 function App() {
   const isOpenMenuSidebar = useSelector(
@@ -51,7 +52,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/user-info" element={<UserInfo />} /> */}
+        <Route path="/user-info" element={<UserInfo />} />
       </Routes>
       <Footer />
       <MobileBottom />

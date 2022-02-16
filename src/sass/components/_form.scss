@@ -157,9 +157,16 @@ button {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+input[type=date]{
+  padding: 8px 10px !important;
+}
 .error {
   margin-top: 5px;
   color: red;
   font-size: 14px;
   text-align: start;
+}
+
+::placeholder {
+  color: #999;
 }

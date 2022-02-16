@@ -15,7 +15,7 @@ const CheckboxGroup = ({ label, name, options, ...rest }) => {
                 {...field}
                 value={option.value}
                 checked={field.value.includes(option.value)}
-                class="input-checkbox"
+                className="input-checkbox"
               />
               {option.key}
             </label>
