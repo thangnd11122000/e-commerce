@@ -26,19 +26,19 @@ img {
 }
 
 .overlay {
-  width: 0;
-  height: 0;
-  @include breakpoint("xl") {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    display: block;
-    background-color: #000;
-    opacity: 0.5;
-    z-index: 10;
-  }
+  // width: 0;
+  // height: 0;
+  // @include breakpoint("xl") {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 10;
+  // }
 }
 
 .page-links {
@@ -148,5 +148,15 @@ img {
     position: absolute;
     top: 20px;
     right: 20px;
+  }
+}
+
+.MuiSnackbar-root {
+  top: 140px !important;
+  @include breakpoint("xl") {
+    top: 80px !important;
+  }
+  @include breakpoint("md") {
+    top: 65px !important;
   }
 }

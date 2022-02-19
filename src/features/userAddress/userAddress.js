@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { provinceData } from "../../data"
 
 const items =
   localStorage.getItem("userAddress") !== null

@@ -1,13 +1,33 @@
 import { Add, BorderColor, Delete } from "@mui/icons-material"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteAddress, selectedAddress } from "../features/userAddress/userAddress"
+import {
+  deleteAddress,
+  selectedAddress,
+} from "../features/userAddress/userAddress"
+import ConfirmDialog from "./ConfirmDialog"
 import AddressModal from "./Modal/AddressModal"
 
+const initialValues = {
+  id: null,
+  name: "",
+  phone: "",
+  email: "",
+  province: "",
+  district: "",
+  commune: "",
+  detail: "",
+}
+
 const UserAddress = () => {
-  const [edit, setEdit] = useState({})
+  const [edit, setEdit] = useState(initialValues)
   const [activeAddress, setActiveAddress] = useState({})
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [confirmDialog, setConfirmDialog] = useState({
+    isOpen: false,
+    title: "",
+    subTitle: "",
+  })
   const userAddress = useSelector((state) => state.userAddress.value)
   const dispatch = useDispatch()
   const handleEdit = (id) => {
@@ -18,8 +38,17 @@ const UserAddress = () => {
     setIsOpenModal(true)
   }
   const handleAdd = () => {
-    setEdit({})
+    setEdit(initialValues)
     setIsOpenModal(true)
+  }
+
+  const handleDelete = (id) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Banj muon xoa",
+      subTitle: "Ban chac khong",
+    })
+    // dispatch(selectedAddress(id))
   }
 
   useEffect(() => {
@@ -42,7 +71,7 @@ const UserAddress = () => {
               <h5>{a?.name}</h5>
               <div className="user-address__actions">
                 <BorderColor onClick={() => handleEdit(a.id)} />
-                <Delete onClick={() => dispatch(deleteAddress(a.id))} />
+                <Delete onClick={() => handleDelete(a.id)} />
               </div>
             </div>
             <p>{a?.phone}</p>
@@ -66,6 +95,7 @@ const UserAddress = () => {
         setIsOpenModal={setIsOpenModal}
         edit={edit}
       />
+      <ConfirmDialog confirmDialog={confirmDialog} />
     </>
   )
 }
