@@ -1,6 +1,6 @@
 .mobile-bottom {
   display: none;
-  transition: all .8s;
+  transition: all 0.8s;
   @include breakpoint("md") {
     display: block;
     position: fixed;
@@ -14,11 +14,11 @@
     padding: 10px 0;
   }
 
-  &__scroll-up {
+  &--scroll-up {
     bottom: 0;
   }
 
-  &__box {
+  &__item {
     display: block;
   }
 
@@ -29,7 +29,7 @@
     align-items: center;
     color: $text-dark;
 
-    &--img {
+    img {
       display: block;
       width: 25px;
     }
@@ -39,6 +39,12 @@
     }
     span {
       margin-top: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      @include breakpoint("xs") {
+        display: none;
+      }
     }
   }
 }

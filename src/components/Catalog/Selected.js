@@ -20,9 +20,9 @@ const Selected = ({
   }, [filter.category])
 
   return (
-    <div className="catalog__selected">
+    <div className="catalog-selected">
       {categories.length > 0 && (
-        <div className="catalog__selected--box">
+        <div className="catalog-selected__list">
           <p>Danh mục: </p>
           {categories.map((c, i) => (
             <div key={c.id}>
@@ -36,7 +36,7 @@ const Selected = ({
       )}
 
       {filter.color.length > 0 && (
-        <div className="catalog__selected--box">
+        <div className="catalog-selected__list">
           <p>Màu: </p>
           {filter.color.map((c, i) => (
             <div key={i}>
@@ -48,7 +48,7 @@ const Selected = ({
       )}
 
       {filter.brand.length > 0 && (
-        <div className="catalog__selected--box">
+        <div className="catalog-selected__list">
           <p>Thương hiệu: </p>
           {filter.brand.map((b, i) => (
             <div key={i}>
@@ -61,7 +61,7 @@ const Selected = ({
       {!(
         priceSlider[0] === minMaxPrice[0] && priceSlider[1] === minMaxPrice[1]
       ) && (
-        <div className="catalog__selected--box">
+        <div className="catalog-selected__list">
           <p>Khoảng giá:</p>
           <div>
             {priceSlider[0]}d - {priceSlider[1]}d

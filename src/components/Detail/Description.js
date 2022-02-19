@@ -1,12 +1,14 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 const Description = () => {
   const [isOpenDesc, setIsOpenDesc] = useState(false)
   return (
-    <div className="detail__description">
-      <h3 className="detail__description--title">Mô tả sản phẩm</h3>
+    <div className="detail-description">
+      <h3 className="detail-description__title">Mô tả sản phẩm</h3>
       <div
-        className={`detail__description--desc ${isOpenDesc ? "active" : ""}`}
+        className={`detail-description__desc ${
+          isOpenDesc ? "detail-description__desc--active" : ""
+        }`}
       >
         Mô tả sản phẩm Laptop-Acer-Aspire-3-A315-54 Thiết kế trẻ trung phong
         cách Acer Aspire 3 A315-56-37DV (NX.HS5SV.001) với thiết kế có màu sắc
@@ -62,7 +64,7 @@ const Description = () => {
         hoá để cho việc trải nghiệm cuộc gọi video với bạn bè người thân thêm
         sắc nét và âm thanh sống động. Laptop-Acer-Aspire-3-A315-54-4
       </div>
-      <div className="detail__description--button">
+      <div className="detail-description__button">
         <button
           className="btn-primary"
           onClick={() => setIsOpenDesc(!isOpenDesc)}

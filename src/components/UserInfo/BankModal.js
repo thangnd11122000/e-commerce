@@ -46,9 +46,9 @@ const BankModal = ({ isOpenBankModal, setIsOpenBankModal }) => {
       aria-labelledby="credit-title"
       aria-describedby="credit-description"
     >
-      <div className="credit__modal section-box ">
+      <div className="modal bank-modal">
         <Close onClick={() => setIsOpenBankModal(false)} />
-        <div className="credit__modal--box">
+        <div className="bank-modal__container">
           <h3>Thêm thẻ ngân hàng</h3>
           <br />
           <Formik
@@ -92,13 +92,22 @@ const BankModal = ({ isOpenBankModal, setIsOpenBankModal }) => {
                   name="accountName"
                   placeholder="Tên đầy đủ (viết in hoa, không dấu)"
                 />
-                <button
-                  type="submit"
-                  disabled={!formik.isValid}
-                  className="btn-primary"
-                >
-                  Đăng kí
-                </button>
+                <div className="bank-modal__button">
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    onClick={() => setIsOpenBankModal(false)}
+                  >
+                    Đóng
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={!formik.isValid}
+                    className="btn-primary"
+                  >
+                    Thêm
+                  </button>
+                </div>
               </Form>
             )}
           </Formik>

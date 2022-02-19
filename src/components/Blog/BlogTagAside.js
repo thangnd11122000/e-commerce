@@ -1,8 +1,8 @@
 const BlogTagAside = ({ title, tags }) => {
   return (
-    <div className="blog__aside">
+    <div className="blog-aside">
       <h3>{title}</h3>
-      <div className="blog__aside--btn">
+      <div className="blog-aside__button">
         {tags?.map((tag, index) => (
           <a href={tag.link} key={index} className="btn-primary">
             {tag.name}

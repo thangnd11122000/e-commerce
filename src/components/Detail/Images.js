@@ -11,17 +11,17 @@ const imagesData = [
 ]
 
 const Images = () => {
-  const [images, setImages] = useState(imagesData)
+  const [images] = useState(imagesData)
   const [index, setIndex] = useState(0)
   const [isOpenMore, setIsOpenMore] = useState(false)
 
   return (
-    <div className="detail__images">
-      <div className="detail__images--view">
+    <div className="detail-images">
+      <div className="detail-images__view">
         <img src={`/img/products/${images[index]}`} alt="" />
       </div>
 
-      <div className="detail__images--slide">
+      <div className="detail-images__list">
         {images?.length > 6 && isOpenMore ? (
           <>
             {images.map((image, i) => (
@@ -35,7 +35,7 @@ const Images = () => {
               />
             ))}
             <div
-              className="detail__images--more"
+              className="detail-images__more"
               onClick={() => setIsOpenMore(false)}
             >
               Ẩn bớt
@@ -54,7 +54,7 @@ const Images = () => {
               />
             ))}
             <div
-              className="detail__images--more"
+              className="detail-images__more"
               onClick={() => setIsOpenMore(true)}
             >
               + {images.length - 4}

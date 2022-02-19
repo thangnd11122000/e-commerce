@@ -41,9 +41,9 @@ const PostList = () => {
   };
   return (
     <div className="post-list">
-      <div className="component-header">
-        <h3>Bai viet gan day</h3>
-        <span>Xem tat ca</span>
+      <div className="home__header">
+        <h3>Bài viết gần đây</h3>
+        <span>Xem tất cả</span>
       </div>
       <Slider {...settings} className="post-list__slider">
         {postsData.map((data, i) => (

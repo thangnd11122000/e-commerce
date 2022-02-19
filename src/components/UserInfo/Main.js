@@ -2,13 +2,12 @@ import React, { useState } from "react"
 import Address from "./Address"
 import Bank from "./Bank"
 import BankModal from "./BankModal"
-import ChangePassword from "./ChangePassword"
 import CreditModal from "./CreditModal"
 import Info from "./Info"
 import Orders from "./Orders"
 import Vouchers from "./Vouchers"
 
-const Main = ({ page, setPage }) => {
+const Main = ({ page }) => {
   const [isOpenCreditModal, setIsOpenCreditModal] = useState(false)
   const [isOpenBankModal, setIsOpenBankModal] = useState(false)
   switch (page) {
@@ -34,8 +33,6 @@ const Main = ({ page, setPage }) => {
       )
     case "address":
       return <Address />
-    case "password":
-      return <ChangePassword />
     case "orders":
       return <Orders />
     case "vouchers":

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import Rating from "@mui/material/Rating"
 import getDiscount from "../../utils/getDiscount"
@@ -40,14 +40,14 @@ const Content = ({ product }) => {
   }, [product])
 
   return (
-    <div className="detail__content">
-      <div className="detail__content--name">{product.name}</div>
-      <div className="detail__content--review">
+    <div className="detail-content">
+      <div className="detail-content__name">{product.name}</div>
+      <div className="detail-content__review">
         <Rating name="content-review" value={product.rating} readOnly />
         <p className="line">|</p>
         <p>3 danh gia</p>
       </div>
-      <div className="detail__content--price">
+      <div className="detail-content__price">
         {discountValue ? (
           <p className="discount">
             {discountValue}đ <del>{product.price}đ</del>
@@ -57,7 +57,7 @@ const Content = ({ product }) => {
         )}
       </div>
       <hr />
-      <p className="detail__content--description">{product.shortDescription}</p>
+      <p className="detail-content__description">{product.shortDescription}</p>
       <div className="detail__actions">
         <div className="detail__actions--quantity">
           <button onClick={() => updateQuantity("minus")}>-</button>
@@ -78,16 +78,16 @@ const Content = ({ product }) => {
           Mua ngay
         </button>
       </div>
-      <div className="detail__content--socials">
+      <div className="detail-content__socials">
         <p>Thêm vào yêu thích</p>
         <p>Chia sẻ</p>
       </div>
-      <div className="detail__content--category">
+      <div className="detail-content__category">
         <p>
           Danh mục: <span>{}</span>
         </p>
       </div>
-      <div className="detail__content--brand">
+      <div className="detail-content__brand">
         <p>
           Thương hiệu: <span>xzy</span>
         </p>

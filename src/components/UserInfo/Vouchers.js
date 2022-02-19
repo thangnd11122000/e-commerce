@@ -9,13 +9,13 @@ const voucherData = [
 
 const Vouchers = () => {
   return (
-    <div className="user__vouchers section-box">
-      <ul className="user__vouchers--header">
+    <div className="section-box">
+      <ul className="user__header user__header--flex-start">
         <li>Mới nhất</li>
         <li>Phổ biến</li>
         <li>Sắp hết hạn</li>
       </ul>
-      <div className="user__vouchers--body">
+      <div className="user__body user__vouchers">
         {voucherData.map((v) => (
           <Voucher key={v.id} type={v.type} code={v.code} date={v.date} />
         ))}

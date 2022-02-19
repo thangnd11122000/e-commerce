@@ -1,10 +1,11 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 
 const Summary = () => {
   const totalPrice = useSelector((state) => state.cartItems.totalPrice)
   return (
-    <div className="section-box cart__summary">
+    <div className="section-box cart-summary">
       <h3 className="section-box__title">Thanh toán</h3>
       <div>
         <p>Tạm tính</p>
@@ -12,9 +13,11 @@ const Summary = () => {
       </div>
       <div>
         <p>Thành tiền</p>
-        <p className="cart__summary--total">{totalPrice}</p>
+        <p className="cart-summary__total">{totalPrice}</p>
       </div>
-      <button className="btn-primary">Thanh toán</button>
+      <Link to="/checkout">
+        <button className="btn-primary">Thanh toán</button>
+      </Link>
     </div>
   )
 }

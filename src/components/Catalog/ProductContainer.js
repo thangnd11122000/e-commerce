@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Display from "./Display"
 import Products from "./Products"
 import Selected from "./Selected"
@@ -52,7 +52,7 @@ const ProductContainer = ({
           setLayout={setLayout}
           setIsSwitchLayout={setIsSwitchLayout}
         />
-        <p>{products.length} products</p>
+        <p>{products.length} sản phẩm</p>
       </div>
       <Selected
         minMaxPrice={minMaxPrice}

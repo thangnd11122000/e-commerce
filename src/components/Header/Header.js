@@ -1,6 +1,5 @@
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import { useState } from "react"
-import { useSelector } from "react-redux"
 import CartSidebar from "./CartSidebar"
 import Navbar from "./Navbar"
 import Navigation from "./Navigation"
@@ -8,13 +7,6 @@ import Navigation from "./Navigation"
 const Header = () => {
   const [hideOnScrollDown, setHideOnScrollDown] = useState(true)
   const [isScroll, setIsScroll] = useState(false)
-
-  const isOpenMenuSidebar = useSelector(
-    (state) => state.toggle.isOpenMenuSidebar
-  )
-  const isOpenCartSidebar = useSelector(
-    (state) => state.toggle.isOpenCartSidebar
-  )
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -32,8 +24,7 @@ const Header = () => {
   )
 
   return (
-    <header className={`${isScroll ? "header-scroll" : ""}`}>
-      
+    <header className={`header ${isScroll ? "header--scroll" : ""}`}>
       <Navbar hideOnScrollDown={hideOnScrollDown} isScroll={isScroll} />
       <hr />
       <Navigation />

@@ -9,12 +9,12 @@ const BlogComment = () => {
   }
 
   return (
-    <div className="blog__comment">
+    <div className="blog-comment">
       <h3>2 bình luận</h3>
       <BlogForm showButton={false} />
-      <div className="blog__comment--box">
-        <div className="blog__comment--main">
-          <div className="blog__comment--content">
+      <div className="blog-comment__item">
+        <div className="blog-comment__main">
+          <div className="blog-comment__content">
             <img src="/img/about/testimonial-1.jpg" alt="" />
             <div>
               <h5>
@@ -31,8 +31,8 @@ const BlogComment = () => {
             </div>
           </div>
         </div>
-        <div className="blog__comment--main blog__comment--reply">
-          <div className="blog__comment--content">
+        <div className="blog-comment__main blog-comment__reply">
+          <div className="blog-comment__content">
             <img src="/img/about/testimonial-1.jpg" alt="" />
             <div>
               <h5>
@@ -49,8 +49,8 @@ const BlogComment = () => {
             </div>
           </div>
         </div>
-        <div className="blog__comment--main blog__comment--reply">
-          <div className="blog__comment--content">
+        <div className="blog-comment__main blog-comment__reply">
+          <div className="blog-comment__content">
             <img src="/img/about/testimonial-1.jpg" alt="" />
             <div>
               <h5>

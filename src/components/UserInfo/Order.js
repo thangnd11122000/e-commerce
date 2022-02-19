@@ -1,4 +1,3 @@
-import React from "react"
 import getDiscount from "../../utils/getDiscount"
 
 const Order = ({ order }) => {
@@ -6,22 +5,22 @@ const Order = ({ order }) => {
 
   const discountValue = getDiscount(discount, price)
   return (
-    <div className="user__order">
-      <div className="user__order--product">
+    <div className="user-order">
+      <div className="user-order__item">
         <img src={`${image}`} alt="" />
         <div>
-          <p className="user__order--name">{name}</p>
+          <p className="user-order__name">{name}</p>
           {discountValue > 0 ? (
-            <p className="user__order--discount">
+            <p className="user-order__discount">
               {discountValue} <del>{price}</del>
             </p>
           ) : (
-            <p className="user__order--price">{price}</p>
+            <p className="user-order__price">{price}</p>
           )}
-          <p className="user__order--date">{date}</p>
+          <p className="user-order__date">{date}</p>
         </div>
       </div>
-      <div className="user__order--status">
+      <div className="user-order__status">
         <h4>{status}</h4>
         <p>{total}</p>
       </div>

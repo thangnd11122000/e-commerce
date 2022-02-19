@@ -1,7 +1,7 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import BannerCard from "../Card/BannerCard";
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import BannerCard from "./BannerCard"
 
 const CategoryPopular = () => {
   const settings = {
@@ -45,25 +45,25 @@ const CategoryPopular = () => {
         },
       },
     ],
-  };
+  }
 
   const data = [
     {
       link: "/#",
       title: "Camera",
-      subtitle: "Tim kiem ngay",
+      subtitle: "Tìm kiếm ngay",
       image: "/img/categories/category-1.jpg",
     },
     {
       link: "/#",
-      title: "Dien thoai",
-      subtitle: "Tim kiem ngay",
+      title: "Điện thoại",
+      subtitle: "Tìm kiếm ngay",
       image: "/img/categories/category-2.png",
     },
     {
       link: "/#",
       title: "Laptop",
-      subtitle: "Tim kiem ngay",
+      subtitle: "Tìm kiếm ngay",
       image: "/img/categories/category-3.jpg",
     },
     {
@@ -78,22 +78,22 @@ const CategoryPopular = () => {
       subtitle: "Tim kiem ngay",
       image: "/img/categories/category-5.jpg",
     },
-  ];
+  ]
 
   return (
     <div className="category-popular">
-      <div className="component-header">
+      <div className="home__header">
         <h3>Danh mục phổ biến</h3>
         <span>Xem tất cả {">"}</span>
       </div>
 
       <Slider {...settings} className="category-popular__slider">
         {data.map((d, i) => (
-          <BannerCard key={i} data={d} />
+          <BannerCard key={i} data={d} className="banner-card" />
         ))}
       </Slider>
     </div>
-  );
-};
+  )
+}
 
-export default CategoryPopular;
+export default CategoryPopular

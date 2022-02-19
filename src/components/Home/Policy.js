@@ -1,20 +1,20 @@
-import { CardMembership } from "@mui/icons-material";
-import { Grid } from "@mui/material";
+import { CardMembership } from "@mui/icons-material"
+import { Grid } from "@mui/material"
 
 const data = [
   {
-    title: "Giao hang mien phi",
-    subtitle: "Don hang tren 200k",
+    title: "Giao hàng miễn phí",
+    subtitle: "Đơn hàng trên 200k",
     icon: <CardMembership />,
   },
   {
-    title: "Thanh toan an toan",
-    subtitle: "An toan tuyet doi",
+    title: "Thanh toán an toàn",
+    subtitle: "An toàn tuyệt đối",
     icon: <CardMembership />,
   },
   {
-    title: "Trung tam tro giup",
-    subtitle: "Ho tro 24/7",
+    title: "Trung tâm trợ giúp",
+    subtitle: "Hỗ trợ 24/7",
     icon: <CardMembership />,
   },
   {
@@ -22,7 +22,7 @@ const data = [
     subtitle: "Nếu có vấn đề",
     icon: <CardMembership />,
   },
-];
+]
 
 const Policy = () => {
   return (
@@ -30,9 +30,9 @@ const Policy = () => {
       <Grid container spacing={2}>
         {data.map((d, i) => (
           <Grid item xs={6} sm={6} md={3} lg={3} key={i}>
-            <div className="policy__box">
-              <div className="policy__box--icon">{d.icon}</div>
-              <div className="policy__box--content">
+            <div className="policy__item">
+              <div className="policy__icon">{d.icon}</div>
+              <div className="policy__content">
                 <h3>{d.title}</h3>
                 <p>{d.subtitle}</p>
               </div>
@@ -41,7 +41,7 @@ const Policy = () => {
         ))}
       </Grid>
     </div>
-  );
-};
+  )
+}
 
-export default Policy;
+export default Policy

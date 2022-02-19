@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
@@ -8,9 +8,9 @@ import CategoriesDropdown from "./CategoriesDropdown"
 const mainNav = [
   { name: "Trang chủ", path: "/" },
   { name: "Cửa hàng", path: "/catalog" },
-  { name: "Về chúng tôi", path: "/about-us" },
+  { name: "Về chúng tôi", path: "/about" },
   { name: "Liên hệ", path: "/contact" },
-  { name: "Bài viết", path: "/Blog" },
+  { name: "Bài viết", path: "/blog" },
 ]
 
 const Navigation = () => {
@@ -47,7 +47,7 @@ const Navigation = () => {
 
   return (
     <div
-      className={isOpenMenuSidebar ? "navigation active" : "navigation"}
+      className={`navigation ${isOpenMenuSidebar ? "navigation--active" : ""}`}
       ref={menuSidebarRef}
     >
       <CategoriesDropdown />
@@ -55,8 +55,8 @@ const Navigation = () => {
         {mainNav.map((nav, index) => (
           <li
             key={index}
-            className={`navigation__nav--path ${
-              index === activeNav ? "active" : ""
+            className={`navigation__link ${
+              index === activeNav ? "navigation__link--active" : ""
             }`}
           >
             <Link to={nav.path}>{nav.name}</Link>

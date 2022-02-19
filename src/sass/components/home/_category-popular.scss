@@ -5,28 +5,32 @@
     margin: 0px 0 30px;
   }
   @include breakpoint("md") {
-    margin: 0px 0 10px;
+    margin: 20px 0 0px;
+  }
+  @include breakpoint("xs") {
+    margin: 10px 0 0px;
   }
 
   &__slider {
     margin-top: 30px;
 
     @include breakpoint("md") {
-      margin-top: 20px;
+      margin-top: 10px;
     }
-    
   }
 
   .slick-arrow {
-   display: none !important;
+    display: none !important;
   }
 
-  .banner-card__box {
-    height: 140px;
-    padding: 0px 30px;
-    margin: 10px;
-    img {
-      width: 100%;
+  .banner-card {
+    &__item {
+      height: 140px;
+      padding: 0px 30px;
+      margin: 10px;
+      img {
+        width: 100%;
+      }
     }
   }
 }

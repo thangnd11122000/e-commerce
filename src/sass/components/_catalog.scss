@@ -36,100 +36,6 @@
     }
   }
 
-  &__filter {
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px 0;
-    transition: left 1s;
-
-    @include breakpoint("xl") {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      height: 100vh;
-      overflow-y: scroll;
-      background: #f3f5f6;
-      padding: 15px;
-      box-shadow: $shadow-2dp;
-      z-index: 11;
-    }
-
-    &.active {
-      left: 0;
-    }
-
-    &--header {
-      display: flex;
-      justify-content: space-between;
-      font-weight: normal;
-      font-size: 16px;
-
-      @include breakpoint("xl") {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .MuiSvgIcon-root {
-        display: none;
-        background: $primary;
-        color: #fff;
-        border-radius: 3px;
-        box-shadow: $shadow-1dp;
-
-        @include breakpoint("xl") {
-          display: block;
-        }
-      }
-    }
-
-    &--box {
-      display: flex;
-      flex-direction: column;
-      padding: 20px 20px;
-      background: #fff;
-      border-radius: 5px;
-      box-shadow: $shadow-1dp;
-      h2 {
-        color: $primary;
-        font-size: 20px;
-        font-weight: 500;
-        margin-bottom: 10px;
-      }
-
-      .MuiSvgIcon-root {
-        width: 18px;
-      }
-
-      .MuiSlider-root {
-        margin: 10px;
-        color: $primary;
-        height: 3px;
-        & .MuiSlider-track {
-          border: none;
-        }
-        & .MuiSlider-thumb {
-          height: 20px;
-          width: 20px;
-          background-color: #fff;
-          border: 2px solid $primary;
-          &:focus,
-          &:hover,
-          &.Mui-active,
-          &.Mui-focusVisible {
-            box-shadow: $shadow-1dp;
-          }
-          &:before {
-            display: none;
-          }
-        }
-        & .MuiSlider-valueLabel {
-          background: $primary;
-        }
-      }
-    }
-  }
-
   &__products {
     background: #fff;
     width: 100%;
@@ -153,105 +59,17 @@
     align-items: center;
   }
 
-  &__selected {
-    margin: 20px 0;
-
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    gap: 0 10px;
-
-    &--box {
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      p {
-        color: #000;
-        margin-right: 5px;
-        font-weight: bold;
-      }
-      div {
-        font-size: 15px;
-        padding: 6px 10px;
-        border-radius: 5px;
-        background: #fff;
-        button {
-          cursor: pointer;
-          font-size: 12px;
-          margin-left: 8px;
-          padding: 1px 4px;
-          background: red;
-          border: none;
-          border-radius: 2px;
-          color: #fff;
-        }
-      }
-    }
-  }
-
-  &__display {
-    display: flex;
-    .active {
-      border: 1px solid $primary;
-      span {
-        background: $primary;
-      }
-    }
-    &--column {
-      border: 1px solid rgba(0, 0, 0, 0.5);
-      border-radius: 2px;
-      padding: 3px;
-      display: flex;
-      gap: 0 1px;
-      margin-right: 10px;
-      justify-content: space-between;
-      cursor: pointer;
-      span {
-        display: block;
-        width: 5px;
-        height: 20px;
-        background: rgba(0, 0, 0, 0.5);
-      }
-      &:hover {
-        border: 1px solid $primary;
-        span {
-          background: $primary;
-        }
-      }
-    }
-
-    &--list {
-      border: 1px solid rgba(0, 0, 0, 0.5);
-      border-radius: 2px;
-      padding: 3px;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      margin-right: 10px;
-      cursor: pointer;
-      span {
-        display: block;
-        width: 23px;
-        height: 5px;
-        background: rgba(0, 0, 0, 0.5);
-      }
-      &:hover {
-        border: 1px solid $primary;
-        span {
-          background: $primary;
-        }
-      }
-    }
-  }
-
   &__sorting {
     color: #666;
+    display: flex;
+    align-items: center;
     label {
+      display: block;
       font-size: 14px;
-      margin-right: 5px;
+      margin: 0;
     }
     select {
+      margin-left: 5px;
       font-size: 15px;
       padding: 5px;
       outline: none;
@@ -263,11 +81,197 @@
     text-align: center;
     color: red;
     font-size: 30px;
-    
+
     @include breakpoint("sm") {
       padding: 20px 0;
       font-size: 20px;
+    }
+  }
+}
 
+.catalog-filter {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+  transition: left 1s;
+
+  @include breakpoint("xl") {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    overflow-y: scroll;
+    background: #f3f5f6;
+    padding: 15px;
+    box-shadow: $shadow-2dp;
+    z-index: 11;
+  }
+
+  &--active {
+    left: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: normal;
+    font-size: 16px;
+
+    @include breakpoint("xl") {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .MuiSvgIcon-root {
+      display: none;
+      background: $primary;
+      color: #fff;
+      border-radius: 3px;
+      box-shadow: $shadow-1dp;
+
+      @include breakpoint("xl") {
+        display: block;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: $shadow-1dp;
+    h2 {
+      color: $primary;
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .MuiSvgIcon-root {
+      width: 18px;
+    }
+
+    .MuiSlider-root {
+      margin: 10px;
+      color: $primary;
+      height: 3px;
+      & .MuiSlider-track {
+        border: none;
+      }
+      & .MuiSlider-thumb {
+        height: 20px;
+        width: 20px;
+        background-color: #fff;
+        border: 2px solid $primary;
+        &:focus,
+        &:hover,
+        &.Mui-active,
+        &.Mui-focusVisible {
+          box-shadow: $shadow-1dp;
+        }
+        &:before {
+          display: none;
+        }
+      }
+      & .MuiSlider-valueLabel {
+        background: $primary;
+      }
+    }
+  }
+}
+
+.catalog-display {
+  display: flex;
+
+  &__column {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    padding: 3px;
+    display: flex;
+    gap: 0 1px;
+    margin-right: 10px;
+    justify-content: space-between;
+    cursor: pointer;
+    span {
+      display: block;
+      width: 5px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    &:hover {
+      border: 1px solid $primary;
+      span {
+        background: $primary;
+      }
+    }
+
+    &--active {
+      border: 1px solid $primary;
+      span {
+        background: $primary;
+      }
+    }
+  }
+
+  // &__list {
+  //   border: 1px solid rgba(0, 0, 0, 0.5);
+  //   border-radius: 2px;
+  //   padding: 3px;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   flex-direction: column;
+  //   margin-right: 10px;
+  //   cursor: pointer;
+  //   span {
+  //     display: block;
+  //     width: 23px;
+  //     height: 5px;
+  //     background: rgba(0, 0, 0, 0.5);
+  //   }
+  //   &:hover {
+  //     border: 1px solid $primary;
+  //     span {
+  //       background: $primary;
+  //     }
+  //   }
+  // }
+}
+
+.catalog-selected {
+  margin: 20px 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  gap: 0 10px;
+
+  &__list {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    p {
+      color: #000;
+      margin-right: 5px;
+      font-weight: bold;
+    }
+    div {
+      font-size: 15px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      background: #fff;
+      button {
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: 8px;
+        padding: 1px 4px;
+        background: red;
+        border: none;
+        border-radius: 2px;
+        color: #fff;
+      }
     }
   }
 }

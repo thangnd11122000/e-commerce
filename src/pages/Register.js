@@ -1,4 +1,5 @@
 import { Form, Formik } from "formik"
+import { Link } from "react-router-dom"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
 
@@ -28,8 +29,8 @@ const Register = () => {
   }
 
   return (
-    <div className="form__container">
-      <div className="form__box">
+    <div className="form form__container">
+      <div className="form__item">
         <h3>Đăng kí</h3>
         <Formik
           initialValues={initialValues}
@@ -81,19 +82,19 @@ const Register = () => {
             </Form>
           )}
         </Formik>
-        <div className="form__box--options">
+        <div className="form__option">
           <div></div>
           <span>Hoặc</span>
           <div></div>
         </div>
-        <button className="btn-primary form__box--facebook">
+        <button className="btn-primary form__item--facebook">
           Đăng nhập với facebook
         </button>
-        <button className="btn-primary form__box--google">
+        <button className="btn-primary form__item--google">
           Đăng nhập với google
         </button>
-        <p className="form__box--switch">
-          Bạn đã có tài khoản? <a href="/login">Đăng nhập ngay</a>
+        <p className="form__switch">
+          Bạn đã có tài khoản? <Link to="/login">Đăng nhập ngay</Link>
         </p>
       </div>
     </div>

@@ -10,44 +10,43 @@
     padding: 30px 30px;
   }
   @include breakpoint("sm") {
-      margin: 30px 0;
+    margin: 30px 0;
     padding: 20px 10px;
   }
 
-  &__box {
+  &__item {
     display: flex;
-    // align-items: center;
-    &--icon {
-      margin-right: 10px;
+  }
+  &__icon {
+    margin-right: 10px;
 
-      .MuiSvgIcon-root {
-        font-size: 40px !important;
-        color: $primary;
+    .MuiSvgIcon-root {
+      font-size: 40px !important;
+      color: $primary;
 
-        @include breakpoint("sm") {
-          font-size: 30px !important;
-        }
+      @include breakpoint("sm") {
+        font-size: 30px !important;
       }
     }
-    &--content {
-      h3 {
-        font-size: 18px;
-        text-transform: uppercase;
-        font-weight: 500;
-        @include breakpoint("xl") {
-          font-size: 16px;
-        }
-        @include breakpoint("sm") {
-          font-size: 12px;
-        }
+  }
+  &__content {
+    h3 {
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 500;
+      @include breakpoint("xl") {
+        font-size: 16px;
       }
-      p {
-        margin-top: 5px;
-        color: $text-disable;
+      @include breakpoint("sm") {
+        font-size: 12px;
+      }
+    }
+    p {
+      margin-top: 5px;
+      color: $text-disable;
 
-        @include breakpoint("xl") {
-          font-size: 12px;
-        }
+      @include breakpoint("xl") {
+        font-size: 12px;
       }
     }
   }

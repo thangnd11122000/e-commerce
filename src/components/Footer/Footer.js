@@ -1,7 +1,7 @@
-import { FacebookOutlined, ArrowForward } from "@mui/icons-material";
-import React from "react";
+import { FacebookOutlined, ArrowForward } from "@mui/icons-material"
+
 const Footer = () => {
-  const footerToggle = (e) => e.target.classList.toggle("active");
+  const footerToggle = (e) => e.target.classList.toggle("active")
 
   return (
     <div className="footer">
@@ -127,10 +127,9 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="footer__links large">
+      <div className="footer__links footer__links--large">
         <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Đăng kí nhận bản tin</h3>
-
           <ArrowForward />
         </div>
         <div className="footer__body">
@@ -149,7 +148,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

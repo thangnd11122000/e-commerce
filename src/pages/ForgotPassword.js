@@ -16,8 +16,8 @@ const ForgotPassword = () => {
   }
 
   return (
-    <div className="form__container">
-      <div className="form__box">
+    <div className="form form__container">
+      <div className="form__item">
         <h3>Quên mật khẩu ?</h3>
         <Formik
           initialValues={initialValues}

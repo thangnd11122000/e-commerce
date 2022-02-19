@@ -6,18 +6,22 @@ const Display = ({ layout, setLayout, setIsSwitchLayout, width }) => {
 
   return (
     <div
-      className="catalog__display"
+      className="catalog-display"
       style={{ display: width < 600 ? "none" : "" }}
     >
       <div
-        className={`catalog__display--column ${layout === 2 && "active"}`}
+        className={`catalog-display__column ${
+          layout === 2 && "catalog-display__column--active"
+        }`}
         onClick={() => handleClick(2)}
       >
         <span></span>
         <span></span>
       </div>
       <div
-        className={`catalog__display--column ${layout === 3 && "active"}`}
+        className={`catalog-display__column ${
+          layout === 3 && "catalog-display__column--active"
+        }`}
         onClick={() => handleClick(3)}
       >
         <span></span>
@@ -25,7 +29,9 @@ const Display = ({ layout, setLayout, setIsSwitchLayout, width }) => {
         <span></span>
       </div>
       <div
-        className={`catalog__display--column ${layout === 4 && "active"}`}
+        className={`catalog-display__column ${
+          layout === 4 && "catalog-display__column--active"
+        }`}
         onClick={() => handleClick(4)}
         style={{ display: width < 800 ? "none" : "" }}
       >
@@ -35,7 +41,9 @@ const Display = ({ layout, setLayout, setIsSwitchLayout, width }) => {
         <span></span>
       </div>
       <div
-        className={`catalog__display--column ${layout === 5 && "active"}`}
+        className={`catalog-display__column ${
+          layout === 5 && "catalog-display__column--active"
+        }`}
         onClick={() => handleClick(5)}
         style={{ display: width < 900 ? "none" : "" }}
       >
@@ -45,9 +53,7 @@ const Display = ({ layout, setLayout, setIsSwitchLayout, width }) => {
         <span></span>
         <span></span>
       </div>
-      {/* <List
-        
-      >
+      {/* <List>
         <span></span>
         <span></span>
         <span></span>

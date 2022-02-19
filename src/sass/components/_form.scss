@@ -43,7 +43,7 @@ button {
     }
   }
 
-  &__box {
+  &__item {
     margin: 0 auto;
     width: 60%;
     @include breakpoint("md") {
@@ -62,34 +62,7 @@ button {
         margin-top: 20px;
       }
     }
-    &--actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-      a {
-        display: block;
-        text-align: end;
-        color: #888;
-        text-decoration: underline;
-        font-size: 15px;
-      }
-    }
-    &--options {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #888;
-      margin: 20px 0;
-      div {
-        height: 1px;
-        width: 100%;
-        background: #888;
-      }
-      span {
-        text-transform: uppercase;
-        font-size: 14px;
-      }
-    }
+    
     &--facebook {
       background: rgb(45, 136, 255);
     }
@@ -97,14 +70,46 @@ button {
       margin-top: 10px;
       background: rgb(220, 78, 66);
     }
-    &--switch {
-      margin-top: 15px;
-      color: #999;
-      a {
-        color: $primary;
-      }
+  }
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    a {
+      display: block;
+      text-align: end;
+      color: #888;
+      text-decoration: underline;
+      font-size: 15px;
     }
   }
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #888;
+    margin: 20px 0;
+    div {
+      height: 1px;
+      width: 100%;
+      background: #888;
+    }
+    span {
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  }
+  &__switch {
+    margin-top: 15px;
+    color: #999;
+    a {
+      color: $primary;
+    }
+  }
+  .btn-primary{
+    width: 100%;
+  }
+  
 }
 
 .form-group {

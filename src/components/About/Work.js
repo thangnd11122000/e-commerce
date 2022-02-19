@@ -1,24 +1,20 @@
-import React from "react"
-
 const Work = () => {
   return (
-    <div className="about__section about__section--gray about__work">
-      <div className="about__content">
-        <h5 className="about__content--subtitle">
-          Chúng tôi hoạt động thế nào
-        </h5>
-        <h2 className="about__content--title">
+    <div className="about__section about__section--gray about-work">
+      <div className="about-content">
+        <h5 className="about-content__subtitle">Chúng tôi hoạt động thế nào</h5>
+        <h2 className="about-content__title">
           Sự hài lòng và trải nghiệm được <span>Healthy Food</span> đặt lên hàng
           đầu
         </h2>
-        <p className="about__content--desc">
+        <p className="about-content__desc">
           <span>Healthy Food</span> không ngừng thay đổi, phát triển để phù hợp
           với thị trường với triết lý "Khách hàng là trung tâm" và những Giá trị
           cốt lõi được xây dựng để chăm sóc phục vụ khách hàng một cách tốt
           nhất.
         </p>
-        <div className="about__content--text about__work--container">
-          <div className="about__work--box">
+        <div className="about-content__text about-work__list">
+          <div className="about-work__item">
             <div>
               <img src="/img/about/icon-1.webp" alt="" />
               <h5>01</h5>
@@ -31,7 +27,7 @@ const Work = () => {
               số các doanh nghiệp khác
             </p>
           </div>
-          <div className="about__work--box">
+          <div className="about-work__item">
             <div>
               <img src="/img/about/icon-1.webp" alt="" />
               <h5>02</h5>
@@ -39,11 +35,11 @@ const Work = () => {
             <h3>Nhiệt huyết</h3>
             <p>
               Song song với việc cung cấp sản phẩm, giá trị, trải nghiệm dành
-              cho khách hàng <span>Healthy Food</span> chú trọng đào tạo, tuyển dụng đội ngũ
-              trẻ, đam mê và đầy nhiệt huyết
+              cho khách hàng <span>Healthy Food</span> chú trọng đào tạo, tuyển
+              dụng đội ngũ trẻ, đam mê và đầy nhiệt huyết
             </p>
           </div>
-          <div className="about__work--box">
+          <div className="about-work__item">
             <div>
               <img src="/img/about/icon-1.webp" alt="" />
               <h5>03</h5>

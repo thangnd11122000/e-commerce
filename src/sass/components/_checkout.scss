@@ -24,59 +24,18 @@
     flex-direction: column;
     gap: 20px;
   }
+}
 
-  &__user {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    @include breakpoint("sm") {
-      flex-direction: column;
-    }
-
-    &--box {
-      flex: 0 0 calc(50% - 10px);
-      padding: 20px;
-      border: 2px solid rgb(200, 200, 200);
-      border-radius: 5px;
-      cursor: pointer;
-      &.active {
-        border: 2px solid $primary;
-      }
-    }
-    &--info {
-      div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h5 {
-          font-size: 16px;
-        }
-        .MuiSvgIcon-root {
-          font-size: 18px;
-        }
-      }
-      p {
-        margin-top: 5px;
-      }
-    }
-    &--add {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.checkout-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  @include breakpoint("sm") {
+    flex-direction: column;
   }
-  &__products {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    @include breakpoint("sm") {
-      flex-direction: column;
-    }
-  }
-  &__product {
+  &__item {
     padding: 10px;
     flex-basis: calc(50% - 10px);
     display: flex;
@@ -85,133 +44,67 @@
     @include breakpoint("sm") {
       width: 100%;
     }
-
-    &--left {
-      img {
-        width: 80px;
-        height: 80px;
-        margin-right: 10px;
-      }
-    }
-    &--right {
-      p:nth-child(1) {
-        font-size: 16px;
-        color: $primary;
-      }
-      p:nth-child(2) {
-        font-size: 16px;
-        margin-top: 5px;
-        del {
-          font-size: 12px;
-          margin-left: 5px;
-        }
-      }
-      p:nth-child(3) {
-        font-size: 14px;
-        margin-top: 5px;
-      }
+  }
+  img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+  &__name {
+    font-size: 16px;
+    color: $primary;
+  }
+  &__price {
+    font-size: 16px;
+    margin-top: 5px;
+    del {
+      font-size: 12px;
+      margin-left: 5px;
     }
   }
+  &__quantity {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}
 
-  &__summary {
+.checkout-summary {
+  width: 100%;
+  height: fit-content;
+
+  @include breakpoint("xs") {
     width: 100%;
-    height: fit-content;
+  }
 
-    @include breakpoint("xs") {
-      width: 100%;
+  &__item {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 16px;
     }
-    div {
-      margin-top: 15px;
-      display: flex;
-      justify-content: space-between;
-      p {
-        font-size: 16px;
-      }
-      p:nth-child(1) {
-        color: $text-secondary;
-      }
-    }
-    &--total {
-      color: $bg-primary;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .btn-primary {
-      margin-top: 15px;
-    }
-    textarea {
-      margin-top: 15px;
-      padding: 10px;
-      display: block;
-      width: 100%;
-      border: 1px solid rgb(200, 200, 200);
-      outline: none;
+    p:nth-child(1) {
+      color: $text-secondary;
     }
   }
 
-  &__modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    max-height: 90%;
-    overflow-y: scroll;
+  &__total {
+    color: $primary-dark;
+    font-size: 18px;
+    font-weight: bold;
+  }
 
-    @include breakpoint("lg") {
-      width: 90%;
-    }
-    @include breakpoint("xs") {
-      padding: 10px;
-    }
+  .btn-primary {
+    margin-top: 15px;
+    width: 100%;
+  }
 
-    .MuiSvgIcon-root {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-
-    .form-group {
-      margin-top: 15px;
-      label {
-        display: block;
-        font-size: 16px;
-        color: $text-dark;
-        padding-bottom: 5px;
-      }
-      .form-control {
-        padding: 10px;
-        width: 100%;
-        border: 1px solid rgb(200, 200, 200);
-        border-radius: 5px;
-        outline: none;
-      }
-    }
-    &--box {
-      margin-bottom: 30px;
-    }
-
-    &--flex {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      .form-group {
-        flex: 0 0 49%;
-        @include breakpoint("xs") {
-          flex: 0 0 100%;
-        }
-      }
-    }
-    &--btn {
-      display: flex;
-      justify-content: end;
-      .btn-primary,
-      .btn-secondary {
-        width: 70px;
-        padding: 8px;
-        font-size: 14px;
-        margin-left: 10px;
-      }
-    }
+  textarea {
+    margin-top: 15px;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    border: 1px solid rgb(200, 200, 200);
+    outline: none;
   }
 }

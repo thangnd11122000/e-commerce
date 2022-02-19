@@ -1,7 +1,8 @@
-import { Clear, Close, Delete, RemoveRedEye } from "@mui/icons-material"
+import { Close, Delete, Visibility } from "@mui/icons-material"
 import { IconButton, Tooltip } from "@mui/material"
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { deleteItem } from "../../features/cartItems/cartItemsSlice"
 import { closeCartSidebar } from "../../features/toggle/toggleSlice"
 import getDiscount from "../../utils/getDiscount"
@@ -11,7 +12,7 @@ const CartSidebar = () => {
 
   const cartItems = useSelector((state) => state.cartItems.value)
   const totalPrice = useSelector((state) => state.cartItems.totalPrice)
-
+  const totalProduct = useSelector((state) => state.cartItems.totalProduct)
   const isOpenCartSidebar = useSelector(
     (state) => state.toggle.isOpenCartSidebar
   )
@@ -42,55 +43,89 @@ const CartSidebar = () => {
 
   return (
     <div
-      className={isOpenCartSidebar ? "cart-sidebar active" : "cart-sidebar"}
+      className={`cart-sidebar ${
+        isOpenCartSidebar ? "cart-sidebar--active" : ""
+      }`}
       ref={cartSidebarRef}
     >
       <div className="cart-sidebar__header">
         <Close
           style={{ cursor: "pointer" }}
-          onClick={() => {
-            dispatch(closeCartSidebar())
-          }}
+          onClick={() => dispatch(closeCartSidebar())}
         />
         <p>Giỏ hàng</p>
       </div>
-      <div className="cart-sidebar__body">
-        {cartItems.map((product, index) => {
-          const discountValue = getDiscount(product.discount, product.price)
-          return (
-            <div key={index} className="cart-sidebar__box">
-              <img src={`${product.image}`} alt="" />
-              <div className="cart-sidebar__content">
-                <div className="cart-sidebar__content--name">
-                  {product.name}
+      {totalProduct > 0 ? (
+        <>
+          <div className="cart-sidebar__body">
+            {cartItems.map((product, index) => {
+              const discountValue = getDiscount(product.discount, product.price)
+              return (
+                <div key={index} className="cart-sidebar__item">
+                  <Link
+                    to={`detail/${product.id}`}
+                    className="cart-sidebar__item--img"
+                    onClick={() => dispatch(closeCartSidebar())}
+                  >
+                    <img src={`${product.image}`} alt={product.name} />
+                  </Link>
+                  <div className="cart-sidebar__product">
+                    <Link
+                      to={`detail/${product.id}`}
+                      className="cart-sidebar__product--name"
+                      onClick={() => dispatch(closeCartSidebar())}
+                    >
+                      {product.name}
+                    </Link>
+                    <div className="cart-sidebar__product--number">
+                      <p>
+                        {discountValue > 0 ? discountValue : product.price}
+                        <span> x {product.quantity}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="cart-sidebar__actions">
+                    <Link
+                      to={`detail/${product.id}`}
+                      onClick={() => dispatch(closeCartSidebar())}
+                    >
+                      <Tooltip title="Xem sản phẩm">
+                        <IconButton>
+                          <Visibility />
+                        </IconButton>
+                      </Tooltip>
+                    </Link>
+                    <Tooltip title="Xóa sản phẩm">
+                      <IconButton
+                        onClick={() => dispatch(deleteItem(product.id))}
+                      >
+                        <Delete />
+                      </IconButton>
+                    </Tooltip>
+                  </div>
                 </div>
-                <div className="cart-sidebar__content--number">
-                  <p>
-                    {discountValue > 0 ? discountValue : product.price}
-                    <span> x {product.quantity}</span>
-                  </p>
-                </div>
-              </div>
-              <div className="cart-sidebar__actions">
-                <Tooltip title="Xóa sản phẩm">
-                  <IconButton onClick={() => dispatch(deleteItem(product.id))}>
-                    <Delete />
-                  </IconButton>
-                </Tooltip>
-              </div>
+              )
+            })}
+            <div className="cart-sidebar__total">
+              <p>Tổng đơn hàng</p>
+              <p>{totalPrice}</p>
             </div>
-          )
-        })}
-
-        <div className="cart-sidebar__total">
-          <p>Tổng đơn hàng</p>
-          <p>{totalPrice}</p>
+          </div>
+          <div className="cart-sidebar__footer">
+            <Link to="/cart" onClick={() => dispatch(closeCartSidebar())}>
+              <button className="btn-secondary">Giỏ hàng</button>
+            </Link>
+            <Link to="/checkout" onClick={() => dispatch(closeCartSidebar())}>
+              <button className="btn-primary">Thanh toán</button>
+            </Link>
+          </div>
+        </>
+      ) : (
+        <div className="cart-sidebar__empty">
+          <p>Không có sản phẩm</p>
+          <img src="img/empty_cart.svg" alt="Giỏ trống" />
         </div>
-      </div>
-      <div className="cart-sidebar__footer">
-        <button className="btn-secondary">Xem giỏ hàng</button>
-        <button className="btn-primary">Thanh toán</button>
-      </div>
+      )}
     </div>
   )
 }

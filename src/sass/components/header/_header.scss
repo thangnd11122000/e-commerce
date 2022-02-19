@@ -1,12 +1,11 @@
-header {
+.header {
   position: relative;
   top: 0;
   width: 100%;
   color: #fff;
-  background: $bg-primary;
-  z-index: 10;
+  background: $primary-dark;
 
-  &.header-scroll {
+  &--scroll {
     padding-top: 80px;
     @include breakpoint("xl") {
       padding-top: 72px;

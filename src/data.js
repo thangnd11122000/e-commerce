@@ -613,7 +613,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-4.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -623,7 +623,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-5.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -633,7 +633,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -643,7 +643,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -653,7 +653,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -663,7 +663,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -673,7 +673,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -683,7 +683,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -693,7 +693,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -703,7 +703,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -713,7 +713,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",
@@ -723,7 +723,7 @@ export const postsData = [
   {
     id: 2,
     image: "/img/blog/blog-1.jpg",
-    title: "Cho là loài động vật xộn lào nhất quả đất",
+    title: "Chó là loài động vật",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus id magnam explicabo illum laudantium fuga? Aspernatur ad excepturi laboriosam molestias nisi cumque quibusdam, possimus minima dolor recusandae libero quae nesciunt!",
     date: "1/12/2000",

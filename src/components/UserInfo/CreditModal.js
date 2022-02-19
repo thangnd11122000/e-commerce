@@ -3,7 +3,6 @@ import { Close } from "@mui/icons-material"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import FormControl from "../Form/FormControl"
-// import FormControl from "../components/Form/FormControl"
 
 const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
   const initialValues = {
@@ -35,9 +34,9 @@ const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
       aria-labelledby="credit-title"
       aria-describedby="credit-description"
     >
-      <div className="credit__modal section-box ">
+      <div className="bank-modal modal">
         <Close onClick={() => setIsOpenCreditModal(false)} />
-        <div className="credit__modal--box">
+        <div className="bank-modal__container">
           <h3>Thêm thẻ tín dụng</h3>
           <Formik
             initialValues={initialValues}
@@ -46,7 +45,7 @@ const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
           >
             {(formik) => (
               <Form>
-                <div className="credit__modal--title">
+                <div className="bank-modal__title">
                   <p>Chi tiết thẻ</p>
                   <div>
                     <img src="/img/credit/jcb.png" alt="" />
@@ -67,7 +66,7 @@ const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
                   name="cardNumber"
                   placeholder="Số thẻ"
                 />
-                <div className="credit__modal--flex">
+                <div className="bank-modal--flex">
                   <FormControl
                     control="input"
                     type="date"
@@ -81,7 +80,7 @@ const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
                     placeholder="Mã CVV"
                   />
                 </div>
-                <div className="credit__modal--title">
+                <div className="bank-modal__title">
                   Địa chỉ đăng kí Thẻ tín dụng
                 </div>
                 <FormControl
@@ -97,13 +96,22 @@ const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
                   placeholder="Mã bưu chính"
                 />
 
-                <button
-                  type="submit"
-                  disabled={!formik.isValid}
-                  className="btn-primary"
-                >
-                  Đăng kí
-                </button>
+                <div className="bank-modal__button">
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    onClick={() => setIsOpenCreditModal(false)}
+                  >
+                    Đóng
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={!formik.isValid}
+                    className="btn-primary"
+                  >
+                    Thêm
+                  </button>
+                </div>
               </Form>
             )}
           </Formik>

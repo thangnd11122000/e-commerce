@@ -1,7 +1,7 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Product from "./ProductCard";
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Product from "./ProductCard"
 
 function ProductSlider({ value = 1, index = 1, products }) {
   const settings = {
@@ -37,26 +37,26 @@ function ProductSlider({ value = 1, index = 1, products }) {
         },
       },
     ],
-  };
+  }
 
   return (
     <div className="product-slider">
       {value === index &&
         (products.length ? (
-          <Slider className="product-slider__slider" {...settings}>
+          <Slider className="product-slider__list" {...settings}>
             {products.map((p, i) => {
               return (
-                <div className="product-slider__container" key={i}>
+                <div className="product-slider__item" key={i}>
                   <Product product={p} />
                 </div>
-              );
+              )
             })}
           </Slider>
         ) : (
-          <h3 className="product-slider__message">No Products</h3>
+          <h3 className="product-slider__empty">Không có sản phẩm</h3>
         ))}
     </div>
-  );
+  )
 }
 
-export default ProductSlider;
+export default ProductSlider

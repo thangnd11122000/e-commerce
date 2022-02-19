@@ -18,8 +18,8 @@ const ChangeEmail = () => {
   }
 
   return (
-    <div className="form__container">
-      <div className="form__box">
+    <div className="form form__container">
+      <div className="form__item">
         <h3>Đổi email</h3>
         <Formik
           initialValues={initialValues}

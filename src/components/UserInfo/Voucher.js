@@ -2,11 +2,13 @@ import React from "react"
 
 const Voucher = ({ type, code, date }) => {
   return (
-    <div className="user__voucher">
-      <div className="user__voucher--type">{type}</div>
-      <div className="user__voucher--content">
-        <h4>Mã khuyễn mãi: {code}</h4>
-        HSD: {date}
+    <div className="user-voucher">
+      <div className="user-voucher__type">{type}</div>
+      <div className="user-voucher__content">
+        <h4 className="user-voucher__code">
+          Mã khuyễn mãi: <span>{code}</span>
+        </h4>
+        <div className="user-voucher__date">HSD: {date}</div>
       </div>
     </div>
   )

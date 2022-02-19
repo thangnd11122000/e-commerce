@@ -5,6 +5,7 @@ const initialState = {
   isOpenMenuSidebar: false,
   isOpenCartSidebar: false,
   isOpenFilter: false,
+  isOpenMenuUser: false,
 }
 
 export const toggleSlice = createSlice({
@@ -41,6 +42,12 @@ export const toggleSlice = createSlice({
     closeFilter: (state) => {
       state.isOpenFilter = false
     },
+    openMenuUser: (state) => {
+      state.isOpenMenuUser = true
+    },
+    closeMenuUser: (state) => {
+      state.isOpenMenuUser = false
+    },
   },
 })
 
@@ -56,6 +63,8 @@ export const {
   closeCartSidebar,
   openFilter,
   closeFilter,
+  openMenuUser,
+  closeMenuUser,
 } = toggleSlice.actions
 
 export default toggleSlice.reducer

@@ -1,7 +1,7 @@
 .product-slider {
   position: relative;
 
-  &__slider {
+  &__list {
     margin-top: 20px;
 
     @include breakpoint("md") {
@@ -13,7 +13,7 @@
     }
   }
 
-  &__container {
+  &__item {
     padding: 20px;
     border-radius: 4px;
     cursor: pointer;
@@ -42,10 +42,10 @@
     }
   }
 
-  &__message {
+  &__empty {
     font-size: 30px;
     text-align: center;
-    padding: 50px 50px;
-    color: red;
+    padding: 80px 80px;
+    color: #222;
   }
 }

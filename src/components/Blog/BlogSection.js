@@ -5,11 +5,11 @@ import BlogWrap from "./BlogWrap"
 const BlogSection = ({ link, title, posts }) => {
   let [firstPost, ...postsArr] = posts
   return (
-    <div className="blog__section">
+    <div className="blog-section">
       <BlogTitle link={link} title={title} />
-      <div className="blog__section--content">
+      <div className="blog-section__container">
         <BlogCard post={firstPost} substring={160} />
-        <div className="blog__section--items">
+        <div className="blog-section__list">
           {postsArr.slice(0, 5).map((post, index) => (
             <BlogWrap key={index} post={post} />
           ))}

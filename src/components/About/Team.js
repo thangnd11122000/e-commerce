@@ -1,4 +1,3 @@
-import React from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -63,19 +62,19 @@ const Team = () => {
     ],
   }
   return (
-    <div className="about__section about__section--gray about__team">
-      <div className="about__content">
-        <h5 className="about__content--subtitle">ĐỘI CỦA CHÚNG TÔI</h5>
-        <h2 className="about__content--title">Gặp đội của chúng tôi</h2>
-        <p className="about__content--desc">
+    <div className="about__section about__section--gray about-team">
+      <div className="about-content">
+        <h5 className="about-content__subtitle">ĐỘI CỦA CHÚNG TÔI</h5>
+        <h2 className="about-content__title">Gặp đội của chúng tôi</h2>
+        <p className="about-content__desc">
           Với những thành viên đó, Healthy Food kỳ vọng sẽ là người bạn đồng
           hành trong mỗi hành trình của khách hàng hiện tại và tương lai.
         </p>
-        <div className="about__content--text about__team--container">
+        <div className="about-content__text about-team__list">
           <Slider {...settings}>
             {testimonials.map((t, i) => (
-              <div key={i} className="about__team--box">
-                <img src={`/img/about/${t.img}`} alt="" />
+              <div key={i} className="about-team__item">
+                <img src={`/img/about/${t.img}`} alt={t.name} />
                 <h3>{t.name}</h3>
                 <p>{t.title}</p>
               </div>

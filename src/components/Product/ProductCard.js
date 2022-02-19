@@ -1,4 +1,3 @@
-import React from "react"
 import {
   FavoriteBorder,
   RemoveRedEyeOutlined,
@@ -6,15 +5,12 @@ import {
 } from "@mui/icons-material"
 import { Rating } from "@mui/material"
 import { Link } from "react-router-dom"
+import getDiscount from "../../utils/getDiscount"
 
 const ProductCard = ({ product }) => {
   const { id, name, image, price, discount, rating, category_id } = product
 
-  const discountValue = discount
-    ? discount.amount
-      ? price - discount.amount
-      : price - (price * discount.percent) / 100
-    : null
+  const discountValue = getDiscount(product.discount, product.price)
 
   return (
     <div className="product-card">
@@ -38,7 +34,6 @@ const ProductCard = ({ product }) => {
         <img src={image} alt="" className="product-card__image" />
       </Link>
       <p className="product-card__name">{name}</p>
-
       <div className="product-card__price">
         {discount ? (
           <div className="product-card__price--discount">

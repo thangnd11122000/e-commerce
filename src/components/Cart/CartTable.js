@@ -5,7 +5,13 @@ import TableContainer from "@mui/material/TableContainer"
 import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
 import Paper from "@mui/material/Paper"
-import { Checkbox, FormControlLabel, IconButton, Tooltip } from "@mui/material"
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  IconButton,
+  Tooltip,
+} from "@mui/material"
 import { Delete } from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
@@ -69,14 +75,21 @@ const CartTable = () => {
     setSelected(newSelected)
   }
 
+  const handleDelete = (id) => {
+    const newSelected = selected.filter((s) => s !== id)
+    setSelected(newSelected)
+    dispatch(deleteItem(id))
+  }
+
   const handleDeleteMulti = () => {
-    dispatch(deleteMultiItem(selected))
     setSelected([])
+    dispatch(deleteMultiItem(selected))
   }
 
   const isSelected = (id) => selected.indexOf(id) !== -1
+
   return (
-    <div className="cart__table">
+    <div className="cart-table">
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="cart table">
           <TableHead>
@@ -89,7 +102,10 @@ const CartTable = () => {
                   inputProps={{
                     "aria-label": "select all products",
                   }}
-                  checked={selected.length === cartProducts.length}
+                  checked={
+                    selected.length > 0 &&
+                    selected.length === cartProducts.length
+                  }
                 />
               </TableCell>
               <TableCell align="left">Sản phẩm</TableCell>
@@ -118,23 +134,27 @@ const CartTable = () => {
                     />
                   </TableCell>
                   <TableCell align="left">
-                    <div className="cart__table--product">
+                    <div className="cart-table__product">
                       <img src={product.image} alt="" />
                       {product.name}
                     </div>
                   </TableCell>
-                  <TableCell align="center" className="cart__table--price">
+                  <TableCell align="center" className="cart-table__price">
                     {discountValue ? (
                       <>
-                        <p className="discount">{discountValue}đ</p>
+                        <p className="cart-table__price--discount">
+                          {discountValue}đ
+                        </p>
                         <del>{product.price}đ</del>
                       </>
                     ) : (
-                      <p className="normal">{product.price}đ</p>
+                      <p className="cart-table__price--normal">
+                        {product.price}đ
+                      </p>
                     )}
                   </TableCell>
                   <TableCell align="center">
-                    <div className="cart__table--quantity">
+                    <div className="cart-table__quantity">
                       <button
                         onClick={() => updateQuantity("minus", product.id)}
                       >
@@ -170,9 +190,7 @@ const CartTable = () => {
                   </TableCell>
                   <TableCell align="center">
                     <Tooltip title="Xóa sản phẩm">
-                      <IconButton
-                        onClick={() => dispatch(deleteItem(product.id))}
-                      >
+                      <IconButton onClick={() => handleDelete(product.id)}>
                         <Delete />
                       </IconButton>
                     </Tooltip>
@@ -191,7 +209,9 @@ const CartTable = () => {
               <Checkbox
                 size="small"
                 onChange={handleSelectAllClick}
-                checked={selected.length === cartProducts.length}
+                checked={
+                  selected.length > 0 && selected.length === cartProducts.length
+                }
               />
             }
             label={`${selected.length} đã chọn`}
@@ -202,7 +222,9 @@ const CartTable = () => {
               <Checkbox
                 size="small"
                 onChange={handleSelectAllClick}
-                checked={selected.length === cartProducts.length}
+                checked={
+                  selected.length > 0 && selected.length === cartProducts.length
+                }
               />
             }
             label="Chọn tất cả"
@@ -210,11 +232,14 @@ const CartTable = () => {
         )}
 
         {selected?.length > 0 ? (
-          <Tooltip title="Xóa tất cả">
-            <IconButton onClick={() => handleDeleteMulti()}>
-              <Delete className="cart__toolbar--icon" />
-            </IconButton>
-          </Tooltip>
+          <Button
+            variant="outlined"
+            color="error"
+            startIcon={<Delete />}
+            onClick={() => handleDeleteMulti()}
+          >
+            Xóa đã chọn
+          </Button>
         ) : (
           <p>Tổng tiền: {totalPrice}</p>
         )}

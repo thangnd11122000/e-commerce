@@ -34,17 +34,19 @@ const FilterContainer = ({
 
   return (
     <div
-      className={`catalog__filter ${isOpenFilter ? "active" : ""}`}
+      className={`catalog-filter ${
+        isOpenFilter ? "catalog-filter--active" : ""
+      }`}
       ref={filterRef}
     >
-      <div className="catalog__filter--header">
+      <div className="catalog-filter__header">
         <h3>Tùy chọn mua sắm</h3>
         <Close onClick={() => dispatch(closeFilter())} />
       </div>
-      <div className="catalog__filter--box">
+      <div className="catalog-filter__item">
         <FilterCategory filterSelect={filterSelect} filter={filter} />
       </div>
-      <div className="catalog__filter--box">
+      <div className="catalog-filter__item">
         <FilterPrice
           minMaxPrice={minMaxPrice}
           priceSlider={priceSlider}
@@ -52,14 +54,14 @@ const FilterContainer = ({
           filter={filter}
         />
       </div>
-      <div className="catalog__filter--box">
+      <div className="catalog-filter__item">
         <FilterColor filterSelect={filterSelect} filter={filter} />
       </div>
-      <div className="catalog__filter--box">
+      <div className="catalog-filter__item">
         <FilterBrand filterSelect={filterSelect} filter={filter} />
       </div>
       <h3 className="btn-primary" onClick={clearFilter}>
-        Clear all
+        Xóa bộ lọc
       </h3>
     </div>
   )

@@ -1,12 +1,13 @@
-import React from "react";
+import React from "react"
+import { Link } from "react-router-dom"
 
-export const MobileLink = ({  name, link, icon }) => {
+export const MobileLink = ({ name, link, icon }) => {
   return (
-    <div className="mobile-bottom__box menu-sidebar">
-      <a href={link} className="mobile-bottom__link menu-sidebar">
+    <div className="mobile-bottom__item">
+      <Link to={link} className="mobile-bottom__link">
         {icon}
-        <span className="menu-sidebar">{name}</span>
-      </a>
+        <span>{name}</span>
+      </Link>
     </div>
-  );
-};
+  )
+}

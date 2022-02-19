@@ -3,8 +3,8 @@ import React from "react"
 
 const Bank = ({ setIsOpenCreditModal, setIsOpenBankModal }) => {
   return (
-    <div className="user__bank section-box">
-      <div className="user__bank--header">
+    <div className="section-box">
+      <div className="user__header user__header--flex">
         <h3>Thẻ tín dụng / Thẻ ghi nợ</h3>
         <button
           className="btn-primary"
@@ -13,11 +13,11 @@ const Bank = ({ setIsOpenCreditModal, setIsOpenBankModal }) => {
           Thêm thẻ mới
         </button>
       </div>
-      <div className="user__bank--body">
+      <div className="user__body">
         <p>Bạn chưa có thẻ nào</p>
       </div>
 
-      <div className="user__bank--header">
+      <div className="user__header user__header--flex">
         <h3>Thẻ tín dụng</h3>
         <button
           className="btn-primary"
@@ -26,9 +26,9 @@ const Bank = ({ setIsOpenCreditModal, setIsOpenBankModal }) => {
           Thêm thẻ mới
         </button>
       </div>
-      <div className="user__bank--body">
-        <div className="user__bank-account">
-          <div className="user__bank-account--content">
+      <div className="user__body">
+        <div className="bank-account">
+          <div className="bank-account__item">
             <AccountBalance />
             <div>
               <h4>
@@ -42,10 +42,10 @@ const Bank = ({ setIsOpenCreditModal, setIsOpenBankModal }) => {
               <p>
                 <span>Khu vực</span>: Tp. Hồ Chí Minh
               </p>
-            </div>
             <p>*7777</p>
+            </div>
           </div>
-          <div className="user__bank-account--action">
+          <div className="bank-account__action">
             <button className="btn-primary">Xóa</button>
             <button className="btn-primary">Đặt làm mặc định</button>
           </div>

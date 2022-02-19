@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 import Description from "../components/Detail/Description"
 import Preview from "../components/Detail/Preview"
@@ -24,10 +24,7 @@ const Detail = () => {
         <div className="detail__toggle" onClick={() => setIsOpenModal(true)}>
           <InfoOutlined />
         </div>
-        <SpecificationsModal
-          isOpenModal={isOpenModal}
-          setIsOpenModal={setIsOpenModal}
-        />
+
         <div className="detail__left">
           <Preview product={product} />
           <Description />
@@ -42,12 +39,17 @@ const Detail = () => {
         </div>
       </div>
       <div className="detail__related">
-        <div className="component-header">
+        <div className="home__header">
           <h3>Sản phẩm liên quan</h3>
           <span>Xem tất cả {">"}</span>
         </div>
         <ProductSlider products={relatedProduct} />
       </div>
+
+      <SpecificationsModal
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+      />
     </>
   )
 }

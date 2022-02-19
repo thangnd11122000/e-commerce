@@ -1,20 +1,18 @@
-import React from "react"
-
 const Intro = () => {
   return (
     <div className="about__section about__intro">
-      <div className="about__content">
-        <h5 className="about__content--subtitle">
+      <div className="about-content">
+        <h5 className="about-content__subtitle">
           Giới thiệu về cửa hàng trực tuyến của chúng tôi
         </h5>
-        <h2 className="about__content--title">
+        <h2 className="about-content__title">
           Xin chào với hơn 1 năm kinh nghiệm
         </h2>
-        <p className="about__content--desc">
+        <p className="about-content__desc">
           Hơn 1 năm,chúng tôi đã giúp các công ty đạt được các mục tiêu tài
           chính và thương hiệu
         </p>
-        <div className="about__content--text">
+        <div className="about-content__text">
           Được thành lập từ năm 2021 với tiền thân là cửa hàng chuyên cung cấp
           các mẫu laptop,Điện thoại,phụ kiện cao cấp nhập khẩu chính thức tại
           Việt Nam. <span>Healthy Food</span> đã phát triển và đến nay đã sở hữu

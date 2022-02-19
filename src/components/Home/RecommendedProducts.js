@@ -1,33 +1,33 @@
-import { Grid, Pagination } from "@mui/material";
-import { useState } from "react";
-import usePagination from "../Pagination/Pagination";
-import ProductCard from "../Product/ProductCard";
-import { recommendedProductsData as products } from "../../data";
+import { Grid, Pagination } from "@mui/material"
+import { useState } from "react"
+import usePagination from "../Pagination/Pagination"
+import ProductCard from "../Product/ProductCard"
+import { recommendedProductsData as products } from "../../data"
 
 const RecommendedProducts = () => {
-  let [page, setPage] = useState(1);
-  const PER_PAGE = 12;
+  let [page, setPage] = useState(1)
+  const PER_PAGE = 12
 
-  const count = Math.ceil(products.length / PER_PAGE);
-  const _DATA = usePagination(products, PER_PAGE);
+  const count = Math.ceil(products.length / PER_PAGE)
+  const _DATA = usePagination(products, PER_PAGE)
 
   const handleChange = (e, p) => {
-    setPage(p);
-    _DATA.jump(p);
-  };
+    setPage(p)
+    _DATA.jump(p)
+  }
 
   return (
     <div className="recommended-products">
-      <div className="component-header">
-        <h3>Danh cho ban</h3>
-        <span>Xem tat ca</span>
+      <div className="home__header">
+        <h3>Dành cho bạn</h3>
+        <span>Xem tất cả</span>
       </div>
 
       <Grid
         container
         spacing={2}
         columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}
-        className="recommended-products__container"
+        className="recommended-products__list"
       >
         {_DATA.currentData().map((d, i) => (
           <Grid item xs={1} key={i}>
@@ -46,7 +46,7 @@ const RecommendedProducts = () => {
         onChange={handleChange}
       />
     </div>
-  );
-};
+  )
+}
 
-export default RecommendedProducts;
+export default RecommendedProducts

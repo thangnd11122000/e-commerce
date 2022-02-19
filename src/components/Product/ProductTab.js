@@ -1,44 +1,48 @@
-import { useState } from "react";
-import ProductSlide from "./ProductSlider";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import { ArrowRight } from "@mui/icons-material";
+import { useState } from "react"
+import ProductSlide from "./ProductSlider"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
+import Box from "@mui/material/Box"
+import { Link } from "react-router-dom"
 
 const a11yProps = (index) => {
   return {
     id: `product-tab-${index}`,
     "aria-controls": `product-tabpanel-${index}`,
-  };
-};
+  }
+}
 
 const ProductTab = ({ title, categoriesData, productsData }) => {
-  const newCategories = [{ id: 0, name: "all" }, ...categoriesData];
-  const [value, setValue] = useState(0);
-  const [categories, setCategories] = useState(newCategories);
-  const [products, setProducts] = useState(productsData);
+  const newCategories = [{ id: 0, name: "all" }, ...categoriesData]
+  const [value, setValue] = useState(0)
+  const [categories, setCategories] = useState(newCategories)
+  const [products, setProducts] = useState(productsData)
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
   const handleClick = (id) => {
     if (id === 0) {
-      setProducts(productsData);
-      return;
+      setProducts(productsData)
+      return
     }
-    const newProduct = productsData.filter((p) => p.category_id === id);
-    setProducts(newProduct);
-  };
+    const newProduct = productsData.filter((p) => p.category_id === id)
+    setProducts(newProduct)
+  }
   return (
     <div className="product-tab">
       <div className="product-tab__header">
-        <p className="product-tab__header--all">Xem tat ca {">"}</p>
+        <Link to="/#" className="product-tab__link">
+          Xem tất cả {">"}
+        </Link>
         <h3>{title}</h3>
         <Box>
           <Tabs
             value={value}
             onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
             aria-label="product tabs"
-            className="product-tab__header--tabs"
+            className="product-tab__tabs"
           >
             {categories.map((c, i) => (
               <Tab
@@ -46,7 +50,7 @@ const ProductTab = ({ title, categoriesData, productsData }) => {
                 label={c.name}
                 {...a11yProps(i)}
                 onClick={() => handleClick(i)}
-                className="product-tab__header--button"
+                className="product-tab__button"
               />
             ))}
           </Tabs>
@@ -54,7 +58,7 @@ const ProductTab = ({ title, categoriesData, productsData }) => {
       </div>
       {categories.map((c, i) => (
         <div
-          className="product-tab__content"
+          className="product-tab__body"
           role="tabpanel"
           hidden={value !== i}
           id={`product-tabpanel-${i}`}
@@ -65,7 +69,7 @@ const ProductTab = ({ title, categoriesData, productsData }) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ProductTab;
+export default ProductTab

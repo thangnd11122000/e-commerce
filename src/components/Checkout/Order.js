@@ -8,25 +8,25 @@ const Order = () => {
   return (
     <div className="section-box checkout__order">
       <h3 className="section-box__title">Thông tin đơn hàng</h3>
-      <div className="checkout__products">
-        {cartItems?.map((product,index) => {
+      <div className="checkout-product">
+        {cartItems?.map((product, index) => {
           const discountValue = getDiscount(product.discount, product.price)
           return (
-            <div key={index} className="checkout__product">
-              <div className="checkout__product--left">
-                <img src={product.image} alt="" />
-              </div>
-              <div className="checkout__product--right">
-                <p>{product.name}</p>
+            <div key={index} className="checkout-product__item">
+              <img src={product.image} alt="" />
+              <div>
+                <p className="checkout-product__name">{product.name}</p>
                 {discountValue > 0 ? (
-                  <p>
+                  <p className="checkout-product__price">
                     {discountValue} <del>{product.price}</del>
                   </p>
                 ) : (
-                  <p>{product.price}</p>
+                  <p className="checkout-product__price">{product.price}</p>
                 )}
 
-                <p>Số lượng: {product.quantity}</p>
+                <p className="checkout-product__quantity">
+                  Số lượng: {product.quantity}
+                </p>
               </div>
             </div>
           )

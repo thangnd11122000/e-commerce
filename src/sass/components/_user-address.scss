@@ -1,0 +1,45 @@
+.user-address {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  @include breakpoint("sm") {
+    flex-direction: column;
+  }
+  &__item {
+    flex: 0 0 calc(50% - 10px);
+    padding: 20px;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 5px;
+    cursor: pointer;
+    &--active {
+      border: 2px solid $primary;
+    }
+    &--center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    p {
+      margin-top: 5px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h5 {
+      font-size: 16px;
+    }
+    .MuiSvgIcon-root {
+      font-size: 18px;
+    }
+  }
+
+  &__add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

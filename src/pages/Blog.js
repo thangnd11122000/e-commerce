@@ -3,7 +3,7 @@ import BlogSection from "../components/Blog/BlogSection"
 import { postsData } from "../data"
 import PageLinks from "../components/PageLinks"
 import BlogAside from "../components/Blog/BlogAside"
-const BlogHome = () => {
+const Blog = () => {
   return (
     <>
       <PageLinks links={[{ name: "Bài viết", link: "/blog" }]} />
@@ -24,4 +24,4 @@ const BlogHome = () => {
   )
 }
 
-export default BlogHome
+export default Blog

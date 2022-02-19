@@ -1,14 +1,14 @@
-import React from "react";
+import { Link } from "react-router-dom"
 
 export const Action = ({ icon, topText, bottomText, link, children }) => {
   return (
-    <a href={link} className="navbar__action">
+    <Link to={link} className="navbar-action__item">
       {icon}
       <div>
-        <span className="navbar__action--top">{topText}</span>
-        <span className="navbar__action--bottom">{bottomText}</span>
+        <span className="navbar-action__top">{topText}</span>
+        <span className="navbar-action__bottom">{bottomText}</span>
       </div>
       {children}
-    </a>
-  );
-};
+    </Link>
+  )
+}

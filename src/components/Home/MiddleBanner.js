@@ -1,9 +1,9 @@
-import React from "react";
-import BannerCard from "../Card/BannerCard";
+import React from "react"
+import BannerCard from "./BannerCard"
 
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const MiddleBanner = () => {
   const settings = {
@@ -29,36 +29,36 @@ const MiddleBanner = () => {
         },
       },
     ],
-  };
+  }
   const data = [
     {
       link: "/#",
       title: "Camera phieen ban the thao tot nhat",
-      subtitle: "Tim kiem ngay",
+      subtitle: "Tìm kiếm ngay",
       image: "/img/banner/banner-5.png",
     },
     {
       link: "/#",
       title: "Microshop surface laptop",
-      subtitle: "Tim kiem ngay",
+      subtitle: "Tìm kiếm ngay",
       image: "/img/banner/banner-6.png",
     },
     {
       link: "/#",
       title: "Speaker nike Air max 90",
-      subtitle: "Tim kiem ngay",
+      subtitle: "Tìm kiếm ngay",
       image: "/img/banner/banner-7.png",
     },
-  ];
+  ]
   return (
     <div className="middle-banner">
       <Slider {...settings}>
         {data.map((d, i) => (
-          <BannerCard key={i} data={d} />
+          <BannerCard key={i} data={d} className="banner-card" />
         ))}
       </Slider>
     </div>
-  );
-};
+  )
+}
 
-export default MiddleBanner;
+export default MiddleBanner

@@ -6,11 +6,10 @@
   height: 100vh;
   background: #fff;
   overflow-y: scroll;
-  // transform: translateX(100%);
   transition: all 1s;
-  z-index: 3;
+  z-index: 11;
 
-  &.active {
+  &--active {
     right: 0;
   }
 
@@ -20,7 +19,7 @@
     justify-content: space-between;
     padding: 20px 20px;
     font-size: 20px;
-    background: $bg-primary;
+    background: $primary-dark;
     text-transform: uppercase;
     color: #fff;
   }
@@ -30,7 +29,7 @@
     color: $text-dark;
   }
 
-  &__box {
+  &__item {
     position: relative;
     display: flex;
     align-items: center;
@@ -39,12 +38,12 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgb(201, 201, 201);
-    img {
+    &--img {
       width: 30%;
     }
   }
 
-  &__content {
+  &__product {
     &--name {
       font-size: 16px;
       text-transform: uppercase;
@@ -84,6 +83,22 @@
     padding: 0 20px;
     button {
       margin-bottom: 15px;
+      width: 100%;
+    }
+  }
+
+  &__empty {
+    padding: 50px 0;
+    text-align: center;
+    p {
+      color: #222;
+      font-size: 20px;
+    }
+
+    img {
+      margin-top: 20px;
+      width: 100px;
+      opacity: 0.5;
     }
   }
 }

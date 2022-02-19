@@ -7,6 +7,7 @@ import {
   ShoppingBagOutlined,
 } from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import {
   openCartSidebar,
   openMenuSidebar,
@@ -20,34 +21,34 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
 
   return (
     <div
-      className={`navbar ${isScroll ? "scroll" : ""} ${
-        isScroll && hideOnScrollDown ? "scroll-up" : ""
+      className={`navbar ${isScroll ? "navbar--scroll-down" : ""} ${
+        isScroll && hideOnScrollDown ? "navbar--scroll-up" : ""
       }`}
     >
-      <div className="navbar__logo">
+      <div className="navbar-logo">
         <Menu
-          className="navbar__logo--toggle"
+          className="navbar-logo__toggle"
           onClick={() => dispatch(openMenuSidebar())}
         />
-        <a href="/" className="navbar__logo--name">
-          Shopvip
-        </a>
-        <a href="/" className="navbar__logo--icon">
+        <Link to="/" className="navbar-logo__link">
+          ShopVip
+        </Link>
+        <Link to="/" className="navbar-logo__icon">
           <Adb />
-        </a>
+        </Link>
       </div>
-      <div className="navbar__search">
+      <div className="navbar-search">
         <input type="text" placeholder="Tra cứu sản phẩm" />
         <button>
           <Search />
         </button>
       </div>
-      <div className="navbar__actions">
+      <div className="navbar-action">
         <Action
           icon={<PersonOutline />}
           topText="Tài khoản"
           bottomText="Đăng nhập"
-          link="/"
+          link="/login"
         />
         <Action
           icon={<FavoriteBorderOutlined />}
@@ -56,20 +57,23 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
           link="/"
         />
         <div
-          className="navbar__action"
+          className="navbar-action__item"
           onClick={() => dispatch(openCartSidebar())}
           style={{ cursor: "pointer" }}
         >
           <ShoppingBagOutlined />
           <div>
-            <span className="navbar__action--top">Giỏ hang</span>
-            <span className="navbar__action--bottom">{totalPrice}</span>
+            <span className="navbar-action__top">Giỏ hàng</span>
+            <span className="navbar-action__bottom">{totalPrice}</span>
           </div>
-          <span className="navbar__badge">{totalProduct}</span>
+          <span className="navbar-action__badge">{totalProduct}</span>
         </div>
       </div>
-      <div className="navbar__cart" onClick={() => dispatch(openCartSidebar())}>
-        <span className="navbar__badge">{totalProduct}</span>
+      <div
+        className="navbar-action__cart"
+        onClick={() => dispatch(openCartSidebar())}
+      >
+        <span className="navbar-action__badge">{totalProduct}</span>
         <ShoppingBagOutlined />
       </div>
     </div>

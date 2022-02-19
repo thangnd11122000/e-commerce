@@ -1,4 +1,3 @@
-import React from "react"
 import Banner from "../components/About/Banner"
 import Intro from "../components/About/Intro"
 import Team from "../components/About/Team"

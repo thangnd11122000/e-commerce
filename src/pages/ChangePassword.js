@@ -22,10 +22,10 @@ const ChangePassword = () => {
   }
 
   return (
-    <div className="form__container">
-      <div className="form__box">
-        <h3>Quên mật khẩu ?</h3>
-        {/* <Formik
+    <div className="form form__container">
+      <div className="form__item">
+        <h3>Đổi mật khẩu</h3>
+        <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
@@ -63,7 +63,7 @@ const ChangePassword = () => {
               </button>
             </Form>
           )}
-        </Formik> */}
+        </Formik>
       </div>
     </div>
   )

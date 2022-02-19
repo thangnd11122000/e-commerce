@@ -11,26 +11,27 @@
   .slick-arrow {
     display: none !important;
   }
+  .banner-card {
+    &__item {
+      height: 160px;
+      padding: 0 20px;
+      margin: 10px;
 
-  .banner-card__box {
-    height: 160px;
-    padding: 0 20px;
-    margin: 10px;
+      @include breakpoint("xs") {
+        height: 140px;
+      }
 
-    @include breakpoint("xs") {
-      height: 140px;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-
-      @include breakpoint("md") {
+      img {
         width: 100%;
+        height: 100%;
+        border-radius: 10px;
+
+        @include breakpoint("md") {
+          width: 100%;
+        }
       }
     }
-    &--content {
+    &__content {
       h3 {
         width: 70%;
         font-size: 26px;

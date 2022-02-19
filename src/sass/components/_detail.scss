@@ -71,61 +71,11 @@
       font-size: 18px;
       font-weight: normal;
       margin-bottom: 20px;
-      color: $bg-primary;
+      color: $primary-dark;
     }
     div {
       font-size: 14px;
       margin-bottom: 10px;
-    }
-  }
-
-  &__specifications {
-    background: #fff;
-    padding: 20px 0;
-    height: fit-content;
-    border-radius: 5px;
-    box-shadow: $shadow-1dp;
-    @include breakpoint("xxl") {
-      padding: 15px 0;
-    }
-
-    h3 {
-      padding: 0px 20px;
-      font-size: 18px;
-      font-weight: normal;
-      margin-bottom: 20px;
-      color: $bg-primary;
-      @include breakpoint("xxl") {
-        padding: 0 15px;
-      }
-    }
-    &--box {
-      padding: 5px 20px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      display: flex;
-      &:nth-child(odd) {
-        background: #f6f6f6;
-      }
-      @include breakpoint("xxl") {
-        padding: 15px;
-      }
-    }
-    &--key {
-      min-width: 110px;
-      @include breakpoint("xxl") {
-        min-width: 100px;
-      }
-    }
-    &--button {
-      text-align: center;
-      .btn-primary {
-        margin: 10px 0 0;
-        width: auto;
-        font-size: 12px;
-        padding: 8px 10px;
-        border-radius: 5px;
-      }
     }
   }
 
@@ -140,134 +90,6 @@
     }
   }
 
-  &__images {
-    flex-basis: 40%;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 30px;
-    @include breakpoint("lg") {
-      padding: 15px;
-      flex-basis: 50%;
-    }
-
-    &--slide {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      img {
-        margin-top: 10px;
-        width: 50px;
-        height: 50px;
-        border: 1px solid rgb(201, 201, 201);
-        cursor: pointer;
-
-        @include breakpoint("xs") {
-          width: 40px;
-          height: 40px;
-        }
-        &.active {
-          border: 2px solid $primary;
-        }
-      }
-    }
-    &--more {
-      margin-top: 10px;
-      width: 50px;
-      height: 50px;
-      background: rgb(224, 224, 224);
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2px;
-      color: #222;
-      font-size: 14px;
-      cursor: pointer;
-      @include breakpoint("xs") {
-        width: 40px;
-        height: 40px;
-      }
-    }
-    &--view {
-      width: 100%;
-      padding: 0 30px;
-      img {
-        width: 100%;
-      }
-      @include breakpoint("sm") {
-        padding: 0 80px;
-      }
-      @include breakpoint("xs") {
-        padding: 0 50px;
-      }
-    }
-  }
-
-  &__content {
-    padding: 30px;
-    flex-basis: 60%;
-    @include breakpoint("lg") {
-      flex-basis: 50%;
-      padding: 15px;
-    }
-    &--name {
-      font-size: 24px;
-      font-weight: 400;
-      color: $bg-primary;
-    }
-    &--review {
-      margin-top: 7px;
-      display: flex;
-      align-items: center;
-      .line {
-        margin: 0px 10px;
-        color: #999;
-      }
-      p {
-        color: #666;
-      }
-    }
-    &--price {
-      font-size: 24px;
-      font-weight: 400;
-      margin-top: 10px;
-      font-weight: bold;
-      .discount {
-        color: red;
-        del {
-          color: $text-disable;
-          font-size: 18px;
-          margin-left: 10px;
-        }
-      }
-    }
-    hr {
-      width: 100%;
-      height: 1px;
-      margin: 1rem 0;
-      background: rgb(236, 236, 236);
-      border: none;
-      outline: none;
-    }
-    &--description {
-      color: $text-secondary;
-    }
-    &--socials {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 15px;
-      color: $text-secondary;
-    }
-    &--category,
-    &--brand {
-      margin-top: 15px;
-      span {
-        color: $text-disable;
-      }
-    }
-  }
-
   &__actions {
     margin-top: 15px;
     display: flex;
@@ -276,7 +98,6 @@
 
     @include breakpoint("lg") {
       flex-direction: column;
-      // align-items: start;
     }
 
     @include breakpoint("md") {
@@ -298,12 +119,20 @@
         background: unset;
         outline: none;
         border: 1px solid #999;
+        &:hover {
+          color: $primary;
+          border: 1px solid $primary;
+        }
       }
       input {
         width: 70px;
         height: 40px;
         text-align: center;
         font-size: 16px;
+        &:focus {
+          border: 1px solid $primary;
+          outline: 1px solid $primary;
+        }
       }
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
@@ -322,117 +151,292 @@
     gap: 30px;
   }
 
-  &__description {
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: $shadow-1dp;
-    padding: 30px;
-
-    &--title {
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-    &--desc {
-      height: 400px;
-      overflow: hidden;
-      &.active {
-        height: auto;
-      }
-    }
-    &--button {
-      width: 100%;
-      margin: 20px 0 0;
-      text-align: center;
-      .btn-primary {
-        width: 200px;
-        border-radius: 5px;
-      }
-    }
+  &__related {
+    padding: 10px 100px 50px;
   }
 
-  &__review {
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: $shadow-1dp;
-    padding: 30px;
+  &__modal {
+    width: 800px;
+    overflow-y: scroll;
 
-    &--title {
-      font-size: 20px;
-      margin-bottom: 30px;
+    @include breakpoint("lg") {
+      width: 90%;
     }
-  }
+    @include breakpoint("xs") {
+      padding: 10px;
+    }
 
-  &__rating {
-    display: flex;
-    align-items: center;
-    &--overview {
-      flex-basis: 25%;
-      display: flex;
-      align-items: center;
-      p {
-        font-size: 30px;
-        color: $bg-primary;
-        margin-right: 10px;
-
+    &.detail-specifications {
+      h3 {
+        font-size: 24px;
+        text-align: center;
         @include breakpoint("xs") {
           font-size: 20px;
-          margin-right: 5px;
         }
       }
-      .MuiSvgIcon-root {
-        font-size: 40px;
-        color: #faaf00;
-        @include breakpoint("xs") {
-          font-size: 30px;
-        }
-      }
-    }
-    &--filter {
-      flex-basis: 75%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px;
-
-      .btn-secondary {
-        width: 100px;
-        border-radius: 5px;
-        padding: 8px 0;
-        font-weight: normal;
-        font-size: 14px;
-
+      &__item {
+        padding: 10px 20px;
+        font-size: 16px;
+        display: flex;
         @include breakpoint("sm") {
-          width: 80px;
-          font-size: 12px;
-          padding: 6px 0;
+          font-size: 14px;
         }
-
+      }
+      &__key {
+        min-width: 200px;
+        @include breakpoint("md") {
+          min-width: 150px;
+        }
+        @include breakpoint("sm") {
+          min-width: 130px;
+        }
         @include breakpoint("xs") {
-          width: 60px;
-          font-size: 12px;
-          padding: 6px 0;
+          min-width: 100px;
         }
       }
     }
+  }
+}
+
+.detail-images {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px;
+  @include breakpoint("lg") {
+    padding: 15px;
+    flex-basis: 50%;
   }
 
   &__list {
-    margin-top: 30px;
-    &--box {
-      display: flex;
-      padding: 30px 0;
-      border-bottom: 1px solid rgb(201, 201, 201);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    img {
+      margin-top: 10px;
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgb(201, 201, 201);
+      cursor: pointer;
 
-      @include breakpoint("md") {
-        flex-direction: column;
+      @include breakpoint("xs") {
+        width: 40px;
+        height: 40px;
+      }
+      &.active {
+        border: 2px solid $primary;
       }
     }
+  }
+  &__more {
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    background: rgb(224, 224, 224);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: #222;
+    font-size: 14px;
+    cursor: pointer;
+    @include breakpoint("xs") {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__view {
+    width: 100%;
+    padding: 0 30px;
+    img {
+      width: 100%;
+    }
+    @include breakpoint("sm") {
+      padding: 0 80px;
+    }
+    @include breakpoint("xs") {
+      padding: 0 50px;
+    }
+  }
+}
+
+.detail-content {
+  padding: 30px;
+  flex-basis: 60%;
+  @include breakpoint("lg") {
+    flex-basis: 50%;
+    padding: 15px;
+  }
+  &__name {
+    font-size: 24px;
+    font-weight: 400;
+    color: $primary-dark;
+  }
+  &__review {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    .line {
+      margin: 0px 10px;
+      color: #999;
+    }
+    p {
+      color: #666;
+    }
+  }
+  &__price {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 10px;
+    font-weight: bold;
+    .discount {
+      color: red;
+      del {
+        color: $text-disable;
+        font-size: 18px;
+        margin-left: 10px;
+      }
+    }
+  }
+  hr {
+    width: 100%;
+    height: 1px;
+    margin: 1rem 0;
+    background: rgb(236, 236, 236);
+    border: none;
+    outline: none;
+  }
+  &__description {
+    color: $text-secondary;
+  }
+  &__socials {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: $text-secondary;
+  }
+  &__category,
+  &__brand {
+    margin-top: 15px;
+    span {
+      color: $text-disable;
+    }
+  }
+}
+
+.detail-description {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: $shadow-1dp;
+  padding: 30px;
+
+  &__title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  &__desc {
+    height: 400px;
+    overflow: hidden;
+    &--active {
+      height: auto;
+    }
+  }
+  &__button {
+    width: 100%;
+    margin: 20px 0 0;
+    text-align: center;
+    .btn-primary {
+      width: 200px;
+      border-radius: 5px;
+    }
+  }
+}
+
+.detail-review {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: $shadow-1dp;
+  padding: 30px;
+
+  &__title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+}
+
+.detail-rating {
+  display: flex;
+  align-items: center;
+  &__overview {
+    flex-basis: 25%;
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 30px;
+      color: $primary-dark;
+      margin-right: 10px;
+
+      @include breakpoint("xs") {
+        font-size: 20px;
+        margin-right: 5px;
+      }
+    }
+    .MuiSvgIcon-root {
+      font-size: 40px;
+      color: #faaf00;
+      @include breakpoint("xs") {
+        font-size: 30px;
+      }
+    }
+  }
+  &__filter {
+    flex-basis: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .btn-secondary {
+      width: 100px;
+      border-radius: 5px;
+      padding: 8px 0;
+      font-weight: normal;
+      font-size: 14px;
+
+      @include breakpoint("sm") {
+        width: 80px;
+        font-size: 12px;
+        padding: 6px 0;
+      }
+
+      @include breakpoint("xs") {
+        width: 60px;
+        font-size: 12px;
+        padding: 6px 0;
+      }
+    }
+  }
+  &__list {
+    margin-top: 30px;
+  }
+  &__item {
+    display: flex;
+    padding: 30px 0;
+    border-bottom: 1px solid rgb(201, 201, 201);
+
+    @include breakpoint("md") {
+      flex-direction: column;
+    }
+
     &--left {
       flex-basis: 25%;
       @include breakpoint("md") {
         flex-basis: 100%;
       }
     }
+
     &--right {
       flex-basis: 75%;
       @include breakpoint("md") {
@@ -440,7 +444,6 @@
       }
     }
   }
-
   &__user {
     display: flex;
     align-items: center;
@@ -457,72 +460,60 @@
     &--date {
       color: #666;
       font-size: 14px;
-      margin-top: 3px;
+      margin-top: 5px;
     }
   }
-  
   &__comment {
     line-height: 22px;
   }
+}
 
-  &__related {
-    padding: 10px 100px 50px;
+.detail-specifications {
+  background: #fff;
+  padding: 20px 0;
+  height: fit-content;
+  border-radius: 5px;
+  box-shadow: $shadow-1dp;
+  @include breakpoint("xxl") {
+    padding: 15px 0;
   }
 
-  &__modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    max-height: 90%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: $shadow-1dp;
-    overflow-y: scroll;
-
-    @include breakpoint("lg") {
-      width: 90%;
+  h3 {
+    padding: 0px 20px;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: $primary-dark;
+    @include breakpoint("xxl") {
+      padding: 0 15px;
     }
-    @include breakpoint("xs") {
-      padding: 10px;
+  }
+  &__item {
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    &:nth-child(odd) {
+      background: #f6f6f6;
     }
-
-    .MuiSvgIcon-root {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+    @include breakpoint("xxl") {
+      padding: 15px;
     }
-
-    &.detail__specifications {
-      h3 {
-        font-size: 24px;
-        text-align: center;
-        @include breakpoint("xs") {
-          font-size: 20px;
-        }
-      }
-      &--box {
-        padding: 10px 20px;
-        font-size: 16px;
-        display: flex;
-        @include breakpoint("sm") {
-          font-size: 14px;
-        }
-      }
-      &--key {
-        min-width: 200px;
-        @include breakpoint("md") {
-          min-width: 150px;
-        }
-        @include breakpoint("sm") {
-          min-width: 130px;
-        }
-        @include breakpoint("xs") {
-          min-width: 100px;
-        }
-      }
+  }
+  &__key {
+    min-width: 110px;
+    @include breakpoint("xxl") {
+      min-width: 100px;
+    }
+  }
+  &__button {
+    text-align: center;
+    .btn-primary {
+      margin: 10px 0 0;
+      width: auto;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 5px;
     }
   }
 }

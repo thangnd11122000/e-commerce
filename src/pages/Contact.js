@@ -1,7 +1,6 @@
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
-import EmailIcon from "@mui/icons-material/Email"
 import { Mail } from "@mui/icons-material"
 const Contact = () => {
   const initialValues = {

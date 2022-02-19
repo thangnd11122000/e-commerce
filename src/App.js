@@ -1,4 +1,3 @@
-import React from "react"
 import "./App.css"
 import Footer from "./components/Footer/Footer"
 import Header from "./components/Header/Header"
@@ -11,7 +10,7 @@ import Detail from "./pages/Detail"
 import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import About from "./pages/About"
-import BlogHome from "./pages/BlogHome"
+import Blog from "./pages/Blog"
 import BlogCategory from "./pages/BlogCategory"
 import BlogDetail from "./pages/BlogDetail"
 import Login from "./pages/Login"
@@ -21,7 +20,7 @@ import ChangePhone from "./pages/ChangePhone"
 import ForgotPassword from "./pages/ForgotPassword"
 import ChangePassword from "./pages/ChangePassword"
 import Contact from "./pages/Contact"
-import UserInfo from "./pages/UserInfo"
+import User from "./pages/User"
 
 function App() {
   const isOpenMenuSidebar = useSelector(
@@ -31,6 +30,7 @@ function App() {
     (state) => state.toggle.isOpenCartSidebar
   )
   const isOpenFilter = useSelector((state) => state.toggle.isOpenFilter)
+  const isOpenMenuUser = useSelector((state) => state.toggle.isOpenMenuUser)
 
   return (
     <div className="App">
@@ -42,7 +42,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
-        <Route path="/blog" element={<BlogHome />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/blog-category" element={<BlogCategory />} />
         <Route path="/blog-detail" element={<BlogDetail />} />
         <Route path="/login" element={<Login />} />
@@ -52,13 +52,15 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/user-info" element={<UserInfo />} />
+        <Route path="/user" element={<User />} />
       </Routes>
       <Footer />
       <MobileBottom />
       <div
         className={`${
-          isOpenMenuSidebar | isOpenCartSidebar | isOpenFilter ? "overlay" : ""
+          isOpenMenuSidebar | isOpenCartSidebar | isOpenFilter | isOpenMenuUser
+            ? "overlay"
+            : ""
         }`}
       ></div>
     </div>
