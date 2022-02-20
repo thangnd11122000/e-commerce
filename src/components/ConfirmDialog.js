@@ -1,24 +1,50 @@
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Typography,
+  IconButton,
 } from "@mui/material"
-
+import { CheckCircle, ErrorRounded } from "@mui/icons-material"
 const ConfirmDialog = ({ confirmDialog, setConfirmDialog }) => {
-  const { isOpen, title, subTitle } = confirmDialog
+  const { isOpen, type, title, subTitle, onConfirm } = confirmDialog
+
+  const handleClose = () => {
+    setConfirmDialog({ ...confirmDialog, isOpen: false })
+  }
+
+  const handleConfirm = () => {
+    onConfirm()
+    handleClose()
+  }
+
   return (
-    <Dialog open={isOpen}>
-      <DialogTitle></DialogTitle>
+    <Dialog open={isOpen} onClose={handleClose} className="dialog">
+      <DialogTitle>
+        <IconButton>
+          {type === "confirm" ? (
+            <ErrorRounded color="warning" />
+          ) : type === "success" ? (
+            <CheckCircle color="success" />
+          ) : (
+            <></>
+          )}
+        </IconButton>
+      </DialogTitle>
       <DialogContent>
-        <Typography variant="h6">{title}</Typography>
-        <Typography variant="subtitle2">{subTitle}</Typography>
+        <h4>{title}</h4>
+        {subTitle && <p>{subTitle}</p>}
       </DialogContent>
       <DialogActions>
-        <Button color="default">Không</Button>
-        <Button color="error">Xóa</Button>
+        <button
+          className="btn-secondary"
+          onClick={() => setConfirmDialog({ ...confirmDialog, isOpen: false })}
+        >
+          Hủy bỏ
+        </button>
+        <button className="btn-bg-primary" onClick={handleConfirm}>
+          Đồng ý
+        </button>
       </DialogActions>
     </Dialog>
   )

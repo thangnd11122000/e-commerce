@@ -25,8 +25,9 @@ const UserAddress = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [confirmDialog, setConfirmDialog] = useState({
     isOpen: false,
+    type: "",
     title: "",
-    subTitle: "",
+    onConfirm: () => {},
   })
   const userAddress = useSelector((state) => state.userAddress.value)
   const dispatch = useDispatch()
@@ -45,10 +46,10 @@ const UserAddress = () => {
   const handleDelete = (id) => {
     setConfirmDialog({
       isOpen: true,
-      title: "Banj muon xoa",
-      subTitle: "Ban chac khong",
+      type: "confirm",
+      title: "Xóa địa chỉ này?",
+      onConfirm: () => dispatch(deleteAddress(id)),
     })
-    // dispatch(selectedAddress(id))
   }
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const UserAddress = () => {
           >
             <div className="user-address__info">
               <h5>{a?.name}</h5>
-              <div className="user-address__actions">
+              <div className="user-address__action">
                 <BorderColor onClick={() => handleEdit(a.id)} />
                 <Delete onClick={() => handleDelete(a.id)} />
               </div>
@@ -95,7 +96,10 @@ const UserAddress = () => {
         setIsOpenModal={setIsOpenModal}
         edit={edit}
       />
-      <ConfirmDialog confirmDialog={confirmDialog} />
+      <ConfirmDialog
+        confirmDialog={confirmDialog}
+        setConfirmDialog={setConfirmDialog}
+      />
     </>
   )
 }

@@ -1,7 +1,7 @@
 @mixin button($background, $color) {
   // width: 100%;
   border-radius: 5px;
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   text-transform: uppercase;
   background: $background;
   color: $color;
@@ -14,10 +14,11 @@
   transition: all 0.2s;
   outline: none;
   border: none;
-  &:hover {
-    background: $primary-dark;
-    color: #fff;
-  }
+
+  // &:hover {
+  //   background: $primary-dark;
+  //   color: #fff;
+  // }
 
   &:disabled {
     background: $secondary;
@@ -26,7 +27,19 @@
 
 .btn-primary {
   @include button($primary, #fff);
+  &:hover {
+    background: #00a9ca;
+  }
+}
+.btn-bg-primary {
+  @include button($primary-dark, #fff);
+  &:hover {
+    background: #162f92;
+  }
 }
 .btn-secondary {
   @include button(#f6f6f6, #000);
+  &:hover {
+    border: 1px solid $primary-dark !important;
+  }
 }

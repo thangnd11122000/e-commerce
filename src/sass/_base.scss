@@ -160,3 +160,54 @@ img {
     top: 65px !important;
   }
 }
+
+.dialog {
+  text-align: center;
+  .MuiPaper-root {
+    padding: 20px 80px;
+    @include breakpoint("xs") {
+      padding: 10px 30px;
+    }
+    .MuiTypography-root {
+      padding: 0;
+      .MuiSvgIcon-root {
+        padding: 0;
+        font-size: 70px;
+        @include breakpoint("xs") {
+          font-size: 50px;
+        }
+      }
+    }
+    .MuiDialogContent-root {
+      padding: 0;
+      h4 {
+        @include breakpoint("xs") {
+          font-size: 16px;
+        }
+        font-size: 20px;
+      }
+      p {
+        margin-top: 5px;
+        @include breakpoint("xs") {
+          font-size: 14px;
+        }
+      }
+    }
+    .MuiDialogActions-root {
+      margin-top: 15px;
+      justify-content: center;
+      @include breakpoint("xs") {
+        margin-top: 5px;
+      }
+      gap: 5px;
+      button {
+        font-weight: normal;
+        text-transform: unset;
+        @include breakpoint("xs") {
+          padding: 5px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

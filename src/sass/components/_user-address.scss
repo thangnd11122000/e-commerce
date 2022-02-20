@@ -13,7 +13,18 @@
     border-radius: 5px;
     cursor: pointer;
     &--active {
+      position: relative;
       border: 2px solid $primary;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        width: 0px;
+        height: 0px;
+        border-bottom: 15px solid $primary;
+        border-left: 15px solid transparent;
+      }
     }
     &--center {
       display: flex;
@@ -32,8 +43,15 @@
     h5 {
       font-size: 16px;
     }
+  }
+
+  &__action {
     .MuiSvgIcon-root {
+      margin-left: 5px;
       font-size: 18px;
+      &:hover {
+        color: $primary;
+      }
     }
   }
 
