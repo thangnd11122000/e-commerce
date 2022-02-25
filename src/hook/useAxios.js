@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import axios from "axios"
 
-axios.defaults.baseURL = "http://localhost:3000"
+axios.defaults.baseURL = "https://fake-server-app-101.herokuapp.com/"
 
 const useAxios = ({ url, method = "get", body = null, headers = null }) => {
   const [response, setResponse] = useState(null)
