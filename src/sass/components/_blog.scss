@@ -36,15 +36,15 @@
 }
 
 .blog-container {
-  padding: 0px 100px 100px;
+  padding: 50px 100px 100px;
   @include breakpoint("xl") {
-    padding: 0px 50px 100px;
+    padding: 50px 50px 100px;
   }
   @include breakpoint("md") {
-    padding: 0px 20px 50px;
+    padding: 30px 20px 50px;
   }
   @include breakpoint("xs") {
-    padding: 0px 20px 30px;
+    padding: 20px 20px 30px;
   }
 }
 
@@ -58,6 +58,10 @@
     flex-basis: calc(70% - 30px);
     @include breakpoint("xl") {
       flex-basis: 100%;
+    }
+    .MuiGrid-item {
+      margin-bottom: 20px;
+      // height: 100%;
     }
   }
   &__right {
@@ -120,17 +124,27 @@
       flex-basis: 100%;
       height: 150px;
     }
-    img {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    &--img {
+      z-index: 0;
+      img {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
     }
-    h3 {
+    &--title {
       font-size: 24px;
       line-height: 26px;
+      z-index: 1;
+      &:hover {
+        color: $primary;
+      }
       @include breakpoint("xs") {
         font-size: 18px;
         line-height: 20px;
@@ -139,6 +153,7 @@
     span {
       font-size: 14px;
       color: rgb(221, 221, 221);
+      z-index: 1;
     }
   }
   &__item:nth-child(1) {
@@ -166,7 +181,6 @@
   }
   .blog-card {
     flex-basis: calc(50% - 15px);
-    height: fit-content;
     margin: unset;
     border-radius: unset;
     box-shadow: unset;
@@ -188,6 +202,7 @@
 .blog-card {
   // width ???;
   // height: ???;
+  height: 100%;
   position: relative;
   box-shadow: $shadow-1dp;
   border-radius: 10px;
@@ -196,6 +211,11 @@
   &__header {
     // height ???
     width: 100%;
+    img {
+      &:hover {
+        opacity: 0.9;
+      }
+    }
   }
   &__body {
     padding: 10px 20px 15px;
@@ -239,10 +259,18 @@
     max-width: 100px;
     min-width: 100px;
     height: 80px;
+    &:hover {
+      color: $primary;
+    }
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+  &__image {
+    &:hover {
+      opacity: 0.9;
     }
   }
 
@@ -337,6 +365,7 @@
     margin-top: 20px;
   }
   &__main {
+    margin-bottom: 30px;
     .blog-form {
       display: none;
     }

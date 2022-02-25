@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { deleteItem } from "../../features/cartItems/cartItemsSlice"
 import { closeCartSidebar } from "../../features/toggle/toggleSlice"
+import formatCurrency from "../../utils/formatCurrency"
 import getDiscount from "../../utils/getDiscount"
 import ConfirmDialog from "../ConfirmDialog"
 
@@ -100,7 +101,9 @@ const CartSidebar = () => {
                       </Link>
                       <div className="cart-sidebar__product--number">
                         <p>
-                          {discountValue > 0 ? discountValue : product.price}
+                          {discountValue > 0
+                            ? formatCurrency(discountValue) + "đ"
+                            : formatCurrency(product.price) + "đ"}
                           <span> x {product.quantity}</span>
                         </p>
                       </div>
@@ -127,7 +130,7 @@ const CartSidebar = () => {
               })}
               <div className="cart-sidebar__total">
                 <p>Tổng đơn hàng</p>
-                <p>{totalPrice}</p>
+                <p>{formatCurrency(totalPrice)}đ</p>
               </div>
             </div>
             <div className="cart-sidebar__footer">

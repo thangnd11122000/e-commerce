@@ -2,23 +2,25 @@
   &__slider {
     margin: 30px 0 50px;
     @include breakpoint("lg") {
-        margin-top: 20px;
+      margin-top: 20px;
     }
     @include breakpoint("md") {
-        margin-top: 10px;
+      margin-top: 10px;
     }
-    .slick-arrow {
-      z-index: 1;
-      &.slick-prev {
-        left: -1px;
-      }
-      &.slick-next {
-        right: 4px;
-      }
-      &::before {
-        color: $primary;
-        font-size: 26px;
-      }
+  }
+
+  .slick-arrow {
+    z-index: 1;
+    &::before {
+      color: $primary;
+      font-size: 26px;
     }
+  }
+
+  .slick-prev {
+    left: -1px;
+  }
+  .slick-next {
+    right: 4px;
   }
 }

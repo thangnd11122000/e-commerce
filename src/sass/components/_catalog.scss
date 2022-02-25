@@ -39,6 +39,7 @@
   &__products {
     background: #fff;
     width: 100%;
+
     padding: 20px;
     .pagination {
       ul {
@@ -275,3 +276,13 @@
     }
   }
 }
+
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  .MuiFormControlLabel-root {
+    flex-basis: 49% !important;
+    margin-right: unset;
+  }
+}
+

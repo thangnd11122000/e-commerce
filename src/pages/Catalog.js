@@ -1,11 +1,11 @@
 import { useCallback, useState, useEffect } from "react"
 import PageLinks from "../components/PageLinks"
-import { recommendedProductsData } from "../data"
 import { Tune } from "@mui/icons-material"
 import { useDispatch } from "react-redux"
 import { openFilter } from "../features/toggle/toggleSlice"
 import FilterContainer from "../components/Catalog/FilterContainer"
 import ProductContainer from "../components/Catalog/ProductContainer"
+import useAxios from "../hook/useAxios"
 
 const initFilter = {
   category: [],
@@ -14,7 +14,11 @@ const initFilter = {
 }
 
 const Catalog = () => {
-  const [products, setProducts] = useState(recommendedProductsData)
+  const [products, setProducts] = useState([])
+
+  const { response, loading, error } = useAxios({ url: "/products" })
+  error && console.log(error.message)
+
   const [minMaxPrice, setMinMaxPrice] = useState([0, 9999])
   const [priceSlider, setPriceSlider] = useState([0, 9999])
   const [sorting, setSorting] = useState("")
@@ -91,30 +95,39 @@ const Catalog = () => {
   )
 
   const updateProducts = useCallback(() => {
-    let temp = recommendedProductsData
+    if (response !== null) {
+      let temp = response
 
-    if (filter.category.length > 0) {
-      temp = temp.filter((t) => filter.category.includes(t.category_id))
+      if (filter.category.length > 0) {
+        temp = temp.filter((t) => filter.category.includes(t.category_id))
+      }
+      if (filter.color.length > 0) {
+        temp = temp.filter((t) => {
+          const check = t.colors.find((c) => filter.color.includes(c))
+          return check !== undefined
+        })
+      }
+      if (filter.brand.length > 0) {
+        temp = temp.filter((t) => filter.brand.includes(t.brand))
+      }
+
+      temp = filterSorting(temp)
+
+      temp = temp.filter(
+        (t) => t.price >= priceSlider[0] && t.price <= priceSlider[1]
+      )
+
+      setProducts(temp)
+      setIsResetPage(true)
     }
-    if (filter.color.length > 0) {
-      temp = temp.filter((t) => {
-        const check = t.colors.find((c) => filter.color.includes(c))
-        return check !== undefined
-      })
-    }
-    if (filter.brand.length > 0) {
-      temp = temp.filter((t) => filter.brand.includes(t.brand))
-    }
-
-    temp = filterSorting(temp)
-
-    temp = temp.filter(
-      (t) => t.price >= priceSlider[0] && t.price <= priceSlider[1]
-    )
-
-    setProducts(temp)
-    setIsResetPage(true)
-  }, [filter.brand, filter.category, filter.color, filterSorting, priceSlider])
+  }, [
+    filter.brand,
+    filter.category,
+    filter.color,
+    filterSorting,
+    priceSlider,
+    response,
+  ])
 
   const clearFilter = () => {
     setFilter(initFilter)
@@ -134,10 +147,18 @@ const Catalog = () => {
   }, [updateProducts])
 
   useEffect(() => {
-    const temp = getMinMaxPrice(recommendedProductsData)
-    setMinMaxPrice(temp)
-    setPriceSlider(temp)
-  }, [])
+    if (response !== null) {
+      const temp = getMinMaxPrice(response)
+      setMinMaxPrice(temp)
+      setPriceSlider(temp)
+    }
+  }, [response])
+
+  useEffect(() => {
+    if (response !== null) {
+      setProducts(response)
+    }
+  }, [response])
 
   return (
     <>
@@ -158,6 +179,7 @@ const Catalog = () => {
 
         <ProductContainer
           products={products}
+          loading={loading}
           sorting={sorting}
           setSorting={setSorting}
           minMaxPrice={minMaxPrice}

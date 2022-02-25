@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   deleteAddress,
   selectedAddress,
-} from "../features/userAddress/userAddress"
+} from "../features/userAddress/userAddressSlice"
 import ConfirmDialog from "./ConfirmDialog"
 import AddressModal from "./Modal/AddressModal"
 

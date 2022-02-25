@@ -1,18 +1,19 @@
 import Slider from "@mui/material/Slider"
+import formatCurrency from "../../utils/formatCurrency"
 
 function valueText(value) {
-  return `${value}$`
+  return `${formatCurrency(value)}đ`
 }
 
 const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
   const marks = [
     {
       value: minMaxPrice[0],
-      label: `${minMaxPrice[0]}d`,
+      label: `${formatCurrency(minMaxPrice[0])}đ`,
     },
     {
       value: minMaxPrice[1],
-      label: `${minMaxPrice[1]}d`,
+      label: `${formatCurrency(minMaxPrice[1])}đ`,
     },
   ]
 
@@ -25,18 +26,19 @@ const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
       <h2>Giá </h2>
       <div>
         <p>
-          Ranger: {minMaxPrice[0]}$ - {minMaxPrice[1]}$
+          Từ {formatCurrency(minMaxPrice[0])}đ - Đến{" "}
+          {formatCurrency(minMaxPrice[1])}đ
         </p>
         <Slider
           sx={{ width: 200 }}
           getAriaLabel={() => "Price slider"}
           value={priceSlider}
           onChange={handleChange}
-          valueLabelDisplay="auto"
+          valueLabelDisplay="off"
           getAriaValueText={valueText}
           min={minMaxPrice[0]}
           max={minMaxPrice[1]}
-          marks={marks}
+          // marks={marks}
         />
       </div>
     </>

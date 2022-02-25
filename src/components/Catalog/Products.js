@@ -1,10 +1,12 @@
-import { Grid, Pagination } from "@mui/material"
+import { Grid, Pagination, Skeleton } from "@mui/material"
 import { useEffect, useState } from "react"
 import usePagination from "../Pagination/Pagination"
 import ProductCard from "../Product/ProductCard"
+import { PuffLoader } from "react-spinners"
 
 const Products = ({
   products,
+  loading,
   layout,
   isResetPage,
   setIsResetPage,
@@ -18,7 +20,6 @@ const Products = ({
 
   const count = Math.ceil(products.length / perPage)
   const _DATA = usePagination(products, perPage)
-
   const handleChange = (e, p) => {
     setPage(p)
     _DATA.jump(p)
@@ -48,35 +49,43 @@ const Products = ({
   }, [_DATA, isSwitchLayout, layout, setIsSwitchLayout])
 
   return (
-    <div>
-      <Pagination
-        className="pagination"
-        count={count}
-        size="medium"
-        page={page}
-        variant="outlined"
-        shape="rounded"
-        onChange={handleChange}
-        onClick={handleMoveClick}
-      />
-      <Grid container spacing={2} columns={{ xs: layout }}>
-        {_DATA.currentData().map((p, i) => (
-          <Grid item xs={1} key={i}>
-            <ProductCard product={p} />
+    <>
+      {loading ? (
+        <div className="product-loading">
+          <PuffLoader color="#0032FE" size={60} />
+        </div>
+      ) : (
+        <div>
+          <Pagination
+            className="pagination"
+            count={count}
+            size="medium"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+            onClick={handleMoveClick}
+          />
+          <Grid container spacing={2} columns={{ xs: layout }}>
+            {_DATA.currentData().map((p, i) => (
+              <Grid item xs={1} key={i}>
+                <ProductCard product={p} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-      <Pagination
-        className="pagination"
-        count={count}
-        size="medium"
-        page={page}
-        variant="outlined"
-        shape="rounded"
-        onChange={handleChange}
-        onClick={handleMoveClick}
-      />
-    </div>
+          <Pagination
+            className="pagination"
+            count={count}
+            size="medium"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+            onClick={handleMoveClick}
+          />
+        </div>
+      )}
+    </>
   )
 }
 

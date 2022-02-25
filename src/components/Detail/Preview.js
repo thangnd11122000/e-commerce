@@ -1,10 +1,10 @@
 import Content from "./Content"
 import Images from "./Images"
 
-const Preview = ({product}) => {
+const Preview = ({ product }) => {
   return (
     <div className="detail__preview">
-      <Images />
+      <Images image={product.image} />
       <Content product={product} />
     </div>
   )

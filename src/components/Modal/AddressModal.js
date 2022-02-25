@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal"
 import { Close } from "@mui/icons-material"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { addAddress, editAddress } from "../../features/userAddress/userAddress"
+import { addAddress, editAddress } from "../../features/userAddress/userAddressSlice"
 import { provinceData } from "../../data"
 import Notification from "../Notification"
 

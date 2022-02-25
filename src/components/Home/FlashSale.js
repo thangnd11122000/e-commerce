@@ -1,16 +1,25 @@
-import { categoriesData, productsData } from "../../data";
-import ProductTab from "../Product/ProductTab";
-
+import { useEffect, useState } from "react"
+import ProductTab from "../Product/ProductTab"
+import useAxios from "../../hook/useAxios"
 const FlashSale = () => {
+  const [products, setProducts] = useState([])
+  const { response, loading, error } = useAxios({ url: "/products?_limit=12" })
+
+  useEffect(() => {
+    if (response !== null) {
+      setProducts(response)
+    }
+  }, [response])
   return (
     <div className="flash-sale">
+      {error && console.log(error.message)}
       <ProductTab
         title="Flash Sale"
-        categoriesData={categoriesData}
-        productsData={productsData}
+        productsData={products}
+        loading={loading}
       />
     </div>
-  );
-};
+  )
+}
 
-export default FlashSale;
+export default FlashSale

@@ -6,6 +6,7 @@ import Sorting from "./Sorting"
 
 const ProductContainer = ({
   products,
+  loading,
   sorting,
   setSorting,
   minMaxPrice,
@@ -61,20 +62,17 @@ const ProductContainer = ({
         priceSlider={priceSlider}
         setPriceSlider={setPriceSlider}
       />
-      {products?.length ? (
-        <Products
-          products={products}
-          layout={layout}
-          setLayout={setLayout}
-          isResetPage={isResetPage}
-          setIsResetPage={setIsResetPage}
-          isSwitchLayout={isSwitchLayout}
-          setIsSwitchLayout={setIsSwitchLayout}
-          handleMoveClick={handleMoveClick}
-        />
-      ) : (
-        <h3 className="catalog__message">Không có sản phẩm</h3>
-      )}
+      <Products
+        products={products}
+        loading={loading}
+        layout={layout}
+        setLayout={setLayout}
+        isResetPage={isResetPage}
+        setIsResetPage={setIsResetPage}
+        isSwitchLayout={isSwitchLayout}
+        setIsSwitchLayout={setIsSwitchLayout}
+        handleMoveClick={handleMoveClick}
+      />
     </div>
   )
 }

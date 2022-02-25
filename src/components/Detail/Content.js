@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react"
-import { Rating } from "@mui/material"
-import { useDispatch } from "react-redux"
+import { Link, Rating } from "@mui/material"
+import { useDispatch, useSelector } from "react-redux"
 import { addItem } from "../../features/cartItems/cartItemsSlice"
 import { useNavigate } from "react-router-dom"
-import ConfirmDialog from "../ConfirmDialog"
 import getDiscount from "../../utils/getDiscount"
+import Notification from "../Notification"
+import { MoonLoader } from "react-spinners"
+import formatCurrency from "../../utils/formatCurrency"
 
 const Content = ({ product }) => {
+  const { loading, response, error } = useSelector(
+    (state) => state.categoriesApi
+  )
+  error && console.log(error)
+
+  const [category, setCategory] = useState([])
+
   const [quantity, setQuantity] = useState(1)
-  const [confirmDialog, setConfirmDialog] = useState({
-    isOpen: false,
-    type: "",
-    title: "",
-    onConfirm: () => {},
-  })
+  const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" })
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
@@ -30,12 +34,10 @@ const Content = ({ product }) => {
 
   const addToCart = () => {
     dispatch(addItem({ ...product, quantity }))
-    setConfirmDialog({
+    setNotify({
       isOpen: true,
+      message: "Thêm sản phẩm thành công",
       type: "success",
-      title: "Thêm thành công",
-      subTitle: "Di chuyển đến giỏ hàng?",
-      onConfirm: () => navigate("/cart"),
     })
   }
 
@@ -52,6 +54,13 @@ const Content = ({ product }) => {
     setQuantity(1)
   }, [product])
 
+  useEffect(() => {
+    if (response !== null && loading === false) {
+      let temp = response.filter((r) => r.id === product.category_id)
+      setCategory(temp[0])
+    }
+  }, [loading, product.category_id, response])
+
   return (
     <>
       <div className="detail-content">
@@ -59,15 +68,16 @@ const Content = ({ product }) => {
         <div className="detail-content__review">
           <Rating name="content-review" value={product.rating} readOnly />
           <p className="line">|</p>
-          <p>3 danh gia</p>
+          <p>3 đánh giá</p>
         </div>
         <div className="detail-content__price">
           {discountValue ? (
             <p className="discount">
-              {discountValue}đ <del>{product.price}đ</del>
+              {formatCurrency(discountValue)}đ{" "}
+              <del>{formatCurrency(product.price)}đ</del>
             </p>
           ) : (
-            <p className="normal">{product.price}đ</p>
+            <p className="normal">{formatCurrency(product.price)}đ</p>
           )}
         </div>
         <hr />
@@ -100,7 +110,12 @@ const Content = ({ product }) => {
         </div>
         <div className="detail-content__category">
           <p>
-            Danh mục: <span>{}</span>
+            Danh mục:
+            {loading ? (
+              <MoonLoader color="#0032FE" size={15} />
+            ) : (
+              <Link to={category?.link}>{category?.name}</Link>
+            )}
           </p>
         </div>
         <div className="detail-content__brand">
@@ -109,11 +124,7 @@ const Content = ({ product }) => {
           </p>
         </div>
       </div>
-
-      <ConfirmDialog
-        confirmDialog={confirmDialog}
-        setConfirmDialog={setConfirmDialog}
-      />
+      <Notification notify={notify} setNotify={setNotify} />
     </>
   )
 }

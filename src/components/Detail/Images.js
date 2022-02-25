@@ -1,67 +1,82 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import useAxios from "../../hook/useAxios"
+import { css } from "@emotion/react"
+import { MoonLoader } from "react-spinners"
 
-const imagesData = [
-  "product-1.jpg",
-  "product-2.jpg",
-  "product-3.jpg",
-  "product-4.jpg",
-  "product-5.jpg",
-  "product-6.jpg",
-  "product-7.jpg",
-]
+const override = css`
+  display: block;
+  margin: auto auto;
+`
 
-const Images = () => {
-  const [images] = useState(imagesData)
+const Images = ({ image }) => {
+  const [images, setImages] = useState([])
+
+  const { response, loading, error } = useAxios({ url: "/images" })
+
+  error && console.log(error.message)
+
+  useEffect(() => {
+    if (response !== null) {
+      setImages([image, ...response])
+    }
+  }, [image, response])
+
   const [index, setIndex] = useState(0)
   const [isOpenMore, setIsOpenMore] = useState(false)
 
   return (
     <div className="detail-images">
-      <div className="detail-images__view">
-        <img src={`/img/products/${images[index]}`} alt="" />
-      </div>
+      {loading ? (
+        <MoonLoader color="#0032FE" size={50} css={override} />
+      ) : (
+        <>
+          <div className="detail-images__view">
+            <img src={`${images[index]}`} alt="" />
+          </div>
 
-      <div className="detail-images__list">
-        {images?.length > 6 && isOpenMore ? (
-          <>
-            {images.map((image, i) => (
-              <img
-                className={index === i ? "active" : ""}
-                key={i}
-                src={`/img/products/${image}`}
-                alt=""
-                onClick={() => setIndex(i)}
-                onMouseOver={() => setIndex(i)}
-              />
-            ))}
-            <div
-              className="detail-images__more"
-              onClick={() => setIsOpenMore(false)}
-            >
-              Ẩn bớt
-            </div>
-          </>
-        ) : (
-          <>
-            {images.slice(0, 4).map((image, i) => (
-              <img
-                className={index === i ? "active" : ""}
-                key={i}
-                src={`/img/products/${image}`}
-                alt=""
-                onClick={() => setIndex(i)}
-                onMouseOver={() => setIndex(i)}
-              />
-            ))}
-            <div
-              className="detail-images__more"
-              onClick={() => setIsOpenMore(true)}
-            >
-              + {images.length - 4}
-            </div>
-          </>
-        )}
-      </div>
+          <div className="detail-images__list">
+            {images?.length > 6 && isOpenMore ? (
+              <>
+                {images.map((img, i) => (
+                  <img
+                    className={index === i ? "active" : ""}
+                    key={i}
+                    src={`${img}`}
+                    alt=""
+                    onClick={() => setIndex(i)}
+                    onMouseOver={() => setIndex(i)}
+                  />
+                ))}
+                <div
+                  className="detail-images__more"
+                  onClick={() => setIsOpenMore(false)}
+                >
+                  Ẩn bớt
+                </div>
+              </>
+            ) : (
+              <>
+                {images.slice(0, 4).map((img, i) => (
+                  <img
+                    className={index === i ? "active" : ""}
+                    key={i}
+                    src={`${img}`}
+                    alt=""
+                    onClick={() => setIndex(i)}
+                    onMouseOver={() => setIndex(i)}
+                  />
+                ))}
+                <div
+                  className="detail-images__more"
+                  onClick={() => setIsOpenMore(true)}
+                >
+                  + {images.length - 4}
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
     </div>
   )
 }

@@ -1,158 +1,30 @@
-import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { MoonLoader } from "react-spinners"
 import {
   closeDropdown,
   closeMenuSidebar,
   handleDropdown,
 } from "../../features/toggle/toggleSlice"
+import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material"
+import { css } from "@emotion/react"
 
-const menu = [
-  {
-    id: 1,
-    name: "May tinh",
-    submenu: [
-      {
-        title: "Danh muc 1",
-        link: [
-          {
-            name: "danh muc con 1",
-            path: "/",
-          },
-          {
-            name: "danh muc con 2",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-        ],
-      },
-      {
-        title: "Danh muc 2",
-        link: [
-          {
-            name: "danh muc con a",
-            path: "/",
-          },
-          {
-            name: "danh muc con b",
-            path: "/",
-          },
-          {
-            name: "danh muc con c",
-            path: "/",
-          },
-        ],
-      },
-      {
-        title: "Danh muc 3",
-        link: [
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Dien thoai",
-    submenu: [
-      {
-        title: "Danh muc 1",
-        link: [
-          {
-            name: "danh muc con 1",
-            path: "/",
-          },
-          {
-            name: "danh muc con 2",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-        ],
-      },
-      {
-        title: "Danh muc 2",
-        link: [
-          {
-            name: "danh muc con 1",
-            path: "/",
-          },
-          {
-            name: "danh muc con 2",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-        ],
-      },
-      {
-        title: "Danh muc 3",
-        link: [
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-          {
-            name: "danh muc con 3",
-            path: "/",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "May anh",
-    path: "/",
-  },
-  {
-    id: 3,
-    name: "May anh",
-    path: "/",
-  },
-  {
-    id: 3,
-    name: "May anh",
-    path: "/",
-  },
-  {
-    id: 3,
-    name: "May anh",
-    path: "/",
-  },
-  {
-    id: 3,
-    name: "May anh",
-    path: "/",
-  },
-]
+const override = css`
+  display: block;
+  margin: 20px auto;
+`
 
 const CategoriesDropdown = () => {
+  const [data, setData] = useState([])
+
   const dropdownRef = useRef(null)
+
   const isOpenDropdown = useSelector((state) => state.toggle.isOpenDropdown)
+  const { loading, response, error } = useSelector(
+    (state) => state.categoriesApi
+  )
+  error && console.log(error)
   const dispatch = useDispatch()
 
   const submenuToggle = (e) => e.target.classList.toggle("active")
@@ -168,6 +40,12 @@ const CategoriesDropdown = () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [dispatch, dropdownRef])
+
+  useEffect(() => {
+    if (response !== null) {
+      setData(response)
+    }
+  }, [response])
 
   return (
     <div className="cat-dropdown" ref={dropdownRef}>
@@ -193,38 +71,60 @@ const CategoriesDropdown = () => {
           isOpenDropdown ? "navigation-menu--active" : ""
         }`}
       >
-        {menu.map((m, i) => (
-          <li key={i}>
-            {m.path ? (
-              <Link to={m.path} className="navigation-menu__link">
-                {m.name}
-              </Link>
-            ) : (
-              <p
-                className="navigation-menu__link"
-                onClick={(e) => submenuToggle(e)}
-              >
-                {m.name}
-              </p>
-            )}
-            {m.submenu && (
-              <div className="navigation-submenu">
-                {m.submenu.map((s, sIndex) => (
-                  <div key={sIndex} className="navigation-submenu__content">
-                    <p className="navigation-submenu__title">{s.title}</p>
-                    <ul className="navigation-submenu__list">
-                      {s.link.map((l, lIndex) => (
-                        <li key={lIndex} className="navigation-submenu__item">
-                          <Link to={l.path}>{l.name}</Link>
-                        </li>
+        {loading ? (
+          <MoonLoader color="#0032FE" css={override} size={30} />
+        ) : (
+          <>
+            {data &&
+              data.map((m, i) => (
+                <li key={i}>
+                  {m?.submenu ? (
+                    <Link
+                      to={m.link}
+                      className="navigation-menu__link"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        submenuToggle(e)
+                      }}
+                    >
+                      {m.name}
+                    </Link>
+                  ) : (
+                    <Link
+                      to={m.link}
+                      className="navigation-menu__link"
+                      onClick={() => dispatch(closeDropdown())}
+                    >
+                      {m.name}
+                    </Link>
+                  )}
+
+                  {m.submenu && (
+                    <div className="navigation-submenu">
+                      {m.submenu.map((s, sIndex) => (
+                        <div
+                          key={sIndex}
+                          className="navigation-submenu__content"
+                        >
+                          <p className="navigation-submenu__title">{s.title}</p>
+                          <ul className="navigation-submenu__list">
+                            {s.link.map((l, lIndex) => (
+                              <li
+                                key={lIndex}
+                                className="navigation-submenu__item"
+                              >
+                                <Link to={l.path}>{l.name}</Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            )}
-          </li>
-        ))}
+                    </div>
+                  )}
+                </li>
+              ))}
+          </>
+        )}
       </ul>
     </div>
   )

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { categoriesData } from "../../data"
+import formatCurrency from "../../utils/formatCurrency"
 import uppercaseFirstLetter from "../../utils/string"
 
 const Selected = ({
@@ -64,8 +65,8 @@ const Selected = ({
         <div className="catalog-selected__list">
           <p>Khoảng giá:</p>
           <div>
-            {priceSlider[0]}d - {priceSlider[1]}d
-            <button onClick={() => setPriceSlider(minMaxPrice)}>X</button>
+            {formatCurrency(priceSlider[0])}đ - {formatCurrency(priceSlider[1])}
+            đ<button onClick={() => setPriceSlider(minMaxPrice)}>X</button>
           </div>
         </div>
       )}

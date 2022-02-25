@@ -1,11 +1,25 @@
 import { Grid, Pagination } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import usePagination from "../Pagination/Pagination"
 import ProductCard from "../Product/ProductCard"
-import { recommendedProductsData as products } from "../../data"
+import useAxios from "../../hook/useAxios"
+import { PuffLoader } from "react-spinners"
 
 const RecommendedProducts = () => {
   let [page, setPage] = useState(1)
+
+  const [products, setProducts] = useState([])
+
+  const { response, loading, error } = useAxios({ url: "/products" })
+
+  error && console.log(error.message)
+
+  useEffect(() => {
+    if (response !== null) {
+      setProducts(response)
+    }
+  }, [response])
+
   const PER_PAGE = 12
 
   const count = Math.ceil(products.length / PER_PAGE)
@@ -23,28 +37,36 @@ const RecommendedProducts = () => {
         <span>Xem tất cả</span>
       </div>
 
-      <Grid
-        container
-        spacing={2}
-        columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}
-        className="recommended-products__list"
-      >
-        {_DATA.currentData().map((d, i) => (
-          <Grid item xs={1} key={i}>
-            <ProductCard product={d} />
+      {loading ? (
+        <div className="product-loading">
+          <PuffLoader color="#0032FE" size={60} />
+        </div>
+      ) : (
+        <>
+          <Grid
+            container
+            spacing={2}
+            columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}
+            className="recommended-products__list"
+          >
+            {_DATA.currentData().map((d, i) => (
+              <Grid item xs={1} key={i}>
+                <ProductCard product={d} loading={loading} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
 
-      <Pagination
-        className="pagination"
-        count={count}
-        size="medium"
-        page={page}
-        variant="outlined"
-        shape="rounded"
-        onChange={handleChange}
-      />
+          <Pagination
+            className="pagination"
+            count={count}
+            size="medium"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </>
+      )}
     </div>
   )
 }

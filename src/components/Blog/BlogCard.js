@@ -1,25 +1,26 @@
-const BlogCard = ({ post, substring = 80 }) => {
-  const { image, title, description, date, link, categories } = post
+import { Link } from "react-router-dom"
+import getPostCategoryName from "../../utils/getPostCategoryName"
+
+const BlogCard = ({ post, substring = 100, categories }) => {
+  const { id, image, title, description, date, category_id } = post
   return (
     <div className="blog-card">
       <div className="blog__tags">
-        {categories?.map((c, i) => (
-          <a href="/" key={i}>
-            {c}
-          </a>
-        ))}
+        <Link to={`/blog/category/${category_id}`} key={category_id}>
+          {getPostCategoryName(categories, category_id)}
+        </Link>
       </div>
       <div className="blog-card__header">
-        <a href={link}>
+        <Link to={`/blog/detail/${id}`}>
           <img src={image} alt={title} />
-        </a>
+        </Link>
       </div>
       <div className="blog-card__body">
-        <a href={link}>{title.substring(0, 50)}</a>
+        <Link to={`/blog/detail/${id}`}>{title.substring(0, 50)}</Link>
         <p>{description.substring(0, substring)}...</p>
       </div>
       <div className="blog-card__footer">
-        <a href={link}>Xem tiếp</a>
+        <Link to={`/blog/detail/${id}`}>Xem tiếp</Link>
         <p>{date}</p>
       </div>
     </div>

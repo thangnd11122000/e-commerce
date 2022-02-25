@@ -1,5 +1,6 @@
 .detail {
   padding: 0px 100px 50px;
+  min-height: 50vh;
   display: flex;
   gap: 30px;
 
@@ -41,7 +42,7 @@
     flex-basis: 75%;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 
     @include breakpoint("xl") {
       flex-basis: 100%;
@@ -320,8 +321,13 @@
   &__category,
   &__brand {
     margin-top: 15px;
-    span {
+    a {
+      margin-left: 5px;
       color: $text-disable;
+      cursor: pointer;
+      &:hover {
+        color: $primary;
+      }
     }
   }
 }
@@ -337,7 +343,7 @@
     margin-bottom: 30px;
   }
   &__desc {
-    height: 400px;
+    height: 300px;
     overflow: hidden;
     &--active {
       height: auto;
@@ -420,6 +426,10 @@
   }
   &__list {
     margin-top: 30px;
+    &--empty {
+      margin: 50px 0 30px;
+      text-align: center;
+    }
   }
   &__item {
     display: flex;

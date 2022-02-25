@@ -12,6 +12,7 @@ import {
   openCartSidebar,
   openMenuSidebar,
 } from "../../features/toggle/toggleSlice"
+import formatCurrency from "../../utils/formatCurrency"
 import { Action } from "./Action"
 
 const Navbar = ({ hideOnScrollDown, isScroll }) => {
@@ -64,7 +65,9 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
           <ShoppingBagOutlined />
           <div>
             <span className="navbar-action__top">Giỏ hàng</span>
-            <span className="navbar-action__bottom">{totalPrice}</span>
+            <span className="navbar-action__bottom">
+              {formatCurrency(totalPrice)}đ
+            </span>
           </div>
           <span className="navbar-action__badge">{totalProduct}</span>
         </div>

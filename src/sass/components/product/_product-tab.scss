@@ -36,6 +36,15 @@
     }
   }
 
+  &__body {
+    &--loading {
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
   &__link {
     position: absolute;
     bottom: -22px;

@@ -8,6 +8,12 @@
   overflow-y: scroll;
   transition: all 1s;
   z-index: 11;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &--active {
     right: 0;
@@ -32,21 +38,24 @@
   &__item {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 5px;
     width: 100%;
     margin-bottom: 15px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     border-bottom: 1px solid rgb(201, 201, 201);
     &--img {
-      width: 30%;
+      display: block;
+      width: 70px;
+      height: 70px;
+      margin-right: 5px;
     }
   }
 
   &__product {
     &--name {
       font-size: 16px;
-      text-transform: uppercase;
+      text-transform: capitalize;
       color: $primary;
     }
     &--number {
@@ -60,13 +69,13 @@
 
   &__actions {
     position: absolute;
-    top: 10px;
-    right: -10px;
+    top: -10px;
+    right: -15px;
     display: flex;
     flex-direction: column;
 
     .MuiSvgIcon-root {
-      font-size: 20px;
+      font-size: 18px;
       color: $text-disable;
     }
   }

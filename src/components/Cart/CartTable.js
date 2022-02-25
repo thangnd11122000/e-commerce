@@ -24,6 +24,7 @@ import {
 } from "../../features/cartItems/cartItemsSlice"
 import ConfirmDialog from "../ConfirmDialog"
 import getDiscount from "../../utils/getDiscount"
+import formatCurrency from "../../utils/formatCurrency"
 
 const CartTable = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -171,13 +172,13 @@ const CartTable = () => {
                       {discountValue ? (
                         <>
                           <p className="cart-table__price--discount">
-                            {discountValue}đ
+                            {formatCurrency(discountValue)}đ
                           </p>
-                          <del>{product.price}đ</del>
+                          <del>{formatCurrency(product.price)}đ</del>
                         </>
                       ) : (
                         <p className="cart-table__price--normal">
-                          {product.price}đ
+                          {formatCurrency(product.price)}đ
                         </p>
                       )}
                     </TableCell>
@@ -212,8 +213,8 @@ const CartTable = () => {
                     </TableCell>
                     <TableCell align="center" sx={{ fontWeight: "bold" }}>
                       {discountValue > 0
-                        ? discountValue * product.quantity
-                        : product.price * product.quantity}
+                        ? formatCurrency(discountValue * product.quantity)
+                        : formatCurrency(product.price * product.quantity)}
                       đ
                     </TableCell>
                     <TableCell align="center">
@@ -271,7 +272,7 @@ const CartTable = () => {
               Xóa đã chọn
             </Button>
           ) : (
-            <p>Tổng tiền: {totalPrice}</p>
+            <p>Tổng tiền: {formatCurrency(totalPrice)}đ</p>
           )}
         </div>
       </div>

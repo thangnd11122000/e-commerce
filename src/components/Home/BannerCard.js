@@ -1,19 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Skeleton } from "@mui/material"
+import { Link } from "react-router-dom"
 
-const BannerCard = ({ data }) => {
-  const { link, image, title, subtitle } = data;
+const BannerCard = ({ data, loading }) => {
+  const { link, image, name } = data
   return (
     <div className="banner-card__item">
-      <Link to={link}>
-        <img src={image} alt="" />
-        <div className="banner-card__content">
-          <h3>{title}</h3>
-          <p>{subtitle}</p>
-        </div>
-      </Link>
+      {loading ? (
+        <Skeleton variant="rectangular" height={130} />
+      ) : (
+        <Link to={link}>
+          <img src={`/img/categories/${image}`} alt="" />
+          <div className="banner-card__content">
+            <h3>{name}</h3>
+            <p>Tìm kiếm ngay</p>
+          </div>
+        </Link>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default BannerCard;
+export default BannerCard

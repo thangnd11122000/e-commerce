@@ -1,5 +1,8 @@
 .product-slider {
   position: relative;
+  padding: 0px 10px;
+
+  
 
   &__list {
     margin-top: 20px;
@@ -7,18 +10,14 @@
     @include breakpoint("md") {
       margin-top: 10px;
     }
-
-    .slick-track {
-      float: left;
-    }
   }
 
   &__item {
-    padding: 20px;
+    padding: 10px;
     border-radius: 4px;
     cursor: pointer;
     position: relative;
-
+    height: 100%;
     @include breakpoint("xl") {
       padding: 15px;
     }
@@ -28,24 +27,45 @@
     }
   }
 
+  .slick-track {
+    float: left;
+    display: flex !important;
+    height: auto;
+  }
+  .slick-slide {
+    height: inherit !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slick-slide > div {
+    height: 100%;
+  }
+
   .slick-arrow {
     z-index: 1;
-    &.slick-prev {
-      left: -5px;
-    }
-    &.slick-next {
-      right: -2px;
-    }
     &::before {
       color: $primary;
       font-size: 26px;
     }
   }
 
+  .slick-prev {
+    left: -3px !important;
+  }
+  .slick-next {
+    right: 0px !important;
+  }
+
   &__empty {
-    font-size: 30px;
-    text-align: center;
-    padding: 80px 80px;
-    color: #222;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      font-size: 30px;
+      color: #222;
+    }
   }
 }

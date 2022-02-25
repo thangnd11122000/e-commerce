@@ -1,14 +1,14 @@
+import { Link } from "react-router-dom"
+
 const BlogWrap = ({ post }) => {
-  const { image, title, date, link } = post
+  const { id, image, title, date } = post
   return (
     <div className="blog-wrap">
-      <a href={link}>
+      <Link to={`blog/detail/${id}`}>
         <img src={image} alt="" className="blog-wrap__image" />
-      </a>
+      </Link>
       <div>
-        <a className="blog-wrap__title" href={link}>
-          {title.substring(0, 60)}...
-        </a>
+        <Link to={`blog/detail/${id}`}>{title.substring(0, 60)}...</Link>
         <p className="blog-wrap__date">{date}</p>
       </div>
     </div>

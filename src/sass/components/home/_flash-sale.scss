@@ -56,13 +56,6 @@
 
   .product-slider {
     .slick-arrow {
-      z-index: 1;
-      &.slick-prev {
-        left: -2px;
-      }
-      &.slick-next {
-        right: 4px;
-      }
       &::before {
         color: #222 !important;
       }

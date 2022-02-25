@@ -1,6 +1,7 @@
+import { Fragment } from "react"
 import BlogForm from "./BlogForm"
 
-const BlogComment = () => {
+const BlogComment = ({ comments }) => {
   const formToggle = (e) => {
     e.target.classList.toggle("active")
   }
@@ -10,63 +11,41 @@ const BlogComment = () => {
 
   return (
     <div className="blog-comment">
-      <h3>2 bình luận</h3>
+      <h3>{comments?.length || 0} bình luận</h3>
       <BlogForm showButton={false} />
       <div className="blog-comment__item">
-        <div className="blog-comment__main">
-          <div className="blog-comment__content">
-            <img src="/img/about/testimonial-1.jpg" alt="" />
-            <div>
-              <h5>
-                Tấn Lộc - <span>3 ngày trước</span>
-              </h5>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique, quo nostrum. Error iste facere tempora consequatur
-                odit tempore iure earum soluta dolorum voluptatibus eaque minus
-                iusto quae, in voluptatum provident.
-              </p>
-              <button onClick={formToggle}>Trả lời</button>
-              <BlogForm handleClick={handleClick} />
+        {comments?.map((c) => (
+          <Fragment key={c.id}>
+            <div className="blog-comment__main">
+              <div className="blog-comment__content">
+                <img src={c.avatar} alt="" />
+                <div>
+                  <h5>
+                    {c.name} - <span>{c.date}</span>
+                  </h5>
+                  <p>{c.comment}</p>
+                  <button onClick={formToggle}>Trả lời</button>
+                  <BlogForm handleClick={handleClick} />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="blog-comment__main blog-comment__reply">
-          <div className="blog-comment__content">
-            <img src="/img/about/testimonial-1.jpg" alt="" />
-            <div>
-              <h5>
-                Tấn Lộc - <span>3 ngày trước</span>
-              </h5>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique, quo nostrum. Error iste facere tempora consequatur
-                odit tempore iure earum soluta dolorum voluptatibus eaque minus
-                iusto quae, in voluptatum provident.
-              </p>
-              <button onClick={formToggle}>Trả lời</button>
-              <BlogForm handleClick={handleClick} />
-            </div>
-          </div>
-        </div>
-        <div className="blog-comment__main blog-comment__reply">
-          <div className="blog-comment__content">
-            <img src="/img/about/testimonial-1.jpg" alt="" />
-            <div>
-              <h5>
-                Tấn Lộc - <span>3 ngày trước</span>
-              </h5>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique, quo nostrum. Error iste facere tempora consequatur
-                odit tempore iure earum soluta dolorum voluptatibus eaque minus
-                iusto quae, in voluptatum provident.
-              </p>
-              <button>Trả lời</button>
-            </div>
-          </div>
-          <BlogForm />
-        </div>
+            {c.reply?.map((r, i) => (
+              <div key={i} className="blog-comment__main blog-comment__reply">
+                <div className="blog-comment__content">
+                  <img src={r.avatar} alt="" />
+                  <div>
+                    <h5>
+                      {r.name} - <span>{r.date}</span>
+                    </h5>
+                    <p>{r.comment}</p>
+                    <button onClick={formToggle}>Trả lời</button>
+                    <BlogForm handleClick={handleClick} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Fragment>
+        ))}
       </div>
     </div>
   )
