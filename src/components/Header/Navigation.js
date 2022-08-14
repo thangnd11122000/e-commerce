@@ -2,8 +2,11 @@ import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
-import { closeMenuSidebar } from "../../features/toggle/toggleSlice"
+import { closeMenuSidebar } from "../../store/toggle/toggleSlice"
 import CategoriesDropdown from "./CategoriesDropdown"
+import { AiOutlineLogout } from "react-icons/ai"
+import { logout } from "../../store/authSlice"
+import { IconButton } from "@mui/material"
 
 const mainNav = [
   { name: "Trang chủ", path: "/" },
@@ -18,6 +21,7 @@ const Navigation = () => {
   const isOpenMenuSidebar = useSelector(
     (state) => state.toggle.isOpenMenuSidebar
   )
+  const { isLoggedIn } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
@@ -63,7 +67,26 @@ const Navigation = () => {
           </li>
         ))}
       </ul>
-      <p className="navigation__contact">+0123456789</p>
+      <div className="navigation__contact">
+        <p>123456789+</p>
+        {isLoggedIn && (
+          <>
+            <AiOutlineLogout
+              className="logout-icon"
+              onClick={() => dispatch(logout())}
+            />
+            <p
+              className="logout-content"
+              onClick={() => {
+                dispatch(logout())
+                dispatch(closeMenuSidebar())
+              }}
+            >
+              ĐĂNG XUẤT
+            </p>
+          </>
+        )}
+      </div>
     </div>
   )
 }

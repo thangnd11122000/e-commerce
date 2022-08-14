@@ -1,18 +1,16 @@
-import {
-  FavoriteBorderOutlined,
-  HomeOutlined,
-  PersonOutline,
-} from "@mui/icons-material"
+import { FavoriteBorderOutlined } from "@mui/icons-material"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import {
   handleCartSidebar,
   handleMenuSidebar,
-} from "../../features/toggle/toggleSlice"
+} from "../../store/toggle/toggleSlice"
 import { MobileLink } from "./MobileLink"
 import menuIcon from "../../assets/img/icons/menu.png"
 import bagIcon from "../../assets/img/icons/bag.png"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
+import { BsPerson } from "react-icons/bs"
+import { BiHomeAlt } from "react-icons/bi"
 
 const MobileBottom = () => {
   const dispatch = useDispatch()
@@ -32,8 +30,8 @@ const MobileBottom = () => {
         hideOnScroll ? "mobile-bottom--scroll-up" : ""
       } `}
     >
-      <MobileLink name="Trang chủ" link="/" icon={<HomeOutlined />} />
-      <MobileLink name="Tài khoản" link="/user" icon={<PersonOutline />} />
+      <MobileLink name="Trang chủ" link="/" icon={<BiHomeAlt />} />
+      <MobileLink name="Tài khoản" link="/user" icon={<BsPerson />} />
       <div
         className="mobile-bottom__item"
         onClick={() => dispatch(handleMenuSidebar())}

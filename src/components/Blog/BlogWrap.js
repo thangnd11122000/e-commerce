@@ -1,15 +1,29 @@
+import { CalendarToday, Person, Visibility } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 
 const BlogWrap = ({ post }) => {
-  const { id, image, title, date } = post
+  const { id, thumbnail, title, created_at, author, view } = post
   return (
     <div className="blog-wrap">
-      <Link to={`blog/detail/${id}`}>
-        <img src={image} alt="" className="blog-wrap__image" />
+      <Link to={`detail/${id}`}>
+        <img src={thumbnail} alt="" className="blog-wrap__image" />
       </Link>
       <div>
-        <Link to={`blog/detail/${id}`}>{title.substring(0, 60)}...</Link>
-        <p className="blog-wrap__date">{date}</p>
+        <Link to={`detail/${id}`}>{title}</Link>
+        <div className="blog-wrap__actions">
+          <div className="blog-wrap__action">
+            <Person fontSize="small" />
+            <span>{author}</span>
+          </div>
+          <div className="blog-wrap__action">
+            <Visibility fontSize="small" />
+            <span>{view}</span>
+          </div>
+          {/* <div className="blog-wrap__action">
+            <CalendarToday fontSize="small" />
+            <span>{created_at.split(" ")[0]}</span>
+          </div> */}
+        </div>
       </div>
     </div>
   )

@@ -21,10 +21,10 @@ import {
   deleteItem,
   deleteMultiItem,
   increaseQuantity,
-} from "../../features/cartItems/cartItemsSlice"
+} from "../../store/cartItems/cartItemsSlice"
 import ConfirmDialog from "../ConfirmDialog"
 import getDiscount from "../../utils/getDiscount"
-import formatCurrency from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils"
 
 const CartTable = () => {
   const cartItems = useSelector((state) => state.cartItems.value)

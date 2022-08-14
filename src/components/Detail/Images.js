@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import useAxios from "../../hook/useAxios"
 import { css } from "@emotion/react"
 import { MoonLoader } from "react-spinners"
+import { useAxios } from "../../hook/useAxios"
 
 const override = css`
   display: block;
@@ -10,16 +10,20 @@ const override = css`
 
 const Images = ({ image }) => {
   const [images, setImages] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  const { response, loading, error } = useAxios({ url: "/images" })
+  // const { response, loading, error } = useAxios({ url: "/images" })
 
-  error && console.log(error.message)
+  // error && console.log(error.message)
 
   useEffect(() => {
-    if (response !== null) {
-      setImages([image, ...response])
-    }
-  }, [image, response])
+    setImages([image])
+  }, [image])
+  // useEffect(() => {
+  //   if (response !== null) {
+  //     setImages([image, ...response])
+  //   }
+  // }, [image, response])
 
   const [index, setIndex] = useState(0)
   const [isOpenMore, setIsOpenMore] = useState(false)
@@ -66,12 +70,14 @@ const Images = ({ image }) => {
                     onMouseOver={() => setIndex(i)}
                   />
                 ))}
-                <div
-                  className="detail-images__more"
-                  onClick={() => setIsOpenMore(true)}
-                >
-                  + {images.length - 4}
-                </div>
+                {images.length > 4 && (
+                  <div
+                    className="detail-images__more"
+                    onClick={() => setIsOpenMore(true)}
+                  >
+                    + {images.length - 4}
+                  </div>
+                )}
               </>
             )}
           </div>

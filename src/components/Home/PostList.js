@@ -2,9 +2,8 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import BlogCard from "../Blog/BlogCard"
-import { useEffect, useState } from "react"
-import useAxios from "../../hook/useAxios"
 import { PuffLoader } from "react-spinners"
+import { useAxios } from "../../hook/useAxios"
 
 const settings = {
   dots: false,
@@ -42,18 +41,11 @@ const settings = {
 }
 
 const PostList = () => {
-  const [posts, setPosts] = useState([])
-
-  const { response, loading, error } = useAxios({ url: "/posts" })
+  const { response, loading, error } = useAxios({
+    url: "/api/blogs?_page=1&_limit=10&_sort=created_at&_order=desc&status=1",
+  })
 
   error && console.log(error.message)
-
-  useEffect(() => {
-    if (response !== null) {
-      setPosts(response)
-    }
-  }, [response])
-
   return (
     <div className="post-list">
       <div className="home__header">
@@ -66,9 +58,10 @@ const PostList = () => {
         </div>
       ) : (
         <Slider {...settings} className="post-list__slider">
-          {posts.map((p, i) => (
-            <BlogCard key={i} post={p} />
-          ))}
+          {Array.isArray(response.data.data) &&
+            response.data.data.map((post) => (
+              <BlogCard key={post.id} post={post} titleSubstring={72} />
+            ))}
         </Slider>
       )}
     </div>

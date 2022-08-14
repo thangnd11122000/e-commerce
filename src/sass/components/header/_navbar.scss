@@ -40,6 +40,7 @@
     display: none !important;
     font-size: 28px !important;
     margin-right: 15px;
+    cursor: pointer;
     @include breakpoint("xl") {
       display: block !important;
     }
@@ -81,7 +82,7 @@
   width: 500px;
   background: #fff;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 5px 5px 10px;
   display: flex;
   align-items: center;
 
@@ -143,7 +144,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    .MuiSvgIcon-root {
+    .MuiSvgIcon-root,
+    svg {
       font-size: 40px !important;
       font-weight: bold;
       margin-right: 5px;

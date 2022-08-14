@@ -41,7 +41,7 @@
   }
   &__button {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     .btn-primary,
     .btn-secondary {
       width: 70px;

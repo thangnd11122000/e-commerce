@@ -8,7 +8,7 @@ const BlogSection = ({ link, title, posts, categories }) => {
     <div className="blog-section">
       <BlogTitle link={link} title={title} />
       <div className="blog-section__container">
-        <BlogCard post={firstPost} substring={160} categories={categories} />
+        <BlogCard post={firstPost} substring={200} categories={categories} />
         <div className="blog-section__list">
           {postsArr.map((post, index) => (
             <BlogWrap key={index} post={post} />

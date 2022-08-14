@@ -1,171 +1,392 @@
-import { Form, Formik } from "formik"
-import * as Yup from "yup"
-import FormControl from "../Form/FormControl"
 import Modal from "@mui/material/Modal"
-import { Close } from "@mui/icons-material"
-import { useDispatch } from "react-redux"
-import { useState } from "react"
-import { addAddress, editAddress } from "../../features/userAddress/userAddressSlice"
-import { provinceData } from "../../data"
+import { Close, SearchOutlined } from "@mui/icons-material"
+import { useSelector } from "react-redux"
+import { useEffect, useMemo, useState } from "react"
 import Notification from "../Notification"
+import axios from "axios"
+import {
+  FormControl,
+  FormHelperText,
+  InputAdornment,
+  InputLabel,
+  ListSubheader,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material"
+import { containsText } from "../../utils/string"
+import { insertAddressAPI, updateAddressAPI } from "../../api/address"
+import { useCallback } from "react"
 
-// const initialValues = {
-//   id: null,
-//   name: "",
-//   phone: "",
-//   email: "",
-//   province: "",
-//   district: "",
-//   commune: "",
-//   detail: "",
-// }
-
-const provinceOptions = [
-  { key: "Tỉnh / Thành phố", value: "" },
-  { key: "TP HCM", value: "1" },
-  { key: "Hà Nội", value: "2" },
-]
-
-const validationSchema = Yup.object({
-  name: Yup.string().required("Nhập Họ và tên"),
-  phone: Yup.string().required("Nhập Số điện thoại"),
-  email: Yup.string().required("Nhập Email"),
-  province: Yup.string().required("Chọn Tỉnh / Thành phố"),
-  district: Yup.string().required("Chọn Quận / Huyện"),
-  commune: Yup.string().required("Chọn Phường / Xã"),
-  detail: Yup.string().required("Nhập Đường / Số nhà..."),
-})
-
-const AddressModal = ({ isOpenModal, setIsOpenModal, edit }) => {
-  const [address, setAddress] = useState(edit)
+const AddressModal = ({
+  isOpenModal,
+  currentAddress,
+  provinces,
+  onClose,
+  onOk,
+  handleSetDefaultAddress,
+}) => {
+  const { user } = useSelector((state) => state.auth)
   const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" })
-  const dispatch = useDispatch()
+  const [districts, setDistricts] = useState([])
+  const [wards, setWards] = useState([])
+  const [detail, setDetail] = useState("")
+  const [isSubmit, setIsSubmit] = useState(false)
 
-  const getKeyAndValue = (array, value) => {
-    let temp
-    array.forEach((a) => {
-      if (a.value === value) temp = a.key
-    })
-    return temp
-  }
+  const resetData = useCallback(() => {
+    setSelectedProvince("")
+    setSelectedDistrict("")
+    setSelectedWard("")
+    setDetail("")
+  }, [])
 
-  const onSubmit = (values) => {
-    if (edit?.id) {
-      if (values.province !== address.province) {
-        values.provinceKey = getKeyAndValue(provinceData, values.province)
-      }
-      dispatch(editAddress(values))
-      setNotify({
-        isOpen: true,
-        message: "Sửa địa chỉ thành công",
-        type: "success",
-      })
+  useEffect(() => {
+    if (currentAddress) {
+      handleChangeProvince(currentAddress.province_id)
+      handleChangeDistrict(currentAddress.district_id)
+      setSelectedWard(currentAddress.ward_id)
+      setDetail(currentAddress.address)
     } else {
-      values.provinceKey = getKeyAndValue(provinceData, values.province)
-      dispatch(addAddress(values))
-      setNotify({
-        isOpen: true,
-        message: "Thêm địa chỉ thành công",
-        type: "success",
-      })
+      resetData()
     }
-    setIsOpenModal(false)
+  }, [currentAddress, resetData])
+
+  const [selectedProvince, setSelectedProvince] = useState("")
+  const [searchProvince, setSearchProvince] = useState("")
+  const displayedProvinces = useMemo(
+    () =>
+      provinces.filter((provinces) =>
+        containsText(provinces.ProvinceName, searchProvince)
+      ),
+    [provinces, searchProvince]
+  )
+  const [selectedDistrict, setSelectedDistrict] = useState("")
+  const [searchDistrict, setSearchDistrict] = useState("")
+  const displayedDistricts = useMemo(
+    () =>
+      districts.filter((district) =>
+        containsText(district.DistrictName, searchDistrict)
+      ),
+    [districts, searchDistrict]
+  )
+  const [selectedWard, setSelectedWard] = useState("")
+  const [searchWard, setSearchWard] = useState("")
+  const displayedWards = useMemo(
+    () => wards.filter((wards) => containsText(wards.WardName, searchWard)),
+    [wards, searchWard]
+  )
+
+  const handleChangeProvince = (value) => {
+    setSelectedProvince(value)
+    setSelectedDistrict("")
+    setSelectedWard("")
+    axios(
+      "https://online-gateway.ghn.vn/shiip/public-api/master-data/district",
+      {
+        method: "POST",
+        headers: {
+          Token: "897b0fc3-e1e2-11eb-9389-f656af98cb33",
+        },
+        data: {
+          province_id: value,
+        },
+      }
+    ).then((res) => {
+      setDistricts(res.data.data)
+    })
   }
 
-  // useEffect(() => {
-  //   setAddress(edit || initialValues)
-  // }, [edit, isOpenModal])
+  const handleChangeDistrict = (value) => {
+    setSelectedDistrict(value)
+    setSelectedWard("")
+    axios(
+      "https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id",
+      {
+        method: "POST",
+        headers: { Token: "897b0fc3-e1e2-11eb-9389-f656af98cb33" },
+        data: { district_id: value },
+      }
+    ).then((res) => {
+      setWards(res.data.data)
+    })
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setIsSubmit(true)
+    if (selectedProvince && selectedDistrict && selectedWard && detail) {
+      if (currentAddress) {
+        updateAddressAPI(currentAddress.id, {
+          id: user.id,
+          customer_id: user.id,
+          address: detail,
+          district_id: selectedDistrict,
+          ward_id: selectedWard,
+          province_id: selectedProvince,
+        })
+          .then(() => {
+            setNotify({
+              isOpen: true,
+              message: "Sửa địa chỉ thành công",
+              type: "success",
+            })
+
+            resetData()
+            setIsSubmit(false)
+            onOk()
+          })
+          .catch((error) => {
+            console.log(error)
+            setNotify({
+              isOpen: true,
+              message: "Đã có lỗi xảy ra",
+              type: "error",
+            })
+          })
+      } else {
+        insertAddressAPI({
+          id: user.id,
+          customer_id: user.id,
+          address: detail,
+          district_id: selectedDistrict,
+          ward_id: selectedWard,
+          province_id: selectedProvince,
+        })
+          .then(() => {
+            setNotify({
+              isOpen: true,
+              message: "Thêm địa chỉ thành công",
+              type: "success",
+            })
+            resetData()
+            setIsSubmit(false)
+            onOk()
+          })
+          .catch((error) => {
+            console.log(error)
+            setNotify({
+              isOpen: true,
+              message: "Đã có lỗi xảy ra",
+              type: "error",
+            })
+          })
+      }
+    }
+  }
 
   return (
     <>
       <Modal
         open={isOpenModal}
-        onClose={() => setIsOpenModal(false)}
+        onClose={onClose}
         aria-labelledby="address-title"
         aria-describedby="address-description"
       >
         <div className="modal section-box">
-          <Close onClick={() => setIsOpenModal(false)} />
-          <Formik
-            initialValues={address}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-          >
-            {(formik) => (
-              <Form>
-                <div className="modal__box">
-                  <h3>Thông tin người nhận</h3>
-                  <FormControl
-                    control="input"
-                    type="text"
-                    name="name"
-                    label="Họ và tên"
-                  />
-                  <div className="modal__flex">
-                    <FormControl
-                      control="input"
-                      type="number"
-                      name="phone"
-                      label="Số điện thoại"
-                    />
-                    <FormControl
-                      control="input"
-                      type="email"
-                      name="email"
-                      label="Email"
-                    />
-                  </div>
-                </div>
-                <div className="modal__box">
-                  <h3>Địa chỉ nhận hàng</h3>
-                  <div className="modal__flex">
-                    <FormControl
-                      control="select"
-                      name="province"
-                      options={provinceData}
-                      label="Tỉnh / Thành phố"
-                    />
-                    <FormControl
-                      control="select"
-                      name="district"
-                      options={provinceOptions}
-                      label="Quận / Huyện"
-                    />
-                  </div>
-                  <div className="modal__flex">
-                    <FormControl
-                      control="select"
-                      name="commune"
-                      options={provinceOptions}
-                      label="Phường / Xã"
-                    />
-                    <FormControl
-                      control="input"
-                      type="text"
-                      name="detail"
-                      label="Đường / Số nhà..."
-                    />
-                  </div>
-                </div>
-                <div className="modal__button">
-                  <button
-                    type="button"
-                    className="btn-secondary"
-                    onClick={() => setIsOpenModal(false)}
+          <Close onClick={onClose} />
+          <form onSubmit={onSubmit} id="address">
+            <div className="modal__box" style={{ marginBottom: "30px" }}>
+              <h3>Thông tin người nhận</h3>
+              <TextField
+                sx={{ width: "100%" }}
+                id="outlined-basic"
+                label="Họ và tên"
+                variant="outlined"
+                value={user?.fullname}
+                disabled
+              />
+              <br />
+              <br />
+              <div className="modal__flex">
+                <TextField
+                  sx={{ width: "49%" }}
+                  id="outlined-basic"
+                  label="Số điện thoại"
+                  variant="outlined"
+                  value={user?.phone}
+                  disabled
+                />
+                <TextField
+                  sx={{ width: "49%" }}
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  value={user?.email}
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="modal__box">
+              <h3>Địa chỉ nhận hàng</h3>
+              <div className="modal__flex">
+                <FormControl
+                  sx={{ width: "49%" }}
+                  error={isSubmit && !selectedProvince}
+                >
+                  <InputLabel id="search-province">Tỉnh / Thành phố</InputLabel>
+                  <Select
+                    name="abc"
+                    MenuProps={{ autoFocus: false }}
+                    labelId="search-province"
+                    id="search-province"
+                    value={selectedProvince}
+                    label="Tỉnh / Thành phố"
+                    onChange={(e) => handleChangeProvince(e.target.value)}
+                    onClose={() => setSearchProvince("")}
                   >
-                    Hủy
-                  </button>
-                  <button
-                    type="submit"
-                    className="btn-primary"
-                    disabled={!formik.isValid}
+                    <ListSubheader>
+                      <TextField
+                        size="small"
+                        autoFocus
+                        placeholder="Tìm kiếm tỉnh / thành phố"
+                        fullWidth
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <SearchOutlined />
+                            </InputAdornment>
+                          ),
+                        }}
+                        onChange={(e) => setSearchProvince(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key !== "Escape") {
+                            e.stopPropagation()
+                          }
+                        }}
+                      />
+                    </ListSubheader>
+                    {displayedProvinces.map((option, i) => (
+                      <MenuItem key={i} value={option.ProvinceID}>
+                        {option.ProvinceName}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>
+                    {isSubmit &&
+                      !selectedProvince &&
+                      "Vui lòng chọn tỉnh / thành phố"}
+                  </FormHelperText>
+                </FormControl>
+                <FormControl
+                  sx={{ width: "49%" }}
+                  error={isSubmit && !selectedDistrict}
+                >
+                  <InputLabel id="search-district">Quận / Huyện</InputLabel>
+                  <Select
+                    MenuProps={{ autoFocus: false }}
+                    labelId="search-district"
+                    id="search-district"
+                    value={selectedDistrict}
+                    label="Quận / Huyện"
+                    onChange={(e) => handleChangeDistrict(e.target.value)}
+                    onClose={() => setSearchDistrict("")}
                   >
-                    Lưu
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
+                    <ListSubheader>
+                      <TextField
+                        size="small"
+                        autoFocus
+                        placeholder="Tìm kiếm quận / huyện"
+                        fullWidth
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <SearchOutlined />
+                            </InputAdornment>
+                          ),
+                        }}
+                        onChange={(e) => setSearchDistrict(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key !== "Escape") {
+                            e.stopPropagation()
+                          }
+                        }}
+                      />
+                    </ListSubheader>
+                    {displayedDistricts.map((option, i) => (
+                      <MenuItem key={i} value={option.DistrictID}>
+                        {option.DistrictName}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>
+                    {isSubmit &&
+                      !selectedDistrict &&
+                      "Vui lòng chọn quận / huyện"}
+                  </FormHelperText>
+                </FormControl>
+              </div>
+              <br />
+              <div className="modal__flex">
+                <FormControl
+                  sx={{ width: "49%" }}
+                  error={isSubmit && !selectedWard}
+                >
+                  <InputLabel id="search-ward">Phường / xã</InputLabel>
+                  <Select
+                    MenuProps={{ autoFocus: false }}
+                    labelId="search-ward"
+                    id="search-ward"
+                    value={selectedWard}
+                    label="Phường / xã"
+                    onChange={(e) => setSelectedWard(e.target.value)}
+                    onClose={() => setSearchWard("")}
+                  >
+                    <ListSubheader>
+                      <TextField
+                        size="small"
+                        autoFocus
+                        placeholder="Tìm kiếm phường / xã"
+                        fullWidth
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <SearchOutlined />
+                            </InputAdornment>
+                          ),
+                        }}
+                        onChange={(e) => setSearchWard(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key !== "Escape") {
+                            e.stopPropagation()
+                          }
+                        }}
+                      />
+                    </ListSubheader>
+                    {displayedWards.map((option, i) => (
+                      <MenuItem key={i} value={option.WardCode}>
+                        {option.WardName}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>
+                    {isSubmit && !selectedWard && "Vui lòng chọn phường / xã"}
+                  </FormHelperText>
+                </FormControl>
+
+                <TextField
+                  sx={{ width: "49%" }}
+                  id="outlined-basic"
+                  label="Địa chỉ chi tiết"
+                  variant="outlined"
+                  onChange={(e) => setDetail(e.target.value)}
+                  value={detail}
+                  error={isSubmit && !detail}
+                  helperText={
+                    isSubmit && !detail && "Vui lòng nhập địa chỉ chi tiết"
+                  }
+                />
+              </div>
+            </div>
+            <br />
+            <div className="modal__button">
+              <button type="button" className="btn-secondary" onClick={onClose}>
+                Hủy
+              </button>
+              <button type="submit" className="btn-primary">
+                Lưu
+              </button>
+            </div>
+          </form>
         </div>
       </Modal>
       <Notification notify={notify} setNotify={setNotify} />

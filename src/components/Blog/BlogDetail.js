@@ -3,7 +3,8 @@ import { Button } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { PuffLoader } from "react-spinners"
-import useAxios from "../../hook/useAxios"
+import { useAxios } from "../../hook/useAxios"
+import { formatDate } from "../../utils"
 import BlogComment from "./BlogComment"
 
 const BlogDetail = () => {
@@ -12,11 +13,11 @@ const BlogDetail = () => {
   const [comments, setComments] = useState([])
 
   const postApi = useAxios({
-    url: `/posts?id=${params.id}`,
+    url: `/api/blogs/${params.id}`,
   })
 
   const commentsApi = useAxios({
-    url: `/post_comments?post_id=${params.id}`,
+    url: `/api/blogs-comments/${params.id}`,
   })
 
   postApi.error && console.log(postApi.error.message)
@@ -24,15 +25,16 @@ const BlogDetail = () => {
 
   useEffect(() => {
     if (postApi.response !== null) {
-      setPost(postApi.response[0])
+      setPost(postApi.response.data)
     }
   }, [postApi.response])
+
   useEffect(() => {
     if (commentsApi.response !== null) {
-      setComments(commentsApi.response)
+      setComments(commentsApi.response.data.data)
     }
   }, [commentsApi.response])
-
+  console.log(post)
   return (
     <>
       {commentsApi.loading && postApi.loading ? (
@@ -43,17 +45,19 @@ const BlogDetail = () => {
         <div className="blog-detail">
           <h1 className="blog-detail__title">{post.title}</h1>
           <div className="blog-detail__info">
-            <p>Biên tập: Doãn Thắng - {post.date}</p>
+            <p>
+              Biên tập: {post?.author} - {formatDate(post?.created_at)}
+            </p>
             <div>
               <p>
-                <RemoveRedEye /> <span>4</span>
-              </p>
-              <p>
-                <RemoveRedEye /> <span>4</span>
+                <RemoveRedEye /> <span>{post.view}</span>
               </p>
             </div>
           </div>
-          <div className="blog-detail__content">{post.description}</div>
+          <img className="blog-detail__img" src={post.thumbnail} alt="" />
+          <div className="blog-detail__content">
+            <p>{post.content}</p>
+          </div>
           <div className="blog-detail__button">
             <Button
               variant="contained"
@@ -67,7 +71,7 @@ const BlogDetail = () => {
             </Button>
           </div>
 
-          <BlogComment comments={comments} />
+          <BlogComment blog_id={post?.id} comments={comments} />
         </div>
       )}
     </>

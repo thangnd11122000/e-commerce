@@ -52,26 +52,26 @@ const CategoryPopular = () => {
   const { loading, response, error } = useSelector(
     (state) => state.categoriesApi
   )
-  const [data, setData] = useState([])
+  error && console.log(error.message)
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     if (response !== null) {
-      setData(response)
+      setCategories(response)
     }
   }, [response])
-
+  
   return (
     <div className="category-popular">
       <div className="home__header">
         <h3>Danh mục phổ biến</h3>
         <span>Xem tất cả {">"}</span>
       </div>
-      {error && console.log(error.message)}
       <Slider {...settings} className="category-popular__slider">
-        {data.map((d, i) => (
+        {categories.map((c) => (
           <BannerCard
-            key={i}
-            data={d}
+            key={c.id}
+            data={c}
             loading={loading}
             className="banner-card"
           />

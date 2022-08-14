@@ -1,5 +1,5 @@
 import Slider from "@mui/material/Slider"
-import formatCurrency from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils"
 
 function valueText(value) {
   return `${formatCurrency(value)}đ`

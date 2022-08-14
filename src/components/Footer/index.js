@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <div className="footer">
-      <div className="footer__links large">
+      <div className="footer__links footer__links--large">
         <div className="footer__header" onClick={(e) => footerToggle(e)}>
           <h3>Download app</h3>
           <ArrowForward />

@@ -11,8 +11,8 @@ const initialState = {
 export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async () => {
-    const response = await axios.get("https://fake-server-app-101.herokuapp.com/categories")
-    return response.data
+    const response = await axios.get("/api/categories")
+    return response.data.data
   }
 )
 

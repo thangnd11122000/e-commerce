@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import { MoonLoader } from "react-spinners"
 import {
   closeDropdown,
   closeMenuSidebar,
   handleDropdown,
-} from "../../features/toggle/toggleSlice"
+} from "../../store/toggle/toggleSlice"
 import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material"
 import { css } from "@emotion/react"
 
@@ -16,18 +15,23 @@ const override = css`
 `
 
 const CategoriesDropdown = () => {
-  const [data, setData] = useState([])
-
   const dropdownRef = useRef(null)
-
+  const [windowSize, setWindowSize] = useState(getWindowSize())
   const isOpenDropdown = useSelector((state) => state.toggle.isOpenDropdown)
-  const { loading, response, error } = useSelector(
-    (state) => state.categoriesApi
-  )
+  const {
+    loading,
+    response: categories,
+    error,
+  } = useSelector((state) => state.categoriesApi)
   error && console.log(error)
   const dispatch = useDispatch()
 
   const submenuToggle = (e) => e.target.classList.toggle("active")
+
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window
+    return { innerWidth, innerHeight }
+  }
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -42,10 +46,22 @@ const CategoriesDropdown = () => {
   }, [dispatch, dropdownRef])
 
   useEffect(() => {
-    if (response !== null) {
-      setData(response)
+    function handleWindowResize() {
+      setWindowSize(getWindowSize())
     }
-  }, [response])
+
+    window.addEventListener("resize", handleWindowResize)
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (windowSize.innerWidth > 1200) {
+      dispatch(closeMenuSidebar())
+    }
+  }, [dispatch, windowSize.innerWidth])
 
   return (
     <div className="cat-dropdown" ref={dropdownRef}>
@@ -75,48 +91,40 @@ const CategoriesDropdown = () => {
           <MoonLoader color="#0032FE" css={override} size={30} />
         ) : (
           <>
-            {data &&
-              data.map((m, i) => (
-                <li key={i}>
-                  {m?.submenu ? (
-                    <Link
-                      to={m.link}
+            {categories &&
+              categories.map((category) => (
+                <li key={category.id}>
+                  {category.submenu.length ? (
+                    <p
+                      // to={m.link}
                       className="navigation-menu__link"
                       onClick={(e) => {
                         e.preventDefault()
                         submenuToggle(e)
                       }}
                     >
-                      {m.name}
-                    </Link>
+                      {category.category_name}
+                    </p>
                   ) : (
-                    <Link
-                      to={m.link}
+                    <p
+                      // to={m.link}
                       className="navigation-menu__link"
                       onClick={() => dispatch(closeDropdown())}
                     >
-                      {m.name}
-                    </Link>
+                      {category.category_name}
+                    </p>
                   )}
 
-                  {m.submenu && (
+                  {category.submenu && (
                     <div className="navigation-submenu">
-                      {m.submenu.map((s, sIndex) => (
+                      {category.submenu.map((subCategory) => (
                         <div
-                          key={sIndex}
+                          key={subCategory.id}
                           className="navigation-submenu__content"
                         >
-                          <p className="navigation-submenu__title">{s.title}</p>
-                          <ul className="navigation-submenu__list">
-                            {s.link.map((l, lIndex) => (
-                              <li
-                                key={lIndex}
-                                className="navigation-submenu__item"
-                              >
-                                <Link to={l.path}>{l.name}</Link>
-                              </li>
-                            ))}
-                          </ul>
+                          <p className="navigation-submenu__title">
+                            {subCategory.category_name}
+                          </p>
                         </div>
                       ))}
                     </div>

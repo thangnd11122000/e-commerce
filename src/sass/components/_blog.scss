@@ -105,16 +105,17 @@
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
   &__item {
-    flex-basis: 25%;
+    flex-basis: calc(25% - 4px);
     position: relative;
     height: 350px;
     padding: 20px;
     color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     @include breakpoint("md") {
       flex-basis: calc(50% - 2px);
       height: 300px;
@@ -133,13 +134,14 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        filter: brightness(40%);
         &:hover {
-          opacity: 0.8;
+          filter: brightness(100%);
         }
       }
     }
     &--title {
-      font-size: 24px;
+      font-size: 22px;
       line-height: 26px;
       z-index: 1;
       &:hover {
@@ -156,10 +158,19 @@
       z-index: 1;
     }
   }
-  &__item:nth-child(1) {
-    flex-basis: calc(50% - 8px);
-    @include breakpoint("md") {
-      flex-basis: 100%;
+  &__actions {
+    margin: 5px 0;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+  }
+  &__action {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    .MuiSvgIcon-root {
+      color: $primary;
     }
   }
 }
@@ -209,9 +220,10 @@
   overflow: hidden;
   margin: 10px;
   &__header {
-    // height ???
-    width: 100%;
     img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
       &:hover {
         opacity: 0.9;
       }
@@ -250,6 +262,25 @@
       color: #999;
     }
   }
+  &__items {
+    gap: 10px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+  }
+  &__item {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    .MuiSvgIcon-root {
+      width: 20px;
+      color: $primary;
+    }
+    span {
+      color: #222;
+    }
+  }
 }
 
 .blog-wrap {
@@ -281,6 +312,25 @@
     font-size: 14px;
     color: #999;
     margin-top: 5px;
+  }
+  &__actions {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .MuiSvgIcon-root {
+      width: 18px;
+      color: $primary;
+    }
+    span {
+      font-size: 14px;
+      color: #666;
+    }
   }
 }
 
@@ -352,8 +402,15 @@
       }
     }
   }
-  &__content {
+  &__content p{
     margin: 20px 0;
+    padding: 0 20px;
+    font-size: 19px;
+    line-height: 26px;
+  }
+  &__img{
+    display: block;
+    padding: 40px 100px;
   }
 }
 

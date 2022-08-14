@@ -7,7 +7,7 @@ function TransitionDown(props) {
 const Notification = ({ notify, setNotify }) => {
   const { isOpen, type, message } = notify
 
-  const handleClose = (event, reason) => {
+  const handleClose = (_event, reason) => {
     if (reason === "clickaway") {
       return
     }

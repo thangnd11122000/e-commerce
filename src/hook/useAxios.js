@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback } from "react"
 import axios from "axios"
 
-axios.defaults.baseURL = "https://fake-server-app-101.herokuapp.com/"
-
-const useAxios = ({ url, method = "get", body = null, headers = null }) => {
+export const useAxios = ({
+  url,
+  method = "get",
+  body = null,
+  headers = null,
+}) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
@@ -27,5 +30,3 @@ const useAxios = ({ url, method = "get", body = null, headers = null }) => {
 
   return { response, error, loading }
 }
-
-export default useAxios

@@ -1,39 +1,56 @@
 import BlogBanner from "../components/Blog/BlogBanner"
 import BlogSection from "../components/Blog/BlogSection"
-import PageLinks from "../components/PageLinks"
 import BlogAside from "../components/Blog/BlogAside"
 import { useEffect, useState } from "react"
 import { PuffLoader } from "react-spinners"
-import useAxios from "../hook/useAxios"
 import { Route, Routes } from "react-router-dom"
 import BlogList from "../components/Blog/BlogList"
 import BlogDetail from "../components/Blog/BlogDetail"
+import { useAxios } from "../hook/useAxios"
 
 const Blog = () => {
   const [postCategories, setPostCategories] = useState([])
   const [newPosts, setNewPosts] = useState([])
+  const [newProductPosts, setNewProductPosts] = useState([])
+  const [advisePosts, setAdvisePosts] = useState([])
 
-  const newPostsApi = useAxios({ url: "/posts" })
-  const postCategoriesApi = useAxios({ url: "/post_categories" })
-
-  newPostsApi.error && console.log(newPostsApi.error.message)
-  postCategoriesApi.error && console.log(postCategoriesApi.error)
+  const postCategoriesAPI = useAxios({ url: "/api/blogs-categories" })
+  const newPostsAPI = useAxios({
+    url: "/api/blogs/blog-categories/5?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+  })
+  const newProductPostsAPI = useAxios({
+    url: "/api/blogs/blog-categories/1?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+  })
+  const advisePostsAPI = useAxios({
+    url: "/api/blogs/blog-categories/2?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+  })
 
   useEffect(() => {
-    if (postCategoriesApi.response !== null) {
-      setPostCategories(postCategoriesApi.response)
+    if (postCategoriesAPI.response !== null) {
+      setPostCategories(postCategoriesAPI.response?.data)
     }
-  }, [postCategoriesApi.response])
+  }, [postCategoriesAPI.response])
 
   useEffect(() => {
-    if (newPostsApi.response !== null) {
-      setNewPosts(newPostsApi.response)
+    if (newPostsAPI.response !== null) {
+      setNewPosts(newPostsAPI.response?.data.data)
     }
-  }, [newPostsApi.response])
+  }, [newPostsAPI.response])
 
+  useEffect(() => {
+    if (newProductPostsAPI.response !== null) {
+      setNewProductPosts(newProductPostsAPI.response?.data.data)
+    }
+  }, [newProductPostsAPI.response])
+
+  useEffect(() => {
+    if (advisePostsAPI.response !== null) {
+      setAdvisePosts(advisePostsAPI.response?.data.data)
+    }
+  }, [advisePostsAPI.response])
   return (
     <>
-      {postCategoriesApi.loading ? (
+      {postCategoriesAPI.loading ? (
         <div className="product-loading" style={{ margin: "100px 0" }}>
           <PuffLoader color="#0032FE" size={60} />
         </div>
@@ -43,13 +60,13 @@ const Blog = () => {
             <Route
               path="/"
               element={
-                newPostsApi.loading ? (
+                newPostsAPI.loading ? (
                   <div className="product-loading">
                     <PuffLoader color="#0032FE" size={60} />
                   </div>
                 ) : (
                   <BlogBanner
-                    posts={newPosts.slice(0, 3)}
+                    posts={newPosts.slice(0, 4)}
                     categories={postCategories}
                   />
                 )
@@ -63,39 +80,39 @@ const Blog = () => {
                   path="/"
                   element={
                     <>
-                      {newPostsApi.loading ? (
+                      {newPostsAPI.loading ? (
                         <div className="blog-section product-loading">
                           <PuffLoader color="#0032FE" size={60} />
                         </div>
                       ) : (
                         <BlogSection
-                          link="/blog/news"
+                          link="/blog/category/5"
                           title="Tin mới nhất"
                           posts={newPosts.slice(3, 10)}
                           categories={postCategories}
                         />
                       )}
-                      {newPostsApi.loading ? (
+                      {newProductPostsAPI.loading ? (
+                        <div className="blog-section product-loading">
+                          <PuffLoader color="#0032FE" size={60} />
+                        </div>
+                      ) : (
+                        <BlogSection
+                          link="/blog/category/1"
+                          title="Sản phẩm mới"
+                          posts={newProductPosts}
+                          categories={postCategories}
+                        />
+                      )}
+                      {newPostsAPI.loading ? (
                         <div className="blog-section product-loading">
                           <PuffLoader color="#0032FE" size={60} />
                         </div>
                       ) : (
                         <BlogSection
                           link="/blog/category/2"
-                          title="Tin điện thoại"
-                          posts={newPosts.slice(3, 10)}
-                          categories={postCategories}
-                        />
-                      )}
-                      {newPostsApi.loading ? (
-                        <div className="blog-section product-loading">
-                          <PuffLoader color="#0032FE" size={60} />
-                        </div>
-                      ) : (
-                        <BlogSection
-                          link="/blog/category/3"
-                          title="Tin laptop"
-                          posts={newPosts.slice(3, 10)}
+                          title="Tư vấn"
+                          posts={advisePosts}
                           categories={postCategories}
                         />
                       )}
@@ -104,12 +121,6 @@ const Blog = () => {
                 />
               </Routes>
 
-              <Routes>
-                <Route
-                  path="/news"
-                  element={<BlogList categories={postCategories} />}
-                />
-              </Routes>
               <Routes>
                 <Route
                   path="/category/:id"

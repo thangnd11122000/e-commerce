@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { categoriesData } from "../../data"
-import formatCurrency from "../../utils/formatCurrency"
-import uppercaseFirstLetter from "../../utils/string"
+import { formatCurrency } from "../../utils"
+import { uppercaseFirstLetter } from "../../utils/string"
 
 const Selected = ({
   minMaxPrice,
