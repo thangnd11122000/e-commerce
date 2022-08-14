@@ -1,18 +1,19 @@
 import { Fragment } from "react"
+import { formatDate } from "../../utils";
 import BlogForm from "./BlogForm"
 
-const BlogComment = ({ comments }) => {
+const BlogComment = ({ blog_id,comments }) => {
   const formToggle = (e) => {
     e.target.classList.toggle("active")
   }
   const handleClick = (e) => {
     e.target.parentNode.parentNode.previousSibling.classList.remove("active")
   }
-
+  console.log(blog_id);
   return (
     <div className="blog-comment">
       <h3>{comments?.length || 0} bình luận</h3>
-      <BlogForm showButton={false} />
+      <BlogForm blog_id={blog_id} showButton={false} />
       <div className="blog-comment__item">
         {comments?.map((c) => (
           <Fragment key={c.id}>
@@ -21,11 +22,11 @@ const BlogComment = ({ comments }) => {
                 <img src={c.avatar} alt="" />
                 <div>
                   <h5>
-                    {c.name} - <span>{c.date}</span>
+                    {c.fullname} - <span>{formatDate(c.created_at)}</span>
                   </h5>
-                  <p>{c.comment}</p>
+                  <p>{c.content}</p>
                   <button onClick={formToggle}>Trả lời</button>
-                  <BlogForm handleClick={handleClick} />
+                  <BlogForm blog_id={blog_id} handleClick={handleClick} />
                 </div>
               </div>
             </div>
@@ -39,7 +40,7 @@ const BlogComment = ({ comments }) => {
                     </h5>
                     <p>{r.comment}</p>
                     <button onClick={formToggle}>Trả lời</button>
-                    <BlogForm handleClick={handleClick} />
+                    <BlogForm blog_id={blog_id} handleClick={handleClick} />
                   </div>
                 </div>
               </div>

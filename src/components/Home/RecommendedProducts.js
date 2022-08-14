@@ -2,8 +2,8 @@ import { Grid, Pagination } from "@mui/material"
 import { useEffect, useState } from "react"
 import usePagination from "../Pagination/Pagination"
 import ProductCard from "../Product/ProductCard"
-import useAxios from "../../hook/useAxios"
 import { PuffLoader } from "react-spinners"
+import { useAxios } from "../../hook/useAxios"
 
 const RecommendedProducts = () => {
   let [page, setPage] = useState(1)
@@ -29,7 +29,6 @@ const RecommendedProducts = () => {
     setPage(p)
     _DATA.jump(p)
   }
-
   return (
     <div className="recommended-products">
       <div className="home__header">
@@ -49,11 +48,12 @@ const RecommendedProducts = () => {
             columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}
             className="recommended-products__list"
           >
-            {_DATA.currentData().map((d, i) => (
-              <Grid item xs={1} key={i}>
-                <ProductCard product={d} loading={loading} />
-              </Grid>
-            ))}
+            {Array.isArray(_DATA.currentData()) &&
+              _DATA.currentData().map((d, i) => (
+                <Grid item xs={1} key={i}>
+                  <ProductCard product={d} loading={loading} />
+                </Grid>
+              ))}
           </Grid>
 
           <Pagination

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link, Rating } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
-import { addItem } from "../../features/cartItems/cartItemsSlice"
+import { addItem } from "../../store/cartItems/cartItemsSlice"
 import { useNavigate } from "react-router-dom"
 import getDiscount from "../../utils/getDiscount"
 import Notification from "../Notification"
 import { MoonLoader } from "react-spinners"
-import formatCurrency from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils"
 
 const Content = ({ product }) => {
   const { loading, response, error } = useSelector(
@@ -64,7 +64,7 @@ const Content = ({ product }) => {
   return (
     <>
       <div className="detail-content">
-        <div className="detail-content__name">{product.name}</div>
+        <div className="detail-content__name">{product.product_name}</div>
         <div className="detail-content__review">
           <Rating name="content-review" value={product.rating} readOnly />
           <p className="line">|</p>

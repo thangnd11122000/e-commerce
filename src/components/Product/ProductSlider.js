@@ -45,7 +45,7 @@ const settings = {
   ],
 }
 
-function ProductSlider({ value = 1, index = 1, products, loading }) {
+function ProductSlider({ value = 1, index = 1, products = [], loading }) {
   return (
     <div className="product-slider">
       {loading ? (
@@ -54,11 +54,11 @@ function ProductSlider({ value = 1, index = 1, products, loading }) {
         </div>
       ) : (
         <>
-          {products?.length ? (
+          {Array.isArray(products) && products?.length ? (
             <>
               {value === index && (
                 <Slider className="product-slider__list" {...settings}>
-                  {products.map((p, i) => {
+                  {products?.map((p, i) => {
                     return (
                       <div className="product-slider__item" key={i}>
                         <ProductCard product={p} />

@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import formatCurrency from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils"
 
 const Summary = () => {
   const totalPrice = useSelector((state) => state.cartItems.totalPrice)

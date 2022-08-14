@@ -1,39 +1,50 @@
 import BlogPostAside from "./BlogPostAside"
 import BlogTagAside from "./BlogTagAside"
-import { blogTagsData } from "../../data"
 import { useEffect, useState } from "react"
-import useAxios from "../../hook/useAxios"
+
 import { PuffLoader } from "react-spinners"
+import { useAxios } from "../../hook/useAxios"
 
-const BlogAside = ({categories}) => {
-  const [featuredPosts, setFeaturedPosts] = useState([])
+const BlogAside = ({ categories }) => {
+  const [ratePosts, setRatePosts] = useState([])
+  const [trickPosts, setTrickPosts] = useState([])
 
-  const featuredPostsApi = useAxios({ url: "/posts" })
-  featuredPostsApi.error && console.log(featuredPostsApi.error.message)
+  const ratePostsAPI = useAxios({
+    url: "/api/blogs/blog-categories/3?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+  })
+  const trickPostsAPI = useAxios({
+    url: "/api/blogs/blog-categories/4?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+  })
 
   useEffect(() => {
-    if (featuredPostsApi.response !== null) {
-      setFeaturedPosts(featuredPostsApi.response)
+    if (ratePostsAPI.response !== null) {
+      setRatePosts(ratePostsAPI.response?.data.data)
     }
-  }, [featuredPostsApi.response])
+  }, [ratePostsAPI.response])
+
+  useEffect(() => {
+    if (trickPostsAPI.response !== null) {
+      setTrickPosts(trickPostsAPI.response?.data.data)
+    }
+  }, [trickPostsAPI.response])
+
   return (
     <>
-      {featuredPostsApi.loading ? (
+      {ratePostsAPI.loading ? (
         <div className="blog-aside product-loading">
           <PuffLoader color="#0032FE" size={60} />
         </div>
       ) : (
-        <BlogPostAside title="Bài viết nổi bật" posts={featuredPosts} />
+        <BlogPostAside title="Tin đánh giá" posts={ratePosts} />
       )}
-      {featuredPostsApi.loading ? (
+      {trickPostsAPI.loading ? (
         <div className="blog-aside product-loading">
           <PuffLoader color="#0032FE" size={60} />
         </div>
       ) : (
-        <BlogPostAside title="Bài viết đã xem" posts={featuredPosts} />
+        <BlogPostAside title="Tin mẹo hay" posts={trickPosts} />
       )}
       <BlogTagAside title="Danh mục bài viết" tags={categories} />
-      <BlogTagAside title="Tag nổi bật" tags={blogTagsData} />
     </>
   )
 }

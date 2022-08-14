@@ -40,6 +40,7 @@
       color: #fff;
       text-transform: uppercase;
       text-align: center;
+      cursor: pointer;
       @include breakpoint("xl") {
         display: block;
       }
@@ -106,10 +107,41 @@
 
   &__contact {
     margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    p {
+      padding-right: 10px;
+    }
+    .logout-icon {
+      padding-left: 10px;
+      border-left: 1px solid rgba(255, 255, 255, 0.587);
+      font-size: 34px;
+      cursor: pointer;
+      &:hover{
+        color: $primary;
+      }
+    }
+    .logout-content {
+      display: none;
+      cursor: pointer;
+      &:hover{
+        color: $primary;
+      }
+    }
     @include breakpoint("xl") {
       padding: 15px 24px;
       font-weight: bold;
+      flex-direction: column;
+      align-items: flex-start;
+      .logout-icon {
+        display: none;
+      }
+      .logout-content {
+        margin-top: 30px;
+        display: block;
+      }
     }
   }
 }

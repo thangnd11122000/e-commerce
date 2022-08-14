@@ -5,21 +5,21 @@ import {
 } from "@mui/icons-material"
 import { Rating } from "@mui/material"
 import { Link } from "react-router-dom"
-import formatCurrency from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils"
 import getDiscount from "../../utils/getDiscount"
 
 const ProductCard = ({ product }) => {
-  const { id, name, image, price, discount, rating } = product
-  const discountValue = getDiscount(product.discount, product.price)
-
+  const { id, product_name, product_slug, image, price, discount, rating } =
+    product
+  const discountValue = getDiscount(discount, price)
   return (
     <div className="product-card">
       <div className="product-card__features">
         {discount ? (
-          discount.amount ? (
-            <span>-{discount.amount}đ</span>
+          discount.discount_type === "Price" ? (
+            <span>-{discount.discount_value}đ</span>
           ) : (
-            <span>{discount.percent}%</span>
+            <span>{discount.discount_value}%</span>
           )
         ) : (
           ""
@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
         <img src={image} alt="" className="product-card__image" />
       </Link>
       <Link to={`/detail/${id}`} className="product-card__name">
-        {name}
+        {product_name}
       </Link>
       <div className="product-card__price">
         {discount ? (

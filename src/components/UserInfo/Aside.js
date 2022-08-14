@@ -2,7 +2,7 @@ import { Close, Person } from "@mui/icons-material"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { closeMenuUser } from "../../features/toggle/toggleSlice"
+import { closeMenuUser } from "../../store/toggle/toggleSlice"
 
 const Aside = ({ page, setPage }) => {
   const [menu, setMenu] = useState(0)
@@ -22,7 +22,7 @@ const Aside = ({ page, setPage }) => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [dispatch])
-  
+
   return (
     <div
       className={`user__aside section-box  ${
@@ -30,7 +30,10 @@ const Aside = ({ page, setPage }) => {
       }`}
       ref={menuRef}
     >
-      <Close className="user__aside--icon" onClick={() => dispatch(closeMenuUser())} />
+      <Close
+        className="user__aside--icon"
+        onClick={() => dispatch(closeMenuUser())}
+      />
       <div className="user__info">
         <img src="/img/about/testimonial-5.jpg" alt="" />
         <div>

@@ -14,23 +14,13 @@ const BlogList = ({ categories }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (params.id) {
-      axios
-        .get(`/posts?category_id=${params.id}`)
-        .then((res) => {
-          setPosts(res.data)
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false))
-    } else {
-      axios
-        .get(`/posts`)
-        .then((res) => {
-          setPosts(res.data)
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false))
-    }
+    axios
+      .get(`/api/blogs/blog-categories/${params.id}`)
+      .then((res) => {
+        setPosts(res.data.data.data)
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false))
   }, [params.id])
 
   const count = Math.ceil(posts.length / perPage)

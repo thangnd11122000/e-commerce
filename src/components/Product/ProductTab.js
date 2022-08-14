@@ -23,19 +23,24 @@ const override = css`
 const ProductTab = ({ title, productsData, loading }) => {
   const categoriesApi = useSelector((state) => state.categoriesApi)
 
+  categoriesApi.error && console.log(categoriesApi.error.message)
+
   const [categories, setCategories] = useState([])
 
   const [value, setValue] = useState(0)
 
   const [products, setProducts] = useState(productsData)
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue)
   }
 
   useEffect(() => {
     if (categoriesApi.response !== null) {
-      setCategories([{ id: 0, name: "Tất cả" }, ...categoriesApi.response])
+      setCategories([
+        { id: 0, category_name: "Tất cả" },
+        ...categoriesApi.response,
+      ])
     }
   }, [categoriesApi.response])
 
@@ -62,52 +67,44 @@ const ProductTab = ({ title, productsData, loading }) => {
         </Link>
         <h3>{title}</h3>
         <Box>
-          {categoriesApi.loading ? (
-            <BarLoader color="#fff" height={4} css={override} size={15} />
-          ) : (
-            <>
-              {categoriesApi.error && console.log(categoriesApi.error.message)}
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                variant="scrollable"
-                scrollButtons="auto"
-                aria-label="product tabs"
-                className="product-tab__tabs"
-              >
-                {categories.map((c, i) => (
-                  <Tab
-                    key={i}
-                    label={c.name}
-                    {...a11yProps(i)}
-                    onClick={() => handleClick(i)}
-                    className="product-tab__button"
-                  />
-                ))}
-              </Tabs>
-            </>
+          {!categoriesApi.loading && (
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              scrollButtons="auto"
+              aria-label="product tabs"
+              className="product-tab__tabs"
+            >
+              {categories.map((c, i) => (
+                <Tab
+                  key={c.id}
+                  label={c.category_name}
+                  {...a11yProps(c.id)}
+                  onClick={() => handleClick(c.id)}
+                  className="product-tab__button"
+                />
+              ))}
+            </Tabs>
           )}
         </Box>
       </div>
       {categoriesApi.loading ? (
-          <div className="product-tab__body product-tab__body--loading">
-            <PuffLoader color="#fff" css={override} size={100} />
-          </div>
+        <></>
       ) : (
         <>
-          {categoriesApi.error && console.log(categoriesApi.error.message)}
           {categories.map((c, i) => (
             <div
               className="product-tab__body"
               role="tabpanel"
-              hidden={value !== i}
-              id={`product-tabpanel-${i}`}
-              aria-labelledby={`product-tab-${i}`}
-              key={i}
+              hidden={value !== c.id}
+              id={`product-tabpanel-${c.id}`}
+              aria-labelledby={`product-tab-${c.id}`}
+              key={c.id}
             >
               <ProductSlide
                 value={value}
-                index={i}
+                index={c.id}
                 products={products}
                 loading={loading}
               />

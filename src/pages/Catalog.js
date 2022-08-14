@@ -2,10 +2,10 @@ import { useCallback, useState, useEffect } from "react"
 import PageLinks from "../components/PageLinks"
 import { Tune } from "@mui/icons-material"
 import { useDispatch } from "react-redux"
-import { openFilter } from "../features/toggle/toggleSlice"
+import { openFilter } from "../store/toggle/toggleSlice"
 import FilterContainer from "../components/Catalog/FilterContainer"
 import ProductContainer from "../components/Catalog/ProductContainer"
-import useAxios from "../hook/useAxios"
+import { useAxios } from "../hook/useAxios"
 
 const initFilter = {
   category: [],
@@ -16,7 +16,7 @@ const initFilter = {
 const Catalog = () => {
   const [products, setProducts] = useState([])
 
-  const { response, loading, error } = useAxios({ url: "/products" })
+  const { response, loading, error } = useAxios({ url: "/api/product" })
   error && console.log(error.message)
 
   const [minMaxPrice, setMinMaxPrice] = useState([0, 9999])
@@ -96,7 +96,7 @@ const Catalog = () => {
 
   const updateProducts = useCallback(() => {
     if (response !== null) {
-      let temp = response
+      let temp = response.data
 
       if (filter.category.length > 0) {
         temp = temp.filter((t) => filter.category.includes(t.category_id))
@@ -136,7 +136,7 @@ const Catalog = () => {
 
   const getMinMaxPrice = (productsData) => {
     let price = []
-    productsData.map((p) => (price = [...price, p.price]))
+    productsData.map((p) => (price = [...price, p?.price || 0]))
     let minPrice = Math.min(...price)
     let maxPrice = Math.max(...price)
     return [minPrice, maxPrice]
@@ -148,7 +148,7 @@ const Catalog = () => {
 
   useEffect(() => {
     if (response !== null) {
-      const temp = getMinMaxPrice(response)
+      const temp = getMinMaxPrice(response.data)
       setMinMaxPrice(temp)
       setPriceSlider(temp)
     }
@@ -156,7 +156,7 @@ const Catalog = () => {
 
   useEffect(() => {
     if (response !== null) {
-      setProducts(response)
+      setProducts(response.data)
     }
   }, [response])
 
@@ -176,7 +176,6 @@ const Catalog = () => {
           setPriceSlider={setPriceSlider}
           clearFilter={clearFilter}
         />
-
         <ProductContainer
           products={products}
           loading={loading}

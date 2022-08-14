@@ -1,8 +1,8 @@
 const getDiscount = (discount, price) => {
   return discount
-    ? discount.amount
-      ? price - discount.amount
-      : price - (price * discount.percent) / 100
+    ? discount.discount_type === "Price"
+      ? price - discount.discount_value
+      : price - (price * discount.discount_value) / 100
     : null
 }
 

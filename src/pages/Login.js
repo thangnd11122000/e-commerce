@@ -1,24 +1,66 @@
+import { Alert, Snackbar } from "@mui/material"
 import { Form, Formik } from "formik"
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { BeatLoader } from "react-spinners"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
+import { login } from "../store/authSlice"
 
 const Login = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
+  const [openAlert, setOpenAlert] = useState(false)
+  const [typeAlert, setTypeAlert] = useState(0)
+  let location = useLocation()
   const initialValues = {
-    username: "",
+    email: "",
     password: "",
   }
+
   const validationSchema = Yup.object({
-    username: Yup.string().required("Nhập tên đăng nhập"),
+    email: Yup.string()
+      .email("Nhập đúng định dạng email")
+      .required("Nhập email"),
     password: Yup.string().required("Nhập mật khẩu"),
   })
   const onSubmit = (values) => {
-    console.log(values)
+    setLoading(true)
+    dispatch(login({ email: values.email, password: values.password }))
+      .unwrap()
+      .then(() => {
+        setOpenAlert(true)
+        setTypeAlert(1)
+        setLoading(false)
+      })
+      .catch((e) => {
+        setOpenAlert(true)
+        setTypeAlert(0)
+        setLoading(false)
+        console.log(e)
+      })
   }
 
   return (
     <div className="form form__container">
       <div className="form__item">
+        <Snackbar
+          open={openAlert}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          autoHideDuration={3000}
+          onClose={() => setOpenAlert(false)}
+        >
+          <Alert
+            variant="filled"
+            onClose={() => setOpenAlert(false)}
+            severity={typeAlert ? "success" : "error"}
+            sx={{ width: "100%" }}
+          >
+            {typeAlert ? "Đăng nhập thành công" : "Đăng nhập thất bại"}
+          </Alert>
+        </Snackbar>
         <h3>Đăng nhập</h3>
         <Formik
           initialValues={initialValues}
@@ -29,9 +71,9 @@ const Login = () => {
             <Form>
               <FormControl
                 control="input"
-                type="text"
-                label="Tên đăng nhập"
-                name="username"
+                type="email"
+                label="Email"
+                name="email"
               />
               <FormControl
                 control="input"
@@ -46,7 +88,7 @@ const Login = () => {
                 disabled={!formik.isValid}
                 className="btn-primary"
               >
-                Đăng nhập
+                Đăng nhập <BeatLoader size={5} loading={loading} color="#fff" />
               </button>
             </Form>
           )}

@@ -1,36 +1,99 @@
+import { Alert, Snackbar } from "@mui/material"
+import axios from "axios"
 import { Form, Formik } from "formik"
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
 
 const Register = () => {
+  let navigate = useNavigate()
+  const [errors, setErrors] = useState(null)
+  const [openAlert, setOpenAlert] = useState(false)
+  const [typeAlert, setTypeAlert] = useState(0)
   const initialValues = {
-    fullName: "",
+    fullname: "",
     email: "",
     phone: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
   }
 
   const validationSchema = Yup.object({
-    fullName: Yup.string().required("Nhập họ và tên"),
+    fullname: Yup.string().required("Nhập họ và tên"),
     email: Yup.string()
       .email("Nhập đúng định dạng email")
       .required("Nhập email"),
-    phone: Yup.string().required("Nhập số điện thoại"),
-    password: Yup.string().required("Nhập mật khẩu"),
-    confirmPassword: Yup.string()
+    phone: Yup.string()
+      .required("Nhập số điện thoại")
+      .matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        "Số điện thoại không chính xác"
+      ),
+    password: Yup.string()
+      .min(6, "Nhập ít nhất 6 kí tự")
+      .required("Nhập mật khẩu"),
+    password_confirmation: Yup.string()
       .oneOf([Yup.ref("password"), ""], "Nhập mật khẩu không giống nhau")
       .required("Nhập xác thực mật khẩu"),
   })
 
   const onSubmit = (values) => {
-    console.log(values)
+    setErrors(null)
+    try {
+      axios({
+        method: "POST",
+        url: "/api/auth/register",
+        data: values,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then(() => {
+          setOpenAlert(true)
+          setTypeAlert(1)
+          setTimeout(() => navigate("/login"), 3000)
+        })
+        .catch((error) => {
+          setOpenAlert(true)
+          setTypeAlert(0)
+          setErrors(error.response.data.errors)
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const renderErrors = () => {
+    return errors ? (
+      Object.keys(errors).map((key, index) => (
+        <p key={index} style={{ margin: "5px 0", color: "red" }}>
+          {errors[key][0]}
+        </p>
+      ))
+    ) : (
+      <></>
+    )
   }
 
   return (
     <div className="form form__container">
       <div className="form__item">
+        <Snackbar
+          open={openAlert}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          autoHideDuration={3000}
+          onClose={() => setOpenAlert(false)}
+        >
+          <Alert
+            variant="filled"
+            onClose={() => setOpenAlert(false)}
+            severity={typeAlert ? "success" : "error"}
+            sx={{ width: "100%" }}
+          >
+            {typeAlert ? "Đăng kí thành công" : "Đăng kí thất bại"}
+          </Alert>
+        </Snackbar>
         <h3>Đăng kí</h3>
         <Formik
           initialValues={initialValues}
@@ -38,12 +101,12 @@ const Register = () => {
           onSubmit={onSubmit}
         >
           {(formik) => (
-            <Form>
+            <Form onChange={() => setErrors(null)}>
               <FormControl
                 control="input"
                 type="text"
                 label="Họ và tên"
-                name="fullName"
+                name="fullname"
               />
               <FormControl
                 control="input"
@@ -53,7 +116,7 @@ const Register = () => {
               />
               <FormControl
                 control="input"
-                type="number"
+                type="text"
                 label="Số điện thoại"
                 name="phone"
               />
@@ -68,10 +131,10 @@ const Register = () => {
                 control="input"
                 type="password"
                 label="Xác thực mật khẩu"
-                name="confirmPassword"
+                name="password_confirmation"
                 autoComplete="on"
               />
-
+              {renderErrors()}
               <button
                 type="submit"
                 disabled={!formik.isValid}

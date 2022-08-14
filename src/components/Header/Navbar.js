@@ -2,24 +2,24 @@ import {
   Adb,
   FavoriteBorderOutlined,
   Menu,
-  PersonOutline,
   Search,
   ShoppingBagOutlined,
 } from "@mui/icons-material"
+import { BsPerson } from "react-icons/bs"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import {
   openCartSidebar,
   openMenuSidebar,
-} from "../../features/toggle/toggleSlice"
-import formatCurrency from "../../utils/formatCurrency"
+} from "../../store/toggle/toggleSlice"
+import { formatCurrency } from "../../utils"
 import { Action } from "./Action"
 
 const Navbar = ({ hideOnScrollDown, isScroll }) => {
   const totalProduct = useSelector((state) => state.cartItems.totalProduct)
   const totalPrice = useSelector((state) => state.cartItems.totalPrice)
+  const { isLoggedIn, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
-
   return (
     <div
       className={`navbar ${isScroll ? "navbar--scroll-down" : ""} ${
@@ -32,7 +32,7 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
           onClick={() => dispatch(openMenuSidebar())}
         />
         <Link to="/" className="navbar-logo__link">
-          ShopVip
+          TECHCHAIN
         </Link>
         <Link to="/" className="navbar-logo__icon">
           <Adb />
@@ -45,12 +45,21 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
         </button>
       </div>
       <div className="navbar-action">
-        <Action
-          icon={<PersonOutline />}
-          topText="Tài khoản"
-          bottomText="Đăng nhập"
-          link="/login"
-        />
+        {isLoggedIn ? (
+          <Action
+            icon={<BsPerson />}
+            topText="Xin chào!"
+            bottomText={user?.fullname}
+            link="/user"
+          />
+        ) : (
+          <Action
+            icon={<BsPerson />}
+            topText="Tài khoản"
+            bottomText="Đăng nhập"
+            link="/login"
+          />
+        )}
         <Action
           icon={<FavoriteBorderOutlined />}
           topText="Yêu thích"

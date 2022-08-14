@@ -1,6 +1,6 @@
 import ProductSlide from "../Product/ProductSlider"
 import { useEffect, useState } from "react"
-import useAxios from "../../hook/useAxios"
+import { useAxios } from "../../hook/useAxios"
 const SellingProducts = () => {
   const [products, setProducts] = useState([])
 

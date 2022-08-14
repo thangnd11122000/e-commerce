@@ -149,15 +149,15 @@ img {
   }
 }
 
-.MuiSnackbar-root {
-  top: 140px !important;
-  @include breakpoint("xl") {
-    top: 80px !important;
-  }
-  @include breakpoint("md") {
-    top: 65px !important;
-  }
-}
+// .MuiSnackbar-root {
+//   top: 140px !important;
+//   @include breakpoint("xl") {
+//     top: 80px !important;
+//   }
+//   @include breakpoint("md") {
+//     top: 65px !important;
+//   }
+// }
 
 .dialog {
   text-align: center;
