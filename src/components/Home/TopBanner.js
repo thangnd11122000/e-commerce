@@ -35,7 +35,7 @@ const banners = [
 const carousels = [
   {
     link: "/#",
-    title: "Phien Ban the thao <br /> Su lua chon tot nhat cho ban",
+    title: "Phiên Ban the thao <br /> Su lua chon tot nhat cho ban",
     description: "Ket noi khong day voi Tv, may tinh, laptop",
     image: slide1,
   },
