@@ -24,28 +24,28 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/catalog" element={<CatalogPage />} />
-      <Route path="/detail/:id" element={<DetailPage />} />
-      <Route path="/cart" element={<CartPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/blog/*" element={<BlogPage />} />
+      <Route path="/san-pham" element={<CatalogPage />} />
+      <Route path="/san-pham/:id" element={<DetailPage />} />
+      <Route path="/gio-hang" element={<CartPage />} />
+      <Route path="/ve-chung-toi" element={<AboutPage />} />
+      <Route path="/bai-viet/*" element={<BlogPage />} />
 
-      <Route path="/change-email" element={<ChangeEmailPage />} />
-      <Route path="/change-phone" element={<ChangePhonePage />} />
-      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-      <Route path="/change-password" element={<ChangePasswordPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/user" element={<UserPage />} />
+      <Route path="/doi-email" element={<ChangeEmailPage />} />
+      <Route path="/doi-so-dien-thoai" element={<ChangePhonePage />} />
+      <Route path="/quen-mat-khau" element={<ForgotPasswordPage />} />
+      <Route path="/doi-mat-khau" element={<ChangePasswordPage />} />
+      <Route path="/lien-he" element={<ContactPage />} />
+      <Route path="/trang-ca-nhan" element={<UserPage />} />
 
       <Route element={<ProtectedRoute />}>
-      <Route path="/checkout" element={<CheckoutPage />} />
-      <Route path="/success" element={<SuccessPage />} />
+      <Route path="/thanh-toan" element={<CheckoutPage />} />
+      <Route path="/thanh-cong" element={<SuccessPage />} />
 
       </Route>
 
       <Route element={<LoggedRoute />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/dang-nhap" element={<LoginPage />} />
+        <Route path="/dang-ky" element={<RegisterPage />} />
 
       </Route>
     </Routes>

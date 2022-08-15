@@ -8,6 +8,7 @@ import {
 } from "../../store/toggle/toggleSlice"
 import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material"
 import { css } from "@emotion/react"
+import { Link } from "react-router-dom"
 
 const override = css`
   display: block;
@@ -25,8 +26,6 @@ const CategoriesDropdown = () => {
   } = useSelector((state) => state.categoriesApi)
   error && console.log(error)
   const dispatch = useDispatch()
-
-  const submenuToggle = (e) => e.target.classList.toggle("active")
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window
@@ -94,26 +93,16 @@ const CategoriesDropdown = () => {
             {categories &&
               categories.map((category) => (
                 <li key={category.id}>
-                  {category.submenu.length ? (
-                    <p
-                      // to={m.link}
-                      className="navigation-menu__link"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        submenuToggle(e)
-                      }}
-                    >
-                      {category.category_name}
-                    </p>
-                  ) : (
-                    <p
-                      // to={m.link}
-                      className="navigation-menu__link"
-                      onClick={() => dispatch(closeDropdown())}
-                    >
-                      {category.category_name}
-                    </p>
-                  )}
+                  <Link
+                    to={`/san-pham?_cat=${category.id}`}
+                    className="navigation-menu__link active"
+                    onClick={() => {
+                      dispatch(closeDropdown())
+                      dispatch(closeMenuSidebar())
+                    }}
+                  >
+                    {category.category_name}
+                  </Link>
 
                   {category.submenu && (
                     <div className="navigation-submenu">
@@ -122,9 +111,16 @@ const CategoriesDropdown = () => {
                           key={subCategory.id}
                           className="navigation-submenu__content"
                         >
-                          <p className="navigation-submenu__title">
+                          <Link
+                            to={`/san-pham?_cat=${subCategory.id}`}
+                            className="navigation-submenu__title"
+                            onClick={() => {
+                              dispatch(closeDropdown())
+                              dispatch(closeMenuSidebar())
+                            }}
+                          >
                             {subCategory.category_name}
-                          </p>
+                          </Link>
                         </div>
                       ))}
                     </div>

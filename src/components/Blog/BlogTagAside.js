@@ -7,7 +7,7 @@ const BlogTagAside = ({ title, tags }) => {
       <div className="blog-aside__button">
         {tags?.map((tag, index) => (
           <Link
-            to={`/blog/category/${tag?.id}`}
+            to={`/bai-viet/category/${tag?.id}`}
             key={index}
             className="btn-primary"
           >

@@ -119,14 +119,14 @@
       border-left: 1px solid rgba(255, 255, 255, 0.587);
       font-size: 34px;
       cursor: pointer;
-      &:hover{
+      &:hover {
         color: $primary;
       }
     }
     .logout-content {
       display: none;
       cursor: pointer;
-      &:hover{
+      &:hover {
         color: $primary;
       }
     }
@@ -225,6 +225,7 @@
     left: 0;
     min-width: unset;
     border-bottom: 0.5px solid rgb(207, 207, 207);
+    min-height: unset;
   }
 
   &__content {
@@ -238,6 +239,9 @@
   }
   &__title {
     color: $text-dark;
+    &:hover {
+      color: $primary;
+    }
   }
   &__list {
     margin: 10px 0;

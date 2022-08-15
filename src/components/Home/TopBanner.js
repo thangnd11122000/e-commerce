@@ -72,7 +72,7 @@ const TopBanner = () => {
         <Grid item xs={12} lg={7}>
           <Slider {...settings}>
             {carousels.map((carousel, index) => (
-              <Link to="/cart" key={index}>
+              <Link to="/gio-hang" key={index}>
                 <div className="top-banner__carousel">
                   <img
                     src={carousel.image}

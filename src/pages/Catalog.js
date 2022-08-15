@@ -162,7 +162,7 @@ const Catalog = () => {
 
   return (
     <>
-      <PageLinks links={[{ name: "Mua sam", link: "/catalog" }]} />
+      <PageLinks links={[{ name: "Mua sam", link: "/san-pham" }]} />
       <div className="catalog">
         <div className="catalog__toggle" onClick={() => dispatch(openFilter())}>
           <Tune />

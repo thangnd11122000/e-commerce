@@ -10,7 +10,7 @@ const BlogBanner = ({ posts, categories }) => {
         {posts.map((p) => (
           <div key={p.id} className="blog-banner__item">
             <Link
-              to={`/blog/detail/${p.id}`}
+              to={`/bai-viet/${p.id}`}
               className="blog-banner__item--img"
             >
               <img src={p.thumbnail} alt={p.slug} />
@@ -21,7 +21,7 @@ const BlogBanner = ({ posts, categories }) => {
               </Link> */}
             </div>
             <Link
-              to={`/blog/detail/${p.id}`}
+              to={`/bai-viet/${p.id}`}
               className="blog-banner__item--title"
             >
               {p?.title?.length > 70

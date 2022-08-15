@@ -20,13 +20,13 @@ const Info = () => {
           <div className="user-form__group">
             <p>Email</p>
             <p>
-              thang*****@gmail.com <Link to="/change-email">Thay đổi</Link>
+              thang*****@gmail.com <Link to="/doi-email">Thay đổi</Link>
             </p>
           </div>
           <div className="user-form__group">
             <p>Số điện thoại</p>
             <p>
-              0355***0000 <Link to="/change-phone">Thay đổi</Link>
+              0355***0000 <Link to="/doi-so-dien-thoai">Thay đổi</Link>
             </p>
           </div>
 

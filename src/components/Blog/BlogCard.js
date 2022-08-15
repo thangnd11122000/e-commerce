@@ -6,12 +6,12 @@ const BlogCard = ({ post, titleSubstring = 55, substring = 95 }) => {
     <div className="blog-card">
       <div className="blog__tags"></div>
       <div className="blog-card__header">
-        <Link to={`/blog/detail/${post?.id}`}>
+        <Link to={`/bai-viet/detail/${post?.id}`}>
           <img src={post?.thumbnail} alt={post?.title} />
         </Link>
       </div>
       <div className="blog-card__body">
-        <Link to={`/blog/detail/${post?.id}`}>
+        <Link to={`/bai-viet/detail/${post?.id}`}>
           {post?.title.length > titleSubstring
             ? post?.title.substring(0, titleSubstring) + "..."
             : post?.title}
@@ -33,7 +33,7 @@ const BlogCard = ({ post, titleSubstring = 55, substring = 95 }) => {
         </div>
       </div>
       <div className="blog-card__footer">
-        <Link to={`/blog/detail/${post?.id}`}>Xem tiếp</Link>
+        <Link to={`/bai-viet/detail/${post?.id}`}>Xem tiếp</Link>
         <p>{post?.created_at.split(" ")[0]}</p>
       </div>
     </div>

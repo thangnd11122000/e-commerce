@@ -16,7 +16,7 @@ const Summary = () => {
         <p>Thành tiền</p>
         <p className="cart-summary__total">{formatCurrency(totalPrice)}đ</p>
       </div>
-      <Link to="/checkout">
+      <Link to="/thanh-toan">
         <button className="btn-primary">Thanh toán</button>
       </Link>
     </div>

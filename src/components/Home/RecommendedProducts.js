@@ -10,13 +10,13 @@ const RecommendedProducts = () => {
 
   const [products, setProducts] = useState([])
 
-  const { response, loading, error } = useAxios({ url: "/products" })
+  const { response, loading, error } = useAxios({ url: "/api/product?is_featured=featured&_page=1" })
 
   error && console.log(error.message)
 
   useEffect(() => {
     if (response !== null) {
-      setProducts(response)
+      setProducts(response.data)
     }
   }, [response])
 

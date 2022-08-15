@@ -28,14 +28,14 @@ const ProductCard = ({ product }) => {
       <div className="product-card__actions">
         <FavoriteBorder className="product-card__actions--icon" />
         <ShoppingBagOutlined className="product-card__actions--icon" />
-        <Link to={`/detail/${id}`}>
+        <Link to={`/san-pham/${id}`}>
           <RemoveRedEyeOutlined className="product-card__actions--icon" />
         </Link>
       </div>
-      <Link to={`/detail/${id}`}>
+      <Link to={`/san-pham/${id}`}>
         <img src={image} alt="" className="product-card__image" />
       </Link>
-      <Link to={`/detail/${id}`} className="product-card__name">
+      <Link to={`/san-pham/${id}`} className="product-card__name">
         {product_name}
       </Link>
       <div className="product-card__price">
