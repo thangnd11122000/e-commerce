@@ -3,10 +3,7 @@ import ProductSlide from "./ProductSlider"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Box from "@mui/material/Box"
-import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { BarLoader, PuffLoader } from "react-spinners"
-import { css } from "@emotion/react"
 
 const a11yProps = (index) => {
   return {
@@ -14,11 +11,6 @@ const a11yProps = (index) => {
     "aria-controls": `product-tabpanel-${index}`,
   }
 }
-
-const override = css`
-  display: block;
-  margin: 20px auto;
-`
 
 const ProductTab = ({ title, productsData, loading }) => {
   const categoriesApi = useSelector((state) => state.categoriesApi)
@@ -62,9 +54,9 @@ const ProductTab = ({ title, productsData, loading }) => {
   return (
     <div className="product-tab">
       <div className="product-tab__header">
-        <Link to="/#" className="product-tab__link">
+        {/* <Link to="/#" className="product-tab__link">
           Xem tất cả {">"}
-        </Link>
+        </Link> */}
         <h3>{title}</h3>
         <Box>
           {!categoriesApi.loading && (
@@ -76,9 +68,10 @@ const ProductTab = ({ title, productsData, loading }) => {
               aria-label="product tabs"
               className="product-tab__tabs"
             >
-              {categories.map((c, i) => (
+              {categories.map((c) => (
                 <Tab
                   key={c.id}
+                  value={c.id}
                   label={c.category_name}
                   {...a11yProps(c.id)}
                   onClick={() => handleClick(c.id)}
@@ -90,10 +83,10 @@ const ProductTab = ({ title, productsData, loading }) => {
         </Box>
       </div>
       {categoriesApi.loading ? (
-        <></>
+        <div className="product-tab__empty"></div>
       ) : (
         <>
-          {categories.map((c, i) => (
+          {categories.map((c) => (
             <div
               className="product-tab__body"
               role="tabpanel"

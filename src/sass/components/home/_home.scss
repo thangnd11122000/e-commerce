@@ -8,4 +8,12 @@
   @include breakpoint("md") {
     margin: 20px 20px;
   }
+
+  @include breakpoint("sm") {
+    margin: 20px 15px;
+  }
+
+  @include breakpoint("xs") {
+    margin: 20px 10px;
+  }
 }

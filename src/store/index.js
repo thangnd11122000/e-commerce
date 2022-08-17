@@ -4,6 +4,7 @@ import cartItemsReducer from "./cartItems/cartItemsSlice"
 import categoriesApiReducer from "./api/categoriesApiSlice"
 import authReducer from "./authSlice"
 import orderTempReducer from "./orderTemp"
+import notifyReducer from "./notifySlice"
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     categoriesApi: categoriesApiReducer,
     auth: authReducer,
     orderTemp: orderTempReducer,
+    notify: notifyReducer,
   },
 })

@@ -2,7 +2,9 @@
   position: relative;
   padding: 0px 10px;
 
-  
+  @include breakpoint("xs") {
+    padding: 5px;
+  }
 
   &__list {
     margin-top: 20px;
@@ -24,6 +26,10 @@
 
     @include breakpoint("md") {
       padding: 10px;
+    }
+
+    @include breakpoint("xs") {
+      padding: 5px;
     }
   }
 
