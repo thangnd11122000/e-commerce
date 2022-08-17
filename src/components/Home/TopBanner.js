@@ -2,53 +2,58 @@ import { Grid } from "@mui/material"
 import banner1 from "../../assets/img/banners/banner1.png"
 import banner2 from "../../assets/img/banners/banner2.png"
 import banner3 from "../../assets/img/banners/banner3.png"
-import banner4 from "../../assets/img/banners/banner4.png"
-import slide1 from "../../assets/img/banners/slide-home1.png"
-import slide2 from "../../assets/img/banners/slide-home2.png"
-import slide3 from "../../assets/img/banners/slide-home3.png"
+import banner4 from "../../assets/img/banners/banner4.jpeg"
+import slide1 from "../../assets/img/slider/slide_home_1.jpeg"
+import slide2 from "../../assets/img/slider/slide_home_2.jpeg"
+import slide3 from "../../assets/img/slider/slide_home_3.jpeg"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Link } from "react-router-dom"
 const banners = [
   {
-    link: "/#",
-    title: "Canyon Star Raider",
-    description: "Thiet bi am thanh",
+    link: "/san-pham?cat=31",
+    title: "Tai nghe Canyon",
+    description: "Thiết bị âm thanh",
     image: banner1,
   },
   {
-    link: "/#",
+    link: "/san-pham?cat=1",
     title: "Điện thoại Galaxy S20",
-    description: "Dien thoai",
+    description: "Điện thoại",
     image: banner2,
   },
   {
-    link: "/#",
+    link: "/san-pham?cat=31",
     title: "Galaxy Buds Plus",
     description: "Tai nghe",
     image: banner3,
   },
-  { link: "/#", title: "Ghe", description: "Ghe", image: banner4 },
+  {
+    link: "/san-pham?cat=5",
+    title: "Loa Bluetooh Speaker",
+    description: "Loa",
+    image: banner4,
+  },
 ]
 
 const carousels = [
   {
-    link: "/#",
-    title: "Phiên Ban the thao <br /> Su lua chon tot nhat cho ban",
-    description: "Ket noi khong day voi Tv, may tinh, laptop",
+    link: "/san-pham?cat=31",
+    title: "Tai nghe không dây <br /> Top Headphone",
+    description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide1,
   },
   {
-    link: "/#",
-    title: "Phien Ban the thao <br /> Su lua chon tot nhat cho ban",
-    description: "Ket noi khong day voi Tv, may tinh, laptop",
+    link: "/san-pham?cat=2",
+    title: "Laptop gamming <br /> Razer Blade 15",
+    description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide2,
   },
   {
-    link: "/#",
-    title: "Phien Ban the thao <br /> Su lua chon tot nhat cho ban",
-    description: "Ket noi khong day voi Tv, may tinh, laptop",
+    link: "/san-pham?cat=4",
+    title: "Đồng hồ hiện đại <br /> Galaxy watch",
+    description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide3,
   },
 ]
@@ -72,7 +77,7 @@ const TopBanner = () => {
         <Grid item xs={12} lg={7}>
           <Slider {...settings}>
             {carousels.map((carousel, index) => (
-              <Link to="/gio-hang" key={index}>
+              <Link to={carousel.link} key={index}>
                 <div className="top-banner__carousel">
                   <img
                     src={carousel.image}
@@ -98,8 +103,8 @@ const TopBanner = () => {
           <Grid container spacing={3} height={350} className="top-banner__list">
             {banners.map((banner, index) => (
               <Grid item xs={6} md={3} lg={6} key={index}>
-                <Link to="/#">
-                  <div href={banner.link} className="top-banner__item">
+                <Link to={banner.link}>
+                  <div className="top-banner__item">
                     <img src={banner.image} alt="Ảnh banner" />
                     <div className="top-banner__item-title">{banner.title}</div>
                     <div className="top-banner__item-description">
