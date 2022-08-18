@@ -6,26 +6,15 @@ function valueText(value) {
 }
 
 const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
-  const marks = [
-    {
-      value: minMaxPrice[0],
-      label: `${formatCurrency(minMaxPrice[0])}đ`,
-    },
-    {
-      value: minMaxPrice[1],
-      label: `${formatCurrency(minMaxPrice[1])}đ`,
-    },
-  ]
-
   const handleChange = (event, newValue) => {
     setPriceSlider(newValue)
   }
 
   return (
     <>
-      <h2>Giá </h2>
+      <h2>Giá sản phẩm</h2>
       <div>
-        <p>
+        <p style={{ margin: "15px 0 10px" }}>
           Từ {formatCurrency(minMaxPrice[0])}đ - Đến{" "}
           {formatCurrency(minMaxPrice[1])}đ
         </p>
@@ -38,7 +27,6 @@ const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
           getAriaValueText={valueText}
           min={minMaxPrice[0]}
           max={minMaxPrice[1]}
-          // marks={marks}
         />
       </div>
     </>

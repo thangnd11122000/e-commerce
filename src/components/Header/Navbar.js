@@ -5,15 +5,15 @@ import {
   Search,
   ShoppingBagOutlined,
 } from "@mui/icons-material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BsPerson } from "react-icons/bs"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import {
   openCartSidebar,
   openMenuSidebar,
 } from "../../store/toggle/toggleSlice"
-import { formatCurrency } from "../../utils"
+import { formatCurrency, getAllUrlParams } from "../../utils"
 import { Action } from "./Action"
 
 const Navbar = ({ hideOnScrollDown, isScroll }) => {
@@ -24,8 +24,13 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
   const navigate = useNavigate()
   const [search, setSearch] = useState("")
   const onSearch = (search) => {
-    navigate(`/san-pham?q=${search}`)
+    navigate(`/danh-sach?_q=${search}`)
   }
+  const location = useLocation()
+  useEffect(() => {
+    const params = getAllUrlParams(location.search)
+    setSearch(params._q || "")
+  }, [location.search])
 
   return (
     <div
@@ -49,6 +54,7 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
         <input
           type="text"
           placeholder="Tra cứu sản phẩm"
+          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <button onClick={() => onSearch(search)}>

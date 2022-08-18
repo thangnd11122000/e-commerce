@@ -1,4 +1,4 @@
-import { Grid, Pagination, Skeleton } from "@mui/material"
+import { Grid, Pagination } from "@mui/material"
 import { useEffect, useState } from "react"
 import usePagination from "../Pagination/Pagination"
 import ProductCard from "../Product/ProductCard"
@@ -54,7 +54,7 @@ const Products = ({
         <div className="product-loading">
           <PuffLoader color="#0032FE" size={60} />
         </div>
-      ) : (
+      ) : products?.length ? (
         <div>
           <Pagination
             className="pagination"
@@ -83,6 +83,10 @@ const Products = ({
             onChange={handleChange}
             onClick={handleMoveClick}
           />
+        </div>
+      ) : (
+        <div className="product-slider__empty">
+          <h3>Không có sản phẩm</h3>
         </div>
       )}
     </>

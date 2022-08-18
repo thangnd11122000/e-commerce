@@ -43,6 +43,17 @@ const ProductContainer = ({
     return () => window.removeEventListener("resize", handleWindowResize)
   }, [handleWindowResize])
 
+  useEffect(() => {
+    setWidth(window.innerWidth)
+    if (window.innerWidth > 900) {
+      setLayout(4)
+    } else if (window.innerWidth > 600) {
+      setLayout(3)
+    } else {
+      setLayout(2)
+    }
+  }, [])
+
   return (
     <div className="catalog__products" ref={productsRef}>
       <div className="catalog__selection">
@@ -66,7 +77,6 @@ const ProductContainer = ({
         products={products}
         loading={loading}
         layout={layout}
-        setLayout={setLayout}
         isResetPage={isResetPage}
         setIsResetPage={setIsResetPage}
         isSwitchLayout={isSwitchLayout}
