@@ -33,7 +33,7 @@
     }
     &__content {
       h3 {
-        width: 70%;
+        width: 50%;
         font-size: 26px;
 
         @include breakpoint("lg") {
@@ -44,6 +44,9 @@
         }
         @include breakpoint("sm") {
           font-size: 24px;
+        }
+        @include breakpoint("xs") {
+          font-size: 22px;
         }
       }
       p {

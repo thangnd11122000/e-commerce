@@ -20,11 +20,10 @@
   &__icon {
     margin-right: 10px;
 
-    .MuiSvgIcon-root {
-      font-size: 40px !important;
+    svg {
+      font-size: 40px;
       color: $primary;
-
-      @include breakpoint("sm") {
+      @include breakpoint("xs") {
         font-size: 30px !important;
       }
     }
