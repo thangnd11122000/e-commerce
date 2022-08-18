@@ -100,10 +100,16 @@
     left: 10px;
     span {
       padding: 5px 7px;
-      background: red;
       color: #fff;
       border-radius: 20px;
       font-size: 10px;
+      margin-right: 5px;
+    }
+    .discount {
+      background: red;
+    }
+    .new {
+      background: green;
     }
   }
 }

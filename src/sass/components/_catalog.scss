@@ -10,6 +10,9 @@
   @include breakpoint("md") {
     padding: 0 20px 30px;
   }
+  @include breakpoint("xs") {
+    padding: 0;
+  }
 
   &__toggle {
     display: none;

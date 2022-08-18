@@ -2,10 +2,9 @@ import { Close } from "@mui/icons-material"
 import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { closeFilter } from "../../store/toggle/toggleSlice"
-import FilterBrand from "./FilterBrand"
 import FilterCategory from "./FilterCategory"
-import FilterColor from "./FilterColor"
 import FilterPrice from "./FilterPrice"
+import FilterType from "./FilterType"
 
 const FilterContainer = ({
   filter,
@@ -55,10 +54,7 @@ const FilterContainer = ({
         />
       </div>
       <div className="catalog-filter__item">
-        <FilterColor filterSelect={filterSelect} filter={filter} />
-      </div>
-      <div className="catalog-filter__item">
-        <FilterBrand filterSelect={filterSelect} filter={filter} />
+        <FilterType filterSelect={filterSelect} filter={filter} />
       </div>
       <h3 className="btn-primary" onClick={clearFilter}>
         Xóa bộ lọc

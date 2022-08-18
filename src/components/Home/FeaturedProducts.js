@@ -5,7 +5,7 @@ import ProductCard from "../Product/ProductCard"
 import { PuffLoader } from "react-spinners"
 import { useAxios } from "../../hook/useAxios"
 
-const RecommendedProducts = () => {
+const FeaturedProducts = () => {
   let [page, setPage] = useState(1)
 
   const [products, setProducts] = useState([])
@@ -72,4 +72,4 @@ const RecommendedProducts = () => {
   )
 }
 
-export default RecommendedProducts
+export default FeaturedProducts

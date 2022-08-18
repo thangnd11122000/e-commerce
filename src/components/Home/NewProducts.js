@@ -1,10 +1,12 @@
 import ProductSlide from "../Product/ProductSlider"
 import { useEffect, useState } from "react"
 import { useAxios } from "../../hook/useAxios"
-const SellingProducts = () => {
+const NewProducts = () => {
   const [products, setProducts] = useState([])
 
-  const { response, loading, error } = useAxios({ url: "/api/product?is_new=new&_page=1&_limit=10" })
+  const { response, loading, error } = useAxios({
+    url: "/api/product?is_new=new&_page=1&_limit=10",
+  })
   error && console.log(error.message)
 
   useEffect(() => {
@@ -24,4 +26,4 @@ const SellingProducts = () => {
   )
 }
 
-export default SellingProducts
+export default NewProducts

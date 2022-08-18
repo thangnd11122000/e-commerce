@@ -94,7 +94,7 @@ const CategoriesDropdown = () => {
               categories.map((category) => (
                 <li key={category.id}>
                   <Link
-                    to={`/san-pham?_cat=${category.id}`}
+                    to={`/danh-sach?_cat=${category.id}`}
                     className="navigation-menu__link active"
                     onClick={() => {
                       dispatch(closeDropdown())
@@ -112,7 +112,7 @@ const CategoriesDropdown = () => {
                           className="navigation-submenu__content"
                         >
                           <Link
-                            to={`/san-pham?_cat=${subCategory.id}`}
+                            to={`/danh-sach?_cat=${subCategory.id}`}
                             className="navigation-submenu__title"
                             onClick={() => {
                               dispatch(closeDropdown())
