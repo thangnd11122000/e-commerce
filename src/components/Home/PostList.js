@@ -50,7 +50,7 @@ const PostList = () => {
     <div className="post-list">
       <div className="home__header">
         <h3>Bài viết gần đây</h3>
-        <span>Xem tất cả</span>
+        {/* <span>Xem tất cả</span> */}
       </div>
       {loading ? (
         <div className="product-loading">

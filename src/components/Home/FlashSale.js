@@ -11,7 +11,7 @@ const FlashSale = () => {
       setProducts(response.data)
     }
   }, [response])
-
+  
   return (
     <div className="flash-sale">
       <ProductTab

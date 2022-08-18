@@ -1,10 +1,10 @@
-import React from "react"
-import BannerCard from "./BannerCard"
-
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Link } from "react-router-dom"
+import banner5 from "../../assets/img/banners/banner5.png"
+import banner6 from "../../assets/img/banners/banner6.webp"
+import banner7 from "../../assets/img/banners/banner7.webp"
 
 const MiddleBanner = () => {
   const settings = {
@@ -33,30 +33,29 @@ const MiddleBanner = () => {
   }
   const data = [
     {
-      link: "/#",
-      name: "Camera phieen ban the thao tot nhat",
-      image: "banner-5.png",
+      link: "/san-pham?cat=3",
+      name: "Máy tính bảng phiên bản mới",
+      image: banner5,
     },
     {
-      link: "/#",
-      name: "Microshop surface laptop",
-      image: "banner-6.png",
+      link: "/san-pham?cat=1",
+      name: "Smart phones Oneplus 8",
+      image: banner6,
     },
     {
-      link: "/#",
-      name: "Speaker nike Air max 90",
-      image: "banner-7.png",
+      link: "/san-pham?cat=4",
+      name: "Apple Watch Series 4",
+      image: banner7,
     },
   ]
   return (
     <div className="middle-banner">
       <Slider {...settings}>
         {data.map((d, i) => (
-          // <BannerCard key={i} data={d} className="banner-card" />
           <div className="banner-card" key={i}>
             <div className="banner-card__item">
               <Link to={d.link}>
-                <img src={`/img/banner/${d.image}`} alt="" />
+                <img src={d.image} alt="" />
                 <div className="banner-card__content">
                   <h3>{d.name}</h3>
                   <p>Tìm kiếm ngay</p>

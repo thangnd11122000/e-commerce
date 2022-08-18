@@ -17,7 +17,7 @@ const SellingProducts = () => {
     <div className="selling-product">
       <div className="home__header">
         <h3>Sản phẩm mới</h3>
-        <span>Xem tất cả {">"}</span>
+        {/* <span>Xem tất cả {">"}</span> */}
       </div>
       <ProductSlide products={products} loading={loading} />
     </div>
