@@ -73,7 +73,7 @@ console.log(product);
   // )
   return (
     <>
-      <PageLinks links={[{ name: "Sản phẩm 1", link: "/catalog" }]} />
+      <PageLinks links={[{ name: "Sản phẩm 1", link: "/san-pham" }]} />
       <div className="detail">
         <>
           <div className="detail__toggle" onClick={() => setIsOpenModal(true)}>

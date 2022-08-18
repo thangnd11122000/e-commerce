@@ -86,7 +86,7 @@ const Blog = () => {
                         </div>
                       ) : (
                         <BlogSection
-                          link="/blog/category/5"
+                          link="/bai-viet/category/5"
                           title="Tin mới nhất"
                           posts={newPosts.slice(3, 10)}
                           categories={postCategories}
@@ -98,7 +98,7 @@ const Blog = () => {
                         </div>
                       ) : (
                         <BlogSection
-                          link="/blog/category/1"
+                          link="/bai-viet/category/1"
                           title="Sản phẩm mới"
                           posts={newProductPosts}
                           categories={postCategories}
@@ -110,7 +110,7 @@ const Blog = () => {
                         </div>
                       ) : (
                         <BlogSection
-                          link="/blog/category/2"
+                          link="/bai-viet/category/2"
                           title="Tư vấn"
                           posts={advisePosts}
                           categories={postCategories}
@@ -128,7 +128,7 @@ const Blog = () => {
                 />
               </Routes>
               <Routes>
-                <Route path="/detail/:id" element={<BlogDetail />} />
+                <Route path="/san-pham/:id" element={<BlogDetail />} />
               </Routes>
             </div>
             <div className="blog-layout__right">

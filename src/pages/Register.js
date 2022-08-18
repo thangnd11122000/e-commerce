@@ -157,7 +157,7 @@ const Register = () => {
           Đăng nhập với google
         </button>
         <p className="form__switch">
-          Bạn đã có tài khoản? <Link to="/login">Đăng nhập ngay</Link>
+          Bạn đã có tài khoản? <Link to="/dang-nhap">Đăng nhập ngay</Link>
         </p>
       </div>
     </div>

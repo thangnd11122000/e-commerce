@@ -5,9 +5,10 @@ import {
   Search,
   ShoppingBagOutlined,
 } from "@mui/icons-material"
+import { useState } from "react"
 import { BsPerson } from "react-icons/bs"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {
   openCartSidebar,
   openMenuSidebar,
@@ -20,6 +21,12 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
   const totalPrice = useSelector((state) => state.cartItems.totalPrice)
   const { isLoggedIn, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [search, setSearch] = useState("")
+  const onSearch = (search) => {
+    navigate(`/san-pham?q=${search}`)
+  }
+
   return (
     <div
       className={`navbar ${isScroll ? "navbar--scroll-down" : ""} ${
@@ -39,8 +46,12 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
         </Link>
       </div>
       <div className="navbar-search">
-        <input type="text" placeholder="Tra cứu sản phẩm" />
-        <button>
+        <input
+          type="text"
+          placeholder="Tra cứu sản phẩm"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button onClick={() => onSearch(search)}>
           <Search />
         </button>
       </div>
@@ -50,14 +61,14 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
             icon={<BsPerson />}
             topText="Xin chào!"
             bottomText={user?.fullname}
-            link="/user"
+            link="/trang-ca-nhan"
           />
         ) : (
           <Action
             icon={<BsPerson />}
             topText="Tài khoản"
             bottomText="Đăng nhập"
-            link="/login"
+            link="/dang-nhap"
           />
         )}
         <Action

@@ -13,6 +13,9 @@
   }
 
   .product-tab {
+    &__empty{
+      min-height: 300px;
+    }
     &__header {
       padding: 15px 20px 0;
       color: #fff;
@@ -26,7 +29,7 @@
       }
 
       h3 {
-        border-bottom: 3px solid #222;
+        border-bottom: 3px solid $text-primary;
         @include breakpoint("xl") {
           border-bottom: 0;
           padding-bottom: 0px;

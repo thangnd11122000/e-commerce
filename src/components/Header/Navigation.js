@@ -6,14 +6,13 @@ import { closeMenuSidebar } from "../../store/toggle/toggleSlice"
 import CategoriesDropdown from "./CategoriesDropdown"
 import { AiOutlineLogout } from "react-icons/ai"
 import { logout } from "../../store/authSlice"
-import { IconButton } from "@mui/material"
 
 const mainNav = [
   { name: "Trang chủ", path: "/" },
-  { name: "Cửa hàng", path: "/catalog" },
-  { name: "Về chúng tôi", path: "/about" },
-  { name: "Liên hệ", path: "/contact" },
-  { name: "Bài viết", path: "/blog" },
+  { name: "Cửa hàng", path: "/san-pham" },
+  { name: "Về chúng tôi", path: "/ve-chung-toi" },
+  { name: "Liên hệ", path: "/lien-he" },
+  { name: "Bài viết", path: "/bai-viet" },
 ]
 
 const Navigation = () => {
@@ -63,7 +62,9 @@ const Navigation = () => {
               index === activeNav ? "navigation__link--active" : ""
             }`}
           >
-            <Link to={nav.path}>{nav.name}</Link>
+            <Link to={nav.path} onClick={() => dispatch(closeMenuSidebar())}>
+              {nav.name}
+            </Link>
           </li>
         ))}
       </ul>

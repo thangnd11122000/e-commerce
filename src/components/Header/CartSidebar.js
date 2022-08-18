@@ -134,10 +134,10 @@ const CartSidebar = () => {
               </div>
             </div>
             <div className="cart-sidebar__footer">
-              <Link to="/cart" onClick={() => dispatch(closeCartSidebar())}>
+              <Link to="/gio-hang" onClick={() => dispatch(closeCartSidebar())}>
                 <button className="btn-secondary">Giỏ hàng</button>
               </Link>
-              <Link to="/checkout" onClick={() => dispatch(closeCartSidebar())}>
+              <Link to="/thanh-toan" onClick={() => dispatch(closeCartSidebar())}>
                 <button className="btn-primary">Thanh toán</button>
               </Link>
             </div>

@@ -6,11 +6,9 @@ import {
   handleMenuSidebar,
 } from "../../store/toggle/toggleSlice"
 import { MobileLink } from "./MobileLink"
-import menuIcon from "../../assets/img/icons/menu.png"
-import bagIcon from "../../assets/img/icons/bag.png"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
-import { BsPerson } from "react-icons/bs"
-import { BiHomeAlt } from "react-icons/bi"
+import { BiHomeAlt, BiUserCircle, BiShoppingBag } from "react-icons/bi"
+import { AiOutlineAppstore } from "react-icons/ai"
 
 const MobileBottom = () => {
   const dispatch = useDispatch()
@@ -31,13 +29,17 @@ const MobileBottom = () => {
       } `}
     >
       <MobileLink name="Trang chủ" link="/" icon={<BiHomeAlt />} />
-      <MobileLink name="Tài khoản" link="/user" icon={<BsPerson />} />
+      <MobileLink
+        name="Tài khoản"
+        link="/trang-ca-nhan"
+        icon={<BiUserCircle />}
+      />
       <div
         className="mobile-bottom__item"
         onClick={() => dispatch(handleMenuSidebar())}
       >
         <div className="mobile-bottom__link">
-          <img src={menuIcon} alt="Menu" />
+          <AiOutlineAppstore />
           <span>Menu</span>
         </div>
       </div>
@@ -47,7 +49,7 @@ const MobileBottom = () => {
         onClick={() => dispatch(handleCartSidebar())}
       >
         <div className="mobile-bottom__link">
-          <img src={bagIcon} alt="Giỏ hàng" />
+          <BiShoppingBag />
           <span>Giỏ hàng</span>
         </div>
       </div>

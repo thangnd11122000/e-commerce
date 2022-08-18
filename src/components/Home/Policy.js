@@ -1,26 +1,27 @@
-import { CardMembership } from "@mui/icons-material"
 import { Grid } from "@mui/material"
+import { FaShippingFast, FaHeadphonesAlt, FaMoneyBill } from "react-icons/fa"
+import { MdPayment } from "react-icons/md"
 
 const data = [
   {
     title: "Giao hàng miễn phí",
     subtitle: "Đơn hàng trên 200k",
-    icon: <CardMembership />,
+    icon: <FaShippingFast />,
   },
   {
     title: "Thanh toán an toàn",
     subtitle: "An toàn tuyệt đối",
-    icon: <CardMembership />,
+    icon: <MdPayment />,
   },
   {
     title: "Trung tâm trợ giúp",
     subtitle: "Hỗ trợ 24/7",
-    icon: <CardMembership />,
+    icon: <FaHeadphonesAlt />,
   },
   {
     title: "Hoàn tiền miễn phí",
     subtitle: "Nếu có vấn đề",
-    icon: <CardMembership />,
+    icon: <FaMoneyBill />,
   },
 ]
 

@@ -65,7 +65,7 @@ const CategoryPopular = () => {
     <div className="category-popular">
       <div className="home__header">
         <h3>Danh mục phổ biến</h3>
-        <span>Xem tất cả {">"}</span>
+        {/* <span>Xem tất cả {">"}</span> */}
       </div>
       <Slider {...settings} className="category-popular__slider">
         {categories.map((c) => (

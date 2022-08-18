@@ -9,7 +9,7 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
   return (
     <>
-      <PageLinks links={[{ name: "Giỏ hàng", link: "/cart" }]} />
+      <PageLinks links={[{ name: "Giỏ hàng", link: "/gio-hang" }]} />
       <div className="cart">
         <h3 className="cart__title">Giỏ hàng</h3>
         {cartItems.length > 0 ? (
@@ -25,7 +25,7 @@ const Cart = () => {
         ) : (
           <div className="cart__empty section-box">
             <h3>Không có sản phẩm</h3>
-            <Link to='/catalog' className="btn-primary">Mua ngay</Link>
+            <Link to='/san-pham' className="btn-primary">Mua ngay</Link>
           </div>
         )}
       </div>

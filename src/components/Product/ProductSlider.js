@@ -36,12 +36,6 @@ const settings = {
         slidesToShow: 2,
       },
     },
-    {
-      breakpoint: 425,
-      settings: {
-        slidesToShow: 1,
-      },
-    },
   ],
 }
 

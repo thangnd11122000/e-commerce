@@ -7,6 +7,7 @@ import "./App.css"
 import AppRoutes from "./routes"
 import { fetchCategories } from "./store/api/categoriesApiSlice"
 import { userInfo } from "./store/authSlice"
+import Notify from "./components/Notify"
 
 function App() {
   const isOpenMenuSidebar = useSelector(
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <div className="App">
+      <Notify />
       <Header />
       <AppRoutes />
       <Footer />

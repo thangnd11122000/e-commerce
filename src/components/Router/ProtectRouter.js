@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router';
 const ProtectedRoute = () => {
     const { isLoggedIn } = useSelector((state) => state.auth);
     if (!isLoggedIn) {
-        return <Navigate to="/login" replace />
+        return <Navigate to="/dang-nhap" replace />
     }
 
     return <Outlet />;

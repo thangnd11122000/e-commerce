@@ -110,7 +110,7 @@ const Login = () => {
         </button>
 
         <p className="form__switch">
-          Bạn chưa có tài khoản? <Link to="/register">Đăng kí ngay</Link>
+          Bạn chưa có tài khoản? <Link to="/dang-ky">Đăng kí ngay</Link>
         </p>
       </div>
     </div>

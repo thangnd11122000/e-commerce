@@ -4,20 +4,20 @@ import { useAxios } from "../../hook/useAxios"
 const SellingProducts = () => {
   const [products, setProducts] = useState([])
 
-  const { response, loading, error } = useAxios({ url: "/products?_limit=12" })
+  const { response, loading, error } = useAxios({ url: "/api/product?is_new=new&_page=1&_limit=10" })
   error && console.log(error.message)
 
   useEffect(() => {
     if (response !== null) {
-      setProducts(response)
+      setProducts(response.data)
     }
   }, [response])
 
   return (
     <div className="selling-product">
       <div className="home__header">
-        <h3>Sản phẩm bán chạy</h3>
-        <span>Xem tất cả {">"}</span>
+        <h3>Sản phẩm mới</h3>
+        {/* <span>Xem tất cả {">"}</span> */}
       </div>
       <ProductSlide products={products} loading={loading} />
     </div>

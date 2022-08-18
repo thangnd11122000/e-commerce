@@ -134,11 +134,10 @@ const Footer = () => {
         </div>
         <div className="footer__body">
           <p>
-            Tham gia cùng hơn 60.000 người đăng ký và nhận được một phiếu giảm
-            giá mới cho mỗi Ngày thứ bảy.
+            Nhận được một phiếu giảm giá mới cho mỗi Ngày thứ bảy.
           </p>
           <div className="footer__form">
-            <input type="text" name="" id="" placeholder="nhan email" />
+            <input type="text" name="" id="" placeholder="Nhập email của bạn" />
             <button>Gửi</button>
           </div>
           <p>
