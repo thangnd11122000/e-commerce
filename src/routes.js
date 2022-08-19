@@ -5,8 +5,8 @@ import ProtectedRoute from "./components/Router/ProtectRouter"
 
 const HomePage = React.lazy(() => import("./pages/Home"))
 // const CatalogPage = React.lazy(() => import("./pages/Catalog"))
-const DetailPage = React.lazy(() => import("./pages/Detail"))
-const CartPage = React.lazy(() => import("./pages/Cart"))
+// const DetailPage = React.lazy(() => import("./pages/Detail"))
+// const CartPage = React.lazy(() => import("./pages/Cart"))
 // const CheckoutPage = React.lazy(() => import("./pages/Checkout"))
 const AboutPage = React.lazy(() => import("./pages/About"))
 const BlogPage = React.lazy(() => import("./pages/Blog"))
@@ -25,8 +25,8 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       {/* <Route path="/danh-sach/*" element={<CatalogPage />} /> */}
-      <Route path="/san-pham/:id" element={<DetailPage />} />
-      <Route path="/gio-hang" element={<CartPage />} />
+      {/* <Route path="/san-pham/:id" element={<DetailPage />} /> */}
+      {/* <Route path="/gio-hang" element={<CartPage />} /> */}
       <Route path="/ve-chung-toi" element={<AboutPage />} />
       <Route path="/bai-viet/*" element={<BlogPage />} />
 
