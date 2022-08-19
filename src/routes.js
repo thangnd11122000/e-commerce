@@ -24,7 +24,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/danh-sach/*" element={<CatalogPage />} />
+      {/* <Route path="/danh-sach/*" element={<CatalogPage />} />
       <Route path="/san-pham/:id" element={<DetailPage />} />
       <Route path="/gio-hang" element={<CartPage />} />
       <Route path="/ve-chung-toi" element={<AboutPage />} />
@@ -47,7 +47,7 @@ const AppRoutes = () => {
         <Route path="/dang-nhap" element={<LoginPage />} />
         <Route path="/dang-ky" element={<RegisterPage />} />
 
-      </Route>
+      </Route> */}
     </Routes>
   )
 }
