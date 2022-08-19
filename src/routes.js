@@ -4,10 +4,10 @@ import LoggedRoute from "./components/Router/LoggedRouter"
 import ProtectedRoute from "./components/Router/ProtectRouter"
 
 const HomePage = React.lazy(() => import("./pages/Home"))
-const CatalogPage = React.lazy(() => import("./pages/Catalog"))
+// const CatalogPage = React.lazy(() => import("./pages/Catalog"))
 const DetailPage = React.lazy(() => import("./pages/Detail"))
 const CartPage = React.lazy(() => import("./pages/Cart"))
-const CheckoutPage = React.lazy(() => import("./pages/Checkout"))
+// const CheckoutPage = React.lazy(() => import("./pages/Checkout"))
 const AboutPage = React.lazy(() => import("./pages/About"))
 const BlogPage = React.lazy(() => import("./pages/Blog"))
 const LoginPage = React.lazy(() => import("./pages/Login"))
@@ -24,7 +24,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/danh-sach/*" element={<CatalogPage />} />
+      {/* <Route path="/danh-sach/*" element={<CatalogPage />} /> */}
       <Route path="/san-pham/:id" element={<DetailPage />} />
       <Route path="/gio-hang" element={<CartPage />} />
       <Route path="/ve-chung-toi" element={<AboutPage />} />
@@ -38,7 +38,7 @@ const AppRoutes = () => {
       <Route path="/trang-ca-nhan" element={<UserPage />} />
 
       <Route element={<ProtectedRoute />}>
-      <Route path="/thanh-toan" element={<CheckoutPage />} />
+      {/* <Route path="/thanh-toan" element={<CheckoutPage />} /> */}
       <Route path="/thanh-cong" element={<SuccessPage />} />
 
       </Route>
