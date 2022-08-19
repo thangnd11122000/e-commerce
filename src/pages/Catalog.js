@@ -6,14 +6,19 @@ import { openFilter } from "../store/toggle/toggleSlice"
 import FilterContainer from "../components/Catalog/FilterContainer"
 import ProductContainer from "../components/Catalog/ProductContainer"
 import { useAxios } from "../hook/useAxios"
+import { useLocation } from "react-router-dom"
+import { getAllUrlParams } from "../utils"
+import axios from "axios"
 
 const initFilter = {
   category: [],
-  color: [],
-  brand: [],
+  isNew: false,
+  isFeatured: false,
 }
 
 const Catalog = () => {
+  const location = useLocation()
+  const [productsData, setProductsData] = useState([])
   const [products, setProducts] = useState([])
 
   const { response, loading, error } = useAxios({ url: "/api/product" })
@@ -28,6 +33,27 @@ const Catalog = () => {
 
   const [filter, setFilter] = useState(initFilter)
 
+  useEffect(() => {
+    const params = getAllUrlParams(location.search)
+    const search = params._q || ""
+
+    axios
+      .get(`/api/product?q=${search}`)
+      .then((res) => {
+        if (res.data) {
+          setProductsData(res.data.data)
+        }
+      })
+      .catch(() => setProductsData([]))
+
+    if (params._cat) {
+      setFilter({
+        ...initFilter,
+        category: [...initFilter.category, +params._cat],
+      })
+    }
+  }, [location.search])
+
   const filterSelect = (type, checked, item) => {
     if (checked) {
       switch (type) {
@@ -37,13 +63,17 @@ const Catalog = () => {
             category: [...filter.category, item],
           })
           break
-        case "COLOR":
-          setFilter({ ...filter, color: [...filter.color, item] })
+        case "ISNEW":
+          setFilter({ ...filter, isNew: true })
           break
-        case "BRAND":
-          setFilter({ ...filter, brand: [...filter.brand, item] })
+        case "ISFEATURED":
+          setFilter({ ...filter, isFeatured: true })
           break
+        // case "COLOR":
+        //   setFilter({ ...filter, color: [...filter.color, item] })
+        //   break
         default:
+          break
       }
     } else {
       switch (type) {
@@ -51,15 +81,18 @@ const Catalog = () => {
           const newCategory = filter.category.filter((c) => c !== item)
           setFilter({ ...filter, category: newCategory })
           break
-        case "COLOR":
-          const newColor = filter.color.filter((c) => c !== item)
-          setFilter({ ...filter, color: newColor })
+        case "ISNEW":
+          setFilter({ ...filter, isNew: false })
           break
-        case "BRAND":
-          const brand = filter.brand.filter((b) => b !== item)
-          setFilter({ ...filter, brand: brand })
+        case "ISFEATURED":
+          setFilter({ ...filter, isFeatured: false })
           break
+        // case "COLOR":
+        //   const newColor = filter.color.filter((c) => c !== item)
+        //   setFilter({ ...filter, color: newColor })
+        //   break
         default:
+          break
       }
     }
   }
@@ -73,9 +106,13 @@ const Catalog = () => {
           let temp = productsData.filter((p) => "discount" in p)
           temp = temp.sort((product1, product2) => {
             const discount1 =
-              product1?.amount || (product1.price * product1.percent) / 100
+              product1?.discount?.discount_type === "Percent"
+                ? (product1.price * product1?.discount?.discount_value) / 100
+                : product1?.discount?.discount_value
             const discount2 =
-              product2?.amount || (product2.price * product2.percent) / 100
+              product2?.discount?.discount_type === "Percent"
+                ? (product2.price * product2?.discount?.discount_value) / 100
+                : product1?.discount?.discount_value
 
             return discount1 > discount2 ? 1 : -1
           })
@@ -95,21 +132,27 @@ const Catalog = () => {
   )
 
   const updateProducts = useCallback(() => {
-    if (response !== null) {
-      let temp = response.data
+    if (productsData !== null) {
+      let temp = productsData
 
       if (filter.category.length > 0) {
         temp = temp.filter((t) => filter.category.includes(t.category_id))
       }
-      if (filter.color.length > 0) {
-        temp = temp.filter((t) => {
-          const check = t.colors.find((c) => filter.color.includes(c))
-          return check !== undefined
-        })
+
+      if (filter.isNew) {
+        temp = temp.filter((t) => t.is_new === "New")
       }
-      if (filter.brand.length > 0) {
-        temp = temp.filter((t) => filter.brand.includes(t.brand))
+
+      if (filter.isFeatured) {
+        temp = temp.filter((t) => t.is_featured === "Featured")
       }
+
+      // if (filter.color.length > 0) {
+      //   temp = temp.filter((t) => {
+      //     const check = t.colors?.find((c) => filter.color.includes(c))
+      //     return check !== undefined
+      //   })
+      // }
 
       temp = filterSorting(temp)
 
@@ -121,12 +164,12 @@ const Catalog = () => {
       setIsResetPage(true)
     }
   }, [
-    filter.brand,
     filter.category,
-    filter.color,
+    filter.isFeatured,
+    filter.isNew,
     filterSorting,
     priceSlider,
-    response,
+    productsData,
   ])
 
   const clearFilter = () => {
@@ -154,15 +197,15 @@ const Catalog = () => {
     }
   }, [response])
 
-  useEffect(() => {
-    if (response !== null) {
-      setProducts(response.data)
-    }
-  }, [response])
+  // useEffect(() => {
+  //   if (response !== null) {
+  //     setProducts(response.data)
+  //   }
+  // }, [response])
 
   return (
     <>
-      <PageLinks links={[{ name: "Mua sam", link: "/san-pham" }]} />
+      <PageLinks links={[{ name: "Mua sam", link: "/danh-sach" }]} />
       <div className="catalog">
         <div className="catalog__toggle" onClick={() => dispatch(openFilter())}>
           <Tune />

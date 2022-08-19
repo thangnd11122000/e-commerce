@@ -33,17 +33,17 @@ const MiddleBanner = () => {
   }
   const data = [
     {
-      link: "/san-pham?cat=3",
+      link: "/danh-sach?_cat=15",
       name: "Máy tính bảng phiên bản mới",
       image: banner5,
     },
     {
-      link: "/san-pham?cat=1",
+      link: "/danh-sach?_cat=8",
       name: "Smart phones Oneplus 8",
       image: banner6,
     },
     {
-      link: "/san-pham?cat=4",
+      link: "/danh-sach?_cat=24",
       name: "Apple Watch Series 4",
       image: banner7,
     },

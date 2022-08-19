@@ -12,25 +12,25 @@ import "slick-carousel/slick/slick-theme.css"
 import { Link } from "react-router-dom"
 const banners = [
   {
-    link: "/san-pham?cat=31",
+    link: "/danh-sach?_cat=31",
     title: "Tai nghe Canyon",
     description: "Thiết bị âm thanh",
     image: banner1,
   },
   {
-    link: "/san-pham?cat=1",
+    link: "/danh-sach?_cat=7",
     title: "Điện thoại Galaxy S20",
     description: "Điện thoại",
     image: banner2,
   },
   {
-    link: "/san-pham?cat=31",
+    link: "/danh-sach?_cat=31",
     title: "Galaxy Buds Plus",
     description: "Tai nghe",
     image: banner3,
   },
   {
-    link: "/san-pham?cat=5",
+    link: "/danh-sach?_cat=5",
     title: "Loa Bluetooh Speaker",
     description: "Loa",
     image: banner4,
@@ -39,19 +39,19 @@ const banners = [
 
 const carousels = [
   {
-    link: "/san-pham?cat=31",
+    link: "/danh-sach?_cat=31",
     title: "Tai nghe không dây <br /> Top Headphone",
     description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide1,
   },
   {
-    link: "/san-pham?cat=2",
+    link: "/danh-sach?_cat=2",
     title: "Laptop gamming <br /> Razer Blade 15",
     description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide2,
   },
   {
-    link: "/san-pham?cat=4",
+    link: "/danh-sach?_cat=4",
     title: "Đồng hồ hiện đại <br /> Galaxy watch",
     description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide3,

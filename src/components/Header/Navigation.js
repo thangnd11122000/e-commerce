@@ -9,7 +9,7 @@ import { logout } from "../../store/authSlice"
 
 const mainNav = [
   { name: "Trang chủ", path: "/" },
-  { name: "Cửa hàng", path: "/san-pham" },
+  { name: "Cửa hàng", path: "/danh-sach" },
   { name: "Về chúng tôi", path: "/ve-chung-toi" },
   { name: "Liên hệ", path: "/lien-he" },
   { name: "Bài viết", path: "/bai-viet" },

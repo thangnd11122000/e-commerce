@@ -14,7 +14,7 @@ import getDiscount from "../../utils/getDiscount"
 import Notification from "../Notification"
 
 const ProductCard = ({ product }) => {
-  const { id, product_name, image, price, discount, rating } = product
+  const { id, product_name, image, price, discount, rating, is_new } = product
   const discountValue = getDiscount(discount, price)
 
   const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" })
@@ -46,13 +46,14 @@ const ProductCard = ({ product }) => {
       <div className="product-card__features">
         {discount ? (
           discount.discount_type === "Price" ? (
-            <span>-{discount.discount_value}đ</span>
+            <span className="discount">-{discount.discount_value}đ</span>
           ) : (
-            <span>{discount.discount_value}%</span>
+            <span className="discount">{discount.discount_value}%</span>
           )
         ) : (
           ""
         )}
+        {is_new === "New" && <span className="new">New</span>}
       </div>
       <div className="product-card__actions">
         <FavoriteBorder className="product-card__actions--icon" />

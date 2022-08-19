@@ -13,7 +13,7 @@ const Sorting = ({ setSorting }) => {
   return (
     <div className="catalog__sorting">
       <label htmlFor="sorting">Sắp xếp</label>
-      <select id="sorting" onClick={handleChange}>
+      <select id="sorting" onChange={handleChange}>
         {options.map((o, i) => (
           <option key={i} value={o.value}>
             {o.name}
