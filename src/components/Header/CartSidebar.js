@@ -77,7 +77,7 @@ const CartSidebar = () => {
         {totalProduct > 0 ? (
           <>
             <div className="cart-sidebar__body">
-              {cartItems.map((product, index) => {
+              {cartItems?.map((product, index) => {
                 const discountValue = getDiscount(
                   product.discount,
                   product.price
