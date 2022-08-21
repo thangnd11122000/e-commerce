@@ -125,7 +125,9 @@ const CartSidebar = () => {
                         </Tooltip>
                       </Link>
                       <Tooltip title="Xóa sản phẩm">
-                        <IconButton onClick={() => handleDelete(product.productId)}>
+                        <IconButton
+                          onClick={() => handleDelete(product.productId)}
+                        >
                           <Delete />
                         </IconButton>
                       </Tooltip>
