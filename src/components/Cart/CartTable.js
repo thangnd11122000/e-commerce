@@ -175,9 +175,10 @@ const CartTable = () => {
                             {product.product_name}
                           </Link>
                           <div className="product__option">
-                            {product?.selectedOption?.map((option) => (
-                              <p key={option.option_id}>{option.detail}</p>
-                            ))}
+                            {product?.selectedOption?.length &&
+                              product?.selectedOption?.map((option) => (
+                                <p key={option.option_id}>{option.detail}</p>
+                              ))}
                           </div>
                         </div>
                       </div>

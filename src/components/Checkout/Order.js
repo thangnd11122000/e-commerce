@@ -9,7 +9,7 @@ const Order = () => {
     <div className="section-box checkout__order">
       <h3 className="section-box__title">Thông tin đơn hàng</h3>
       <div className="checkout-product">
-        {cartItems?.map((product, index) => {
+        {cartItems?.length && cartItems?.map((product, index) => {
           const discountValue = getDiscount(product.discount, product.price)
           return (
             <div key={index} className="checkout-product__item">
