@@ -63,8 +63,8 @@ const UserAddress = ({ currentAddressId, setCurrentAddressId }) => {
     setLoading(true)
     user &&
       getAllAddressAPI(user.id)
-        .then((data) => {
-          var temp = []
+        .then(async (data) => {
+          let temp = []
           data.forEach(async (d) => {
             const { province_id, district_id, ward_id } = d
             d.province_detail = await getProvinceDetail(province_id)

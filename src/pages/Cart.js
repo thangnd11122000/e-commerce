@@ -25,7 +25,9 @@ const Cart = () => {
         ) : (
           <div className="cart__empty section-box">
             <h3>Không có sản phẩm</h3>
-            <Link to='/san-pham' className="btn-primary">Mua ngay</Link>
+            <Link to="/danh-sach" className="btn-primary">
+              Mua ngay
+            </Link>
           </div>
         )}
       </div>

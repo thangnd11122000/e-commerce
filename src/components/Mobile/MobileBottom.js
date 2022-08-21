@@ -1,10 +1,7 @@
 import { FavoriteBorderOutlined } from "@mui/icons-material"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import {
-  handleCartSidebar,
-  handleMenuSidebar,
-} from "../../store/toggle/toggleSlice"
+import { handleCartSidebar, handleMenuSidebar } from "../../store/toggleSlice"
 import { MobileLink } from "./MobileLink"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import { BiHomeAlt, BiUserCircle, BiShoppingBag } from "react-icons/bi"

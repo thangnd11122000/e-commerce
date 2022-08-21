@@ -5,7 +5,7 @@ import Header from "./components/Header"
 import MobileBottom from "./components/Mobile/MobileBottom"
 import "./App.css"
 import AppRoutes from "./routes"
-import { fetchCategories } from "./store/api/categoriesApiSlice"
+import { fetchCategories } from "./store/categoriesApiSlice"
 import { userInfo } from "./store/authSlice"
 import Notify from "./components/Notify"
 

@@ -2,7 +2,7 @@ import { Close, Person } from "@mui/icons-material"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { closeMenuUser } from "../../store/toggle/toggleSlice"
+import { closeMenuUser } from "../../store/toggleSlice"
 
 const Aside = ({ page, setPage }) => {
   const [menu, setMenu] = useState(0)
