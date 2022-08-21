@@ -18,31 +18,32 @@ const Checkout = () => {
   const [shippingFee, setShippingFee] = useState(0)
   const [currentAddressId, setCurrentAddressId] = useState(null)
 
-  const handleOrderTemp = () => {
-    console.log(
-      JSON.stringify({
-        order: {
-          customer_id: user?.id,
-          order_date: `${CURRENT_DATE} ${CURRENT_TIME}`,
-          order_note: note,
-          address_id: currentAddressId,
-          shipping_fee: shippingFee,
-          payment_type_id: paymentType,
-          order_status: 1,
-        },
-        details: [
-          {
-            product_id: 1,
-            quantity: 1,
-            unit_price: 200000,
-            product_option: "2,5",
-            discount_amount: "30000",
-          },
-        ],
-      })
-    )
-  }
-  handleOrderTemp()
+  // const handleOrderTemp = () => {
+  //   console.log(
+  //     JSON.stringify({
+  //       order: {
+  //         customer_id: user?.id,
+  //         order_date: `${CURRENT_DATE} ${CURRENT_TIME}`,
+  //         order_note: note,
+  //         address_id: currentAddressId,
+  //         shipping_fee: shippingFee,
+  //         payment_type_id: paymentType,
+  //         order_status: 1,
+  //       },
+  //       details: [
+  //         {
+  //           product_id: 1,
+  //           quantity: 1,
+  //           unit_price: 200000,
+  //           product_option: "2,5",
+  //           discount_amount: "30000",
+  //         },
+  //       ],
+  //     })
+  //   )
+  // }
+  // handleOrderTemp()
+
   const handleOrder = () => {
     if (paymentType) {
       switch (paymentType) {

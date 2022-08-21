@@ -76,7 +76,7 @@ const Content = ({ product }) => {
   }, [product])
 
   useEffect(() => {
-    if (product && product.list_option.length) {
+    if (product && product.list_option?.length) {
       let prices = product.list_option
         ?.flat()
         .filter((option) => option.price)
@@ -87,11 +87,11 @@ const Content = ({ product }) => {
             `${formatCurrency(prices[0])}đ - ${formatCurrency(prices[1])}đ`
           )
         : setRangePrice(prices[0])
-    }
+    } else setPrice(product.price)
   }, [product])
 
   useEffect(() => {
-    if (product && product.list_option.length) {
+    if (product && product.list_option?.length) {
       const optionsName = product.list_option?.[0]
         .filter((list) => list.option)
         .map((list) => list.option)
@@ -137,7 +137,7 @@ const Content = ({ product }) => {
   }, [numberOptions, product, selectedOption])
 
   const renderOptions = () =>
-    Object.keys(options).map((key) => (
+    Object.keys(options)?.map((key) => (
       <div key={key} className="detail-content__option">
         <p>{key}:</p>
         <div className="radio-toolbar">

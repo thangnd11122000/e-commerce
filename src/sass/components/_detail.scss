@@ -161,6 +161,12 @@
 
   &__related {
     padding: 10px 100px 50px;
+    @include breakpoint("xl") {
+      padding: 10px 50px 50px;
+    }
+    @include breakpoint("xl") {
+      padding: 10px 20px 50px;
+    }
   }
 
   &__modal {
@@ -361,9 +367,9 @@
     margin-bottom: 30px;
   }
   &__desc {
-    // height: 150px;
+    height: 300px;
     overflow: hidden;
-    &--active {
+    &.active {
       height: auto;
     }
   }

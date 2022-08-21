@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Description from "../components/Detail/Description"
 import Preview from "../components/Detail/Preview"
 import Review from "../components/Detail/Review"
@@ -35,25 +35,21 @@ const Detail = () => {
   const productApi = useAxios({ url: `/api/product/${params.id}` })
   // const ratingsApi = useAxios({ url: `/ratings?product_id=${params.id}` })
 
-  productApi.error && console.log(productApi.error.message)
   // ratingsApi.error && console.log(ratingsApi.error.message)
 
-  // const getProductsByCategory = useCallback(
-  //   (id) => {
-  //     axios
-  //       .get(`/products?category_id=${product.category_id}`)
-  //       .then((res) => {
-  //         setProductsByCategory(res.data)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //       .finally(() => {
-  //         setLoadingProductsByCategory(false)
-  //       })
-  //   },
-  //   [product.category_id]
-  // )
+  const getProductsByCategory = useCallback((id) => {
+    axios
+      .get(`/api/product?category_id=${id}&_page=1&_limit=12`)
+      .then((res) => {
+        setProductsByCategory(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setLoadingProductsByCategory(false)
+      })
+  }, [])
 
   useEffect(() => {
     if (productApi.response !== null) {
@@ -67,14 +63,14 @@ const Detail = () => {
   //   }
   // }, [ratingsApi.response])
 
-  // useEffect(() => {
-  //   product && getProductsByCategory(product.category_id)
-  // }, [getProductsByCategory, product])
+  useEffect(() => {
+    product?.category_id && getProductsByCategory(product.category_id)
+  }, [getProductsByCategory, product])
 
   // const relatedProduct = productsData.filter(
   //   (e) => e.category_id === product.category_id
   // )
-  
+
   return (
     <>
       <PageLinks links={[{ name: "Sản phẩm 1", link: "/san-pham" }]} />
@@ -126,7 +122,6 @@ const Detail = () => {
       <div className="detail__related">
         <div className="home__header">
           <h3>Sản phẩm liên quan</h3>
-          <span>Xem tất cả {">"}</span>
         </div>
         <ProductSlider
           products={productsByCategory}
