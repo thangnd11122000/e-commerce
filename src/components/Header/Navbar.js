@@ -9,10 +9,7 @@ import { useEffect, useState } from "react"
 import { BsPerson } from "react-icons/bs"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import {
-  openCartSidebar,
-  openMenuSidebar,
-} from "../../store/toggle/toggleSlice"
+import { openCartSidebar, openMenuSidebar } from "../../store/toggleSlice"
 import { formatCurrency, getAllUrlParams } from "../../utils"
 import { Action } from "./Action"
 

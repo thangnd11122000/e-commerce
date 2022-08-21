@@ -15,6 +15,8 @@ import { css } from "@emotion/react"
 import axios from "axios"
 import { useCallback } from "react"
 import { useAxios } from "../hook/useAxios"
+import { array } from "yup"
+import { setIdProduct } from "../utils"
 
 const override = css`
   display: block;
@@ -52,12 +54,13 @@ const Detail = () => {
   //   },
   //   [product.category_id]
   // )
+
   useEffect(() => {
     if (productApi.response !== null) {
       setProduct(productApi.response.data)
     }
   }, [productApi.response])
-console.log(product);
+
   // useEffect(() => {
   //   if (ratingsApi.response !== null) {
   //     setRatings(ratingsApi.response)
@@ -71,6 +74,7 @@ console.log(product);
   // const relatedProduct = productsData.filter(
   //   (e) => e.category_id === product.category_id
   // )
+  
   return (
     <>
       <PageLinks links={[{ name: "Sản phẩm 1", link: "/san-pham" }]} />

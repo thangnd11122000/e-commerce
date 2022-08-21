@@ -21,10 +21,11 @@ import {
   deleteItem,
   deleteMultiItem,
   increaseQuantity,
-} from "../../store/cartItems/cartItemsSlice"
+} from "../../store/cartItemsSlice"
 import ConfirmDialog from "../ConfirmDialog"
 import getDiscount from "../../utils/getDiscount"
 import { formatCurrency } from "../../utils"
+import { Link } from "react-router-dom"
 
 const CartTable = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -60,7 +61,7 @@ const CartTable = () => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = cartProducts.map((n) => n.id)
+      const newSelected = cartProducts.map((product) => product.productId)
       setSelected(newSelected)
       return
     }
@@ -117,7 +118,7 @@ const CartTable = () => {
     <>
       <div className="cart-table">
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="cart table">
+          <Table sx={{ minWidth: 700 }} aria-label="cart table">
             <TableHead>
               <TableRow>
                 <TableCell sx={{ width: 0 }}>
@@ -138,25 +139,27 @@ const CartTable = () => {
                 <TableCell align="center">Đơn giá</TableCell>
                 <TableCell align="center">Số lượng</TableCell>
                 <TableCell align="center">Số tiền</TableCell>
-                <TableCell align="center">Thao tác</TableCell>
+                <TableCell align="center"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {cartProducts.map((product, index) => {
-                const isItemSelected = isSelected(product.id)
+                const isItemSelected = isSelected(product.productId)
                 const labelId = `enhanced-table-checkbox-${index}`
                 const discountValue = getDiscount(
                   product.discount,
                   product.price
                 )
                 return (
-                  <TableRow key={product.id}>
+                  <TableRow key={product.productId}>
                     <TableCell>
                       <Checkbox
                         size="small"
                         color="primary"
                         checked={isItemSelected}
-                        onClick={(event) => handleClick(event, product.id)}
+                        onClick={(event) =>
+                          handleClick(event, product.productId)
+                        }
                         inputProps={{
                           "aria-labelledby": labelId,
                         }}
@@ -164,8 +167,19 @@ const CartTable = () => {
                     </TableCell>
                     <TableCell align="left">
                       <div className="cart-table__product">
-                        <img src={product.image} alt="" />
-                        {product.name}
+                        <Link to={`/san-pham/${product.id}`}>
+                          <img src={product.image} alt="" />
+                        </Link>
+                        <div>
+                          <Link to={`/san-pham/${product.id}`}>
+                            {product.product_name}
+                          </Link>
+                          <div className="product__option">
+                            {product?.selectedOption.map((option) => (
+                              <p key={option.option_id}>{option.detail}</p>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </TableCell>
                     <TableCell align="center" className="cart-table__price">
@@ -185,7 +199,9 @@ const CartTable = () => {
                     <TableCell align="center">
                       <div className="cart-table__quantity">
                         <button
-                          onClick={() => updateQuantity("minus", product.id)}
+                          onClick={() =>
+                            updateQuantity("minus", product.productId)
+                          }
                         >
                           -
                         </button>
@@ -198,14 +214,16 @@ const CartTable = () => {
                           onChange={(e) =>
                             dispatch(
                               changeQuantity({
-                                id: product.id,
+                                id: product.productId,
                                 value: e.target.value,
                               })
                             )
                           }
                         />
                         <button
-                          onClick={() => updateQuantity("plus", product.id)}
+                          onClick={() =>
+                            updateQuantity("plus", product.productId)
+                          }
                         >
                           +
                         </button>
@@ -219,7 +237,9 @@ const CartTable = () => {
                     </TableCell>
                     <TableCell align="center">
                       <Tooltip title="Xóa sản phẩm">
-                        <IconButton onClick={() => handleDelete(product.id)}>
+                        <IconButton
+                          onClick={() => handleDelete(product.productId)}
+                        >
                           <Delete />
                         </IconButton>
                       </Tooltip>

@@ -1,7 +1,7 @@
 import { Close } from "@mui/icons-material"
 import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { closeFilter } from "../../store/toggle/toggleSlice"
+import { closeFilter } from "../../store/toggleSlice"
 import FilterCategory from "./FilterCategory"
 import FilterPrice from "./FilterPrice"
 import FilterType from "./FilterType"

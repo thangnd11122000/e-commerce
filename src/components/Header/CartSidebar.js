@@ -3,8 +3,8 @@ import { IconButton, Tooltip } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { deleteItem } from "../../store/cartItems/cartItemsSlice"
-import { closeCartSidebar } from "../../store/toggle/toggleSlice"
+import { deleteItem } from "../../store/cartItemsSlice"
+import { closeCartSidebar } from "../../store/toggleSlice"
 import { formatCurrency } from "../../utils"
 import getDiscount from "../../utils/getDiscount"
 import ConfirmDialog from "../ConfirmDialog"
@@ -85,7 +85,7 @@ const CartSidebar = () => {
                 return (
                   <div key={index} className="cart-sidebar__item">
                     <Link
-                      to={`detail/${product.id}`}
+                      to={`san-pham/${product.id}`}
                       className="cart-sidebar__item--img"
                       onClick={() => dispatch(closeCartSidebar())}
                     >
@@ -93,7 +93,7 @@ const CartSidebar = () => {
                     </Link>
                     <div className="cart-sidebar__product">
                       <Link
-                        to={`detail/${product.id}`}
+                        to={`san-pham/${product.id}`}
                         className="cart-sidebar__product--name"
                         onClick={() => dispatch(closeCartSidebar())}
                       >
@@ -106,11 +106,16 @@ const CartSidebar = () => {
                             : formatCurrency(product.price) + "đ"}
                           <span> x {product.quantity}</span>
                         </p>
+                        <div className="product__option">
+                          {product?.selectedOption.map((option) => (
+                            <p key={option.option_id}>{option.detail}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     <div className="cart-sidebar__actions">
                       <Link
-                        to={`detail/${product.id}`}
+                        to={`san-pham/${product.id}`}
                         onClick={() => dispatch(closeCartSidebar())}
                       >
                         <Tooltip title="Xem sản phẩm">
@@ -120,7 +125,7 @@ const CartSidebar = () => {
                         </Tooltip>
                       </Link>
                       <Tooltip title="Xóa sản phẩm">
-                        <IconButton onClick={() => handleDelete(product.id)}>
+                        <IconButton onClick={() => handleDelete(product.productId)}>
                           <Delete />
                         </IconButton>
                       </Tooltip>
@@ -137,7 +142,10 @@ const CartSidebar = () => {
               <Link to="/gio-hang" onClick={() => dispatch(closeCartSidebar())}>
                 <button className="btn-secondary">Giỏ hàng</button>
               </Link>
-              <Link to="/thanh-toan" onClick={() => dispatch(closeCartSidebar())}>
+              <Link
+                to="/thanh-toan"
+                onClick={() => dispatch(closeCartSidebar())}
+              >
                 <button className="btn-primary">Thanh toán</button>
               </Link>
             </div>

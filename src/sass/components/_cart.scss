@@ -99,6 +99,9 @@
 }
 
 .cart-table {
+  a:hover {
+    color: $primary;
+  }
   &__price {
     &--discount {
       font-size: 14px;
@@ -145,11 +148,16 @@
   &__product {
     display: flex;
     align-items: center;
+    gap: 10px;
     img {
+      display: block;
       border: 1px solid rgb(201, 201, 201);
-      margin-right: 10px;
-      width: 50px;
+      width: 50px !important;
       height: 50px;
+    }
+    .product__option p {
+      font-size: 12px;
+      padding: 0 5px;
     }
   }
   .MuiTable-root {
@@ -165,6 +173,11 @@
           padding: 0;
         }
       }
+    }
+  }
+  @include breakpoint("xs") {
+    .MuiTableCell-root {
+      padding: 10px;
     }
   }
 }

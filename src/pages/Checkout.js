@@ -17,7 +17,7 @@ const Checkout = () => {
   const [note, setNote] = useState("")
   const [shippingFee, setShippingFee] = useState(0)
   const [currentAddressId, setCurrentAddressId] = useState(null)
-console.log(cartItems);
+
   const handleOrderTemp = () => {
     console.log(
       JSON.stringify({

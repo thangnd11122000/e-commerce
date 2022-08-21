@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import getDiscount from "../../utils/getDiscount"
+import getDiscount from "../utils/getDiscount"
 
 const items =
   localStorage.getItem("cartItems") !== null
@@ -20,6 +20,11 @@ const getTotalProduct = (products) => {
   return products.reduce((total, product) => (total += product.quantity), 0)
 }
 
+const getIdProduct = (product) =>
+  product?.selectedOptionsNumber?.length
+    ? `${product.id}.${product.selectedOptionsNumber.join(".")}`
+    : `${product.id}`
+
 const initialState = {
   value: items,
   totalPrice: getTotalPrice(items),
@@ -32,11 +37,14 @@ export const cartItemsSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload
+      newItem.productId = getIdProduct(action.payload)
       const duplicate = state.value.filter(
-        (product) => product.id === newItem.id
+        (product) => product.productId === newItem.productId
       )
       if (duplicate.length > 0) {
-        state.value = state.value.filter((product) => product.id !== newItem.id)
+        state.value = state.value.filter(
+          (product) => product.productId !== newItem.productId
+        )
         state.value = [
           ...state.value,
           { ...newItem, quantity: newItem.quantity + duplicate[0].quantity },
@@ -50,7 +58,7 @@ export const cartItemsSlice = createSlice({
     },
     deleteItem: (state, action) => {
       state.value = state.value.filter(
-        (product) => product.id !== action.payload
+        (product) => product.productId !== action.payload
       )
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
@@ -58,7 +66,7 @@ export const cartItemsSlice = createSlice({
     },
     deleteMultiItem: (state, action) => {
       state.value = state.value.filter(
-        (product) => !action.payload.includes(product.id)
+        (product) => !action.payload.includes(product.productId)
       )
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
@@ -67,7 +75,7 @@ export const cartItemsSlice = createSlice({
 
     increaseQuantity: (state, action) => {
       state.value = state.value.map((product) => {
-        if (product.id === action.payload) {
+        if (product.productId === action.payload) {
           return { ...product, quantity: product.quantity + 1 }
         }
         return product
@@ -78,7 +86,7 @@ export const cartItemsSlice = createSlice({
     },
     decreaseQuantity: (state, action) => {
       let temp = state.value.map((product) => {
-        if (product.id === action.payload) {
+        if (product.productId === action.payload) {
           return { ...product, quantity: product.quantity - 1 }
         }
         return product
@@ -90,7 +98,7 @@ export const cartItemsSlice = createSlice({
     },
     changeQuantity: (state, action) => {
       state.value = state.value.map((product) => {
-        if (product.id === action.payload.id) {
+        if (product.productId === action.payload.id) {
           if (action.payload.value === "")
             return {
               ...product,

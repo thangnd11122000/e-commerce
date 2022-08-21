@@ -95,23 +95,21 @@
     margin-top: 15px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
 
-    @include breakpoint("lg") {
-      flex-direction: column;
-    }
-
     @include breakpoint("md") {
+      justify-content: center;
     }
     @include breakpoint("sm") {
       flex-direction: row;
     }
-    @include breakpoint("xs") {
-      flex-direction: column;
-    }
 
     &--quantity {
       display: flex;
+      @include breakpoint("md") {
+        width: 100%;
+      }
       button {
         cursor: pointer;
         font-size: 16px;
@@ -124,6 +122,9 @@
           color: $primary;
           border: 1px solid $primary;
         }
+        @include breakpoint("md") {
+          width: 30%;
+        }
       }
       input {
         width: 70px;
@@ -133,6 +134,9 @@
         &:focus {
           border: 1px solid $primary;
           outline: 1px solid $primary;
+        }
+        @include breakpoint("md") {
+          width: 100%;
         }
       }
       input::-webkit-outer-spin-button,
@@ -144,6 +148,9 @@
     .btn-secondary {
       border-radius: 5px;
       font-size: 15px;
+      @include breakpoint("md") {
+        width: 47%;
+      }
     }
   }
 
@@ -311,6 +318,7 @@
   }
   &__description {
     color: $text-secondary;
+    line-height: 24px;
   }
   &__socials {
     display: flex;
@@ -330,6 +338,16 @@
       }
     }
   }
+  &__option {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    @include breakpoint("xs") {
+      margin: 10px 0 20px;
+    }
+  }
 }
 
 .detail-description {
@@ -343,7 +361,7 @@
     margin-bottom: 30px;
   }
   &__desc {
-    height: 300px;
+    // height: 150px;
     overflow: hidden;
     &--active {
       height: auto;
