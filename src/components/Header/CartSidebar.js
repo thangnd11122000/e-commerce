@@ -109,7 +109,7 @@ const CartSidebar = () => {
                             <span> x {product.quantity}</span>
                           </p>
                           <div className="product__option">
-                            {product?.selectedOption.map((option) => (
+                            {product?.selectedOption?.map((option) => (
                               <p key={option.option_id}>{option.detail}</p>
                             ))}
                           </div>
