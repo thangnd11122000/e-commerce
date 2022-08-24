@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
+import { signInWithFacebook, signInWithGoogle } from "../config/configFirebase"
 import { login } from "../store/authSlice"
 import { getAllUrlParams } from "../utils"
 
@@ -22,7 +23,30 @@ const Login = () => {
     email: "",
     password: "",
   }
-
+  const loginGoogle = async () => {
+    try {
+      const rs = await signInWithGoogle()
+      const info = rs.user.providerData[0]
+      const data = {
+        googleId: info.uid,
+        email: info.email,
+        fullName: info.displayName,
+        avatar: info.photoURL,
+      }
+      console.log(data)
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+  const loginFacebook = async () => {
+    try {
+      const rs = await signInWithFacebook()
+      // const info = rs.user.providerData[0];
+      console.log(rs)
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Nhập đúng định dạng email")
@@ -112,10 +136,16 @@ const Login = () => {
           <span>Hoặc</span>
           <div></div>
         </div>
-        <button className="btn-primary form__item--facebook">
+        <button
+          onClick={loginFacebook}
+          className="btn-primary form__item--facebook"
+        >
           Đăng nhập với facebook
         </button>
-        <button className="btn-primary form__item--google">
+        <button
+          onClick={loginGoogle}
+          className="btn-primary form__item--google"
+        >
           Đăng nhập với google
         </button>
 
