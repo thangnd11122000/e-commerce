@@ -5,7 +5,16 @@ import { formatCurrency } from "../../utils"
 import getDiscount from "../../utils/getDiscount"
 
 const ProductCard = ({ product }) => {
-  const { id, product_name, image, price, discount, rating, is_new } = product
+  const {
+    id,
+    product_name,
+    image,
+    price,
+    discount,
+    rated,
+    is_new,
+    is_featured,
+  } = product
   const discountValue = getDiscount(discount, price)
   return (
     <div className="product-card">
@@ -20,6 +29,7 @@ const ProductCard = ({ product }) => {
           ""
         )}
         {is_new === "New" && <span className="new">New</span>}
+        {is_featured === "Featured" && <span className="featured">Hot</span>}
       </div>
       <div className="product-card__actions">
         <Link to={`/san-pham/${id}`}>
@@ -45,7 +55,7 @@ const ProductCard = ({ product }) => {
           </div>
         )}
       </div>
-      <Rating name="product-rating" value={rating} size="small" readOnly />
+      <Rating name="product-rating" value={rated} size="small" readOnly />
     </div>
   )
 }

@@ -23,7 +23,6 @@ import {
   increaseQuantity,
 } from "../../store/cartItemsSlice"
 import ConfirmDialog from "../ConfirmDialog"
-import getDiscount from "../../utils/getDiscount"
 import { formatCurrency } from "../../utils"
 import { Link } from "react-router-dom"
 
@@ -146,10 +145,7 @@ const CartTable = () => {
               {cartProducts.map((product, index) => {
                 const isItemSelected = isSelected(product.productId)
                 const labelId = `enhanced-table-checkbox-${index}`
-                const discountValue = getDiscount(
-                  product.discount,
-                  product.price
-                )
+
                 return (
                   <TableRow key={product.productId}>
                     <TableCell>
@@ -175,19 +171,18 @@ const CartTable = () => {
                             {product.product_name}
                           </Link>
                           <div className="product__option">
-                            {product?.selectedOption?.length &&
-                              product?.selectedOption?.map((option) => (
-                                <p key={option.option_id}>{option.detail}</p>
-                              ))}
+                            {product?.selectedOption?.map((option) => (
+                              <p key={option.option_id}>{option.detail}</p>
+                            ))}
                           </div>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell align="center" className="cart-table__price">
-                      {discountValue ? (
+                      {product?.discount ? (
                         <>
                           <p className="cart-table__price--discount">
-                            {formatCurrency(discountValue)}đ
+                            {formatCurrency(product.price - product.discount)}đ
                           </p>
                           <del>{formatCurrency(product.price)}đ</del>
                         </>
@@ -231,8 +226,8 @@ const CartTable = () => {
                       </div>
                     </TableCell>
                     <TableCell align="center" sx={{ fontWeight: "bold" }}>
-                      {discountValue > 0
-                        ? formatCurrency(discountValue * product.quantity)
+                      {product.discount > 0
+                        ? formatCurrency(product.discount * product.quantity)
                         : formatCurrency(product.price * product.quantity)}
                       đ
                     </TableCell>

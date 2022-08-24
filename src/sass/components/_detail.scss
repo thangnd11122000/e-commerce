@@ -1,8 +1,16 @@
 .detail {
-  padding: 0px 100px 50px;
   min-height: 50vh;
   display: flex;
   gap: 30px;
+
+  width: 1400px;
+  margin: 0 auto;
+  padding: 0px 0px 50px;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    padding: 0px 100px 50px;
+  }
 
   @include breakpoint("xl") {
     padding: 0 50px 50px;
@@ -160,12 +168,20 @@
   }
 
   &__related {
-    padding: 10px 100px 50px;
+    width: 1400px;
+    margin: 0 auto;
+    padding: 0px 0px 50px;
+
+    @include breakpoint("xxl") {
+      width: auto;
+      padding: 0px 100px 50px;
+    }
+
     @include breakpoint("xl") {
       padding: 10px 50px 50px;
     }
-    @include breakpoint("xl") {
-      padding: 10px 20px 50px;
+    @include breakpoint("xs") {
+      padding: 0px 10px 30px;
     }
   }
 

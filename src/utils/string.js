@@ -29,4 +29,4 @@ export const removeTones = (str) => {
 }
 
 export const containsText = (text, searchText) =>
-  removeTones(text).toLowerCase().indexOf(searchText.toLowerCase()) > -1
+  text.toLowerCase().indexOf(searchText.toLowerCase()) > -1

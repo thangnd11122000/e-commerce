@@ -5,11 +5,12 @@ import usePagination from "../Pagination/Pagination"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import { PuffLoader } from "react-spinners"
+import { scrollOnTop } from "../../utils"
 
 const BlogList = ({ categories }) => {
   const params = useParams()
   let [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(12)
+  const [perPage] = useState(12)
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -29,9 +30,6 @@ const BlogList = ({ categories }) => {
   const handleChange = (e, p) => {
     setPage(p)
     _DATA.jump(p)
-  }
-  const handleClick = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
   }
 
   return (
@@ -57,7 +55,7 @@ const BlogList = ({ categories }) => {
             variant="outlined"
             shape="rounded"
             onChange={handleChange}
-            onClick={handleClick}
+            onClick={scrollOnTop}
           />
         </>
       )}

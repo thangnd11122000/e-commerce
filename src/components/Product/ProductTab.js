@@ -54,9 +54,6 @@ const ProductTab = ({ title, productsData, loading }) => {
   return (
     <div className="product-tab">
       <div className="product-tab__header">
-        {/* <Link to="/#" className="product-tab__link">
-          Xem tất cả {">"}
-        </Link> */}
         <h3>{title}</h3>
         <Box>
           {!categoriesApi.loading && (

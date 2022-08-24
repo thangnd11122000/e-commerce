@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { ExpandLess, ExpandMore } from "@mui/icons-material"
 import { Collapse, List, ListItemButton, ListItemText } from "@mui/material"
+import { scrollOnTop } from "../../utils"
 
 const FilterCategory = ({ filterSelect, filter }) => {
   const [categories, setCategories] = useState([])
@@ -43,6 +44,7 @@ const FilterCategory = ({ filterSelect, filter }) => {
                         onChange={(e) =>
                           filterSelect("CATEGORY", e.target.checked, c.id)
                         }
+                        onClick={scrollOnTop}
                         checked={filter.category.includes(c.id)}
                         inputProps={{ "aria-labelledby": c.id }}
                       />
@@ -78,9 +80,10 @@ const FilterCategory = ({ filterSelect, filter }) => {
                           <Checkbox
                             edge="end"
                             value={s.id}
-                            onChange={(e) =>
+                            onChange={(e) => {
                               filterSelect("CATEGORY", e.target.checked, s.id)
-                            }
+                            }}
+                            onClick={scrollOnTop}
                             checked={filter.category.includes(s.id)}
                             inputProps={{ "aria-labelledby": s.id }}
                           />

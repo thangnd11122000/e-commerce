@@ -20,6 +20,10 @@ const getTotalProduct = (products) => {
   return products.reduce((total, product) => (total += product.quantity), 0)
 }
 
+const getTotalDiscount = (products) => {
+  return products.reduce((total, product) => (total += product.discount), 0)
+}
+
 const getIdProduct = (product) =>
   product?.selectedOptionsNumber?.length
     ? `${product.id}.${product.selectedOptionsNumber.join(".")}`
@@ -29,6 +33,7 @@ const initialState = {
   value: items,
   totalPrice: getTotalPrice(items),
   totalProduct: getTotalProduct(items),
+  totalDiscount: getTotalDiscount(items),
 }
 
 export const cartItemsSlice = createSlice({
@@ -54,6 +59,7 @@ export const cartItemsSlice = createSlice({
       }
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
+      state.totalDiscount = getTotalDiscount(state.value)
       localStorage.setItem("cartItems", JSON.stringify(state.value))
     },
     deleteItem: (state, action) => {
@@ -62,6 +68,7 @@ export const cartItemsSlice = createSlice({
       )
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
+      state.totalDiscount = getTotalDiscount(state.value)
       localStorage.setItem("cartItems", JSON.stringify(state.value))
     },
     deleteMultiItem: (state, action) => {
@@ -70,6 +77,7 @@ export const cartItemsSlice = createSlice({
       )
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
+      state.totalDiscount = getTotalDiscount(state.value)
       localStorage.setItem("cartItems", JSON.stringify(state.value))
     },
 
@@ -82,6 +90,7 @@ export const cartItemsSlice = createSlice({
       })
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
+      state.totalDiscount = getTotalDiscount(state.value)
       localStorage.setItem("cartItems", JSON.stringify(state.value))
     },
     decreaseQuantity: (state, action) => {
@@ -94,6 +103,7 @@ export const cartItemsSlice = createSlice({
       state.value = temp.filter((product) => product.quantity > 0)
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
+      state.totalDiscount = getTotalDiscount(state.value)
       localStorage.setItem("cartItems", JSON.stringify(state.value))
     },
     changeQuantity: (state, action) => {
@@ -114,7 +124,15 @@ export const cartItemsSlice = createSlice({
       })
       state.totalPrice = getTotalPrice(state.value)
       state.totalProduct = getTotalProduct(state.value)
+      state.totalDiscount = getTotalDiscount(state.value)
       localStorage.setItem("cartItems", JSON.stringify(state.value))
+    },
+    clearCart: (state) => {
+      state.value = []
+      state.totalPrice = 0
+      state.totalProduct = 0
+      state.totalDiscount = 0
+      localStorage.removeItem("cartItems")
     },
   },
 })
@@ -125,5 +143,6 @@ export const {
   changeQuantity,
   deleteItem,
   deleteMultiItem,
+  clearCart,
 } = cartItemsSlice.actions
 export default cartItemsSlice.reducer

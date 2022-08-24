@@ -91,7 +91,10 @@ const CartSidebar = () => {
                         className="cart-sidebar__item--img"
                         onClick={() => dispatch(closeCartSidebar())}
                       >
-                        <img src={`${product.image}`} alt={product.name} />
+                        <img
+                          src={`${product.image}`}
+                          alt={product.product_name}
+                        />
                       </Link>
                       <div className="cart-sidebar__product">
                         <Link
@@ -99,7 +102,7 @@ const CartSidebar = () => {
                           className="cart-sidebar__product--name"
                           onClick={() => dispatch(closeCartSidebar())}
                         >
-                          {product.name}
+                          {product.product_name}
                         </Link>
                         <div className="cart-sidebar__product--number">
                           <p>

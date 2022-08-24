@@ -6,8 +6,6 @@ const Services = () => {
       <div>Hàng chính hãng 100%</div>
       <div>Đổi trả miễn phí trong 3 ngày</div>
       <div>Hàng chính hãng 100%</div>
-      <div>Hàng chính hãng 100%</div>
-      <div>Hàng chính hãng 100%</div>
     </div>
   )
 }

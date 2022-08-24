@@ -10,8 +10,9 @@ const FeaturedProducts = () => {
 
   const [products, setProducts] = useState([])
 
-  const { response, loading, error } = useAxios({ url: "/api/product" })
-  // const { response, loading, error } = useAxios({ url: "/api/product?is_featured=featured&_page=1" })
+  const { response, loading, error } = useAxios({
+    url: "/api/product?is_featured=Featured&_page=1&_limit=10&_sort=created_at&_order=desc",
+  })
 
   error && console.log(error.message)
 
@@ -45,8 +46,9 @@ const FeaturedProducts = () => {
         <>
           <Grid
             container
-            spacing={2}
-            columns={{ xs: 2, sm: 3, md: 4, lg: 6, xl: 6 }}
+            columnSpacing={{ xs: 1, sm: 2 }}
+            rowSpacing={{ xs: 1, sm: 2 }}
+            columns={{ xs: 2, sm: 3, md: 3, lg: 6, xl: 6 }}
             className="recommended-products__list"
           >
             {Array.isArray(_DATA.currentData()) &&

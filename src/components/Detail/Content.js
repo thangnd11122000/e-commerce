@@ -8,7 +8,7 @@ import { formatCurrency } from "../../utils"
 import { showNotify } from "../../store/notifySlice"
 
 const Content = ({ product }) => {
-  const [rangePrice, setRangePrice] = useState(0)
+  const [rangePrice, setRangePrice] = useState([])
   const [options, setOptions] = useState({})
   const [numberOptions, setNumberOptions] = useState(0)
   const [selectedOptionsNumber, setSelectedOptionsNumber] = useState([])
@@ -16,11 +16,10 @@ const Content = ({ product }) => {
   const [price, setPrice] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const [alertMessage, setAlertMessage] = useState("")
+  const [isStock, setIsStock] = useState(true)
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
-
-  const discountValue = getDiscount(product.discount, product.price)
 
   const updateQuantity = (type) => {
     if (type === "plus") {
@@ -31,6 +30,7 @@ const Content = ({ product }) => {
   }
   const addToCart = () => {
     if (price > 0) {
+      const discount = getDiscount(product?.discount?.[0], price)
       setAlertMessage("")
       dispatch(
         addItem({
@@ -39,6 +39,8 @@ const Content = ({ product }) => {
           price,
           selectedOption,
           selectedOptionsNumber,
+          discount:
+            discount > 0 ? price - getDiscount(product?.discount[0], price) : 0,
         })
       )
       dispatch(
@@ -53,6 +55,7 @@ const Content = ({ product }) => {
 
   const goToCart = () => {
     if (price > 0) {
+      const discount = getDiscount(product?.discount?.[0], price)
       setAlertMessage("")
       dispatch(
         addItem({
@@ -61,6 +64,8 @@ const Content = ({ product }) => {
           price,
           selectedOption,
           selectedOptionsNumber,
+          discount:
+            discount > 0 ? price - getDiscount(product?.discount[0], price) : 0,
         })
       )
       navigate("/gio-hang")
@@ -83,10 +88,8 @@ const Content = ({ product }) => {
         .map((option) => +option.price)
       prices = [...new Set(prices)]
       prices.length > 0
-        ? setRangePrice(
-            `${formatCurrency(prices[0])}đ - ${formatCurrency(prices[1])}đ`
-          )
-        : setRangePrice(prices[0])
+        ? setRangePrice([prices[0], prices[1]])
+        : setRangePrice([prices[0]])
     } else setPrice(product.price)
   }, [product])
 
@@ -130,7 +133,9 @@ const Content = ({ product }) => {
         })
         if (count === optionsId.length) {
           const prices = list.filter((option) => option.price)
-          setPrice(prices[0].price)
+          setPrice(prices[0]?.price || 0)
+          const stocks = list.filter((option) => !isNaN(option.is_stock))
+          setIsStock(stocks[0]?.is_stock)
         }
       })
     }
@@ -165,25 +170,43 @@ const Content = ({ product }) => {
       </div>
     ))
 
+  const renderRangePrice = () => {
+    const renderPrice = rangePrice
+      .map((p) => formatCurrency(p) + "đ")
+      .join(" - ")
+    if (product?.discount) {
+      const renderDiscount = rangePrice
+        .map((d) => formatCurrency(getDiscount(product.discount[0], d)) + "đ")
+        .join(" - ")
+      return (
+        <p className="discount">
+          {renderDiscount} <del>{renderPrice}</del>
+        </p>
+      )
+    } else return <p>{renderPrice}</p>
+  }
+
+  const renderPrice = () =>
+    product?.discount ? (
+      <p className="discount">
+        {formatCurrency(getDiscount(product.discount[0], price)) + "đ"}{" "}
+        <del>{formatCurrency(price) + "đ"}</del>
+      </p>
+    ) : (
+      <p>{formatCurrency(price)}đ</p>
+    )
+console.log(product);
   return (
     <>
       <div className="detail-content">
         <div className="detail-content__name">{product.product_name}</div>
         <div className="detail-content__review">
-          <Rating name="content-review" value={product.rating} readOnly />
+          <Rating name="content-review" value={product.rated} readOnly />
           <p className="line">|</p>
           <p>3 đánh giá</p>
         </div>
         <div className="detail-content__price">
-          {/* {discountValue ? (
-            <p className="discount">
-              {formatCurrency(discountValue)}đ{" "}
-              <del>{formatCurrency(product.price)}đ</del>
-            </p>
-          ) : (
-            <p className="normal">{formatCurrency(product.price)}đ</p>
-          )} */}
-          {price > 0 ? formatCurrency(price) + "đ" : rangePrice}
+          {price > 0 ? renderPrice() : renderRangePrice()}
         </div>
         <hr />
         <p className="detail-content__description">
@@ -191,6 +214,7 @@ const Content = ({ product }) => {
         </p>
         {renderOptions()}
         <p style={{ color: "red" }}>{alertMessage}</p>
+        {!isStock && <h3 style={{ color: "red" }}>Sản phẩm đã hết hàng</h3>}
         <div className="detail__actions">
           <div className="detail__actions--quantity">
             <button onClick={() => updateQuantity("minus")}>-</button>
@@ -204,10 +228,18 @@ const Content = ({ product }) => {
             />
             <button onClick={() => updateQuantity("plus")}>+</button>
           </div>
-          <button className="btn-primary" onClick={addToCart}>
+          <button
+            className="btn-primary"
+            onClick={addToCart}
+            disabled={!isStock}
+          >
             Thêm vào giỏ
           </button>
-          <button className="btn-secondary" onClick={goToCart}>
+          <button
+            className="btn-secondary"
+            onClick={goToCart}
+            disabled={!isStock}
+          >
             Mua ngay
           </button>
         </div>

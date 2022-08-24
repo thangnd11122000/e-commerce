@@ -1,4 +1,5 @@
 import { Checkbox, FormControlLabel } from "@mui/material"
+import { scrollOnTop } from "../../utils"
 
 const FilterType = ({ filterSelect, filter }) => {
   return (
@@ -24,6 +25,7 @@ const FilterType = ({ filterSelect, filter }) => {
               onChange={(e) =>
                 filterSelect("ISFEATURED", e.target.checked, filter.isFeatured)
               }
+              onClick={scrollOnTop}
               checked={filter.isFeatured}
             />
           }

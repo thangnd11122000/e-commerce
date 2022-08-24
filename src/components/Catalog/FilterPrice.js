@@ -5,6 +5,16 @@ function valueText(value) {
   return `${formatCurrency(value)}đ`
 }
 
+function numFormatter(num) {
+  if (num > 999 && num < 1000000) {
+    return (num / 1000).toFixed(0) + "K"
+  } else if (num >= 1000000) {
+    return (num / 1000000).toFixed(0) + "M"
+  } else if (num < 900) {
+    return num
+  }
+}
+
 const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
   const handleChange = (event, newValue) => {
     setPriceSlider(newValue)
@@ -19,14 +29,16 @@ const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
           {formatCurrency(minMaxPrice[1])}đ
         </p>
         <Slider
-          sx={{ width: 200 }}
+          sx={{ width: "90%" }}
           getAriaLabel={() => "Price slider"}
           value={priceSlider}
           onChange={handleChange}
-          valueLabelDisplay="off"
+          // valueLabelDisplay="off"
           getAriaValueText={valueText}
           min={minMaxPrice[0]}
           max={minMaxPrice[1]}
+          valueLabelDisplay="auto"
+          valueLabelFormat={numFormatter}
         />
       </div>
     </>

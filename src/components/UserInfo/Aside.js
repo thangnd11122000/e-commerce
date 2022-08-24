@@ -1,15 +1,29 @@
-import { Close, Person } from "@mui/icons-material"
+import { Close, ExpandLess, ExpandMore, Person } from "@mui/icons-material"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import { closeMenuUser } from "../../store/toggleSlice"
+import avatar from "../../assets/img/common/user.png"
+import {
+  Collapse,
+  Divider,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material"
+import { BsCardList, BsPersonSquare } from "react-icons/bs"
+import { GoLocation } from "react-icons/go"
 
-const Aside = ({ page, setPage }) => {
-  const [menu, setMenu] = useState(0)
+const Aside = ({ setPage }) => {
+  const { user } = useSelector((state) => state.auth)
   const menuRef = useRef(null)
-
   const isOpenMenuUser = useSelector((state) => state.toggle.isOpenMenuUser)
   const dispatch = useDispatch()
+  const [open, setOpen] = useState(true)
+
+  const handleClick = () => {
+    setOpen(!open)
+  }
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -35,111 +49,65 @@ const Aside = ({ page, setPage }) => {
         onClick={() => dispatch(closeMenuUser())}
       />
       <div className="user__info">
-        <img src="/img/about/testimonial-5.jpg" alt="" />
+        {user?.avatar ? (
+          <img src={user.avatar} alt="" />
+        ) : (
+          <img src={avatar} alt="" />
+        )}
         <div>
           <span>Xin chào</span>
-          <p>Nguyễn Doãn Thắng</p>
+          <p>{user?.fullname}</p>
         </div>
       </div>
-      <div className={`user-menu ${menu === 0 ? "user-menu--active" : ""}`}>
-        <div
-          className="user-menu__item"
+      <List component="nav" aria-labelledby="nested-list-subheader">
+        <ListItemButton onClick={handleClick}>
+          <ListItemIcon>
+            <Person />
+          </ListItemIcon>
+          <ListItemText primary="Hồ sơ" />
+          {open ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              onClick={() => {
+                setPage("information")
+                dispatch(closeMenuUser())
+              }}
+            >
+              <ListItemIcon>
+                <BsPersonSquare />
+              </ListItemIcon>
+              <ListItemText primary="Thông tin" />
+            </ListItemButton>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              onClick={() => {
+                setPage("address")
+                dispatch(closeMenuUser())
+              }}
+            >
+              <ListItemIcon>
+                <GoLocation />
+              </ListItemIcon>
+              <ListItemText primary="Địa chỉ" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+        <Divider />
+        <ListItemButton
           onClick={() => {
-            setMenu(0)
-            setPage("information")
-            dispatch(closeMenuUser())
-          }}
-        >
-          <Person />
-          <p>Hồ sơ</p>
-        </div>
-
-        <ul className="user-menu user-menu__submenu">
-          <li
-            className={
-              page === "information" ? "user-menu__submenu--active" : ""
-            }
-            onClick={() => {
-              setPage("information")
-              dispatch(closeMenuUser())
-            }}
-          >
-            Thông tin cá nhân
-          </li>
-          <li
-            className={page === "bank" ? "user-menu__submenu--active" : ""}
-            onClick={() => {
-              setPage("bank")
-              dispatch(closeMenuUser())
-            }}
-          >
-            Ngân hàng
-          </li>
-          <li
-            className={page === "address" ? "user-menu__submenu--active" : ""}
-            onClick={() => {
-              setPage("address")
-              dispatch(closeMenuUser())
-            }}
-          >
-            Địa chỉ
-          </li>
-          <li onClick={() => dispatch(closeMenuUser())}>
-            <Link to="/change-password">Đổi mật khẩu</Link>
-          </li>
-        </ul>
-      </div>
-      <div className={`user-menu ${menu === 1 ? "user-menu--active" : ""}`}>
-        <div
-          className="user-menu__item"
-          onClick={() => {
-            setMenu(1)
             setPage("orders")
             dispatch(closeMenuUser())
           }}
         >
-          <Person />
-          <p>Đơn hàng</p>
-        </div>
-      </div>
-      <div className={`user-menu ${menu === 2 ? "user-menu--active" : ""}`}>
-        <div
-          className="user-menu__item"
-          onClick={() => {
-            setMenu(2)
-            dispatch(closeMenuUser())
-          }}
-        >
-          <Person />
-          <p>Thông báo</p>
-        </div>
-
-        <ul className="user-menu user-menu__submenu">
-          <li
-            className={page === "password" ? "user-menu__submenu--active" : ""}
-          >
-            Cập nhập đơn hàng
-          </li>
-          <li
-            className={page === "password" ? "user-menu__submenu--active" : ""}
-          >
-            Cập nhập đánh giá
-          </li>
-        </ul>
-      </div>
-      <div className={`user-menu ${menu === 3 ? "user-menu--active" : ""}`}>
-        <div
-          className="user-menu__item"
-          onClick={() => {
-            setMenu(3)
-            setPage("vouchers")
-            dispatch(closeMenuUser())
-          }}
-        >
-          <Person />
-          <p>Voucher</p>
-        </div>
-      </div>
+          <ListItemIcon>
+            <BsCardList />
+          </ListItemIcon>
+          <ListItemText primary="Đơn hàng" />
+        </ListItemButton>
+      </List>
     </div>
   )
 }

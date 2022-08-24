@@ -48,6 +48,7 @@ const Blog = () => {
       setAdvisePosts(advisePostsAPI.response?.data.data)
     }
   }, [advisePostsAPI.response])
+
   return (
     <>
       {postCategoriesAPI.loading ? (
@@ -86,7 +87,7 @@ const Blog = () => {
                         </div>
                       ) : (
                         <BlogSection
-                          link="/bai-viet/category/5"
+                          link="/bai-viet/the-loai/5"
                           title="Tin mới nhất"
                           posts={newPosts.slice(3, 10)}
                           categories={postCategories}
@@ -98,7 +99,7 @@ const Blog = () => {
                         </div>
                       ) : (
                         <BlogSection
-                          link="/bai-viet/category/1"
+                          link="/bai-viet/the-loai/1"
                           title="Sản phẩm mới"
                           posts={newProductPosts}
                           categories={postCategories}
@@ -110,7 +111,7 @@ const Blog = () => {
                         </div>
                       ) : (
                         <BlogSection
-                          link="/bai-viet/category/2"
+                          link="/bai-viet/the-loai/2"
                           title="Tư vấn"
                           posts={advisePosts}
                           categories={postCategories}
@@ -123,12 +124,12 @@ const Blog = () => {
 
               <Routes>
                 <Route
-                  path="/category/:id"
+                  path="/the-loai/:id"
                   element={<BlogList categories={postCategories} />}
                 />
               </Routes>
               <Routes>
-                <Route path="/san-pham/:id" element={<BlogDetail />} />
+                <Route path="/chi-tiet/:id" element={<BlogDetail />} />
               </Routes>
             </div>
             <div className="blog-layout__right">

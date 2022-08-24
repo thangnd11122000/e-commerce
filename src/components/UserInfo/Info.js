@@ -1,6 +1,23 @@
-import { Link } from "react-router-dom"
+import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import avatar from "../../assets/img/common/user.png"
 
 const Info = () => {
+  const { user } = useSelector((state) => state.auth)
+  const [gender, setGender] = useState("female")
+  const [fullname, setFullname] = useState(user?.fullname)
+
+  const handleChangeGender = (event) => {
+    setGender(event.target.value)
+  }
+  const handleChangeFullname = (event) => {
+    setFullname(event.target.value)
+  }
+  useEffect(() => {
+    setFullname(user?.fullname)
+  }, [user?.fullname])
+
   return (
     <div className="section-box">
       <div className="user__header">
@@ -10,41 +27,51 @@ const Info = () => {
       <div className="user__body user--flex">
         <form className="user-form">
           <div className="user-form__group">
-            <p>Tên đăng nhập</p>
-            <p>Quang Tuấn</p>
-          </div>
-          <div className="user-form__group">
             <p>Họ và tên</p>
-            <input type="text" name="" id="" required />
+            <input
+              type="text"
+              value={fullname || ""}
+              onChange={handleChangeFullname}
+              required
+            />
           </div>
           <div className="user-form__group">
             <p>Email</p>
-            <p>
-              thang*****@gmail.com <Link to="/doi-email">Thay đổi</Link>
-            </p>
+            <p>{user?.email}</p>
           </div>
           <div className="user-form__group">
             <p>Số điện thoại</p>
-            <p>
-              0355***0000 <Link to="/doi-so-dien-thoai">Thay đổi</Link>
-            </p>
+            <p>{user?.phone}</p>
           </div>
 
           <div className="user-form__group">
             <p>Giới tính</p>
             <div className="user-form__radio">
-              <div>
-                <input type="radio" id="male" name="gender" value="male" />
-                <label htmlFor="male">Nam</label>
-              </div>
-              <div>
-                <input type="radio" id="female" name="gender" value="female" />
-                <label htmlFor="female">Nữ</label>
-              </div>
-              <div>
-                <input type="radio" id="other" name="gender" value="other" />
-                <label htmlFor="other">Khác</label>
-              </div>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="gender"
+                  name="gender"
+                  value={gender}
+                  onChange={handleChangeGender}
+                  row
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Other"
+                  />
+                </RadioGroup>
+              </FormControl>
             </div>
           </div>
           <div className="user-form__button">
@@ -52,7 +79,11 @@ const Info = () => {
           </div>
         </form>
         <div className="user__avatar">
-          <img src="/img/about/testimonial-5.jpg" alt="avatar" />
+          {user?.avatar ? (
+            <img src={user.avatar} alt="" />
+          ) : (
+            <img src={avatar} alt="" />
+          )}
           <button className="btn-primary">Chọn ảnh</button>
         </div>
       </div>

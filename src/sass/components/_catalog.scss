@@ -1,8 +1,16 @@
 .catalog {
   position: relative;
-  padding: 0px 100px 50px;
   display: flex;
   gap: 0 20px;
+
+  width: 1400px;
+  margin: 0 auto;
+  padding: 0px 0px 50px;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    padding: 0px 100px 50px;
+  }
 
   @include breakpoint("xl") {
     padding: 0 50px 30px;

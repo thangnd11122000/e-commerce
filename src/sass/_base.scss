@@ -40,9 +40,16 @@ img {
 }
 
 .page-links {
-  padding: 20px 100px;
   color: #666;
   font-size: 15px;
+  width: 1400px;
+  margin: 0 auto;
+  padding: 20px 0px;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    padding: 20px 100px;
+  }
 
   @include breakpoint("xl") {
     padding: 20px 50px;
@@ -217,5 +224,3 @@ img {
   display: block;
   margin: 20px auto;
 }
-
-

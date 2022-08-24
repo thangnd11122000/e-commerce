@@ -7,7 +7,7 @@ import FilterContainer from "../components/Catalog/FilterContainer"
 import ProductContainer from "../components/Catalog/ProductContainer"
 import { useAxios } from "../hook/useAxios"
 import { useLocation } from "react-router-dom"
-import { getAllUrlParams } from "../utils"
+import { getAllUrlParams, scrollOnTop } from "../utils"
 import axios from "axios"
 
 const initFilter = {
@@ -175,6 +175,7 @@ const Catalog = () => {
   const clearFilter = () => {
     setFilter(initFilter)
     setPriceSlider(minMaxPrice)
+    scrollOnTop()
   }
 
   const getMinMaxPrice = (productsData) => {
@@ -205,7 +206,7 @@ const Catalog = () => {
 
   return (
     <>
-      <PageLinks links={[{ name: "Mua sam", link: "/danh-sach" }]} />
+      <PageLinks links={[{ name: "Mua sắm", link: "/danh-sach" }]} />
       <div className="catalog">
         <div className="catalog__toggle" onClick={() => dispatch(openFilter())}>
           <Tune />

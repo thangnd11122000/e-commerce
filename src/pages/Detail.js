@@ -6,17 +6,12 @@ import Review from "../components/Detail/Review"
 import Services from "../components/Detail/Services"
 import PageLinks from "../components/PageLinks"
 import ProductSlider from "../components/Product/ProductSlider"
-import { productsData } from "../data"
-import Specifications from "../components/Detail/Specifications"
-import SpecificationsModal from "../components/Detail/SpecificationsModal"
 import { InfoOutlined } from "@mui/icons-material"
 import { MoonLoader } from "react-spinners"
 import { css } from "@emotion/react"
 import axios from "axios"
 import { useCallback } from "react"
 import { useAxios } from "../hook/useAxios"
-import { array } from "yup"
-import { setIdProduct } from "../utils"
 
 const override = css`
   display: block;
@@ -26,7 +21,6 @@ const override = css`
 const Detail = () => {
   const params = useParams()
 
-  const [isOpenModal, setIsOpenModal] = useState(false)
   const [product, setProduct] = useState([])
   const [ratings, setRatings] = useState([])
   const [productsByCategory, setProductsByCategory] = useState([])
@@ -50,7 +44,7 @@ const Detail = () => {
         setLoadingProductsByCategory(false)
       })
   }, [])
-
+console.log(product);
   useEffect(() => {
     if (productApi.response !== null) {
       setProduct(productApi.response.data)
@@ -76,10 +70,6 @@ const Detail = () => {
       <PageLinks links={[{ name: "Sản phẩm 1", link: "/san-pham" }]} />
       <div className="detail">
         <>
-          <div className="detail__toggle" onClick={() => setIsOpenModal(true)}>
-            <InfoOutlined />
-          </div>
-
           <div className="detail__left">
             {productApi.loading ? (
               <div className="section-box">
@@ -107,16 +97,13 @@ const Detail = () => {
           </div>
           <div className="detail__right">
             <Services />
-            <Specifications
-              isOpenModal={isOpenModal}
-              setIsOpenModal={setIsOpenModal}
+            <img
+              style={{ borderRadius: "5px", width: "100%" }}
+              src="https://i.pinimg.com/564x/9c/9a/8c/9c9a8c86a69d8e7ea15d4c0bcd6770f1.jpg"
+              alt="quang-cao"
+              width={100}
             />
           </div>
-
-          <SpecificationsModal
-            isOpenModal={isOpenModal}
-            setIsOpenModal={setIsOpenModal}
-          />
         </>
       </div>
       <div className="detail__related">

@@ -1,20 +1,23 @@
 import { Alert, Snackbar } from "@mui/material"
 import { Form, Formik } from "formik"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
 import { login } from "../store/authSlice"
+import { getAllUrlParams } from "../utils"
 
 const Login = () => {
+  const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [openAlert, setOpenAlert] = useState(false)
   const [typeAlert, setTypeAlert] = useState(0)
-  let location = useLocation()
+  const [isBack, setIsBack] = useState(false)
+
   const initialValues = {
     email: "",
     password: "",
@@ -26,6 +29,7 @@ const Login = () => {
       .required("Nhập email"),
     password: Yup.string().required("Nhập mật khẩu"),
   })
+
   const onSubmit = (values) => {
     setLoading(true)
     dispatch(login({ email: values.email, password: values.password }))
@@ -34,6 +38,7 @@ const Login = () => {
         setOpenAlert(true)
         setTypeAlert(1)
         setLoading(false)
+        isBack && navigate(-1)
       })
       .catch((e) => {
         setOpenAlert(true)
@@ -42,6 +47,11 @@ const Login = () => {
         console.log(e)
       })
   }
+  useEffect(() => {
+    const params = getAllUrlParams(location.search)
+    !!params?.back ? setIsBack(true) : setIsBack(false)
+    return () => setIsBack(false)
+  }, [location.search])
 
   return (
     <div className="form form__container">

@@ -1,5 +1,11 @@
 .home {
-  margin: 40px 100px;
+  width: 1400px;
+  margin: 50px auto;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    margin: 50px 100px;
+  }
 
   @include breakpoint("xl") {
     margin: 30px 50px;
@@ -14,6 +20,6 @@
   }
 
   @include breakpoint("xs") {
-    margin: 20px 10px;
+    margin: 15px 10px;
   }
 }

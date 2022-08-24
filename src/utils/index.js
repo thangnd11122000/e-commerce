@@ -40,3 +40,7 @@ export const getAllUrlParams = (url) => {
 
   return obj
 }
+
+export const scrollOnTop = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+}

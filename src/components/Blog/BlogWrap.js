@@ -1,15 +1,18 @@
 import { CalendarToday, Person, Visibility } from "@mui/icons-material"
 import { Link } from "react-router-dom"
+import { scrollOnTop } from "../../utils"
 
 const BlogWrap = ({ post }) => {
   const { id, thumbnail, title, created_at, author, view } = post
   return (
     <div className="blog-wrap">
-      <Link to={`detail/${id}`}>
+      <Link to={`chi-tiet/${id}`} onClick={() => scrollOnTop()}>
         <img src={thumbnail} alt="" className="blog-wrap__image" />
       </Link>
       <div>
-        <Link to={`detail/${id}`}>{title}</Link>
+        <Link to={`chi-tiet/${id}`} onClick={() => scrollOnTop()}>
+          {title}
+        </Link>
         <div className="blog-wrap__actions">
           <div className="blog-wrap__action">
             <Person fontSize="small" />

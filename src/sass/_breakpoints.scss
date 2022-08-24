@@ -1,6 +1,10 @@
 @mixin breakpoint($point) {
-  @if $point == xxl {
-    @media (max-width: 1400px) {
+  @if $point == xxxl {
+    @media (max-width: 2000px) {
+      @content;
+    }
+  } @else if $point == xxl {
+    @media (max-width: 1440px) {
       @content;
     }
   } @else if $point == xl {
@@ -23,6 +27,10 @@
     @media (max-width: 425px) {
       @content;
     }
+  } @else if $point == xxs {
+    @media (max-width: 375px) {
+      @content;
+    }
   }
 }
 
@@ -31,4 +39,3 @@
   justify-content: $justify-content;
   align-items: $align-item;
 }
-

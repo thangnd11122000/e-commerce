@@ -3,7 +3,7 @@ const getDiscount = (discount, price) => {
     ? discount.discount_type === "Price"
       ? price - discount.discount_value
       : price - (price * discount.discount_value) / 100
-    : null
+    : 0
 }
 
 export default getDiscount

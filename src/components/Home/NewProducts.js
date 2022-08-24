@@ -5,7 +5,7 @@ const NewProducts = () => {
   const [products, setProducts] = useState([])
 
   const { response, loading, error } = useAxios({
-    url: "/api/product?is_new=new&_page=1&_limit=10",
+    url: "/api/product?is_new=new&_page=1&_limit=10&_sort=created_at&_order=desc",
   })
   error && console.log(error.message)
 

@@ -16,14 +16,15 @@
   }
 
   hr {
-    width: 100%;
+    width: 1400px;
+    margin: 0 auto;
     height: 2px;
     background: rgba(225, 255, 255, 0.25);
     border: none;
     outline: none;
 
-    @include breakpoint("xl") {
-      // display: none;
+    @include breakpoint("xxl") {
+      width: auto;
     }
   }
 }

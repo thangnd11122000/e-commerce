@@ -42,7 +42,7 @@ const settings = {
 
 const PostList = () => {
   const { response, loading, error } = useAxios({
-    url: "/api/blogs?_page=1&_limit=10&_sort=created_at&_order=desc&status=1",
+    url: "/api/blogs?_page=1&_limit=10&_sort=created_at&_order=desc",
   })
 
   error && console.log(error.message)

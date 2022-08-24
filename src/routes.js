@@ -35,18 +35,16 @@ const AppRoutes = () => {
       <Route path="/quen-mat-khau" element={<ForgotPasswordPage />} />
       <Route path="/doi-mat-khau" element={<ChangePasswordPage />} />
       <Route path="/lien-he" element={<ContactPage />} />
-      <Route path="/trang-ca-nhan" element={<UserPage />} />
 
       <Route element={<ProtectedRoute />}>
-      <Route path="/thanh-toan" element={<CheckoutPage />} />
-      <Route path="/thanh-cong" element={<SuccessPage />} />
-
+        <Route path="/thanh-toan" element={<CheckoutPage />} />
+        <Route path="/thanh-cong/*" element={<SuccessPage />} />
+        <Route path="/trang-ca-nhan" element={<UserPage />} />
       </Route>
 
       <Route element={<LoggedRoute />}>
         <Route path="/dang-nhap" element={<LoginPage />} />
         <Route path="/dang-ky" element={<RegisterPage />} />
-
       </Route>
     </Routes>
   )
