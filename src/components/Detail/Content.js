@@ -195,8 +195,8 @@ const Content = ({ product }) => {
     ) : (
       <p>{formatCurrency(price)}đ</p>
     )
-console.log(product);
-  return (
+
+    return (
     <>
       <div className="detail-content">
         <div className="detail-content__name">{product.product_name}</div>

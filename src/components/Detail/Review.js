@@ -4,19 +4,18 @@ import { css } from "@emotion/react"
 import { useEffect, useState } from "react"
 import usePagination from "../Pagination/Pagination"
 import { Pagination } from "@mui/material"
+import axios from "axios"
+import avatar from "../../assets/img/common/user.png"
 
-const override = css`
-  display: block;
-  margin: 50px auto;
-`
-const Review = ({ ratings }) => {
+const Review = ({ productId }) => {
+  const [ratings, setRatings] = useState([])
   const [totalRatings, setTotalRatings] = useState(0)
   const [ratingsFilter, setRatingsFilter] = useState(ratings)
 
   const [isResetPage, setIsResetPage] = useState(false)
 
   let [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(2)
+  const [perPage] = useState(5)
   const count = Math.ceil(ratingsFilter.length / perPage)
   const _DATA = usePagination(ratingsFilter, perPage)
 
@@ -40,6 +39,17 @@ const Review = ({ ratings }) => {
     let temp = ratings.filter((r) => r.rating === value)
     return temp.length
   }
+  console.log(ratings)
+  useEffect(() => {
+    if (productId) {
+      axios
+        .get(`/api/reviews?product=${productId}&_limit=9999&_page=1`)
+        .then((res) => {
+          setRatings(res.data.data)
+          setRatingsFilter(res.data.data)
+        })
+    }
+  }, [productId])
 
   useEffect(() => {
     let temp = ratings.reduce((sum, rating) => sum + rating.rating, 0)
@@ -84,7 +94,7 @@ const Review = ({ ratings }) => {
                 <div key={i} className="detail-rating__item">
                   <div className="detail-rating__item--left">
                     <div className="detail-rating__user">
-                      <img src={r.customer.avatar} alt="" />
+                      <img src={r?.avatar || avatar} alt="" />
                       <div>
                         <Rating
                           name="simple-controlled"
@@ -92,15 +102,16 @@ const Review = ({ ratings }) => {
                           readOnly
                         />
                         <p className="detail-rating__user--name">
-                          {r.customer.name}
+                          {r?.fullname}
                         </p>
-                        <p className="detail-rating__user--date">{r.date}</p>
+                        {/* <p className="detail-rating__user--date">{r.date}</p> */}
+                        <div className="detail-rating__comment">
+                          {r.comment}
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="detail-rating__item--right">
-                    <div className="detail-rating__comment">{r.comment}</div>
-                  </div>
+                  <div className="detail-rating__item--right"></div>
                 </div>
               ))
             ) : (

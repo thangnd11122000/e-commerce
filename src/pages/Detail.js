@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Description from "../components/Detail/Description"
 import Preview from "../components/Detail/Preview"
 import Review from "../components/Detail/Review"
 import Services from "../components/Detail/Services"
 import PageLinks from "../components/PageLinks"
 import ProductSlider from "../components/Product/ProductSlider"
-import { InfoOutlined } from "@mui/icons-material"
 import { MoonLoader } from "react-spinners"
 import { css } from "@emotion/react"
 import axios from "axios"
@@ -22,14 +21,10 @@ const Detail = () => {
   const params = useParams()
 
   const [product, setProduct] = useState([])
-  const [ratings, setRatings] = useState([])
   const [productsByCategory, setProductsByCategory] = useState([])
   const [loadingProductsByCategory, setLoadingProductsByCategory] =
     useState(true)
   const productApi = useAxios({ url: `/api/product/${params.id}` })
-  // const ratingsApi = useAxios({ url: `/ratings?product_id=${params.id}` })
-
-  // ratingsApi.error && console.log(ratingsApi.error.message)
 
   const getProductsByCategory = useCallback((id) => {
     axios
@@ -44,7 +39,7 @@ const Detail = () => {
         setLoadingProductsByCategory(false)
       })
   }, [])
-console.log(product);
+
   useEffect(() => {
     if (productApi.response !== null) {
       setProduct(productApi.response.data)
@@ -86,14 +81,7 @@ console.log(product);
             ) : (
               <Description description={product.description} />
             )}
-
-            {/* {ratingsApi.loading ? (
-              <div className="section-box">
-                <MoonLoader color="#0032FE" size={40} css={override} />
-              </div>
-            ) : (
-              <Review ratings={ratings} />
-            )} */}
+            <Review productId={product?.id} />
           </div>
           <div className="detail__right">
             <Services />

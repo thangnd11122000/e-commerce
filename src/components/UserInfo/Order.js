@@ -5,6 +5,9 @@ import { useEffect, useState } from "react"
 import { PuffLoader } from "react-spinners"
 import { formatCurrency, scrollOnTop } from "../../utils"
 import dayjs from "dayjs"
+import { Fragment } from "react"
+import ModalRating from "./ModalRating"
+import { ORDER_SUCCESS } from "../../constants/orders"
 
 const Order = ({ url = "/api/orders" }) => {
   const [orders, setOrders] = useState([])
@@ -83,7 +86,6 @@ const Order = ({ url = "/api/orders" }) => {
     setPage(p)
     _DATA.jump(p)
   }
-  console.log(orders)
 
   return (
     <>
@@ -114,33 +116,41 @@ const Order = ({ url = "/api/orders" }) => {
 
                 <div className="checkout-product" style={{ marginTop: "15px" }}>
                   {order.orderdetails?.map((detail) => (
-                    <div key={detail.id} className="checkout-product__item">
-                      <img
-                        src={`https://techchains-ecommerce.store/public/storage/uploads/products/${detail.product.image}`}
-                        alt={detail.product.product_name}
-                      />
-                      <div>
-                        <p className="checkout-product__name">
-                          {detail.product.product_name}
-                        </p>
-                        {detail.discount_amount > 0 ? (
-                          <p className="checkout-product__price">
-                            {formatCurrency(Number(detail.unit_price))}đ
-                            <del>
-                              {formatCurrency(Number(detail.discount_amount))}đ
-                            </del>
+                    <Fragment key={detail.id}>
+                      <div key={detail.id} className="checkout-product__item">
+                        <img
+                          src={`https://techchains-ecommerce.store/public/storage/uploads/products/${detail.product.image}`}
+                          alt={detail.product.product_name}
+                        />
+                        <div>
+                          <p className="checkout-product__name">
+                            {detail.product.product_name}
                           </p>
-                        ) : (
-                          <p className="checkout-product__price">
-                            {formatCurrency(Number(detail.unit_price))}đ
-                          </p>
-                        )}
+                          {detail.discount_amount > 0 ? (
+                            <p className="checkout-product__price">
+                              {formatCurrency(Number(detail.unit_price))}đ
+                              <del>
+                                {formatCurrency(Number(detail.discount_amount))}
+                                đ
+                              </del>
+                            </p>
+                          ) : (
+                            <p className="checkout-product__price">
+                              {formatCurrency(Number(detail.unit_price))}đ
+                            </p>
+                          )}
 
-                        <p className="checkout-product__quantity">
-                          Số lượng: {detail.quantity}
-                        </p>
+                          <p className="checkout-product__quantity">
+                            Số lượng: {detail.quantity}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                      {order.order_status === ORDER_SUCCESS && (
+                        <div>
+                          <ModalRating product={detail?.product} />
+                        </div>
+                      )}
+                    </Fragment>
                   ))}
                 </div>
                 <Divider sx={{ margin: "30px 0" }} />

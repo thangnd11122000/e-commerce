@@ -22,9 +22,9 @@ const BlogCard = ({ post }) => {
           to={`/bai-viet/chi-tiet/${post?.id}`}
           onClick={() => scrollOnTop()}
         >
-          {post.title}
+          {post?.title}
         </Link>
-        <p>{post.subtitle}</p>
+        <p>{post?.subtitle}</p>
         <div className="blog-card__items">
           <div className="blog-card__item">
             <Person fontSize="small" />

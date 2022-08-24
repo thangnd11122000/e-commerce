@@ -1,13 +1,3 @@
-label {
-  display: flex;
-  align-items: center;
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
-  font-weight: 400;
-  color: #222;
-  font-size: 16px;
-}
-
 input,
 button,
 textarea,
@@ -22,12 +12,17 @@ button {
   border: none;
 }
 
-// form {
-//   padding: 2.5rem 0.625rem;
-//   border-radius: 0.25rem;
-// }
-
 .form {
+  label {
+    display: flex;
+    align-items: center;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    // color: #222;
+    font-size: 16px;
+  }
+
   &__container {
     max-width: 800px;
     margin: 50px auto;
@@ -62,7 +57,7 @@ button {
         margin-top: 20px;
       }
     }
-    
+
     &--facebook {
       background: rgb(45, 136, 255);
     }
@@ -106,10 +101,9 @@ button {
       color: $primary;
     }
   }
-  .btn-primary{
+  .btn-primary {
     width: 100%;
   }
-  
 }
 
 .form-group {
@@ -162,7 +156,7 @@ button {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-input[type=date]{
+input[type="date"] {
   padding: 8px 10px !important;
 }
 .error {
