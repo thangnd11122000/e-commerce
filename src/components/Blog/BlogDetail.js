@@ -3,6 +3,7 @@ import { Button } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { PuffLoader } from "react-spinners"
+import parse from "html-react-parser"
 import { useAxios } from "../../hook/useAxios"
 import { formatDate } from "../../utils"
 import BlogComment from "./BlogComment"
@@ -56,7 +57,7 @@ const BlogDetail = () => {
           </div>
           <img className="blog-detail__img" src={post.thumbnail} alt="" />
           <div className="blog-detail__content">
-            <p>{post.content}</p>
+            <p>{parse(post.content)}</p>
           </div>
           <div className="blog-detail__button">
             <Button
