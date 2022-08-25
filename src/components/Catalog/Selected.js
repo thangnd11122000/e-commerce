@@ -79,8 +79,8 @@ const Selected = ({
         <div className="catalog-selected__list">
           <p>Khoảng giá:</p>
           <div>
-            {formatCurrency(priceSlider[0])}đ - {formatCurrency(priceSlider[1])}
-            đ<button onClick={() => setPriceSlider(minMaxPrice)}>X</button>
+            {formatCurrency(priceSlider[0])} - {formatCurrency(priceSlider[1])}
+            <button onClick={() => setPriceSlider(minMaxPrice)}>X</button>
           </div>
         </div>
       )}

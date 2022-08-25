@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { PuffLoader } from "react-spinners"
 import { clearCart } from "../store/cartItemsSlice"
 import { deleteOrderTemp } from "../store/orderTemp"
@@ -55,9 +56,13 @@ const Success = () => {
             </div>
 
             <div className="bottomHalf">
-              <p>Bạn đã mua hàng thành công</p>
+              <p style={{ marginBottom: "30px", fontSize: "20px" }}>
+                Bạn đã mua hàng thành công
+              </p>
 
-              <button id="alertMO">Moving On</button>
+              <Link to="/trang-ca-nhan?_page=don-hang" className="btn-primary">
+                Xem đơn hàng
+              </Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import { Star } from "@mui/icons-material"
 import Rating from "@mui/material/Rating"
-import { css } from "@emotion/react"
 import { useEffect, useState } from "react"
 import usePagination from "../Pagination/Pagination"
 import { Pagination } from "@mui/material"
@@ -134,7 +133,9 @@ const Review = ({ productId }) => {
           </div>
         </>
       ) : (
-        <h3 style={{ textAlign: "center" }}>Chưa có đánh giá</h3>
+        <h3 style={{ textAlign: "center", padding: "20px 0" }}>
+          Chưa có đánh giá
+        </h3>
       )}
     </div>
   )

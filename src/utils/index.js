@@ -1,5 +1,5 @@
 export const formatCurrency = (num) =>
-  num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : 0
+  (num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : 0) + "đ"
 
 export const formatDate = (date) =>
   date ? date.split("T")[0].split("-").reverse().join("-") : ""
@@ -43,4 +43,17 @@ export const getAllUrlParams = (url) => {
 
 export const scrollOnTop = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+}
+
+export const getPostCategoryName = (array, id) => {
+  let temp = array?.filter((arr) => arr.id === id)
+  return temp ? temp[0].name : ""
+}
+
+export const getDiscount = (discount, price) => {
+  return discount
+    ? discount.discount_type === "Price"
+      ? price - discount.discount_value
+      : price - (price * discount.discount_value) / 100
+    : 0
 }

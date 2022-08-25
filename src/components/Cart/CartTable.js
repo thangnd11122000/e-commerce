@@ -163,10 +163,13 @@ const CartTable = () => {
                     </TableCell>
                     <TableCell align="left">
                       <div className="cart-table__product">
-                        <Link to={`/san-pham/${product.id}`}>
+                        <Link
+                          to={`/san-pham/${product.id}`}
+                          className="cart-table__product--img"
+                        >
                           <img src={product.image} alt="" />
                         </Link>
-                        <div>
+                        <div className="cart-table__product--content">
                           <Link to={`/san-pham/${product.id}`}>
                             {product.product_name}
                           </Link>
@@ -182,13 +185,13 @@ const CartTable = () => {
                       {product?.discount ? (
                         <>
                           <p className="cart-table__price--discount">
-                            {formatCurrency(product.price - product.discount)}đ
+                            {formatCurrency(product.price - product.discount)}
                           </p>
-                          <del>{formatCurrency(product.price)}đ</del>
+                          <del>{formatCurrency(product.price)}</del>
                         </>
                       ) : (
                         <p className="cart-table__price--normal">
-                          {formatCurrency(product.price)}đ
+                          {formatCurrency(product.price)}
                         </p>
                       )}
                     </TableCell>
@@ -229,7 +232,6 @@ const CartTable = () => {
                       {product.discount > 0
                         ? formatCurrency(product.discount * product.quantity)
                         : formatCurrency(product.price * product.quantity)}
-                      đ
                     </TableCell>
                     <TableCell align="center">
                       <Tooltip title="Xóa sản phẩm">
@@ -288,7 +290,7 @@ const CartTable = () => {
               Xóa đã chọn
             </Button>
           ) : (
-            <p>Tổng tiền: {formatCurrency(totalPrice)}đ</p>
+            <p>Tổng tiền: {formatCurrency(totalPrice)}</p>
           )}
         </div>
       </div>

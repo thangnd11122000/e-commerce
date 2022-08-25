@@ -41,16 +41,13 @@ const settings = {
 }
 
 const PostList = () => {
-  const { response, loading, error } = useAxios({
-    url: "/api/blogs?_page=1&_limit=10&_sort=created_at&_order=desc",
+  const { response, loading } = useAxios({
+    url: "/api/blogs?_page=1&_limit=12&_sort=created_at&_order=desc",
   })
-
-  error && console.log(error.message)
   return (
     <div className="post-list">
       <div className="home__header">
         <h3>Bài viết gần đây</h3>
-        {/* <span>Xem tất cả</span> */}
       </div>
       {loading ? (
         <div className="product-loading">

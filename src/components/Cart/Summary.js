@@ -11,16 +11,16 @@ const Summary = () => {
       <h3 className="section-box__title">Thanh toán</h3>
       <div>
         <p>Tạm tính</p>
-        <p>{formatCurrency(totalPrice)}đ</p>
+        <p>{formatCurrency(totalPrice)}</p>
       </div>
       <div>
         <p>Giảm giá</p>
-        <p>{formatCurrency(totalDiscount)}đ</p>
+        <p>{formatCurrency(totalDiscount)}</p>
       </div>
       <div>
         <p>Thành tiền</p>
         <p className="cart-summary__total">
-          {formatCurrency(totalPrice - totalDiscount)}đ
+          {formatCurrency(totalPrice - totalDiscount)}
         </p>
       </div>
       <Link to="/thanh-toan">

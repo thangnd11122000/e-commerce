@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { deleteItem } from "../../store/cartItemsSlice"
 import { closeCartSidebar } from "../../store/toggleSlice"
-import { formatCurrency } from "../../utils"
-import getDiscount from "../../utils/getDiscount"
+import { formatCurrency, getDiscount } from "../../utils"
 import ConfirmDialog from "../ConfirmDialog"
 import image from "../../assets/img/common/cart-512.webp"
 
@@ -78,71 +77,70 @@ const CartSidebar = () => {
         {totalProduct > 0 ? (
           <>
             <div className="cart-sidebar__body">
-              {cartItems?.length &&
-                cartItems?.map((product, index) => {
-                  const discountValue = getDiscount(
-                    product.discount,
-                    product.price
-                  )
-                  return (
-                    <div key={index} className="cart-sidebar__item">
+              {cartItems?.map((product, index) => {
+                const discountValue = getDiscount(
+                  product.discount,
+                  product.price
+                )
+                return (
+                  <div key={index} className="cart-sidebar__item">
+                    <Link
+                      to={`san-pham/${product.id}`}
+                      className="cart-sidebar__item--img"
+                      onClick={() => dispatch(closeCartSidebar())}
+                    >
+                      <img
+                        src={`${product.image}`}
+                        alt={product.product_name}
+                      />
+                    </Link>
+                    <div className="cart-sidebar__product">
                       <Link
                         to={`san-pham/${product.id}`}
-                        className="cart-sidebar__item--img"
+                        className="cart-sidebar__product--name"
                         onClick={() => dispatch(closeCartSidebar())}
                       >
-                        <img
-                          src={`${product.image}`}
-                          alt={product.product_name}
-                        />
+                        {product.product_name}
                       </Link>
-                      <div className="cart-sidebar__product">
-                        <Link
-                          to={`san-pham/${product.id}`}
-                          className="cart-sidebar__product--name"
-                          onClick={() => dispatch(closeCartSidebar())}
-                        >
-                          {product.product_name}
-                        </Link>
-                        <div className="cart-sidebar__product--number">
-                          <p>
-                            {discountValue > 0
-                              ? formatCurrency(discountValue) + "đ"
-                              : formatCurrency(product.price) + "đ"}
-                            <span> x {product.quantity}</span>
-                          </p>
-                          <div className="product__option">
-                            {product?.selectedOption?.map((option) => (
-                              <p key={option.option_id}>{option.detail}</p>
-                            ))}
-                          </div>
+                      <div className="cart-sidebar__product--number">
+                        <p>
+                          {discountValue > 0
+                            ? formatCurrency(discountValue)
+                            : formatCurrency(product.price)}
+                          <span> x {product.quantity}</span>
+                        </p>
+                        <div className="product__option">
+                          {product?.selectedOption?.map((option) => (
+                            <p key={option.option_id}>{option.detail}</p>
+                          ))}
                         </div>
                       </div>
-                      <div className="cart-sidebar__actions">
-                        <Link
-                          to={`san-pham/${product.id}`}
-                          onClick={() => dispatch(closeCartSidebar())}
-                        >
-                          <Tooltip title="Xem sản phẩm">
-                            <IconButton>
-                              <Visibility />
-                            </IconButton>
-                          </Tooltip>
-                        </Link>
-                        <Tooltip title="Xóa sản phẩm">
-                          <IconButton
-                            onClick={() => handleDelete(product.productId)}
-                          >
-                            <Delete />
+                    </div>
+                    <div className="cart-sidebar__actions">
+                      <Link
+                        to={`san-pham/${product.id}`}
+                        onClick={() => dispatch(closeCartSidebar())}
+                      >
+                        <Tooltip title="Xem sản phẩm">
+                          <IconButton>
+                            <Visibility />
                           </IconButton>
                         </Tooltip>
-                      </div>
+                      </Link>
+                      <Tooltip title="Xóa sản phẩm">
+                        <IconButton
+                          onClick={() => handleDelete(product.productId)}
+                        >
+                          <Delete />
+                        </IconButton>
+                      </Tooltip>
                     </div>
-                  )
-                })}
+                  </div>
+                )
+              })}
               <div className="cart-sidebar__total">
                 <p>Tổng đơn hàng</p>
-                <p>{formatCurrency(totalPrice)}đ</p>
+                <p>{formatCurrency(totalPrice)}</p>
               </div>
             </div>
             <div className="cart-sidebar__footer">

@@ -1,4 +1,3 @@
-import Coupons from "../components/Cart/Coupons"
 import Summary from "../components/Cart/Summary"
 import CartTable from "../components/Cart/CartTable"
 import PageLinks from "../components/PageLinks"
@@ -18,7 +17,10 @@ const Cart = () => {
               <CartTable />
             </div>
             <div className="cart__right">
-              <Coupons />
+              <img
+                src="https://i.pinimg.com/564x/a7/92/41/a79241873a4296430d0d521ac280ac3d.jpg"
+                alt="quang-cao"
+              />
               <Summary />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import getDiscount from "../utils/getDiscount"
+import { getDiscount } from "../utils"
 
 const items =
   localStorage.getItem("cartItems") !== null

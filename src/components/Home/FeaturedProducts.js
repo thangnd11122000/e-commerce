@@ -34,8 +34,7 @@ const FeaturedProducts = () => {
   return (
     <div className="recommended-products">
       <div className="home__header">
-        <h3>Dành cho bạn</h3>
-        {/* <span>Xem tất cả</span> */}
+        <h3>Sản phẩm nổi bật</h3>
       </div>
 
       {loading ? (

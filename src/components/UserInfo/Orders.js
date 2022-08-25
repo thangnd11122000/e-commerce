@@ -9,7 +9,6 @@ import {
   ORDER_PROCESS,
   ORDER_SUCCESS,
 } from "../../constants/orders"
-import ModalRating from "./ModalRating"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -67,7 +66,6 @@ const Orders = () => {
           <div className="user__body">
             <Order />
           </div>
-          <ModalRating />
         </TabPanel>
         <TabPanel value={value} index={ORDER_PROCESS}>
           <div className="user__body">

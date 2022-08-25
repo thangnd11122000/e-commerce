@@ -39,16 +39,16 @@ const banners = [
 
 const carousels = [
   {
-    link: "/danh-sach?_cat=31",
-    title: "Tai nghe không dây <br /> Top Headphone",
-    description: "Sự lựa chọn tốt nhất dành cho bạn",
-    image: slide1,
-  },
-  {
     link: "/danh-sach?_cat=2",
     title: "Laptop gamming <br /> Razer Blade 15",
     description: "Sự lựa chọn tốt nhất dành cho bạn",
     image: slide2,
+  },
+  {
+    link: "/danh-sach?_cat=31",
+    title: "Tai nghe không dây <br /> Top Headphone",
+    description: "Sự lựa chọn tốt nhất dành cho bạn",
+    image: slide1,
   },
   {
     link: "/danh-sach?_cat=4",

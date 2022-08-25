@@ -21,8 +21,7 @@ const Catalog = () => {
   const [productsData, setProductsData] = useState([])
   const [products, setProducts] = useState([])
 
-  const { response, loading, error } = useAxios({ url: "/api/product" })
-  error && console.log(error.message)
+  const { response, loading } = useAxios({ url: "/api/product" })
 
   const [minMaxPrice, setMinMaxPrice] = useState([0, 9999])
   const [priceSlider, setPriceSlider] = useState([0, 9999])
@@ -36,7 +35,6 @@ const Catalog = () => {
   useEffect(() => {
     const params = getAllUrlParams(location.search)
     const search = params._q || ""
-
     axios
       .get(`/api/product?q=${search}`)
       .then((res) => {
@@ -155,7 +153,6 @@ const Catalog = () => {
       // }
 
       temp = filterSorting(temp)
-
       temp = temp.filter(
         (t) => t.price >= priceSlider[0] && t.price <= priceSlider[1]
       )
@@ -197,12 +194,6 @@ const Catalog = () => {
       setPriceSlider(temp)
     }
   }, [response])
-
-  // useEffect(() => {
-  //   if (response !== null) {
-  //     setProducts(response.data)
-  //   }
-  // }, [response])
 
   return (
     <>

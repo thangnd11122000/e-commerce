@@ -1,4 +1,5 @@
 import { Person, Visibility } from "@mui/icons-material"
+import dayjs from "dayjs"
 import { Link } from "react-router-dom"
 import { scrollOnTop } from "../../utils"
 
@@ -43,7 +44,7 @@ const BlogCard = ({ post }) => {
         >
           Xem tiếp
         </Link>
-        <p>{post?.created_at.split(" ")[0]}</p>
+        <p>{dayjs(post?.created_at).format("DD/MM/YYYY")}</p>
       </div>
     </div>
   )

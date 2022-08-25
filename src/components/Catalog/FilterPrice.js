@@ -16,7 +16,7 @@ function numFormatter(num) {
 }
 
 const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setPriceSlider(newValue)
   }
 
@@ -25,15 +25,14 @@ const FilterPrice = ({ minMaxPrice, priceSlider, setPriceSlider }) => {
       <h2>Giá sản phẩm</h2>
       <div>
         <p style={{ margin: "15px 0 10px" }}>
-          Từ {formatCurrency(minMaxPrice[0])}đ - Đến{" "}
-          {formatCurrency(minMaxPrice[1])}đ
+          Từ {formatCurrency(minMaxPrice[0])} - Đến{" "}
+          {formatCurrency(minMaxPrice[1])}
         </p>
         <Slider
           sx={{ width: "90%" }}
           getAriaLabel={() => "Price slider"}
           value={priceSlider}
           onChange={handleChange}
-          // valueLabelDisplay="off"
           getAriaValueText={valueText}
           min={minMaxPrice[0]}
           max={minMaxPrice[1]}

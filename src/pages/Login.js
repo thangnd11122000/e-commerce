@@ -6,8 +6,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
-import { signInWithFacebook, signInWithGoogle } from "../config/configFirebase"
-import { login } from "../store/authSlice"
+import { signInWithGoogle } from "../config/configFirebase"
+import { login, loginGoogle } from "../store/authSlice"
 import { getAllUrlParams } from "../utils"
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
     email: "",
     password: "",
   }
-  const loginGoogle = async () => {
+  const loginGoogleAPI = async () => {
     try {
       const rs = await signInWithGoogle()
       const info = rs.user.providerData[0]
@@ -33,20 +33,33 @@ const Login = () => {
         fullName: info.displayName,
         avatar: info.photoURL,
       }
-      console.log(data)
+      dispatch(loginGoogle(data))
+        .unwrap()
+        .then(() => {
+          setOpenAlert(true)
+          setTypeAlert(1)
+          setLoading(false)
+          isBack && navigate(-1)
+        })
+        .catch((e) => {
+          setOpenAlert(true)
+          setTypeAlert(0)
+          setLoading(false)
+          console.log(e)
+        })
     } catch (error) {
       console.log("error", error)
     }
   }
-  const loginFacebook = async () => {
-    try {
-      const rs = await signInWithFacebook()
-      // const info = rs.user.providerData[0];
-      console.log(rs)
-    } catch (error) {
-      console.log("error", error)
-    }
-  }
+  // const loginFacebook = async () => {
+  //   try {
+  //     const rs = await signInWithFacebook()
+  //     // const info = rs.user.providerData[0];
+  //     console.log(rs)
+  //   } catch (error) {
+  //     console.log("error", error)
+  //   }
+  // }
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Nhập đúng định dạng email")
@@ -136,14 +149,14 @@ const Login = () => {
           <span>Hoặc</span>
           <div></div>
         </div>
-        <button
+        {/* <button
           onClick={loginFacebook}
           className="btn-primary form__item--facebook"
         >
           Đăng nhập với facebook
-        </button>
+        </button> */}
         <button
-          onClick={loginGoogle}
+          onClick={loginGoogleAPI}
           className="btn-primary form__item--google"
         >
           Đăng nhập với google

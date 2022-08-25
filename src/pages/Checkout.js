@@ -1,15 +1,16 @@
 import axios from "axios"
-import { useState } from "react"
+import dayjs from "dayjs"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { v4 } from "uuid"
+import Coupons from "../components/Checkout/Coupons"
 import Delivery from "../components/Checkout/Delivery"
 import Order from "../components/Checkout/Order"
 import Payment from "../components/Checkout/Payment"
 import Summary from "../components/Checkout/Summary"
 import PageLinks from "../components/PageLinks"
 import { insertOrderTemp } from "../store/orderTemp"
-import { CURRENT_DATE, CURRENT_TIME } from "../utils/datetime"
 
 const Checkout = () => {
   const { user } = useSelector((state) => state.auth)
@@ -22,14 +23,19 @@ const Checkout = () => {
   const [note, setNote] = useState("")
   const [shippingFee] = useState(25000)
   const [currentAddressId, setCurrentAddressId] = useState(null)
+  const [voucher, setVoucher] = useState(null)
+  const [voucherPrice, setVoucherPrice] = useState(0)
   const getDataOrder = () => {
-    const details = cartItems?.map((product) => {
+    const details = cartItems?.map((product, index) => {
       return {
         product_id: product.id,
         quantity: product.quantity,
         unit_price: product.price,
         product_option: product?.selectedOptionsNumber?.join(",") || 0,
-        discount_amount: product?.discount || 0,
+        discount_amount:
+          index === 0
+            ? (product?.discount || 0) + voucherPrice
+            : product?.discount || 0,
       }
     })
 
@@ -37,7 +43,7 @@ const Checkout = () => {
       data: {
         order: {
           customer_id: user?.id,
-          order_date: `${CURRENT_DATE} ${CURRENT_TIME}`,
+          order_date: dayjs().format("YYYY-MM-DD HH:mm:ss"),
           order_note: note,
           address_id: currentAddressId,
           shipping_fee: shippingFee,
@@ -48,7 +54,7 @@ const Checkout = () => {
       },
     }
   }
-
+  console.log(cartItems[0])
   const handleOrder = () => {
     dispatch(insertOrderTemp(getDataOrder()))
     if (paymentType) {
@@ -79,9 +85,21 @@ const Checkout = () => {
     }
   }
 
+  useEffect(() => {
+    if (voucher !== null) {
+      if (voucher.discount_type === "Money") {
+        setVoucherPrice(voucher.discount_value)
+      } else {
+        setVoucherPrice(
+          ((totalPrice - totalDiscount) * voucher.discount_value) / 100
+        )
+      }
+    } else setVoucherPrice(0)
+  }, [totalDiscount, totalPrice, voucher])
+
   return (
     <form>
-      <PageLinks links={[{ name: "Thanh toán", link: "/checkout" }]} />
+      <PageLinks links={[{ name: "Thanh toán", link: "/thanh-toan" }]} />
       <div className="checkout">
         <div className="checkout__left">
           <Delivery
@@ -92,12 +110,14 @@ const Checkout = () => {
         </div>
         <div className="checkout__right">
           <Payment paymentType={paymentType} setPaymentType={setPaymentType} />
+          <Coupons setVoucher={setVoucher} />
           <Summary
             totalPrice={totalPrice}
             shippingFee={shippingFee}
             totalDiscount={totalDiscount}
             handleOrder={handleOrder}
             setNote={setNote}
+            voucherPrice={voucherPrice}
           />
         </div>
       </div>

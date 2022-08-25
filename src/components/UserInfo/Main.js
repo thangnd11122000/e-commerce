@@ -5,12 +5,11 @@ import Vouchers from "./Vouchers"
 
 const Main = ({ page }) => {
   switch (page) {
-    case "information":
+    case "thong-tin":
       return <Info />
-
-    case "address":
+    case "dia-chi":
       return <Address />
-    case "orders":
+    case "don-hang":
       return <Orders />
     case "vouchers":
       return <Vouchers />

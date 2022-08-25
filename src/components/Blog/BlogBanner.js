@@ -1,29 +1,21 @@
 import { Person, Visibility } from "@mui/icons-material"
 import { Link } from "react-router-dom"
-import getPostCategoryName from "../../utils/getPostCategoryName"
 
 const BlogBanner = ({ posts, categories }) => {
-  console.log(posts)
   return (
     <div className="blog-banner">
       <div className="blog-banner__list">
         {posts.map((p) => (
           <div key={p.id} className="blog-banner__item">
-            <Link
-              to={`/bai-viet/${p.id}`}
-              className="blog-banner__item--img"
-            >
-              <img src={p.thumbnail} alt={p.slug} />
+            <Link to={`/bai-viet/${p.id}`} className="blog-banner__item--img">
+              <img
+                src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${p?.thumbnail}`}
+                alt={p.slug}
+              />
             </Link>
             <div className="blog__tags">
-              {/* <Link key={p.category_id} to={`/blog/category/${p.category_id}`}>
-                {getPostCategoryName(categories, p.category_id)}
-              </Link> */}
             </div>
-            <Link
-              to={`/bai-viet/${p.id}`}
-              className="blog-banner__item--title"
-            >
+            <Link to={`/bai-viet/${p.id}`} className="blog-banner__item--title">
               {p?.title?.length > 70
                 ? p.title.substring(0, 70) + "..."
                 : p.title}

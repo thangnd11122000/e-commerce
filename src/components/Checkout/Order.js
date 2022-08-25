@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { formatCurrency } from "../../utils"
-import getDiscount from "../../utils/getDiscount"
 
 const Order = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -10,34 +10,35 @@ const Order = () => {
     <div className="section-box checkout__order">
       <h3 className="section-box__title">Thông tin đơn hàng</h3>
       <div className="checkout-product">
-        {cartItems?.length &&
-          cartItems?.map((product, index) => {
-            const discountValue = getDiscount(product.discount, product.price)
-            return (
-              <div key={index} className="checkout-product__item">
-                <img src={product.image} alt="" />
-                <div>
-                  <p className="checkout-product__name">
-                    {product.product_name}
+        {cartItems?.map((product, index) => {
+          return (
+            <div key={index} className="checkout-product__item">
+              <img src={product.image} alt="" />
+              <div>
+                <Link
+                  to={`/san-pham/${product.id}`}
+                  className="checkout-product__name"
+                >
+                  {product.product_name}
+                </Link>
+                {product.discount > 0 ? (
+                  <p className="checkout-product__price">
+                    {formatCurrency(product.price - product.discount)}
+                    <del>{formatCurrency(product.price)}</del>
                   </p>
-                  {discountValue > 0 ? (
-                    <p className="checkout-product__price">
-                      {formatCurrency(discountValue)}đ
-                      <del>{formatCurrency(product.price)}đ</del>
-                    </p>
-                  ) : (
-                    <p className="checkout-product__price">
-                      {formatCurrency(product.price)}đ
-                    </p>
-                  )}
+                ) : (
+                  <p className="checkout-product__price">
+                    {formatCurrency(product.price)}
+                  </p>
+                )}
 
-                  <p className="checkout-product__quantity">
-                    Số lượng: {product.quantity}
-                  </p>
-                </div>
+                <p className="checkout-product__quantity">
+                  Số lượng: {product.quantity}
+                </p>
               </div>
-            )
-          })}
+            </div>
+          )
+        })}
       </div>
     </div>
   )

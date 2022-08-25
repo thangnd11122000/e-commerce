@@ -1,8 +1,7 @@
 import { FavoriteBorder, RemoveRedEyeOutlined } from "@mui/icons-material"
 import { Rating } from "@mui/material"
 import { Link } from "react-router-dom"
-import { formatCurrency } from "../../utils"
-import getDiscount from "../../utils/getDiscount"
+import { formatCurrency, getDiscount } from "../../utils"
 
 const ProductCard = ({ product }) => {
   const {
@@ -46,12 +45,12 @@ const ProductCard = ({ product }) => {
       <div className="product-card__price">
         {discount ? (
           <div className="product-card__price--discount">
-            <del>{formatCurrency(price)}đ</del>&nbsp;{" "}
-            {formatCurrency(discountValue)}đ
+            <del>{formatCurrency(price)}</del>&nbsp;{" "}
+            {formatCurrency(discountValue)}
           </div>
         ) : (
           <div className="product-card__price--normal">
-            {formatCurrency(price)}đ
+            {formatCurrency(price)}
           </div>
         )}
       </div>

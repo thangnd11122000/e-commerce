@@ -59,32 +59,36 @@ const UserAddress = ({ currentAddressId, setCurrentAddressId }) => {
     })
   }
 
+  const fetchAddressAPI = useCallback(
+    async (data) => {
+      const addressPromises = data.map(async (d) => {
+        const province_detail = await getProvinceDetail(d.province_id)
+        const district_detail = await getDistrictDetail(
+          d.province_id,
+          d.district_id
+        )
+        const ward_detail = await getWardDetail(d.district_id, d.ward_id)
+
+        return { ...d, province_detail, district_detail, ward_detail }
+      })
+      const address = await Promise.all(addressPromises)
+      return address
+    },
+    [getProvinceDetail]
+  )
+
   const getAddressDetail = useCallback(() => {
     setLoading(true)
     user &&
       getAllAddressAPI(user.id)
         .then(async (data) => {
-          let temp = []
-          data.forEach(async (d) => {
-            const { province_id, district_id, ward_id } = d
-            d.province_detail = await getProvinceDetail(province_id)
-            d.district_detail = await getDistrictDetail(
-              province_id,
-              district_id
-            )
-            d.ward_detail = await getWardDetail(district_id, ward_id)
-            if (d.province_detail && d.district_detail && d.ward_detail) {
-              temp = [...temp, d]
-            }
-            setAllAddress(temp)
-          })
+          setAllAddress(await fetchAddressAPI(data))
         })
         .then(() => setLoading(false))
         .catch((error) => {
-          console.log(error)
           setLoading(false)
         })
-  }, [getProvinceDetail, user])
+  }, [fetchAddressAPI, user])
 
   const getDefaultAddressId = useCallback(() => {
     if (user) {

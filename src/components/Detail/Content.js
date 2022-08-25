@@ -3,8 +3,7 @@ import { Rating } from "@mui/material"
 import { useDispatch } from "react-redux"
 import { addItem } from "../../store/cartItemsSlice"
 import { useNavigate } from "react-router-dom"
-import getDiscount from "../../utils/getDiscount"
-import { formatCurrency } from "../../utils"
+import { formatCurrency, getDiscount } from "../../utils"
 import { showNotify } from "../../store/notifySlice"
 
 const Content = ({ product }) => {
@@ -28,6 +27,7 @@ const Content = ({ product }) => {
       setQuantity(quantity === 1 ? 1 : quantity - 1)
     }
   }
+
   const addToCart = () => {
     if (price > 0) {
       const discount = getDiscount(product?.discount?.[0], price)
@@ -87,8 +87,9 @@ const Content = ({ product }) => {
         .filter((option) => option.price)
         .map((option) => +option.price)
       prices = [...new Set(prices)]
+      console.log(prices)
       prices.length > 0
-        ? setRangePrice([prices[0], prices[1]])
+        ? setRangePrice([prices[0], prices[prices.length - 1]])
         : setRangePrice([prices[0]])
     } else setPrice(product.price)
   }, [product])
@@ -171,13 +172,11 @@ const Content = ({ product }) => {
     ))
 
   const renderRangePrice = () => {
-    const renderPrice = rangePrice
-      .map((p) => formatCurrency(p) + "đ")
-      .join(" - ")
+    const renderPrice = rangePrice.map((p) => formatCurrency(p)).join("-")
     if (product?.discount) {
       const renderDiscount = rangePrice
-        .map((d) => formatCurrency(getDiscount(product.discount[0], d)) + "đ")
-        .join(" - ")
+        .map((d) => formatCurrency(getDiscount(product.discount[0], d)))
+        .join("-")
       return (
         <p className="discount">
           {renderDiscount} <del>{renderPrice}</del>
@@ -189,21 +188,21 @@ const Content = ({ product }) => {
   const renderPrice = () =>
     product?.discount ? (
       <p className="discount">
-        {formatCurrency(getDiscount(product.discount[0], price)) + "đ"}{" "}
-        <del>{formatCurrency(price) + "đ"}</del>
+        {formatCurrency(getDiscount(product.discount[0], price))}{" "}
+        <del>{formatCurrency(price)}</del>
       </p>
     ) : (
-      <p>{formatCurrency(price)}đ</p>
+      <p>{formatCurrency(price)}</p>
     )
 
-    return (
+  return (
     <>
       <div className="detail-content">
         <div className="detail-content__name">{product.product_name}</div>
         <div className="detail-content__review">
           <Rating name="content-review" value={product.rated} readOnly />
           <p className="line">|</p>
-          <p>3 đánh giá</p>
+          <p>{product.total_reviews} đánh giá</p>
         </div>
         <div className="detail-content__price">
           {price > 0 ? renderPrice() : renderRangePrice()}

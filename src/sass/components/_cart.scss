@@ -1,5 +1,12 @@
 .cart {
-  padding: 0px 100px 50px;
+  width: 1400px;
+  margin: 0 auto;
+  padding: 0px 0px 50px;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    padding: 0px 100px 50px;
+  }
 
   @include breakpoint("xl") {
     padding: 0px 50px 50px;
@@ -41,6 +48,24 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    img {
+      display: none;
+      @include breakpoint("xl") {
+        display: block;
+        flex-basis: 49%;
+        width: 50%;
+        height: 270px;
+        border-radius: 5px;
+      }
+      @include breakpoint("lg") {
+        height: auto;
+      }
+      @include breakpoint("md") {
+        display: none;
+      }
+    }
+
     @include breakpoint("xl") {
       flex-direction: row;
       gap: 0;
@@ -149,11 +174,18 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    img {
+    &--img {
       display: block;
-      border: 1px solid rgb(201, 201, 201);
-      width: 50px !important;
-      height: 50px;
+      width: 50px;
+      // height: 50px;
+      img {
+        display: block;
+        width: 100%;
+        height: fit-content;
+      }
+    }
+    &--content {
+      width: 90%;
     }
     .product__option p {
       font-size: 12px;
@@ -175,7 +207,7 @@
       }
     }
   }
-  @include breakpoint("xs") {
+  @include breakpoint("md") {
     .MuiTableCell-root {
       padding: 10px;
     }
@@ -229,7 +261,7 @@
   @include breakpoint("xl") {
     width: 49%;
   }
-  @include breakpoint("xs") {
+  @include breakpoint("md") {
     width: 100%;
   }
   div {

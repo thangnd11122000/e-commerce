@@ -100,7 +100,7 @@ const Order = ({ url = "/api/orders" }) => {
               <div key={order.id}>
                 <Grid container spacing={2} justifyContent="space-between">
                   <Grid item xs={6}>
-                    <p>Giá tiền: {renderPrice(order)}đ</p>
+                    <p>Giá tiền: {renderPrice(order)}</p>
                     <p style={{ margin: "5px 0" }}>
                       PTTT: {renderPaymentType(order.payment_type_id)}
                     </p>
@@ -128,15 +128,17 @@ const Order = ({ url = "/api/orders" }) => {
                           </p>
                           {detail.discount_amount > 0 ? (
                             <p className="checkout-product__price">
-                              {formatCurrency(Number(detail.unit_price))}đ
+                              {formatCurrency(
+                                Number(detail.unit_price) -
+                                  Number(detail.discount_amount)
+                              )}
                               <del>
-                                {formatCurrency(Number(detail.discount_amount))}
-                                đ
+                                {formatCurrency(Number(detail.unit_price))}
                               </del>
                             </p>
                           ) : (
                             <p className="checkout-product__price">
-                              {formatCurrency(Number(detail.unit_price))}đ
+                              {formatCurrency(Number(detail.unit_price))}
                             </p>
                           )}
 

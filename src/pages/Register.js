@@ -150,12 +150,6 @@ const Register = () => {
           <span>Hoặc</span>
           <div></div>
         </div>
-        <button className="btn-primary form__item--facebook">
-          Đăng nhập với facebook
-        </button>
-        <button className="btn-primary form__item--google">
-          Đăng nhập với google
-        </button>
         <p className="form__switch">
           Bạn đã có tài khoản? <Link to="/dang-nhap">Đăng nhập ngay</Link>
         </p>

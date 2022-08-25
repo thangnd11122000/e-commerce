@@ -72,7 +72,7 @@ const Aside = ({ setPage }) => {
             <ListItemButton
               sx={{ pl: 4 }}
               onClick={() => {
-                setPage("information")
+                setPage("thong-tin")
                 dispatch(closeMenuUser())
               }}
             >
@@ -84,7 +84,7 @@ const Aside = ({ setPage }) => {
             <ListItemButton
               sx={{ pl: 4 }}
               onClick={() => {
-                setPage("address")
+                setPage("dia-chi")
                 dispatch(closeMenuUser())
               }}
             >
@@ -98,7 +98,7 @@ const Aside = ({ setPage }) => {
         <Divider />
         <ListItemButton
           onClick={() => {
-            setPage("orders")
+            setPage("don-hang")
             dispatch(closeMenuUser())
           }}
         >

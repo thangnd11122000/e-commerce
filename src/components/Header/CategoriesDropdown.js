@@ -19,12 +19,10 @@ const CategoriesDropdown = () => {
   const dropdownRef = useRef(null)
   const [windowSize, setWindowSize] = useState(getWindowSize())
   const isOpenDropdown = useSelector((state) => state.toggle.isOpenDropdown)
-  const {
-    loading,
-    response: categories,
-    error,
-  } = useSelector((state) => state.categoriesApi)
-  error && console.log(error)
+  const { loading, response: categories } = useSelector(
+    (state) => state.categoriesApi
+  )
+
   const dispatch = useDispatch()
 
   function getWindowSize() {
@@ -93,8 +91,8 @@ const CategoriesDropdown = () => {
             {categories &&
               categories.map((category) => (
                 <li key={category.id}>
-                  <Link
-                    to={`/danh-sach?_cat=${category.id}`}
+                  <p
+                    // to={`/danh-sach?_cat=${category.id}`}
                     className="navigation-menu__link active"
                     onClick={() => {
                       dispatch(closeDropdown())
@@ -102,9 +100,9 @@ const CategoriesDropdown = () => {
                     }}
                   >
                     {category.category_name}
-                  </Link>
+                  </p>
 
-                  {category.submenu && (
+                  {category.submenu?.length ? (
                     <div className="navigation-submenu">
                       {category.submenu.map((subCategory) => (
                         <div
@@ -120,10 +118,18 @@ const CategoriesDropdown = () => {
                             }}
                           >
                             {subCategory.category_name}
+                            {subCategory.image && (
+                              <img
+                                src={`https://techchains-ecommerce.store/public/storage/uploads/categories/${subCategory.image}`}
+                                alt={subCategory.category_name}
+                              />
+                            )}
                           </Link>
                         </div>
                       ))}
                     </div>
+                  ) : (
+                    ""
                   )}
                 </li>
               ))}

@@ -89,7 +89,7 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
           <div>
             <span className="navbar-action__top">Giỏ hàng</span>
             <span className="navbar-action__bottom">
-              {formatCurrency(totalPrice)}đ
+              {formatCurrency(totalPrice)}
             </span>
           </div>
           <span className="navbar-action__badge">{totalProduct}</span>

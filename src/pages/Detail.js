@@ -46,19 +46,9 @@ const Detail = () => {
     }
   }, [productApi.response])
 
-  // useEffect(() => {
-  //   if (ratingsApi.response !== null) {
-  //     setRatings(ratingsApi.response)
-  //   }
-  // }, [ratingsApi.response])
-
   useEffect(() => {
     product?.category_id && getProductsByCategory(product.category_id)
   }, [getProductsByCategory, product])
-
-  // const relatedProduct = productsData.filter(
-  //   (e) => e.category_id === product.category_id
-  // )
 
   return (
     <>
@@ -87,22 +77,28 @@ const Detail = () => {
             <Services />
             <img
               style={{ borderRadius: "5px", width: "100%" }}
-              src="https://i.pinimg.com/564x/9c/9a/8c/9c9a8c86a69d8e7ea15d4c0bcd6770f1.jpg"
+              src="https://i.pinimg.com/474x/2b/4f/5d/2b4f5d88fff7fccaaa09e793e57deab1.jpg"
+              alt="quang-cao"
+              width={100}
+            />
+            <img
+              style={{ borderRadius: "5px", width: "100%" }}
+              src="https://i.pinimg.com/474x/0f/64/17/0f6417b499650df8dfb384f65bedbc50.jpg"
               alt="quang-cao"
               width={100}
             />
           </div>
         </>
       </div>
-      <div className="detail__related">
-        <div className="home__header">
-          <h3>Sản phẩm liên quan</h3>
+        <div className="detail__related">
+          <div className="home__header">
+            <h3>Sản phẩm liên quan</h3>
+          </div>
+          <ProductSlider
+            products={productsByCategory}
+            loading={loadingProductsByCategory}
+          />
         </div>
-        <ProductSlider
-          products={productsByCategory}
-          loading={loadingProductsByCategory}
-        />
-      </div>
     </>
   )
 }

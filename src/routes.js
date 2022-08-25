@@ -39,7 +39,7 @@ const AppRoutes = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/thanh-toan" element={<CheckoutPage />} />
         <Route path="/thanh-cong/*" element={<SuccessPage />} />
-        <Route path="/trang-ca-nhan" element={<UserPage />} />
+        <Route path="/trang-ca-nhan/*" element={<UserPage />} />
       </Route>
 
       <Route element={<LoggedRoute />}>
