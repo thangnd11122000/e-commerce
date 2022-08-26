@@ -24,17 +24,16 @@ const Contact = () => {
     {
       title: "Email",
       content: [
-        { icon: <Mail />, text: "example@gmail.com" },
-        { icon: <Mail />, text: "example@gmail.com" },
+        { icon: <Mail />, text: "thangnd111220@gmail.com" },
       ],
     },
     {
       title: "Liên hệ",
-      content: [{ icon: <Mail />, text: "123456789" }],
+      content: [{ icon: <Mail />, text: "0355234584" }],
     },
     {
       title: "Địa chỉ",
-      content: [{ icon: <Mail />, text: "Tp HCM" }],
+      content: [{ icon: <Mail />, text: "TP HCM" }],
     },
   ]
 

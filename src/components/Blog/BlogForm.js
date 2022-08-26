@@ -2,7 +2,9 @@ import { Button } from "@mui/material"
 import axios from "axios"
 import { useState } from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import Notification from "../Notification"
+import avatar from "../../assets/img/common/user.png"
 
 const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
   const { user } = useSelector((state) => state.auth)
@@ -47,11 +49,8 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
       {user ? (
         <>
           <div className="blog-form__content">
-            <img src={user.avatar} alt="avatar" />
+            <img src={user?.avatar || avatar} alt="avatar" />
             <textarea
-              name=""
-              id=""
-              defaultValue={""}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
@@ -70,7 +69,15 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
           </div>
         </>
       ) : (
-        <h3>Đăng nhập để bình luận</h3>
+        <h3>
+          Bạn cần đăng nhập để bình luận /
+          <Link
+            to="/dang-nhap?back=true"
+            style={{ color: "#14BCDC", marginLeft: "10px" }}
+          >
+            Đăng nhập ngay
+          </Link>
+        </h3>
       )}
     </form>
   )

@@ -2,6 +2,7 @@ import { Person, Visibility } from "@mui/icons-material"
 import dayjs from "dayjs"
 import { Link } from "react-router-dom"
 import { scrollOnTop } from "../../utils"
+import { BsArrowRightSquare } from "react-icons/bs"
 
 const BlogCard = ({ post }) => {
   return (
@@ -27,24 +28,28 @@ const BlogCard = ({ post }) => {
         </Link>
         <p>{post?.subtitle}</p>
         <div className="blog-card__items">
-          <div className="blog-card__item">
-            <Person fontSize="small" />
-            <span>{post?.author}</span>
-          </div>
-          <div className="blog-card__item">
-            <Visibility fontSize="small" />
-            <span>{post?.view}</span>
-          </div>
+          {post?.author && (
+            <div className="blog-card__item">
+              <Person fontSize="small" />
+              <span>{post.author}</span>
+            </div>
+          )}
+          {post?.view && (
+            <div className="blog-card__item">
+              <Visibility fontSize="small" />
+              <span>{post.view}</span>
+            </div>
+          )}
         </div>
       </div>
       <div className="blog-card__footer">
+        <p>{dayjs(post?.created_at).format("DD/MM/YYYY")}</p>
         <Link
           to={`/bai-viet/chi-tiet/${post?.id}`}
           onClick={() => scrollOnTop()}
         >
-          Xem tiếp
+          Xem tiếp <BsArrowRightSquare />
         </Link>
-        <p>{dayjs(post?.created_at).format("DD/MM/YYYY")}</p>
       </div>
     </div>
   )

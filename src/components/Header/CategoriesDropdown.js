@@ -119,10 +119,12 @@ const CategoriesDropdown = () => {
                           >
                             {subCategory.category_name}
                             {subCategory.image && (
-                              <img
-                                src={`https://techchains-ecommerce.store/public/storage/uploads/categories/${subCategory.image}`}
-                                alt={subCategory.category_name}
-                              />
+                              <div>
+                                <img
+                                  src={`https://techchains-ecommerce.store/public/storage/uploads/categories/${subCategory.image}`}
+                                  alt={subCategory.category_name}
+                                />
+                              </div>
                             )}
                           </Link>
                         </div>

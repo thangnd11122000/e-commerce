@@ -18,14 +18,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.5px;
     border-bottom: 2px solid $primary;
+    padding: 10px 20px 5px;
     &--main {
-      padding: 10px;
-      font-size: 14px;
+      padding: 7px;
+      font-size: 13px;
       text-transform: uppercase;
       background: $primary;
       color: #fff;
+      border-radius: 2px;
     }
     &--action {
       padding-right: 10px;
@@ -36,15 +37,22 @@
 }
 
 .blog-container {
-  padding: 50px 100px 100px;
+  width: 1400px;
+  margin: 0px auto;
+  padding: 30px 0px 50px;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    padding: 30px 100px 50px;
+  }
   @include breakpoint("xl") {
-    padding: 50px 50px 100px;
+    padding: 30px 50px 100px;
   }
   @include breakpoint("md") {
-    padding: 30px 20px 50px;
+    padding: 20px 20px 50px;
   }
   @include breakpoint("xs") {
-    padding: 20px 20px 30px;
+    padding: 10px 10px 20px;
   }
 }
 
@@ -130,20 +138,25 @@
       img {
         position: absolute;
         inset: 0;
-        z-index: -1;
         width: 100%;
         height: 100%;
         object-fit: cover;
         filter: brightness(40%);
+        transition: 0.5s all;
         &:hover {
           filter: brightness(100%);
         }
       }
     }
     &--title {
-      font-size: 22px;
-      line-height: 26px;
+      font-size: 20px;
+      line-height: 28px;
       z-index: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       &:hover {
         color: $primary;
       }
@@ -163,7 +176,7 @@
     gap: 10px;
     display: flex;
     align-items: center;
-    z-index: 1;
+    flex-wrap: wrap;
   }
   &__action {
     gap: 5px;
@@ -172,22 +185,26 @@
     .MuiSvgIcon-root {
       color: $primary;
     }
+    svg {
+      color: $primary;
+      z-index: 1;
+    }
   }
 }
 
 .blog-section {
-  // width???
   background: #fff;
   box-shadow: $shadow-1dp;
+  border-radius: 5px;
   &__container {
-    padding: 20px;
+    padding: 10px 20px;
     display: flex;
     gap: 30px;
     @include breakpoint("md") {
       flex-direction: column;
     }
     @include breakpoint("xs") {
-      padding: 5px;
+      padding: 15px;
     }
   }
   .blog-card {
@@ -196,9 +213,14 @@
     border-radius: unset;
     box-shadow: unset;
     &__body {
+      padding: 10px 0;
       a {
-        font-size: 20px;
+        font-size: 18px;
+        line-height: 26px;
       }
+    }
+    &__footer {
+      padding: 15px 10px;
     }
   }
 
@@ -206,7 +228,7 @@
     flex-basis: calc(50% - 15px);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
 }
 
@@ -224,6 +246,7 @@
       width: 100%;
       height: 150px;
       object-fit: cover;
+      border-radius: 5px;
       &:hover {
         opacity: 0.9;
       }
@@ -236,7 +259,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       &:hover {
         color: $primary;
@@ -250,7 +273,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 3; /* number of lines to show */
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
   }
@@ -262,14 +285,17 @@
     font-size: 14px;
 
     a {
-      color: #666;
+      display: flex;
+      align-items: center;
+      color: #222;
+      gap: 5px;
       &:hover {
         color: $primary;
       }
     }
 
     p {
-      color: #999;
+      color: #222;
     }
   }
   &__items {
@@ -296,19 +322,32 @@
 .blog-wrap {
   display: flex;
   gap: 15px;
-  a {
-    max-width: 100px;
-    min-width: 100px;
-    height: 80px;
-    &:hover {
-      color: $primary;
-    }
+  &--left {
     img {
-      width: 100%;
-      height: 100%;
+      display: block;
+      width: 120px;
+      border-radius: 5px;
       object-fit: cover;
     }
   }
+  &--right {
+    flex-basis: 80%;
+
+    a {
+      display: block;
+      font-size: 15px;
+      line-height: 22px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
   &__image {
     &:hover {
       opacity: 0.9;
@@ -324,7 +363,7 @@
     margin-top: 5px;
   }
   &__actions {
-    margin-top: 10px;
+    margin-top: 7px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -348,6 +387,8 @@
   background: #fff;
   padding: 20px;
   box-shadow: $shadow-1dp;
+  border-radius: 5px;
+  width: 100%;
 
   h3 {
     font-size: 20px;
@@ -375,28 +416,34 @@
 
 .blog-detail {
   background: #fff;
-  padding: 20px;
+  padding: 50px 50px;
   box-shadow: $shadow-1dp;
+  border-radius: 5px;
+  @include breakpoint("xs") {
+    padding: 30px;
+  }
+  @include breakpoint("xs") {
+    padding: 20px;
+  }
   &__title {
-    margin: 0px 0 5px;
+    margin: 0 0 5px;
     word-wrap: break-word;
-    font-size: 40px;
-    line-height: 50px;
+    font-size: 32px;
+    line-height: 42px;
     font-weight: normal;
-    @include breakpoint("sm") {
-      font-size: 28px;
-
-      line-height: 34px;
+    color: $primary-dark;
+    @include breakpoint("xs") {
+      font-size: 24px;
+      line-height: 30px;
     }
   }
   &__info {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    p {
-      font-size: 14px;
+    justify-content: flex-end;
+    span {
+      font-size: 15px;
       font-weight: 400;
-      color: #444;
+      color: #666;
     }
     div {
       display: flex;
@@ -412,13 +459,16 @@
       }
     }
   }
-  &__content p{
-    margin: 20px 0;
-    padding: 0 20px;
+  &__content p {
+    margin: 30px 0 20px;
+    padding: 0 0px;
     font-size: 19px;
     line-height: 26px;
+    @include breakpoint("xs") {
+      padding: 0 0px;
+    }
   }
-  &__img{
+  &__img {
     display: block;
     padding: 40px 100px;
   }

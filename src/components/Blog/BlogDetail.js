@@ -1,12 +1,12 @@
-import { HeartBroken, RemoveRedEye } from "@mui/icons-material"
-import { Button } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { PuffLoader } from "react-spinners"
 import parse from "html-react-parser"
 import { useAxios } from "../../hook/useAxios"
-import { formatDate } from "../../utils"
 import BlogComment from "./BlogComment"
+import dayjs from "dayjs"
+import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai"
+import { BsPerson } from "react-icons/bs"
 
 const BlogDetail = () => {
   const params = useParams()
@@ -21,9 +21,6 @@ const BlogDetail = () => {
     url: `/api/blogs-comments/${params.id}`,
   })
 
-  postApi.error && console.log(postApi.error.message)
-  commentsApi.error && console.log(commentsApi.error.message)
-
   useEffect(() => {
     if (postApi.response !== null) {
       setPost(postApi.response.data)
@@ -35,7 +32,7 @@ const BlogDetail = () => {
       setComments(commentsApi.response.data.data)
     }
   }, [commentsApi.response])
-  console.log(post)
+
   return (
     <>
       {commentsApi.loading && postApi.loading ? (
@@ -46,33 +43,32 @@ const BlogDetail = () => {
         <div className="blog-detail">
           <h1 className="blog-detail__title">{post.title}</h1>
           <div className="blog-detail__info">
-            <p>
-              Biên tập: {post?.author} - {formatDate(post?.created_at)}
-            </p>
-            <div>
-              <p>
-                <RemoveRedEye /> <span>{post.view}</span>
-              </p>
+            <div className="blog-banner__actions">
+              {post?.author && (
+                <div className="blog-banner__action">
+                  <BsPerson fontSize={20} />
+                  <span>{post.author}</span>
+                </div>
+              )}
+              {post?.view && (
+                <div className="blog-banner__action">
+                  <AiOutlineEye fontSize={20} />
+                  <span>{post.view}</span>
+                </div>
+              )}
+              {post?.created_at && (
+                <div className="blog-banner__action">
+                  <AiOutlineClockCircle />
+                  <span>{dayjs(post.created_at).format("DD/MM/YYYY")}</span>
+                </div>
+              )}
             </div>
           </div>
-          <img className="blog-detail__img" src={post.thumbnail} alt="" />
           <div className="blog-detail__content">
-            <p>{parse(post.content)}</p>
-          </div>
-          <div className="blog-detail__button">
-            <Button
-              variant="contained"
-              startIcon={<HeartBroken />}
-              sx={{ mr: 1 }}
-            >
-              Thích
-            </Button>
-            <Button variant="contained" startIcon={<HeartBroken />}>
-              Chia sẻ
-            </Button>
+            <p>{parse(post?.content || "")}</p>
           </div>
 
-          <BlogComment blog_id={post?.id} comments={comments} />
+          <BlogComment blogId={post?.id} comments={comments} />
         </div>
       )}
     </>

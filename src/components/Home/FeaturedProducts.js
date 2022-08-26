@@ -11,7 +11,7 @@ const FeaturedProducts = () => {
   const [products, setProducts] = useState([])
 
   const { response, loading, error } = useAxios({
-    url: "/api/product?is_featured=Featured&_page=1&_limit=12&_sort=created_at&_order=desc",
+    url: "/api/product?is_featured=Featured&_page=1&_limit=18&_sort=created_at&_order=desc",
   })
 
   error && console.log(error.message)

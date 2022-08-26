@@ -142,7 +142,7 @@ const Login = () => {
         </Formik>
         <div className="form__action">
           <p></p>
-          <a href="/#">Quên mật khẩu</a>
+          <a href="/quen-mat-khau">Quên mật khẩu</a>
         </div>
         <div className="form__option">
           <div></div>

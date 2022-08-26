@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { scrollOnTop } from "../../utils"
 
 const BlogTagAside = ({ title, tags }) => {
   return (
@@ -7,9 +8,10 @@ const BlogTagAside = ({ title, tags }) => {
       <div className="blog-aside__button">
         {tags?.map((tag, index) => (
           <Link
-            to={`/bai-viet/category/${tag?.id}`}
+            to={`/bai-viet/the-loai/${tag?.id}`}
             key={index}
             className="btn-primary"
+            onClick={scrollOnTop}
           >
             {tag.name}
           </Link>

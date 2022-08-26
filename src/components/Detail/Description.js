@@ -1,4 +1,5 @@
 import { useState } from "react"
+import parse from "html-react-parser"
 
 const Description = ({ description }) => {
   const [showMore, setShowMore] = useState(false)
@@ -10,8 +11,10 @@ const Description = ({ description }) => {
         <>
           <div
             className={`detail-description__desc ${showMore ? "active" : ""}`}
-            dangerouslySetInnerHTML={{ __html: description }}
-          ></div>
+          >
+            {parse(description)}
+          </div>
+
           <div className="detail-description__button">
             <button
               className="btn-primary"

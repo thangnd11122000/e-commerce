@@ -1,9 +1,6 @@
 export const formatCurrency = (num) =>
   (num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : 0) + "đ"
 
-export const formatDate = (date) =>
-  date ? date.split("T")[0].split("-").reverse().join("-") : ""
-
 export const getAllUrlParams = (url) => {
   var queryString = url ? url.split("?")[1] : window.location.search.slice(1)
   var obj = {}

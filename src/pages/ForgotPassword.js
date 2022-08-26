@@ -1,8 +1,11 @@
+import axios from "axios"
 import { Form, Formik } from "formik"
+import { useState } from "react"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
 
 const ForgotPassword = () => {
+  const [type, setType] = useState(null)
   const initialValues = {
     email: "",
   }
@@ -12,7 +15,15 @@ const ForgotPassword = () => {
   })
 
   const onSubmit = (values) => {
-    console.log(values)
+    setType(null)
+    axios
+      .post("/api/reset-password", {
+        email: values.email,
+      })
+      .then((res) => {
+        if (res.data?.status === 200) setType("success")
+        else setType("error")
+      })
   }
 
   return (
@@ -43,6 +54,14 @@ const ForgotPassword = () => {
             </Form>
           )}
         </Formik>
+        {type === "success" && (
+          <p style={{ marginTop: "10px", color: "green" }}>
+            Đã gửi thông tin về mail của bạn
+          </p>
+        )}
+        {type === "error" && (
+          <p style={{ marginTop: "10px", color: "red" }}>Đã có lỗi xảy ra</p>
+        )}
       </div>
     </div>
   )

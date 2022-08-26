@@ -84,7 +84,6 @@
     }
     @include breakpoint("xs") {
       font-size: 14px;
-      
     }
   }
   &__carousel-button {
@@ -155,7 +154,6 @@
       object-fit: cover;
       width: 100%;
       height: 100%;
-
       border-radius: 15px;
       z-index: -1;
     }

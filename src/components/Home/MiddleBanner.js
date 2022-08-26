@@ -55,7 +55,7 @@ const MiddleBanner = () => {
           <div className="banner-card" key={i}>
             <div className="banner-card__item">
               <Link to={d.link}>
-                <img src={d.image} alt="" />
+                <img src={d.image} alt="banner" style={{ zIndex: "-1" }} />
                 <div className="banner-card__content">
                   <h3>{d.name}</h3>
                   <p>Tìm kiếm ngay</p>
