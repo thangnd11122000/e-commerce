@@ -4,7 +4,7 @@ import Images from "./Images"
 const Preview = ({ product }) => {
   return (
     <div className="detail__preview">
-      <Images image={product.image} />
+      <Images image={product.image} gallery={product.gallery} />
       <Content product={product} />
     </div>
   )

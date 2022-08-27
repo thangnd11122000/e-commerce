@@ -10,10 +10,10 @@ const BlogAside = ({ categories }) => {
   const [trickPosts, setTrickPosts] = useState([])
 
   const ratePostsAPI = useAxios({
-    url: "/api/blogs/blog-categories/3?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+    url: "/api/blogs/blog-categories/3?_page=1&_limit=5&_sort=created_at&_order=desc&status=1",
   })
   const trickPostsAPI = useAxios({
-    url: "/api/blogs/blog-categories/4?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+    url: "/api/blogs/blog-categories/4?_page=1&_limit=5&_sort=created_at&_order=desc&status=1",
   })
 
   useEffect(() => {

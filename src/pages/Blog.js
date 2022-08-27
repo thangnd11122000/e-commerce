@@ -16,13 +16,13 @@ const Blog = () => {
 
   const postCategoriesAPI = useAxios({ url: "/api/blogs-categories" })
   const newPostsAPI = useAxios({
-    url: "/api/blogs/blog-categories/5?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+    url: "/api/blogs/blog-categories/5?_page=1&_limit=11&_sort=created_at&_order=desc&status=1",
   })
   const newProductPostsAPI = useAxios({
-    url: "/api/blogs/blog-categories/1?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+    url: "/api/blogs/blog-categories/1?_page=1&_limit=5&_sort=created_at&_order=desc&status=1",
   })
   const advisePostsAPI = useAxios({
-    url: "/api/blogs/blog-categories/2?_page=1&_limit=7&_sort=created_at&_order=desc&status=1",
+    url: "/api/blogs/blog-categories/2?_page=1&_limit=5&_sort=created_at&_order=desc&status=1",
   })
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const Blog = () => {
                         <BlogSection
                           link="/bai-viet/the-loai/5"
                           title="Tin mới nhất"
-                          posts={newPosts.slice(3, 10)}
+                          posts={newPosts.slice(4, 9)}
                           categories={postCategories}
                         />
                       )}

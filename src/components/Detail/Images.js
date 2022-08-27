@@ -7,13 +7,13 @@ const override = css`
   margin: auto auto;
 `
 
-const Images = ({ image }) => {
+const Images = ({ image, gallery = [] }) => {
   const [images, setImages] = useState([])
   const [loading] = useState(false)
-
+  console.log(gallery)
   useEffect(() => {
-    setImages([image])
-  }, [image])
+    setImages([image, ...gallery])
+  }, [gallery, image])
 
   const [index, setIndex] = useState(0)
   const [isOpenMore, setIsOpenMore] = useState(false)
@@ -32,14 +32,21 @@ const Images = ({ image }) => {
             {images?.length > 6 && isOpenMore ? (
               <>
                 {images.map((img, i) => (
-                  <img
-                    className={index === i ? "active" : ""}
+                  <div
                     key={i}
-                    src={`${img}`}
-                    alt=""
-                    onClick={() => setIndex(i)}
-                    onMouseOver={() => setIndex(i)}
-                  />
+                    className={
+                      index === i
+                        ? "detail-images__list--img active"
+                        : "detail-images__list--img"
+                    }
+                  >
+                    <img
+                      src={`${img}`}
+                      alt=""
+                      onClick={() => setIndex(i)}
+                      onMouseOver={() => setIndex(i)}
+                    />
+                  </div>
                 ))}
                 <div
                   className="detail-images__more"
@@ -51,14 +58,21 @@ const Images = ({ image }) => {
             ) : (
               <>
                 {images.slice(0, 4).map((img, i) => (
-                  <img
-                    className={index === i ? "active" : ""}
+                  <div
                     key={i}
-                    src={`${img}`}
-                    alt=""
-                    onClick={() => setIndex(i)}
-                    onMouseOver={() => setIndex(i)}
-                  />
+                    className={
+                      index === i
+                        ? "detail-images__list--img active"
+                        : "detail-images__list--img"
+                    }
+                  >
+                    <img
+                      src={`${img}`}
+                      alt=""
+                      onClick={() => setIndex(i)}
+                      onMouseOver={() => setIndex(i)}
+                    />
+                  </div>
                 ))}
                 {images.length > 4 && (
                   <div
