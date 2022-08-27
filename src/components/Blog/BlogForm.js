@@ -7,10 +7,16 @@ import avatar from "../../assets/img/common/user.png"
 import { useDispatch } from "react-redux"
 import { showNotify } from "../../store/notifySlice"
 
-const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
+const BlogForm = ({ blogId, setComments, getComments }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
-  const [comment, setComment] = useState("")
+  const [value, setValue] = useState("")
+  // const getComments = () => {
+  //   console.log("reload")
+  //   axios
+  //     .get(`/api/blogs-comments/${blogId}`)
+  //     .then((res) => setComments(res.data.data.data))
+  // }
 
   const handleSubmit = () => {
     axios("/api/blogs-comments", {
@@ -19,13 +25,13 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
         Accept: "application/json",
       },
       data: {
-        blog_id: blog_id,
+        blog_id: blogId,
         customer_id: user?.id,
-        content: comment,
+        content: value,
       },
     })
       .then(() => {
-        setComment("")
+        setValue("")
         dispatch(
           showNotify({
             isOpen: true,
@@ -34,6 +40,7 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
           })
         )
       })
+      .then(() => getComments())
       .catch(() =>
         showNotify({
           isOpen: true,
@@ -50,21 +57,14 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
           <div className="blog-form__content">
             <img src={user?.avatar || avatar} alt="avatar" />
             <textarea
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
             />
           </div>
           <div className="blog-form__button">
-            {showButton && (
-              <Button variant="contained" onClick={handleClick} sx={{ mr: 1 }}>
-                Hủy
-              </Button>
-            )}
-            {comment && (
-              <Button variant="contained" onClick={handleSubmit}>
-                Bình luận
-              </Button>
-            )}
+            <Button variant="contained" onClick={handleSubmit}>
+              Bình luận
+            </Button>
           </div>
         </>
       ) : (

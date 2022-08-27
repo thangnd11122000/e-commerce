@@ -8,6 +8,7 @@ import dayjs from "dayjs"
 import { Fragment } from "react"
 import ModalRating from "./ModalRating"
 import { ORDER_SUCCESS } from "../../constants/orders"
+import { Link } from "react-router-dom"
 
 const Order = ({ url = "/api/orders" }) => {
   const [orders, setOrders] = useState([])
@@ -123,9 +124,12 @@ const Order = ({ url = "/api/orders" }) => {
                           alt={detail.product.product_name}
                         />
                         <div>
-                          <p className="checkout-product__name">
+                          <Link
+                            to={`/san-pham/${detail.product.id}`}
+                            className="checkout-product__name"
+                          >
                             {detail.product.product_name}
-                          </p>
+                          </Link>
                           {detail.discount_amount > 0 ? (
                             <p className="checkout-product__price">
                               {formatCurrency(

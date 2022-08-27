@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { PuffLoader } from "react-spinners"
 import parse from "html-react-parser"
@@ -7,6 +7,7 @@ import BlogComment from "./BlogComment"
 import dayjs from "dayjs"
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai"
 import { BsPerson } from "react-icons/bs"
+import axios from "axios"
 
 const BlogDetail = () => {
   const params = useParams()
@@ -18,20 +19,25 @@ const BlogDetail = () => {
   })
 
   const commentsApi = useAxios({
-    url: `/api/blogs-comments/${params.id}`,
+    url: `/api/blogs-comments/${params.id}?_page=1&_limit=999&_sort=created_at&_order`,
   })
+
+  const getComments = useCallback(() => {
+    console.log("re-render")
+    axios
+      .get(`/api/blogs-comments/${params.id}`)
+      .then((res) => setComments(res.data.data.data))
+  }, [params.id])
+  console.log(comments)
+  useEffect(() => {
+    getComments()
+  }, [getComments])
 
   useEffect(() => {
     if (postApi.response !== null) {
       setPost(postApi.response.data)
     }
   }, [postApi.response])
-
-  useEffect(() => {
-    if (commentsApi.response !== null) {
-      setComments(commentsApi.response.data.data)
-    }
-  }, [commentsApi.response])
 
   return (
     <>
@@ -65,10 +71,15 @@ const BlogDetail = () => {
             </div>
           </div>
           <div className="blog-detail__content">
-            <p>{parse(post?.content || "")}</p>
+            <div>{parse(post?.content || "")}</div>
           </div>
 
-          <BlogComment blogId={post?.id} comments={comments} />
+          <BlogComment
+            blogId={params.id}
+            comments={comments}
+            setComments={setComments}
+            getComments={getComments}
+          />
         </div>
       )}
     </>

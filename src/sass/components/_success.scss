@@ -1,11 +1,19 @@
 .success-page {
+  padding: 50px 0;
+  @include breakpoint("xs") {
+    padding: 30px 0;
+  }
   .wrapperAlert {
-    margin: 80px auto;
+    margin: 0px auto;
     width: 500px;
     height: 400px;
     overflow: hidden;
     border-radius: 12px;
     border: thin solid #ddd;
+
+    @include breakpoint("xs") {
+      width: 90%;
+    }
   }
 
   .topHalf {
