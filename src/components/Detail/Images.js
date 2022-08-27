@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { css } from "@emotion/react"
 import { MoonLoader } from "react-spinners"
-import { useAxios } from "../../hook/useAxios"
 
 const override = css`
   display: block;
@@ -10,20 +9,11 @@ const override = css`
 
 const Images = ({ image }) => {
   const [images, setImages] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  // const { response, loading, error } = useAxios({ url: "/images" })
-
-  // error && console.log(error.message)
+  const [loading] = useState(false)
 
   useEffect(() => {
     setImages([image])
   }, [image])
-  // useEffect(() => {
-  //   if (response !== null) {
-  //     setImages([image, ...response])
-  //   }
-  // }, [image, response])
 
   const [index, setIndex] = useState(0)
   const [isOpenMore, setIsOpenMore] = useState(false)
