@@ -33,7 +33,7 @@ const AppRoutes = () => {
       <Route path="/doi-email" element={<ChangeEmailPage />} />
       <Route path="/doi-so-dien-thoai" element={<ChangePhonePage />} />
       <Route path="/quen-mat-khau" element={<ForgotPasswordPage />} />
-      <Route path="/doi-mat-khau" element={<ChangePasswordPage />} />
+      <Route path="/doi-mat-khau/*" element={<ChangePasswordPage />} />
       <Route path="/lien-he" element={<ContactPage />} />
 
       <Route element={<ProtectedRoute />}>

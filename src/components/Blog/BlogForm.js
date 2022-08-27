@@ -3,17 +3,15 @@ import axios from "axios"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import Notification from "../Notification"
 import avatar from "../../assets/img/common/user.png"
+import { useDispatch } from "react-redux"
+import { showNotify } from "../../store/notifySlice"
 
 const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const [comment, setComment] = useState("")
-  const [notify, setNotify] = useState({
-    isOpen: false,
-    message: "",
-    type: "",
-  })
+
   const handleSubmit = () => {
     axios("/api/blogs-comments", {
       method: "POST",
@@ -28,14 +26,16 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
     })
       .then(() => {
         setComment("")
-        setNotify({
-          isOpen: true,
-          message: "Thêm bình luận thành công",
-          type: "success",
-        })
+        dispatch(
+          showNotify({
+            isOpen: true,
+            message: "Thêm bình luận thành công",
+            type: "success",
+          })
+        )
       })
       .catch(() =>
-        setNotify({
+        showNotify({
           isOpen: true,
           message: "Thêm bình luận thất bại",
           type: "error",
@@ -45,7 +45,6 @@ const BlogForm = ({ blog_id, showButton = true, handleClick }) => {
 
   return (
     <form className="blog-form">
-      {Notification({ notify, setNotify })}
       {user ? (
         <>
           <div className="blog-form__content">

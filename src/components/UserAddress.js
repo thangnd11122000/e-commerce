@@ -2,7 +2,7 @@ import { Add, BorderColor, Delete } from "@mui/icons-material"
 import axios from "axios"
 import { useCallback } from "react"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   deleteAddressAPI,
   getAllAddressAPI,
@@ -11,10 +11,12 @@ import {
   getWardsAPI,
   setAddressAPI,
 } from "../api/address"
+import { showNotify } from "../store/notifySlice"
 import ConfirmDialog from "./ConfirmDialog"
 import AddressModal from "./Modal/AddressModal"
 
 const UserAddress = ({ currentAddressId, setCurrentAddressId }) => {
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [confirmDialog, setConfirmDialog] = useState({
@@ -104,9 +106,28 @@ const UserAddress = ({ currentAddressId, setCurrentAddressId }) => {
       type: "confirm",
       title: "Xóa địa chỉ này?",
       onConfirm: () => {
-        deleteAddressAPI(id, user?.id).then(
-          (code) => code === 200 && getAddressDetail()
-        )
+        deleteAddressAPI(id, user?.id)
+          .then((code) => {
+            if (code === 200) {
+              getAddressDetail()
+              dispatch(
+                showNotify({
+                  isOpen: true,
+                  message: "Xoá địa chỉ thành công",
+                  type: "success",
+                })
+              )
+            }
+          })
+          .catch(() =>
+            dispatch(
+              showNotify({
+                isOpen: true,
+                message: "Xoá địa chỉ thất bại",
+                type: "error",
+              })
+            )
+          )
       },
     })
   }

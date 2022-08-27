@@ -1,5 +1,4 @@
 import axios from "axios"
-import Notification from "../components/Notification"
 
 const Token = "897b0fc3-e1e2-11eb-9389-f656af98cb33"
 
@@ -33,34 +32,14 @@ export const getWardsAPI = (district_id) =>
 export const getAllAddressAPI = (user_id) =>
   axios(`/api/addresses/${user_id}`).then((res) => res.data.data)
 
-export const deleteAddressAPI = (address_id, user_id) =>{
+export const deleteAddressAPI = (address_id, user_id) => {
   return axios(`/api/addresses/${address_id}`, {
     method: "DELETE",
     data: {
       id: user_id,
     },
-  })
-    .then((res) => {
-      if (res.data.code === "200") {
-        Notification({
-          notify: {
-            isOpen: true,
-            message: "Xoá địa chỉ thành công",
-            type: "success",
-          },
-        })
-      }
-      return res.data.code
-    })
-    .catch(() =>
-      Notification({
-        notify: {
-          isOpen: true,
-          message: "Xoá địa chỉ thất bại",
-          type: "error",
-        },
-      })
-    )}
+  }).then((res) => res.data.code)
+}
 
 export const insertAddressAPI = (payload) =>
   axios("/api/addresses", {

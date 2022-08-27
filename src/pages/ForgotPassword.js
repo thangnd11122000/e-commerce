@@ -1,10 +1,13 @@
 import axios from "axios"
 import { Form, Formik } from "formik"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
+import { showNotify } from "../store/notifySlice"
 
 const ForgotPassword = () => {
+  const dispatch = useDispatch()
   const [type, setType] = useState(null)
   const initialValues = {
     email: "",
@@ -22,7 +25,16 @@ const ForgotPassword = () => {
       })
       .then((res) => {
         if (res.data?.status === 200) setType("success")
-        else setType("error")
+        else {
+          setType("error")
+          dispatch(
+            showNotify({
+              isOpen: true,
+              message: res.data?.message,
+              type: "error",
+            })
+          )
+        }
       })
   }
 

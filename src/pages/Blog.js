@@ -125,7 +125,7 @@ const Blog = () => {
               <Routes>
                 <Route
                   path="/the-loai/:id"
-                  element={<BlogList categories={postCategories} />}
+                  element={<BlogList categories={postCategories} postCategories={postCategories} />}
                 />
               </Routes>
               <Routes>

@@ -1,4 +1,5 @@
 import { Form, Formik } from "formik"
+import { useEffect } from "react"
 import * as Yup from "yup"
 import FormControl from "../components/Form/FormControl"
 
@@ -20,6 +21,10 @@ const ChangePassword = () => {
   const onSubmit = (values) => {
     console.log(values)
   }
+
+  useEffect(() => {
+    console.log(window.location.pathname);
+  }, []);
 
   return (
     <div className="form form__container">

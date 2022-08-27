@@ -2,7 +2,6 @@ import Modal from "@mui/material/Modal"
 import { Close, SearchOutlined } from "@mui/icons-material"
 import { useSelector } from "react-redux"
 import { useEffect, useMemo, useState } from "react"
-import Notification from "../Notification"
 import axios from "axios"
 import {
   FormControl,
@@ -17,6 +16,8 @@ import {
 import { containsText } from "../../utils/string"
 import { insertAddressAPI, updateAddressAPI } from "../../api/address"
 import { useCallback } from "react"
+import { useDispatch } from "react-redux"
+import { showNotify } from "../../store/notifySlice"
 
 const AddressModal = ({
   isOpenModal,
@@ -26,8 +27,8 @@ const AddressModal = ({
   onOk,
   handleSetDefaultAddress,
 }) => {
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
-  const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" })
   const [districts, setDistricts] = useState([])
   const [wards, setWards] = useState([])
   const [detail, setDetail] = useState("")
@@ -125,11 +126,13 @@ const AddressModal = ({
           province_id: selectedProvince,
         })
           .then(() => {
-            setNotify({
-              isOpen: true,
-              message: "Sửa địa chỉ thành công",
-              type: "success",
-            })
+            dispatch(
+              showNotify({
+                isOpen: true,
+                message: "Sửa địa chỉ thành công",
+                type: "success",
+              })
+            )
 
             resetData()
             setIsSubmit(false)
@@ -137,11 +140,13 @@ const AddressModal = ({
           })
           .catch((error) => {
             console.log(error)
-            setNotify({
-              isOpen: true,
-              message: "Đã có lỗi xảy ra",
-              type: "error",
-            })
+            dispatch(
+              showNotify({
+                isOpen: true,
+                message: "Sử địa chỉ thất bại",
+                type: "error",
+              })
+            )
           })
       } else {
         insertAddressAPI({
@@ -153,22 +158,26 @@ const AddressModal = ({
           province_id: selectedProvince,
         })
           .then(() => {
-            setNotify({
-              isOpen: true,
-              message: "Thêm địa chỉ thành công",
-              type: "success",
-            })
+            dispatch(
+              showNotify({
+                isOpen: true,
+                message: "Thêm địa chỉ thành công",
+                type: "success",
+              })
+            )
             resetData()
             setIsSubmit(false)
             onOk()
           })
           .catch((error) => {
             console.log(error)
-            setNotify({
-              isOpen: true,
-              message: "Đã có lỗi xảy ra",
-              type: "error",
-            })
+            dispatch(
+              showNotify({
+                isOpen: true,
+                message: "Đã có lỗi xảy ra",
+                type: "error",
+              })
+            )
           })
       }
     }
@@ -389,7 +398,6 @@ const AddressModal = ({
           </form>
         </div>
       </Modal>
-      <Notification notify={notify} setNotify={setNotify} />
     </>
   )
 }
