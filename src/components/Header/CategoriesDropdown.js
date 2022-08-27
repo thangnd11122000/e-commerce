@@ -119,7 +119,7 @@ const CategoriesDropdown = () => {
                           >
                             {subCategory.category_name}
                             {subCategory.image && (
-                              <div>
+                              <div className="navigation-submenu__img">
                                 <img
                                   src={`https://techchains-ecommerce.store/public/storage/uploads/categories/${subCategory.image}`}
                                   alt={subCategory.category_name}

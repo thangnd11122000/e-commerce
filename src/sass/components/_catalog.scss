@@ -50,8 +50,11 @@
   &__products {
     background: #fff;
     width: 100%;
-
     padding: 20px;
+    @include breakpoint("xs") {
+      padding: 5px;
+    }
+
     .pagination {
       ul {
         justify-content: center;
@@ -296,4 +299,3 @@
     margin-right: unset;
   }
 }
-

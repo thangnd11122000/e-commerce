@@ -26,7 +26,9 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
   const location = useLocation()
   useEffect(() => {
     const params = getAllUrlParams(location.search)
-    setSearch(params._q || "")
+    if (!params._q) {
+      setSearch("")
+    }
   }, [location.search])
 
   return (
@@ -78,7 +80,7 @@ const Navbar = ({ hideOnScrollDown, isScroll }) => {
           icon={<FavoriteBorderOutlined />}
           topText="Yêu thích"
           bottomText="Danh sách"
-          link="/"
+          link="/san-pham-yeu-thich"
         />
         <div
           className="navbar-action__item"

@@ -23,6 +23,13 @@ img {
   max-width: 100%;
 }
 
+.app-layout {
+  min-height: calc(100vh - 300px);
+  @include breakpoint("xs") {
+    min-height: unset;
+  }
+}
+
 .overlay {
   // width: 0;
   // height: 0;

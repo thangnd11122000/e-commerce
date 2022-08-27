@@ -39,10 +39,10 @@ const BlogList = ({ categories, postCategories = [] }) => {
       if (Array.isArray(postCategories)) {
         const temp = postCategories.filter((cat) => cat.id === +id)
         if (temp.length) {
-          return temp[0].name
+          return "Tin " + temp[0].name
         }
       }
-      return ""
+      return "Tin tức"
     },
     [postCategories]
   )
@@ -55,7 +55,14 @@ const BlogList = ({ categories, postCategories = [] }) => {
         </div>
       ) : (
         <>
-          <h3 style={{ fontSize: "24px", fonWeight: "700", color: "#16bcdc", padding: '0 10px' }}>
+          <h3
+            style={{
+              fontSize: "24px",
+              fonWeight: "700",
+              color: "#16bcdc",
+              padding: "0 10px",
+            }}
+          >
             {renderTitle(params.id)}
           </h3>
           <Grid container spacing={1} columns={6}>

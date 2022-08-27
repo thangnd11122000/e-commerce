@@ -5,6 +5,7 @@ import categoriesApiReducer from "./categoriesApiSlice"
 import authReducer from "./authSlice"
 import orderTempReducer from "./orderTemp"
 import notifyReducer from "./notifySlice"
+import favoritesReducer from "./favoritesSlice"
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     auth: authReducer,
     orderTemp: orderTempReducer,
     notify: notifyReducer,
+    favorites: favoritesReducer,
   },
 })

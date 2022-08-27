@@ -32,10 +32,12 @@ function App() {
   }, [dispatch])
 
   return (
-    <div className="App">
+    <div className="app">
       <Notify />
       <Header />
-      <AppRoutes />
+      <div className="app-layout">
+        <AppRoutes />
+      </div>
       <Footer />
       <MobileBottom />
       <div

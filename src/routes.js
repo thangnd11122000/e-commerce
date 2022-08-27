@@ -19,6 +19,8 @@ const ChangePasswordPage = React.lazy(() => import("./pages/ChangePassword"))
 const ContactPage = React.lazy(() => import("./pages/Contact"))
 const UserPage = React.lazy(() => import("./pages/User"))
 const SuccessPage = React.lazy(() => import("./pages/Success"))
+const FavoritesPage = React.lazy(() => import("./pages/Favorites"))
+const NotFoundPage = React.lazy(() => import("./pages/NotFound"))
 
 const AppRoutes = () => {
   return (
@@ -26,6 +28,7 @@ const AppRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/danh-sach/*" element={<CatalogPage />} />
       <Route path="/san-pham/:id" element={<DetailPage />} />
+      <Route path="/san-pham-yeu-thich" element={<FavoritesPage />} />
       <Route path="/gio-hang" element={<CartPage />} />
       <Route path="/ve-chung-toi" element={<AboutPage />} />
       <Route path="/bai-viet/*" element={<BlogPage />} />
@@ -46,6 +49,8 @@ const AppRoutes = () => {
         <Route path="/dang-nhap" element={<LoginPage />} />
         <Route path="/dang-ky" element={<RegisterPage />} />
       </Route>
+
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

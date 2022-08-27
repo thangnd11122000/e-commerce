@@ -1,0 +1,22 @@
+.favorite {
+  width: 1400px;
+  margin: 0 auto;
+  padding: 30px 0px 50px;
+
+  @include breakpoint("xxl") {
+    width: auto;
+    padding: 30px 100px 50px;
+  }
+
+  @include breakpoint("xl") {
+    padding: 20px 50px 50px;
+  }
+  @include breakpoint("md") {
+    padding: 10px 20px 50px;
+  }
+
+  h2{
+    margin-bottom: 20px;
+    color: $primary;
+  }
+}

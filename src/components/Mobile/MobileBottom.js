@@ -40,7 +40,11 @@ const MobileBottom = () => {
           <span>Menu</span>
         </div>
       </div>
-      <MobileLink name="Yêu thích" link="/" icon={<FavoriteBorderOutlined />} />
+      <MobileLink
+        name="Yêu thích"
+        link="/san-pham-yeu-thich"
+        icon={<FavoriteBorderOutlined />}
+      />
       <div
         className="mobile-bottom__item"
         onClick={() => dispatch(handleCartSidebar())}

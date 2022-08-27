@@ -66,7 +66,7 @@ const Products = ({
             onChange={handleChange}
             onClick={handleMoveClick}
           />
-          <Grid container spacing={2} columns={{ xs: layout }}>
+          <Grid container spacing={1} columns={{ xs: layout }}>
             {_DATA.currentData().map((p, i) => (
               <Grid item xs={1} key={i}>
                 <ProductCard product={p} />
