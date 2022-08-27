@@ -5,7 +5,7 @@ import avatar from "../../assets/img/common/user.png"
 import { Pagination } from "@mui/material"
 import usePagination from "../Pagination/Pagination"
 
-const BlogComment = ({ blogId, comments = [], setComments, getComments }) => {
+const BlogComment = ({ blogId, comments = [], getComments }) => {
   let [page, setPage] = useState(1)
   const [perPage] = useState(5)
   const count = Math.ceil(comments.length / perPage)
@@ -23,7 +23,6 @@ const BlogComment = ({ blogId, comments = [], setComments, getComments }) => {
       </h3>
       <BlogForm
         blogId={blogId}
-        setComments={setComments}
         getComments={getComments}
       />
       <div className="blog-comment__item">

@@ -19,16 +19,15 @@ const BlogDetail = () => {
   })
 
   const commentsApi = useAxios({
-    url: `/api/blogs-comments/${params.id}?_page=1&_limit=999&_sort=created_at&_order`,
+    url: `/api/blogs-comments/${params.id}?_limit=20&_page=1&_sort=created_at&_order=desc`,
   })
 
   const getComments = useCallback(() => {
-    console.log("re-render")
     axios
-      .get(`/api/blogs-comments/${params.id}`)
+      .get(`/api/blogs-comments/${params.id}?_limit=20&_page=1&_sort=created_at&_order=desc`)
       .then((res) => setComments(res.data.data.data))
   }, [params.id])
-  console.log(comments)
+
   useEffect(() => {
     getComments()
   }, [getComments])
@@ -77,7 +76,6 @@ const BlogDetail = () => {
           <BlogComment
             blogId={params.id}
             comments={comments}
-            setComments={setComments}
             getComments={getComments}
           />
         </div>

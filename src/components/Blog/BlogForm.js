@@ -7,16 +7,10 @@ import avatar from "../../assets/img/common/user.png"
 import { useDispatch } from "react-redux"
 import { showNotify } from "../../store/notifySlice"
 
-const BlogForm = ({ blogId, setComments, getComments }) => {
+const BlogForm = ({ blogId, getComments }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const [value, setValue] = useState("")
-  // const getComments = () => {
-  //   console.log("reload")
-  //   axios
-  //     .get(`/api/blogs-comments/${blogId}`)
-  //     .then((res) => setComments(res.data.data.data))
-  // }
 
   const handleSubmit = () => {
     axios("/api/blogs-comments", {

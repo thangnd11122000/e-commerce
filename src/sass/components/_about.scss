@@ -1,7 +1,15 @@
 .about {
   &__section {
-    padding: 50px 100px 100px;
     background: #fff;
+    width: 1400px;
+    margin: 0 auto;
+    padding: 50px 0px 100px;
+
+    @include breakpoint("xxl") {
+      width: auto;
+      padding: 50px 100px 100px;
+    }
+
     @include breakpoint("xl") {
       padding: 50px 50px 100px;
     }
@@ -26,13 +34,14 @@
       }
     }
   }
-
-  
 }
 
 .about-banner {
   position: relative;
+  display: flex;
+  justify-content: center;
   img {
+    width: 100%;
     display: block;
     object-fit: cover;
   }

@@ -1,7 +1,9 @@
+import image from "../../assets/img/common/banner.jpeg"
+
 const Banner = () => {
   return (
     <div className="about-banner">
-      <img src="/img/about/banner.jpg" alt="Về chúng tôi" />
+      <img src={image} alt="Về chúng tôi" />
       <div className="about-banner__container">
         <div className="about-banner__item">
           <h1>Về chúng tôi</h1>
