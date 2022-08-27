@@ -4,14 +4,13 @@ const Work = () => {
       <div className="about-content">
         <h5 className="about-content__subtitle">Chúng tôi hoạt động thế nào</h5>
         <h2 className="about-content__title">
-          Sự hài lòng và trải nghiệm được <span>Healthy Food</span> đặt lên hàng
+          Sự hài lòng và trải nghiệm được <span>TechChain</span> đặt lên hàng
           đầu
         </h2>
         <p className="about-content__desc">
-          <span>Healthy Food</span> không ngừng thay đổi, phát triển để phù hợp
-          với thị trường với triết lý "Khách hàng là trung tâm" và những Giá trị
-          cốt lõi được xây dựng để chăm sóc phục vụ khách hàng một cách tốt
-          nhất.
+          <span>TechChain</span> không ngừng thay đổi, phát triển để phù hợp với
+          thị trường với triết lý "Khách hàng là trung tâm" và những Giá trị cốt
+          lõi được xây dựng để chăm sóc phục vụ khách hàng một cách tốt nhất.
         </p>
         <div className="about-content__text about-work__list">
           <div className="about-work__item">
@@ -23,8 +22,8 @@ const Work = () => {
             <p>
               Chúng tôi chú trọng xây dựng đội ngũ với chuyên môn cao nhất, am
               hiểu tường tận thị trường, thị hiếu của khách hàng. Đây cũng là
-              điểm khác biệt lớn nhất của <span>Healthy Food</span> với đại đa
-              số các doanh nghiệp khác
+              điểm khác biệt lớn nhất của <span>TechChain</span> với đại đa số
+              các doanh nghiệp khác
             </p>
           </div>
           <div className="about-work__item">
@@ -35,7 +34,7 @@ const Work = () => {
             <h3>Nhiệt huyết</h3>
             <p>
               Song song với việc cung cấp sản phẩm, giá trị, trải nghiệm dành
-              cho khách hàng <span>Healthy Food</span> chú trọng đào tạo, tuyển
+              cho khách hàng <span>TechChain</span> chú trọng đào tạo, tuyển
               dụng đội ngũ trẻ, đam mê và đầy nhiệt huyết
             </p>
           </div>

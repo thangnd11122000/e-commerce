@@ -15,7 +15,7 @@ const Intro = () => {
         <div className="about-content__text">
           Được thành lập từ năm 2021 với tiền thân là cửa hàng chuyên cung cấp
           các mẫu laptop,Điện thoại,phụ kiện cao cấp nhập khẩu chính thức tại
-          Việt Nam. <span>Healthy Food</span> đã phát triển và đến nay đã sở hữu
+          Việt Nam. <span>TechChain</span> đã phát triển và đến nay đã sở hữu
           chuỗi cửa hàng nhằm mang tới những sản phẩm chất lượng được nhập khẩu
           trực tiếp tại Mỹ. Các mẫu laptop, PC đồng bộ, phụ kiện độc đáo, chất
           lượng phục vụ nhu cầu cao nhất của người dùng.
