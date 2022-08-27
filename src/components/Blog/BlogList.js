@@ -17,7 +17,7 @@ const BlogList = ({ categories, postCategories = [] }) => {
   useEffect(() => {
     axios
       .get(
-        `/api/blogs/blog-categories/${params.id}&_sort=created_at&_order=desc&status=1`
+        `/api/blogs/blog-categories/${params.id}?_page=1&_limit=9&_sort=created_at&_order=desc&status=1`
       )
       .then((res) => {
         setPosts(res.data.data.data)

@@ -6,9 +6,9 @@ const Technology = () => {
         <h2 className="about-content__title">Thành Tựu</h2>
         <p className="about-content__desc">
           Qua các cuộc khảo sát nội bộ cũng như thấu hiểu hành vi khách hàng,
-          <span>Healthy Food</span> team đã xây dựng thêm hàng loạt các tính
-          năng thông minh bắt kịp xu hướng công nghệ mới đem lại tốc độ truyền
-          tải thông tin sản phẩm nhanh chóng và chính xác.
+          <span>TechChain</span> team đã xây dựng thêm hàng loạt các tính năng
+          thông minh bắt kịp xu hướng công nghệ mới đem lại tốc độ truyền tải
+          thông tin sản phẩm nhanh chóng và chính xác.
         </p>
         <div className="about-technology__image">
           <img src="/img/about/team-1.webp" alt="Team 1" />
@@ -22,8 +22,8 @@ const Technology = () => {
             </div>
             <h3>Khách hàng</h3>
             <p>
-              Đặt uy tín lên hàng đầu giúp <span>Healthy Food</span> trở thành
-              nơi lựa chọn hàng đầu của khách hàng
+              Đặt uy tín lên hàng đầu giúp <span>TechChain</span> trở thành nơi
+              lựa chọn hàng đầu của khách hàng
             </p>
           </div>
           <div className="about-technology__item">
@@ -33,8 +33,8 @@ const Technology = () => {
             </div>
             <h3>Đơn hàng</h3>
             <p>
-              Để đưa ra con số khủng <span>Healthy Food</span> đã thay đổi cho
-              toàn bộ chiến lược kinh doanh của hệ thống
+              Để đưa ra con số khủng <span>TechChain</span> đã thay đổi cho toàn
+              bộ chiến lược kinh doanh của hệ thống
             </p>
           </div>
           <div className="about-technology__item">
@@ -44,8 +44,8 @@ const Technology = () => {
             </div>
             <h3>Dự án</h3>
             <p>
-              <span>Healthy Food</span> được nhiều người tiêu dùng đón nhận ủng
-              hộ và trở thành đơn vị tiên phong trong việc cung cấp thiết bị
+              <span>TechChain</span> được nhiều người tiêu dùng đón nhận ủng hộ
+              và trở thành đơn vị tiên phong trong việc cung cấp thiết bị
             </p>
           </div>
           <div className="about-technology__item">
@@ -56,8 +56,8 @@ const Technology = () => {
             <h3>Toàn cầu</h3>
             <p>
               Không chỉ phát triển tại thị trường trong nước{" "}
-              <span>Healthy Food</span> có tham vọng trở thành ông lớn trong
-              phạm vi toàn cầu
+              <span>TechChain</span> có tham vọng trở thành ông lớn trong phạm
+              vi toàn cầu
             </p>
           </div>
         </div>

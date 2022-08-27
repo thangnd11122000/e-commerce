@@ -16,7 +16,7 @@ const testimonials = [
   {
     img: "testimonial-3.jpg",
     name: "Lê Quang Tuấn",
-    title: "CEO HealThy Food - Leader Tech",
+    title: "CEO - Tech Lead",
   },
   {
     img: "testimonial-4.jpg",
@@ -67,8 +67,8 @@ const Team = () => {
         <h5 className="about-content__subtitle">ĐỘI CỦA CHÚNG TÔI</h5>
         <h2 className="about-content__title">Gặp đội của chúng tôi</h2>
         <p className="about-content__desc">
-          Với những thành viên đó, Healthy Food kỳ vọng sẽ là người bạn đồng
-          hành trong mỗi hành trình của khách hàng hiện tại và tương lai.
+          Với những thành viên đó, TechChain kỳ vọng sẽ là người bạn đồng hành
+          trong mỗi hành trình của khách hàng hiện tại và tương lai.
         </p>
         <div className="about-content__text about-team__list">
           <Slider {...settings}>
