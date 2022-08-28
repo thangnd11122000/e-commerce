@@ -23,7 +23,7 @@ const Success = () => {
         .catch(() => setLoading(false))
     }
   }, [dispatch, orderTemp])
-
+  console.log(orderTemp)
   return (
     <div className="success-page">
       {loading ? (
