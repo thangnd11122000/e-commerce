@@ -54,7 +54,7 @@ const Checkout = () => {
       },
     }
   }
-  console.log(cartItems[0])
+
   const handleOrder = () => {
     dispatch(insertOrderTemp(getDataOrder()))
     if (paymentType) {

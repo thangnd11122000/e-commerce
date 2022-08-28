@@ -90,15 +90,15 @@ const Detail = () => {
           </div>
         </>
       </div>
-        <div className="detail__related">
-          <div className="home__header">
-            <h3>Sản phẩm liên quan</h3>
-          </div>
-          <ProductSlider
-            products={productsByCategory}
-            loading={loadingProductsByCategory}
-          />
+      <div className="detail__related">
+        <div className="home__header">
+          <h3>Sản phẩm liên quan</h3>
         </div>
+        <ProductSlider
+          products={productsByCategory}
+          loading={loadingProductsByCategory}
+        />
+      </div>
     </>
   )
 }

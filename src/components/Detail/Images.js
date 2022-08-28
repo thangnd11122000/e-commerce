@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react"
-import { css } from "@emotion/react"
-import { MoonLoader } from "react-spinners"
-
-const override = css`
-  display: block;
-  margin: auto auto;
-`
+import { useState } from "react"
 
 const Images = ({ image, gallery = [] }) => {
-  const [images, setImages] = useState([])
-  const [loading] = useState(false)
-  console.log(gallery)
-  useEffect(() => {
-    setImages([image, ...gallery])
-  }, [gallery, image])
+  const images = [image, ...gallery]
 
   const [index, setIndex] = useState(0)
   const [isOpenMore, setIsOpenMore] = useState(false)
 
   return (
     <div className="detail-images">
-      {loading ? (
-        <MoonLoader color="#0032FE" size={50} css={override} />
-      ) : (
+      {
         <>
           <div className="detail-images__view">
             <img src={`${images[index]}`} alt="" />
@@ -86,7 +72,7 @@ const Images = ({ image, gallery = [] }) => {
             )}
           </div>
         </>
-      )}
+      }
     </div>
   )
 }
