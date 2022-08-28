@@ -47,7 +47,7 @@ const FeaturedProducts = () => {
             container
             columnSpacing={{ xs: 1, sm: 2 }}
             rowSpacing={{ xs: 1, sm: 2 }}
-            columns={{ xs: 2, sm: 3, md: 3, lg: 6, xl: 6 }}
+            columns={{ xs: 1, xss: 2, sm: 3, md: 3, lg: 6, xl: 6 }}
             className="recommended-products__list"
           >
             {Array.isArray(_DATA.currentData()) &&

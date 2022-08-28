@@ -35,10 +35,6 @@
 
     img {
       width: 100%;
-      // height: fit-content;
-      @include breakpoint("xs") {
-        height: 140px;
-      }
     }
   }
 

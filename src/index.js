@@ -8,12 +8,29 @@ import { BrowserRouter as Router } from "react-router-dom"
 import "./sass/index.scss"
 import "./services/axios-base"
 import PageLoader from "./components/PageLoader"
+import { createTheme, ThemeProvider } from "@mui/material"
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      xss: 375,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+})
+
 ReactDOM.render(
   <React.StrictMode>
     <React.Suspense fallback={<PageLoader />}>
       <Provider store={store}>
         <Router>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </Router>
       </Provider>
     </React.Suspense>

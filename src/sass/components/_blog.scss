@@ -199,7 +199,7 @@
   box-shadow: $shadow-1dp;
   border-radius: 5px;
   &__container {
-    padding: 10px 20px 20px ;
+    padding: 10px 20px 20px;
     display: flex;
     gap: 30px;
     @include breakpoint("md") {
@@ -462,6 +462,14 @@
       }
     }
   }
+  &__content {
+    div,
+    h2,
+    p {
+      width: unset !important;
+    }
+  }
+  
   &__content p {
     margin: 30px 0 20px;
     padding: 0 0px;

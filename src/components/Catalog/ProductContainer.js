@@ -33,8 +33,10 @@ const ProductContainer = ({
       setLayout(4)
     } else if (width > 600) {
       setLayout(3)
-    } else {
+    } else if (width > 375) {
       setLayout(2)
+    } else {
+      setLayout(1)
     }
   }, [width])
 
