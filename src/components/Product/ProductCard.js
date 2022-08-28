@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { addFavorite, deleteFavorite } from "../../store/favoritesSlice"
 import { showNotify } from "../../store/notifySlice"
 import { formatCurrency, getDiscount } from "../../utils"
+import LazyLoad from "react-lazyload"
 
 const ProductCard = ({ product, hidePrice = false }) => {
   const productIds = useSelector((state) => state.favorites.productIds)
@@ -79,7 +80,9 @@ const ProductCard = ({ product, hidePrice = false }) => {
         )}
       </div>
       <Link to={`/san-pham/${id}`} className="product-card__image">
-        <img src={image} alt="" />
+        <LazyLoad>
+          <img src={image} alt="" />
+        </LazyLoad>
       </Link>
       <Link to={`/san-pham/${id}`} className="product-card__name">
         {product_name}

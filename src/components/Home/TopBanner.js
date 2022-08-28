@@ -10,6 +10,8 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Link } from "react-router-dom"
+import LazyLoad from "react-lazyload"
+
 const banners = [
   {
     link: "/danh-sach?_cat=31",
@@ -79,11 +81,13 @@ const TopBanner = () => {
             {carousels.map((carousel, index) => (
               <Link to={carousel.link} key={index}>
                 <div className="top-banner__carousel">
-                  <img
-                    src={carousel.image}
-                    alt="Ảnh Banner"
-                    className="top-banner__carousel-img"
-                  />
+                  <LazyLoad>
+                    <img
+                      src={carousel.image}
+                      alt="Ảnh Banner"
+                      className="top-banner__carousel-img"
+                    />
+                  </LazyLoad>
                   <h3
                     className="top-banner__carousel-title"
                     dangerouslySetInnerHTML={{ __html: carousel.title }}
@@ -105,7 +109,9 @@ const TopBanner = () => {
               <Grid item xs={6} md={3} lg={6} key={index}>
                 <Link to={banner.link}>
                   <div className="top-banner__item">
-                    <img src={banner.image} alt="Ảnh banner" />
+                    <LazyLoad>
+                      <img src={banner.image} alt="Ảnh banner" />
+                    </LazyLoad>
                     <div className="top-banner__item-title">{banner.title}</div>
                     <div className="top-banner__item-description">
                       {banner.description}
