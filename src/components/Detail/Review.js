@@ -38,7 +38,7 @@ const Review = ({ productId }) => {
     let temp = ratings.filter((r) => r.rating === value)
     return temp.length
   }
-  console.log(ratings)
+
   useEffect(() => {
     if (productId) {
       axios

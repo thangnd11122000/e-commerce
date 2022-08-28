@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getDiscount } from "../utils"
 
-const items = localStorage.getItem("cartItems")?.value
+const items = localStorage.getItem("cartItems")?.length
   ? JSON.parse(localStorage.getItem("cartItems"))
   : []
 
