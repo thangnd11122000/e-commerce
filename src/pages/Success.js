@@ -12,20 +12,19 @@ const Success = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (orderTemp?.data) {
-      setLoading(true)
-      axios("/api/order", { method: "POST", data: orderTemp })
-        .then(() => {
-          dispatch(deleteOrderTemp())
-          dispatch(clearCart())
-          setLoading(false)
-        })
-        .catch(() => setLoading(false))
-    }
+    console.log("false")
+    setLoading(true)
+    axios("/api/order", { method: "POST", data: orderTemp })
+      .then(() => {
+        dispatch(deleteOrderTemp())
+        dispatch(clearCart())
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
   }, [dispatch, orderTemp])
-  
+
   console.log(orderTemp)
-  
+
   return (
     <div className="success-page">
       {loading ? (
