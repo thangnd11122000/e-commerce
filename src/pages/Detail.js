@@ -52,7 +52,14 @@ const Detail = () => {
 
   return (
     <>
-      <PageLinks links={[{ name: "Sản phẩm 1", link: "/san-pham" }]} />
+      <PageLinks
+        links={[
+          {
+            name: product?.product_name ? product.product_name : "Sản phẩm",
+            link: "/san-pham",
+          },
+        ]}
+      />
       <div className="detail">
         <>
           <div className="detail__left">
