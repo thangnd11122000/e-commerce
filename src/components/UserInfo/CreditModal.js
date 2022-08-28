@@ -3,6 +3,7 @@ import { Close } from "@mui/icons-material"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import FormControl from "../Form/FormControl"
+import LazyLoad from "react-lazyload"
 
 const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
   const initialValues = {
@@ -48,10 +49,18 @@ const CreditModal = ({ isOpenCreditModal, setIsOpenCreditModal }) => {
                 <div className="bank-modal__title">
                   <p>Chi tiết thẻ</p>
                   <div>
-                    <img src="/img/credit/jcb.png" alt="" />
-                    <img src="/img/credit/master.png" alt="" />
-                    <img src="/img/credit/american.png" alt="" />
-                    <img src="/img/credit/visa.png" alt="" />
+                    <LazyLoad>
+                      <img src="/img/credit/jcb.png" alt="" />
+                    </LazyLoad>
+                    <LazyLoad>
+                      <img src="/img/credit/master.png" alt="" />
+                    </LazyLoad>
+                    <LazyLoad>
+                      <img src="/img/credit/american.png" alt="" />
+                    </LazyLoad>
+                    <LazyLoad>
+                      <img src="/img/credit/visa.png" alt="" />
+                    </LazyLoad>
                   </div>
                 </div>
                 <FormControl

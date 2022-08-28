@@ -1,3 +1,5 @@
+import LazyLoad from "react-lazyload"
+
 const Technology = () => {
   return (
     <div className="about__section about-technology">
@@ -11,13 +13,19 @@ const Technology = () => {
           thông tin sản phẩm nhanh chóng và chính xác.
         </p>
         <div className="about-technology__image">
-          <img src="/img/about/team-1.webp" alt="Team 1" />
-          <img src="/img/about/team-2.webp" alt="Team 2" />
+          <LazyLoad>
+            <img src="/img/about/team-1.webp" alt="Team 1" />
+          </LazyLoad>
+          <LazyLoad>
+            <img src="/img/about/team-2.webp" alt="Team 2" />
+          </LazyLoad>
         </div>
         <div className="about-technology__list">
           <div className="about-technology__item">
             <div>
-              <img src="/img/about/icon-4.webp" alt="Icon" />
+              <LazyLoad>
+                <img src="/img/about/icon-4.webp" alt="Icon" />
+              </LazyLoad>
               <h5>4268+</h5>
             </div>
             <h3>Khách hàng</h3>
@@ -28,7 +36,9 @@ const Technology = () => {
           </div>
           <div className="about-technology__item">
             <div>
-              <img src="/img/about/icon-4.webp" alt="Icon" />
+              <LazyLoad>
+                <img src="/img/about/icon-4.webp" alt="Icon" />
+              </LazyLoad>
               <h5>4268+</h5>
             </div>
             <h3>Đơn hàng</h3>
@@ -39,7 +49,9 @@ const Technology = () => {
           </div>
           <div className="about-technology__item">
             <div>
-              <img src="/img/about/icon-4.webp" alt="Icon" />
+              <LazyLoad>
+                <img src="/img/about/icon-4.webp" alt="Icon" />
+              </LazyLoad>
               <h5>643+</h5>
             </div>
             <h3>Dự án</h3>
@@ -50,7 +62,9 @@ const Technology = () => {
           </div>
           <div className="about-technology__item">
             <div>
-              <img src="/img/about/icon-4.webp" alt="Icon" />
+              <LazyLoad>
+                <img src="/img/about/icon-4.webp" alt="Icon" />
+              </LazyLoad>
               <h5>269k</h5>
             </div>
             <h3>Toàn cầu</h3>

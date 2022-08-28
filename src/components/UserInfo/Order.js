@@ -9,6 +9,7 @@ import { Fragment } from "react"
 import ModalRating from "./ModalRating"
 import { ORDER_SUCCESS } from "../../constants/orders"
 import { Link } from "react-router-dom"
+import LazyLoad from "react-lazyload"
 
 const Order = ({ url = "/api/orders" }) => {
   const [orders, setOrders] = useState([])
@@ -119,10 +120,12 @@ const Order = ({ url = "/api/orders" }) => {
                   {order.orderdetails?.map((detail) => (
                     <Fragment key={detail.id}>
                       <div key={detail.id} className="checkout-product__item">
-                        <img
-                          src={`https://techchains-ecommerce.store/public/storage/uploads/products/${detail.product.image}`}
-                          alt={detail.product.product_name}
-                        />
+                        <LazyLoad>
+                          <img
+                            src={`https://techchains-ecommerce.store/public/storage/uploads/products/${detail.product.image}`}
+                            alt={detail.product.product_name}
+                          />
+                        </LazyLoad>
                         <div>
                           <Link
                             to={`/san-pham/${detail.product.id}`}

@@ -2,6 +2,7 @@ import { CalendarToday, Visibility } from "@mui/icons-material"
 import dayjs from "dayjs"
 import { Link } from "react-router-dom"
 import { scrollOnTop } from "../../utils"
+import LazyLoad from "react-lazyload"
 
 const BlogWrap = ({ post }) => {
   const { id, thumbnail, title, created_at, view } = post
@@ -9,11 +10,13 @@ const BlogWrap = ({ post }) => {
     <div className="blog-wrap">
       <div className="blog-wrap--left">
         <Link to={`chi-tiet/${id}`} onClick={() => scrollOnTop()}>
-          <img
-            src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${thumbnail}`}
-            alt=""
-            className="blog-wrap__image"
-          />
+          <LazyLoad>
+            <img
+              src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${thumbnail}`}
+              alt=""
+              className="blog-wrap__image"
+            />
+          </LazyLoad>
         </Link>
       </div>
       <div className="blog-wrap--right">

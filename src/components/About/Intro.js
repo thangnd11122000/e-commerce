@@ -1,3 +1,4 @@
+import LazyLoad from "react-lazyload"
 const Intro = () => {
   return (
     <div className="about__section about__intro">
@@ -21,7 +22,9 @@ const Intro = () => {
           lượng phục vụ nhu cầu cao nhất của người dùng.
         </div>
       </div>
-      <img src="/img/about/about.webp" alt="" />
+      <LazyLoad>
+        <img src="/img/about/about.webp" alt="" />
+      </LazyLoad>
     </div>
   )
 }

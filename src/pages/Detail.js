@@ -11,6 +11,7 @@ import { css } from "@emotion/react"
 import axios from "axios"
 import { useCallback } from "react"
 import { useAxios } from "../hook/useAxios"
+import LazyLoad from "react-lazyload"
 
 const override = css`
   display: block;
@@ -82,18 +83,22 @@ const Detail = () => {
           </div>
           <div className="detail__right">
             <Services />
-            <img
-              style={{ borderRadius: "5px", width: "100%" }}
-              src="https://i.pinimg.com/474x/2b/4f/5d/2b4f5d88fff7fccaaa09e793e57deab1.jpg"
-              alt="quang-cao"
-              width={100}
-            />
-            <img
-              style={{ borderRadius: "5px", width: "100%" }}
-              src="https://i.pinimg.com/474x/0f/64/17/0f6417b499650df8dfb384f65bedbc50.jpg"
-              alt="quang-cao"
-              width={100}
-            />
+            <LazyLoad>
+              <img
+                style={{ borderRadius: "5px", width: "100%" }}
+                src="https://i.pinimg.com/474x/2b/4f/5d/2b4f5d88fff7fccaaa09e793e57deab1.jpg"
+                alt="quang-cao"
+                width={100}
+              />
+            </LazyLoad>
+            <LazyLoad>
+              <img
+                style={{ borderRadius: "5px", width: "100%" }}
+                src="https://i.pinimg.com/474x/0f/64/17/0f6417b499650df8dfb384f65bedbc50.jpg"
+                alt="quang-cao"
+                width={100}
+              />
+            </LazyLoad>
           </div>
         </>
       </div>

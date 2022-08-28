@@ -1,3 +1,5 @@
+import LazyLoad from "react-lazyload"
+
 const Work = () => {
   return (
     <div className="about__section about__section--gray about-work">
@@ -15,7 +17,9 @@ const Work = () => {
         <div className="about-content__text about-work__list">
           <div className="about-work__item">
             <div>
-              <img src="/img/about/icon-1.webp" alt="" />
+              <LazyLoad>
+                <img src="/img/about/icon-1.webp" alt="" />
+              </LazyLoad>
               <h5>01</h5>
             </div>
             <h3>Chuyên môn</h3>
@@ -28,7 +32,9 @@ const Work = () => {
           </div>
           <div className="about-work__item">
             <div>
-              <img src="/img/about/icon-1.webp" alt="" />
+              <LazyLoad>
+                <img src="/img/about/icon-1.webp" alt="" />
+              </LazyLoad>
               <h5>02</h5>
             </div>
             <h3>Nhiệt huyết</h3>
@@ -40,7 +46,9 @@ const Work = () => {
           </div>
           <div className="about-work__item">
             <div>
-              <img src="/img/about/icon-1.webp" alt="" />
+              <LazyLoad>
+                <img src="/img/about/icon-1.webp" alt="" />
+              </LazyLoad>
               <h5>03</h5>
             </div>
             <h3>Công nghệ</h3>

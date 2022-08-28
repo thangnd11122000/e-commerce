@@ -1,4 +1,5 @@
 import { useState } from "react"
+import LazyLoad from "react-lazyload"
 
 const Images = ({ image, gallery = [] }) => {
   const images = [image, ...gallery]
@@ -11,7 +12,9 @@ const Images = ({ image, gallery = [] }) => {
       {
         <>
           <div className="detail-images__view">
-            <img src={`${images[index]}`} alt="" />
+            <LazyLoad>
+              <img src={`${images[index]}`} alt="" />
+            </LazyLoad>
           </div>
 
           <div className="detail-images__list">
@@ -26,12 +29,14 @@ const Images = ({ image, gallery = [] }) => {
                         : "detail-images__list--img"
                     }
                   >
-                    <img
-                      src={`${img}`}
-                      alt=""
-                      onClick={() => setIndex(i)}
-                      onMouseOver={() => setIndex(i)}
-                    />
+                    <LazyLoad>
+                      <img
+                        src={`${img}`}
+                        alt=""
+                        onClick={() => setIndex(i)}
+                        onMouseOver={() => setIndex(i)}
+                      />
+                    </LazyLoad>
                   </div>
                 ))}
                 <div
@@ -52,12 +57,14 @@ const Images = ({ image, gallery = [] }) => {
                         : "detail-images__list--img"
                     }
                   >
-                    <img
-                      src={`${img}`}
-                      alt=""
-                      onClick={() => setIndex(i)}
-                      onMouseOver={() => setIndex(i)}
-                    />
+                    <LazyLoad>
+                      <img
+                        src={`${img}`}
+                        alt=""
+                        onClick={() => setIndex(i)}
+                        onMouseOver={() => setIndex(i)}
+                      />
+                    </LazyLoad>
                   </div>
                 ))}
                 {images.length > 4 && (

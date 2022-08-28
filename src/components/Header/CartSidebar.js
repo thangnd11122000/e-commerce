@@ -8,6 +8,7 @@ import { closeCartSidebar } from "../../store/toggleSlice"
 import { formatCurrency, getDiscount } from "../../utils"
 import ConfirmDialog from "../ConfirmDialog"
 import image from "../../assets/img/common/cart-512.webp"
+import LazyLoad from "react-lazyload"
 
 const CartSidebar = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -89,10 +90,12 @@ const CartSidebar = () => {
                       className="cart-sidebar__item--img"
                       onClick={() => dispatch(closeCartSidebar())}
                     >
-                      <img
-                        src={`${product.image}`}
-                        alt={product.product_name}
-                      />
+                      <LazyLoad>
+                        <img
+                          src={`${product.image}`}
+                          alt={product.product_name}
+                        />
+                      </LazyLoad>
                     </Link>
                     <div className="cart-sidebar__product">
                       <Link
@@ -158,7 +161,9 @@ const CartSidebar = () => {
         ) : (
           <div className="cart-sidebar__empty">
             <p>Không có sản phẩm</p>
-            <img src={image} alt="Giỏ trống" />
+            <LazyLoad>
+              <img src={image} alt="Giỏ trống" />
+            </LazyLoad>
           </div>
         )}
       </div>

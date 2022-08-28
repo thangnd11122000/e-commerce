@@ -3,6 +3,7 @@ import dayjs from "dayjs"
 import { Link } from "react-router-dom"
 import { scrollOnTop } from "../../utils"
 import { BsArrowRightSquare } from "react-icons/bs"
+import LazyLoad from "react-lazyload"
 
 const BlogCard = ({ post }) => {
   return (
@@ -13,10 +14,12 @@ const BlogCard = ({ post }) => {
           to={`/bai-viet/chi-tiet/${post?.id}`}
           onClick={() => scrollOnTop()}
         >
-          <img
-            src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${post?.thumbnail}`}
-            alt={post?.title}
-          />
+          <LazyLoad>
+            <img
+              src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${post?.thumbnail}`}
+              alt={post?.title}
+            />
+          </LazyLoad>
         </Link>
       </div>
       <div className="blog-card__body">

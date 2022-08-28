@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import avatar from "../../assets/img/common/user.png"
 import { useDispatch } from "react-redux"
 import { showNotify } from "../../store/notifySlice"
+import LazyLoad from "react-lazyload"
 
 const BlogForm = ({ blogId, getComments }) => {
   const dispatch = useDispatch()
@@ -49,7 +50,9 @@ const BlogForm = ({ blogId, getComments }) => {
       {user ? (
         <>
           <div className="blog-form__content">
-            <img src={user?.avatar || avatar} alt="avatar" />
+            <LazyLoad>
+              <img src={user?.avatar || avatar} alt="avatar" />
+            </LazyLoad>
             <textarea
               value={value}
               onChange={(e) => setValue(e.target.value)}

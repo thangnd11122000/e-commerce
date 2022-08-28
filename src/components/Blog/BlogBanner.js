@@ -2,6 +2,7 @@ import dayjs from "dayjs"
 import { Link } from "react-router-dom"
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai"
 import { BsPerson } from "react-icons/bs"
+import LazyLoad from "react-lazyload"
 
 const BlogBanner = ({ posts }) => {
   return (
@@ -9,14 +10,22 @@ const BlogBanner = ({ posts }) => {
       <div className="blog-banner__list">
         {posts.map((p) => (
           <div key={p.id} className="blog-banner__item">
-            <Link to={`/bai-viet/chi-tiet/${p.id}`} className="blog-banner__item--img">
-              <img
-                src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${p?.thumbnail}`}
-                alt={p.slug}
-              />
+            <Link
+              to={`/bai-viet/chi-tiet/${p.id}`}
+              className="blog-banner__item--img"
+            >
+              <LazyLoad>
+                <img
+                  src={`https://techchains-ecommerce.store/public/storage/uploads/blogs/${p?.thumbnail}`}
+                  alt={p.slug}
+                />
+              </LazyLoad>
             </Link>
             <div className="blog__tags"></div>
-            <Link to={`/bai-viet/chi-tiet/${p.id}`} className="blog-banner__item--title">
+            <Link
+              to={`/bai-viet/chi-tiet/${p.id}`}
+              className="blog-banner__item--title"
+            >
               {p.title}
             </Link>
             <div className="blog-banner__actions">

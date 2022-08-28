@@ -2,6 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { formatCurrency } from "../../utils"
+import LazyLoad from "react-lazyload"
 
 const Order = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -13,7 +14,9 @@ const Order = () => {
         {cartItems?.map((product, index) => {
           return (
             <div key={index} className="checkout-product__item">
-              <img src={product.image} alt="" />
+              <LazyLoad>
+                <img src={product.image} alt="" />
+              </LazyLoad>
               <div>
                 <Link
                   to={`/san-pham/${product.id}`}

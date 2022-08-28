@@ -5,6 +5,7 @@ import usePagination from "../Pagination/Pagination"
 import { Pagination } from "@mui/material"
 import axios from "axios"
 import avatar from "../../assets/img/common/user.png"
+import LazyLoad from "react-lazyload"
 
 const Review = ({ productId }) => {
   const [ratings, setRatings] = useState([])
@@ -93,7 +94,9 @@ const Review = ({ productId }) => {
                 <div key={i} className="detail-rating__item">
                   <div className="detail-rating__item--left">
                     <div className="detail-rating__user">
-                      <img src={r?.avatar || avatar} alt="" />
+                      <LazyLoad>
+                        <img src={r?.avatar || avatar} alt="" />
+                      </LazyLoad>
                       <div>
                         <Rating
                           name="simple-controlled"

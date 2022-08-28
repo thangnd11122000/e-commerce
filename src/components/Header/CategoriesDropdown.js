@@ -9,6 +9,7 @@ import {
 import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material"
 import { css } from "@emotion/react"
 import { Link } from "react-router-dom"
+import LazyLoad from "react-lazyload"
 
 const override = css`
   display: block;
@@ -120,10 +121,12 @@ const CategoriesDropdown = () => {
                             {subCategory.category_name}
                             {subCategory.image && (
                               <div className="navigation-submenu__img">
-                                <img
-                                  src={`https://techchains-ecommerce.store/public/storage/uploads/categories/${subCategory.image}`}
-                                  alt={subCategory.category_name}
-                                />
+                                <LazyLoad>
+                                  <img
+                                    src={`https://techchains-ecommerce.store/public/storage/uploads/categories/${subCategory.image}`}
+                                    alt={subCategory.category_name}
+                                  />
+                                </LazyLoad>
                               </div>
                             )}
                           </Link>

@@ -25,6 +25,7 @@ import {
 import ConfirmDialog from "../ConfirmDialog"
 import { formatCurrency } from "../../utils"
 import { Link } from "react-router-dom"
+import LazyLoad from "react-lazyload"
 
 const CartTable = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -167,7 +168,9 @@ const CartTable = () => {
                           to={`/san-pham/${product.id}`}
                           className="cart-table__product--img"
                         >
-                          <img src={product.image} alt="" />
+                          <LazyLoad>
+                            <img src={product.image} alt="" />
+                          </LazyLoad>
                         </Link>
                         <div className="cart-table__product--content">
                           <Link to={`/san-pham/${product.id}`}>

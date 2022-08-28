@@ -1,9 +1,12 @@
 import image from "../../assets/img/common/banner.jpeg"
+import LazyLoad from "react-lazyload"
 
 const Banner = () => {
   return (
     <div className="about-banner">
-      <img src={image} alt="Về chúng tôi" />
+      <LazyLoad>
+        <img src={image} alt="Về chúng tôi" />
+      </LazyLoad>
       <div className="about-banner__container">
         <div className="about-banner__item">
           <h1>Về chúng tôi</h1>

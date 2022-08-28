@@ -4,6 +4,7 @@ import BlogForm from "./BlogForm"
 import avatar from "../../assets/img/common/user.png"
 import { Pagination } from "@mui/material"
 import usePagination from "../Pagination/Pagination"
+import LazyLoad from "react-lazyload"
 
 const BlogComment = ({ blogId, comments = [], getComments }) => {
   let [page, setPage] = useState(1)
@@ -21,16 +22,15 @@ const BlogComment = ({ blogId, comments = [], getComments }) => {
       <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>
         {comments?.length || 0} bình luận
       </h3>
-      <BlogForm
-        blogId={blogId}
-        getComments={getComments}
-      />
+      <BlogForm blogId={blogId} getComments={getComments} />
       <div className="blog-comment__item">
         {_DATA.currentData().map((c, i) => (
           <Fragment key={c.id}>
             <div className="blog-comment__main">
               <div className="blog-comment__content">
-                <img src={c?.avatar || avatar} alt="" />
+                <LazyLoad>
+                  <img src={c?.avatar || avatar} alt="" />
+                </LazyLoad>
                 <div>
                   <h5>
                     {c.fullname} -{" "}

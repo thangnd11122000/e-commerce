@@ -1,6 +1,7 @@
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import LazyLoad from "react-lazyload"
 
 const testimonials = [
   {
@@ -74,7 +75,9 @@ const Team = () => {
           <Slider {...settings}>
             {testimonials.map((t, i) => (
               <div key={i} className="about-team__item">
-                <img src={`/img/about/${t.img}`} alt={t.name} />
+                <LazyLoad>
+                  <img src={`/img/about/${t.img}`} alt={t.name} />
+                </LazyLoad>
                 <h3>{t.name}</h3>
                 <p>{t.title}</p>
               </div>

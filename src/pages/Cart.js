@@ -3,6 +3,7 @@ import CartTable from "../components/Cart/CartTable"
 import PageLinks from "../components/PageLinks"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import LazyLoad from "react-lazyload"
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -17,10 +18,12 @@ const Cart = () => {
               <CartTable />
             </div>
             <div className="cart__right">
-              <img
-                src="https://i.pinimg.com/564x/a7/92/41/a79241873a4296430d0d521ac280ac3d.jpg"
-                alt="quang-cao"
-              />
+              <LazyLoad>
+                <img
+                  src="https://i.pinimg.com/564x/a7/92/41/a79241873a4296430d0d521ac280ac3d.jpg"
+                  alt="quang-cao"
+                />
+              </LazyLoad>
               <Summary />
             </div>
           </div>

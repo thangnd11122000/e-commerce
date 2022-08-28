@@ -13,6 +13,7 @@ import {
 } from "@mui/material"
 import { BsCardList, BsPersonSquare } from "react-icons/bs"
 import { GoLocation } from "react-icons/go"
+import LazyLoad from "react-lazyload"
 
 const Aside = ({ setPage }) => {
   const { user } = useSelector((state) => state.auth)
@@ -50,9 +51,13 @@ const Aside = ({ setPage }) => {
       />
       <div className="user__info">
         {user?.avatar ? (
-          <img src={user.avatar} alt="" />
+          <LazyLoad>
+            <img src={user.avatar} alt="" />
+          </LazyLoad>
         ) : (
-          <img src={avatar} alt="" />
+          <LazyLoad>
+            <img src={avatar} alt="" />
+          </LazyLoad>
         )}
         <div>
           <span>Xin chào</span>

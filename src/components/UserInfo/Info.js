@@ -2,6 +2,7 @@ import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import avatar from "../../assets/img/common/user.png"
+import LazyLoad from "react-lazyload"
 
 const Info = () => {
   const { user } = useSelector((state) => state.auth)
@@ -80,9 +81,13 @@ const Info = () => {
         </form>
         <div className="user__avatar">
           {user?.avatar ? (
-            <img src={user.avatar} alt="" />
+            <LazyLoad>
+              <img src={user.avatar} alt="" />
+            </LazyLoad>
           ) : (
-            <img src={avatar} alt="" />
+            <LazyLoad>
+              <img src={avatar} alt="" />
+            </LazyLoad>
           )}
           <button className="btn-primary">Chọn ảnh</button>
         </div>

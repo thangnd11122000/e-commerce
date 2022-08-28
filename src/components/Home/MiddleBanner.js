@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import banner5 from "../../assets/img/banners/banner5.png"
 import banner6 from "../../assets/img/banners/banner6.webp"
 import banner7 from "../../assets/img/banners/banner7.webp"
+import LazyLoad from "react-lazyload"
 
 const MiddleBanner = () => {
   const settings = {
@@ -55,7 +56,9 @@ const MiddleBanner = () => {
           <div className="banner-card" key={i}>
             <div className="banner-card__item">
               <Link to={d.link}>
-                <img src={d.image} alt="banner" style={{ zIndex: "-1" }} />
+                <LazyLoad>
+                  <img src={d.image} alt="banner" style={{ zIndex: "-1" }} />
+                </LazyLoad>
                 <div className="banner-card__content">
                   <h3>{d.name}</h3>
                   <p>Tìm kiếm ngay</p>

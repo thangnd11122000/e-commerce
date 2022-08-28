@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import { showNotify } from "../../store/notifySlice"
+import LazyLoad from "react-lazyload"
 
 export default function ModalRating({ product }) {
   const dispatch = useDispatch()
@@ -67,10 +68,12 @@ export default function ModalRating({ product }) {
         aria-describedby="modal-modal-description"
       >
         <Box className="rating-modal">
-          <img
-            src={`https://techchains-ecommerce.store/public/storage/uploads/products/${product?.image}`}
-            alt=""
-          />
+          <LazyLoad>
+            <img
+              src={`https://techchains-ecommerce.store/public/storage/uploads/products/${product?.image}`}
+              alt=""
+            />
+          </LazyLoad>
           <p className="product-name">{product?.product_name}</p>
           <Rating
             name="rating"
