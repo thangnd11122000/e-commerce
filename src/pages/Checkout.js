@@ -1,6 +1,6 @@
 import axios from "axios"
 import dayjs from "dayjs"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { v4 } from "uuid"
@@ -25,7 +25,7 @@ const Checkout = () => {
   const [currentAddressId, setCurrentAddressId] = useState(null)
   const [voucher, setVoucher] = useState(null)
   const [voucherPrice, setVoucherPrice] = useState(0)
-  const getDataOrder = () => {
+  const getDataOrder = useCallback(() => {
     const details = cartItems?.map((product, index) => {
       return {
         product_id: product.id,
@@ -53,10 +53,21 @@ const Checkout = () => {
         details,
       },
     }
-  }
+  }, [
+    cartItems,
+    currentAddressId,
+    note,
+    paymentType,
+    shippingFee,
+    user?.id,
+    voucherPrice,
+  ])
+
+  useEffect(() => {
+    dispatch(insertOrderTemp(getDataOrder()))
+  }, [dispatch, getDataOrder])
 
   const handleOrder = () => {
-    dispatch(insertOrderTemp(getDataOrder()))
     if (paymentType) {
       switch (paymentType) {
         case 1:
