@@ -69,7 +69,9 @@ const Navigation = () => {
         ))}
       </ul>
       <div className="navigation__contact">
-        <p>123456789+</p>
+        <a href="tel:18001008" style={{ marginRight: "10px" }}>
+          18001008{" "}
+        </a>
         {isLoggedIn && (
           <>
             <AiOutlineLogout

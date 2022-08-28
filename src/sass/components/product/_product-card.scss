@@ -51,6 +51,12 @@
     letter-spacing: 0.004em;
     color: $text-dark;
 
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 3;
+    // -webkit-box-orient: vertical;
+
     &:hover {
       color: $primary;
     }
