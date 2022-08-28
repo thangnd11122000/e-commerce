@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getDiscount } from "../utils"
 
-const items =
-  localStorage.getItem("cartItems") !== null
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : []
+const items = localStorage.getItem("cartItems")?.value
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : []
 
 const getTotalPrice = (products) => {
   return products.reduce((total, product) => {

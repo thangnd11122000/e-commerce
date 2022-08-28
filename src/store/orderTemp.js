@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+const data =
+  localStorage.getItem("orderTemp") !== null
+    ? JSON.parse(localStorage.getItem("orderTemp"))
+    : null
+
 const initialState = {
-  data: null,
+  data: data,
 }
 
 export const orderTempSlice = createSlice({
@@ -10,9 +15,11 @@ export const orderTempSlice = createSlice({
   reducers: {
     insertOrderTemp: (state, action) => {
       state.data = action.payload
+      localStorage.setItem("orderTemp", JSON.stringify(state.data))
     },
     deleteOrderTemp: (state) => {
       state.data = null
+      localStorage.removeItem("orderTemp")
     },
   },
 })
