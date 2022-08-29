@@ -21,7 +21,7 @@ const Catalog = () => {
   const [productsData, setProductsData] = useState([])
   const [products, setProducts] = useState([])
 
-  const { response, loading } = useAxios({ url: "/api/product" })
+  const { response, loading } = useAxios({ url: "/api/product?_sort=created_at&_order=desc" })
 
   const [minMaxPrice, setMinMaxPrice] = useState([0, 9999])
   const [priceSlider, setPriceSlider] = useState([0, 9999])
@@ -36,7 +36,7 @@ const Catalog = () => {
     const params = getAllUrlParams(location.search)
     const search = params._q || ""
     axios
-      .get(`/api/product?q=${search}`)
+      .get(`/api/product?q=${search}&_sort=created_at&_order=desc`)
       .then((res) => {
         if (res.data) {
           setProductsData(res.data.data)
