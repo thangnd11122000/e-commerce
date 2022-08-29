@@ -35,7 +35,7 @@ const ProductCard = ({ product, hidePrice = false }) => {
     <div className="product-card">
       <div className="product-card__features">
         {discount ? (
-          discount.discount_type === "Price" ? (
+          discount.discount_type === "Money" ? (
             <span className="discount">-{discount.discount_value}đ</span>
           ) : (
             <span className="discount">{discount.discount_value}%</span>
